@@ -1,152 +1,182 @@
 ---
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+**_Welcome to the Pocket Hotel User Guide!_**
 
-* Table of Contents
-{:toc}
+**Pocket Hotel (PH)** is a specialized contact management desktop app targeted towards hotel managers who have many
+guests and staff to handle.
+
+**PH** provides a centralized location to store, organize and manage information linked to your guests and staff
+members. **PH**
+streamlines your workflow and is optimized for use via the Command Line Interface (CLI), whilst still embodying the
+benefits of a Graphical User Interface (GUI).
+
+This user guide serves as an entry point for users to get oriented with how **PH** operates and how you may utilize it
+fully to integrate it within your hotel management system.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Table of Contents**
+
+* Table of Contents {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `PH.jar` from [here](https://github.com/AY2122S1-CS2103T-W12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+4. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+5. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+   contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+   open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
+      named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
+
+PH’s features revolve around managing your guests and staff. For each command, a short description of its use is given
+which is then followed by the format and a short example to help ensure that you have executed the command correctly.
+
+A quick overview of all the commands can be found in the [command summary.](#command-summary)
+
+Certain commands require parameters, which may have certain constraints. A quick overview of all the underlying
+constraints can be found in the [parameter constraints.](#parameter-constraints-summary)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be entered by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Parameter prefixes such as `n/` and `pn/` are special keywords that indicate a start of a parameter.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Fields with square brackets are optional.<br>
+  e.g `n/NAME [p/PHONE_NUMBER]` can be used as `n/Bing Cheng p/99999999` or as `n/Bing Cheng`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME pn/PASSPORT_NUMBER`, `pn/PASSPORT_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+  the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`) will be
+  ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+### Adding guests/staff : `add`
 
-Shows a message explaning how to access the help page.
+Adds a new guest or staff and their contact details into PH.
 
-![help message](images/helpMessage.png)
+Format: `add n/NAME pn/PASSPORT_NUMBER [p/PHONE_NUMBER] [r/ROOM_NUMBER]`
 
-Format: `help`
+Example:
+![AddDiagram](images/AddDiagram.png)
 
+* `list` command lists all contact details of people in the address book.
+* `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to the address book and shows the new
+  contact list.
 
-### Adding a person: `add`
+[Back to Table of Contents](#table-of-contents)
 
-Adds a person to the address book.
+### Editing fields of guests/staff: `edit`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Edit a guest or staff’s contact details by their passport number. Only edits the fields that have been passed in as
+parameters.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
+
+* Existing values will be updated to the input values.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+* `edit pn/X12345678A p/99999999` locates the guest Bing Cheng and overwrites the phone number field with the new phone
+  number provided.
+* `edit pn/X98765432B r/123` locates the guest Jeremy and overwrites the room number field with the new room number
+  provided.
 
-Shows a list of all persons in the address book.
+[Back to Table of Contents](#table-of-contents)
+
+### Deleting guests/staff : `delete`
+
+Deletes the existing guest or staff by their passport number.
+
+Format: `delete pn/<PASSPORT_NUMBER>`
+
+Example:
+![DeleteDiagram](images/DeleteDiagram.png)
+
+* `delete pn/XNOO19390 (PASSPORT_NUMBER)`, passport belongs to Jonny Jonny. Jonny Jonny is deleted from the system.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Viewing all your staff/guests: `list`
+
+Shows a list of all people (staff and guests) found in PH.
+
+* Contacts are not arranged in a particular order e.g staff contacts followed by guest contacts
 
 Format: `list`
 
-### Editing a person : `edit`
+[Back to Table of Contents](#table-of-contents)
 
-Edits an existing person in the address book.
+### Viewing a particular staff/guest: `view`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Views the staff/guest by the PASSPORT_NUMBER parameter. All the details associated with the staff/guest will be shown in
+the GUI.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `view pn/<PASSPORT_NUMBER>`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Example:
 
-### Locating persons by name: `find`
+* `view g/X12345678A` shows the details of the guest associated with the given passport number.
 
-Finds persons whose names contain any of the given keywords.
+[Back to Table of Contents](#table-of-contents)
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+### Saving your Data
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Your data is saved automatically to the hard disk after every command you enter. The file is saved in `.json` format,
+which allows you to edit the file manually without even booting up PH.
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+[Back to Table of Contents](#table-of-contents)
 
-### Deleting a person : `delete`
+### Editing your data directly
 
-Deletes the specified person from the address book.
+Here’s a snippet of the editable text file in JSON that is found at:
+`[JAR file location]/data/addressbook.json`
 
-Format: `delete INDEX`
+![JsonSnippet](images/JsonSnippet.png)
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Editing the json file directly should only be done by a user experienced with .json format files.
+</div>
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
+[Back to Table of Contents](#table-of-contents)
 
 ### Exiting the program : `exit`
 
@@ -154,17 +184,7 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+[Back to Table of Contents](#table-of-contents)
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -172,21 +192,62 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
+## **Command Summary**
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+
+**Add** | `add n/NAME pn/PASSPORT_NUMBER [p/PHONE_NUMBER] [r/ROOM_NUMBER]` <br>
+e.g., `add n/Bing Cheng pn/T0134568D p/99999999 r/69`
+**Edit** | `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>` <br>
+e.g., `edit pn/X12345678A p/99999999`
+**Delete** | `delete pn/<PASSPORT_NUMBER>`<br>
+e.g., `delete pn/XNOO19390`
 **List** | `list`
-**Help** | `help`
+**View** | `view pn/<PASSPORT_NUMBER>`<br>
+e.g., `view g/X12345678A`
+**Exit** | `exit`
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Parameter Constraints Summary**
+
+Parameter | Prefix | Constraints, Examples
+----------|--------|-----------------------
+
+**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphanumeric characters. <br>
+e.g., `n/Bing Cheng`
+**PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed <br>
+e.g., `pn/X12345678A`
+**PHONE_NUMBER** | `p/` | Local phone numbers are 8 digits long, and should start with 8 or 9. <br>
+e.g., `p/99999999`
+**ROOM_NUMBER** | `r/` | Only room numbers that exist in the hotel should be used.
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
+
+* **PH**: Acronym for Pocket Hotel
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **FAQ**
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app on your other computer and run it. Overwrite the empty .json file that is created with your old
+.json file in your old computer.<br>
+
+**Q**: How do I know if Java 11 is installed correctly on my computer?<br>
+**A**: Open up your terminal and run `java --version`. The output should be java 11, if installed correctly.<br>
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+
