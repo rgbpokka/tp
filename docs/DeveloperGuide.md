@@ -348,6 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                  | save guest information                              | help guests that return to have a faster check-in process                             |
 | `*`      | user                  | view staff working in a specified area              | manage the delegation of manpower within the hotel.                                   |
 | `*`      | CLI user              | add aliases to my commands                          | execute commands quickly with shorter syntax                                          |
+
 *{More to be added}*
 
 ### Use cases
