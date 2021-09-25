@@ -24,6 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nicolaschang.png" width="200px">
 
 [[github](https://github.com/NicolasCwy)]
+[[portfolio](team/nicolaschang.md)]
 
 ### Johnny Doe
 
