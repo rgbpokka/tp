@@ -17,13 +17,13 @@ fully to integrate it within your hotel management system.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Table of Contents
+## **Table of Contents**
 
 * Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -54,7 +54,7 @@ fully to integrate it within your hotel management system.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
 
 PH’s features revolve around managing your guests and staff. For each command, a short description of its use is given
 which is then followed by the format and a short example to help ensure that you have executed the command correctly.
@@ -192,7 +192,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Summary
+## **Command Summary**
 
 Action | Format, Examples
 --------|------------------
@@ -212,7 +212,7 @@ e.g., `view g/X12345678A`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Parameter Constraints Summary
+## **Parameter Constraints Summary**
 
 Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
@@ -229,7 +229,7 @@ e.g., `p/99999999`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## **Glossary**
 
 * **PH**: Acronym for Pocket Hotel
 
@@ -237,7 +237,7 @@ e.g., `p/99999999`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app on your other computer and run it. Overwrite the empty .json file that is created with your old
