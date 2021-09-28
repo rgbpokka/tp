@@ -411,6 +411,19 @@ otherwise)
 **Use case: Filtering guests/staff**
 
 **Use case: Deleting guests/staff**
+
+**MSS**
+
+1. User enters a delete command
+2. PH shows a success message to user indicating command has been executed successfully.
+   Use case ends.
+
+**Extensions**
+
+* 2a. No guest/staff found that matches user's query.
+    * 2a1. PH shows message indicating no such guest/staff exists in the list.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
