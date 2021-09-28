@@ -160,7 +160,7 @@ Format: `view pn/<PASSPORT_NUMBER>`
 
 Example:
 
-* `view g/X12345678A` shows the details of the guest associated with the given passport number.
+* `view pn/X12345678A` shows the details of the guest associated with the given passport number.
 
 [Back to Table of Contents](#table-of-contents)
 
