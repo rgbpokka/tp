@@ -216,7 +216,7 @@ Action | Format, Examples
 **Edit** | `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>` <br> e.g., `edit pn/X12345678A p/99999999`
 **Delete** | Guest: `delete pn/<PASSPORT_NUMBER>`<br>Staff: `delete sid/<STAFF_ID>`<br> e.g., `delete pn/XNOO19390`
 **List** | `list`
-**View** | `view pn/<PASSPORT_NUMBER>``view sid/<STAFF_ID>`<br> e.g., `view g/X12345678A`
+**View** | Guest: `view pn/<PASSPORT_NUMBER>`<br>Staff: `view sid/<STAFF_ID>`<br> e.g.,<br> Guest: `view pn/X12345678A`<br> Staff: `view sid/123`
 **Exit** | `exit`
 
 [Back to Table of Contents](#table-of-contents)
