@@ -153,13 +153,18 @@ Format: `list`
 
 ### Viewing a particular staff/guest: `view`
 
-Views the staff/guest by the PASSPORT_NUMBER parameter. All the details associated with the staff/guest will be shown in
-the GUI.
+Views the staff or guest by their STAFF_ID or PASSPORT_NUMBER parameter. All the details associated with the 
+staff/guest will be shown in the GUI.
 
-Format: `view pn/<PASSPORT_NUMBER>`
+Format: 
+
+`view pn/<PASSPORT_NUMBER>`
+
+`view sid/<STAFF_ID>`
 
 Example:
 
+* `view sid/123` shows the details of the staff associated with the given staff ID.
 * `view pn/X12345678A` shows the details of the guest associated with the given passport number.
 
 [Back to Table of Contents](#table-of-contents)
