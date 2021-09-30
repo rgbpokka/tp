@@ -11,9 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Alyssa Savier
 
-<img src="images/alyssasavierpfp.png" width="200px">
+<img src="images/alyssa-savier.png" width="200px">
 
 [[github](https://github.com/alyssa-savier)]
+[[portfolio](team/alyssa-savier.md)]
 
 * Role: 
 * Responsibilities: 
@@ -23,6 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/rgbpokka.png" width="200px">
 
 [[github](https://github.com/rgbpokka)]
+[[portfolio](team/rgbpokka.md)]
 
 * Role: 
 * Responsibilities: 
@@ -39,10 +41,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nicolas Chang
 
-<img src="images/nicolaschang.png" width="200px">
+<img src="images/nicolascwy.png" width="200px">
 
 [[github](https://github.com/NicolasCwy)]
-[[portfolio](team/nicolaschang.md)]
+[[portfolio](team/nicolascwy.md)]
 
 * Role:
 * Responsibilities:
@@ -56,13 +58,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
