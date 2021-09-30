@@ -106,10 +106,12 @@ Example:
 
 ### Editing fields of guests/staff: `edit`
 
-Edit a guest or staff’s contact details by their passport number. Only edits the fields that have been passed in as
+Edit a guest or staff’s contact details by their passport number and staff id respectively. Only edits the fields that have been passed in as
 parameters.
 
-Format: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
+Format: 
+<br>Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
+<br>Staff: `edit sid/<STAFF_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 
 * Existing values will be updated to the input values.
 
@@ -197,7 +199,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME pn/PASSPORT_NUMBER [p/PHONE_NUMBER] [r/ROOM_NUMBER]` <br> e.g., `add n/Bing Cheng pn/T0134568D p/99999999 r/69`
-**Edit** | `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>` <br> e.g., `edit pn/X12345678A p/99999999`
+**Edit** | Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Staff:`edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>e.g.<br>`edit pn/X12345678A p/99999999`<br>`edit sid/S12345678A p/99999999`
 **Delete** | `delete pn/<PASSPORT_NUMBER>`<br> e.g., `delete pn/XNOO19390`
 **List** | `list`
 **View** | `view pn/<PASSPORT_NUMBER>`<br> e.g., `view g/X12345678A`
@@ -213,6 +215,7 @@ Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
 **NAME** | `n/` | Blank inputs are not allowed, and should only contain alphanumeric characters. <br> e.g., `n/Bing Cheng`
 **PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed <br> e.g., `pn/X12345678A`
+**STAFF_ID** | `sid/` | Blank inputs are not allowed <br> e.g., `sid/S12345678A`
 **PHONE_NUMBER** | `p/` | Local phone numbers are 8 digits long, and should start with 8 or 9. <br> e.g., `p/99999999`
 **ROOM_NUMBER** | `r/` | Only room numbers that exist in the hotel should be used.
 
