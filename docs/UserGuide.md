@@ -235,6 +235,8 @@ Parameter | Prefix | Constraints, Examples
 ## **Glossary**
 
 * **PH**: Acronym for Pocket Hotel
+* **Guest**: A guest at the hotel
+* **Staff**: An employee of the hotel
 
 [Back to Table of Contents](#table-of-contents)
 
