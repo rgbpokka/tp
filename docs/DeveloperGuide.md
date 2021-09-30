@@ -423,7 +423,7 @@ otherwise)
     * 2a1. PH shows message indicating no such guest/staff exists in the list.
 
 * 3a. The field that the user wishes to edit does not exist.
-    * 2a1. PH shows message indicating no such field exists.
+    * 3a1. PH shows message indicating no such field exists.
 
 **Use case: Finding guests/staff**
 
