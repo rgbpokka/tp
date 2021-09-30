@@ -9,25 +9,45 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Alyssa Savier
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alyssa-savier.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/alyssa-savier)]
+[[portfolio](team/alyssa-savier.md)]
 
-* Role: Project Advisor
+* Role: 
+* Responsibilities: 
 
-### Jane Doe
+### Jeremy Yeo Zhi Chen 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rgbpokka.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/rgbpokka)]
+[[portfolio](team/rgbpokka.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: 
+* Responsibilities: 
+
+### Calvin Tan 
+
+<img src="images/calvintanwj.png" width="200px">
+
+[[github](https://github.com/calvintanwj)]
+[[portfolio](team/calvintanwj.md)]
+
+* Role:  
+* Responsibilities: 
+
+### Nicolas Chang
+
+<img src="images/nicolascwy.png" width="200px">
+
+[[github](https://github.com/NicolasCwy)]
+[[portfolio](team/nicolascwy.md)]
+
+* Role:
+* Responsibilities:
 
 ### Johnny Doe
 
@@ -38,22 +58,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
