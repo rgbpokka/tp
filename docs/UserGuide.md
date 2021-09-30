@@ -41,10 +41,10 @@ fully to integrate it within your hotel management system.
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
+    * **`add`**`n/John Doe pn/X12345678F p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a guest
       named `John Doe` to the Address Book.
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
 
     * **`clear`** : Deletes all contacts.
 
