@@ -106,7 +106,7 @@ Example:
 
 ### Editing fields of guests/staff: `edit`
 
-Edit a guest or staff’s contact details by their passport number. Only edits the fields that have been passed in as
+Edit a guest or staff’s contact details by their passport number and staff id respectively. Only edits the fields that have been passed in as
 parameters.
 
 Format: 
