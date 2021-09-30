@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Alyssa Savier
+
+<img src="images/alyssasavierpfp.png" width="200px">
+
+[[github](https://github.com/alyssa-savier)]
+
+* Role: 
+* Responsibilities: 
+
 ### Jeremy Yeo Zhi Chen 
 
 <img src="images/rgbpokka.png" width="200px">
