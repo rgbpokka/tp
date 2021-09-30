@@ -209,9 +209,9 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME pn/PASSPORT_NUMBER [p/PHONE_NUMBER] [r/ROOM_NUMBER]` <br> e.g., `add n/Bing Cheng pn/T0134568D p/99999999 r/69`
 **Edit** | `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>` <br> e.g., `edit pn/X12345678A p/99999999`
-**Delete** | `delete pn/<PASSPORT_NUMBER>`<br> e.g., `delete pn/XNOO19390`
+**Delete** | `delete pn/<PASSPORT_NUMBER>` `delete sid/<STAFF_ID>`<br> e.g., `delete pn/XNOO19390`
 **List** | `list`
-**View** | `view pn/<PASSPORT_NUMBER>`<br> e.g., `view g/X12345678A`
+**View** | `view pn/<PASSPORT_NUMBER>``view sid/<STAFF_ID>`<br> e.g., `view g/X12345678A`
 **Exit** | `exit`
 
 [Back to Table of Contents](#table-of-contents)
