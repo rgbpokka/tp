@@ -9,7 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Calvin Tan
+### Jeremy Yeo Zhi Chen 
+
+<img src="images/rgbpokka.png" width="200px">
+
+[[github](https://github.com/rgbpokka)]
+
+* Role: 
+* Responsibilities: 
+
+### Calvin Tan 
 
 <img src="images/calvintanwj.png" width="200px">
 
@@ -48,12 +57,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
