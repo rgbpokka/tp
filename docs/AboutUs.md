@@ -14,6 +14,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/rgbpokka.png" width="200px">
 
 [[github](https://github.com/rgbpokka)]
-
 * Role: Project Advisor
 
