@@ -501,6 +501,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   i. Test case: go to `data\addressbook.json` and corrupt the file.
+      On bootup of the program, there should be a notification in the command box saying
+      "File corrupted! Restored a new file." and the program will delete and load a fresh new file.
