@@ -429,6 +429,24 @@ otherwise)
 
 **Use case: Adding guests/staff**
 
+**MSS**
+
+1. User keys in command to add a guest or staff with unique passport numbers or staff IDs.
+2. PH shows a success message to user which displays the added guest/staff in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Name, passport number or staff field is left blank.
+    * 1a1. PH shows message indicating a blank name, passport number or staff field is not allowed for both guests and staff.
+
+* 2a. Both passport number and staff ID fields are filled in.
+    * 2a1. PH shows message indicating an entry cannot contain both a passport number and staff ID.
+
+* 3a. Non-alphanumeric characters are used in the name field.
+    * 3a1. PH shows message indicating only alphanumeric characters are to be used for names.
+
 **Use case: Filtering guests/staff**
 
 **Use case: Deleting guests/ staff**
