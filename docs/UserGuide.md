@@ -19,7 +19,8 @@ fully to integrate it within your hotel management system.
 
 ## **Table of Contents**
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
