@@ -92,7 +92,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 
 ### Adding guests/staff : `add`
 
-Adds a new guest or staff and their contact details into PH.
+Adds a new guest or staff and their contact details into **PH**.
 
 Format:
 <br>Guest: `add n/<NAME> pn/<PASSPORT_NUMBER> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]`
@@ -102,7 +102,7 @@ Example 1:
 <br>![AddDiagram](images/AddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
-* `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to PH and shows the new
+* `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to **PH** and shows the new
   contact list.
 
 Example 2:
@@ -116,7 +116,7 @@ Example 2:
 
 ### Editing fields of guests/staff: `edit`
 
-Edit a guest or staff’s contact details by their passport number and staff id respectively. Only edits the fields that have been passed in as
+Edit a guest or staff’s contact details by their passport number or staff id respectively. Only edits the fields that have been passed in as
 parameters.
 
 Format: 
@@ -146,17 +146,17 @@ Format:
 Example 1 (Delete guest):
 <br>![GuestDeleteDiagram](images/GuestDeleteDiagram.png)
 
-* `delete pn/XNOO19390 (PASSPORT_NUMBER)`, The guest, Jonny Jonny, who has passport number XNOO19390, is deleted from the system.
+* `delete pn/XNOO19390 (PASSPORT_NUMBER)`, The guest, Jonny Jonny, who has passport number XNOO19390, is deleted from **PH**.
 
 Example 2 (Delete staff):
 <br>![StaffDeleteDiagram](images/StaffDeleteDiagram.png)
-* `delete sid/123`, The staff, Thomas The Train, who has the staff ID 123, is deleted from the system.
+* `delete sid/123`, The staff, Thomas The Train, who has the staff ID 123, is deleted from **PH**.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Viewing all your staff/guests: `list`
 
-Shows a list of all people (staff and guests) found in PH.
+Shows a list of all people (staff and guests) found in **PH**.
 
 * Contacts are not arranged in a particular order e.g staff contacts followed by guest contacts
 
@@ -166,7 +166,7 @@ Format: `list`
 
 ### Viewing a particular staff/guest: `view`
 
-Views the staff or guest by their STAFF_ID or PASSPORT_NUMBER parameter. All the details associated with the 
+Views the staff or guest by their `STAFF_ID` or `PASSPORT_NUMBER`. All the details associated with the 
 staff/guest will be shown in the GUI.
 
 Format:
@@ -188,10 +188,6 @@ Format: `exit`
 
 [Back to Table of Contents](#table-of-contents)
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ### Saving your Data
 
 Your data is saved automatically to the hard disk after every command you enter. The file is saved in `.json` format,
@@ -211,6 +207,10 @@ Editing the json file directly should only be done by a user experienced with .j
 </div>
 
 [Back to Table of Contents](#table-of-contents)
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
