@@ -56,7 +56,7 @@ fully to integrate it within your hotel management system.
 
 ## **Features**
 
-PH’s features revolve around managing your guests and staff. For each command, a short description of its use is given
+**PH**’s features revolve around managing your guests and staff. For each command, a short description of its use is given
 which is then followed by the format and a short example to help ensure that you have executed the command correctly.
 
 A quick overview of all the commands can be found in the [command summary.](#command-summary)
@@ -91,7 +91,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 
 ### Adding guests/staff : `add`
 
-Adds a new guest or staff and their contact details into PH.
+Adds a new guest or staff and their contact details into **PH**.
 
 Format:
 <br>Guest: `add n/<NAME> pn/<PASSPORT_NUMBER> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]`
@@ -101,14 +101,14 @@ Example 1:
 <br>![AddDiagram](images/AddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
-* `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to PH and shows the new
+* `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to **PH** and shows the new
   contact list.
 
 Example 2:
 <br>![StaffAddDiagram](images/StaffAddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
-* `add n/Jeremy sid/321 p/87655432` , adds a new staff, Jeremy to PH and shows the new
+* `add n/Jeremy sid/321 p/87655432` , adds a new staff, Jeremy to **PH** and shows the new
   contact list.
 
 [Back to Table of Contents](#table-of-contents)
@@ -155,7 +155,7 @@ Example 2 (Delete staff):
 
 ### Viewing all your staff/guests: `list`
 
-Shows a list of all people (staff and guests) found in PH.
+Shows a list of all people (staff and guests) found in **PH**.
 
 * Contacts are not arranged in a particular order e.g staff contacts followed by guest contacts
 
@@ -194,7 +194,7 @@ _Details coming soon ..._
 ### Saving your Data
 
 Your data is saved automatically to the hard disk after every command you enter. The file is saved in `.json` format,
-which allows you to edit the file manually without even booting up PH.
+which allows you to edit the file manually without even booting up **PH**.
 
 [Back to Table of Contents](#table-of-contents)
 
