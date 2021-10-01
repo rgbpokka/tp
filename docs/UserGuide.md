@@ -93,15 +93,21 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 
 Adds a new guest or staff and their contact details into PH.
 
-Format: `add n/NAME pn/PASSPORT_NUMBER [p/PHONE_NUMBER] [r/ROOM_NUMBER]`
+Format: `add n/<NAME> pn/<PASSPORT_NUMBER> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]`/ `add n/<NAME> sid/<STAFF_ID> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]`
 
-Example:
+Example 1:
 ![AddDiagram](images/AddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
 * `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to the address book and shows the new
   contact list.
 
+Example 2:
+![StaffAddDiagram](images/StaffAddDiagram.png)
+
+* `list` command lists all contact details of people in the address book.
+* `add n/Jeremy sid/321 p/87655432 r/96` , adds a new staff, Jeremy to the address book and shows the new
+  contact list.
 [Back to Table of Contents](#table-of-contents)
 
 ### Editing fields of guests/staff: `edit`
@@ -198,7 +204,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME pn/PASSPORT_NUMBER [p/PHONE_NUMBER] [r/ROOM_NUMBER]` <br> e.g., `add n/Bing Cheng pn/T0134568D p/99999999 r/69`
+**Add** | Guest: `add n/<NAME> pn/<PASSPORT_NUMBER> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]` <br> Staff: `add n/<NAME> sid/<STAFF_ID> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]` <br> e.g., <br>`add n/Bing Cheng pn/T0134568D p/99999999 r/69` <br> `add n/Jeremy sid/321 p/87655432 r/96 `
 **Edit** | Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Staff:`edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>e.g.<br>`edit pn/X12345678A p/99999999`<br>`edit sid/S12345678A p/99999999`
 **Delete** | `delete pn/<PASSPORT_NUMBER>`<br> e.g., `delete pn/XNOO19390`
 **List** | `list`
@@ -215,7 +221,7 @@ Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
 **NAME** | `n/` | Blank inputs are not allowed, and should only contain alphanumeric characters. <br> e.g., `n/Bing Cheng`
 **PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed <br> e.g., `pn/X12345678A`
-**STAFF_ID** | `sid/` | Blank inputs are not allowed <br> e.g., `sid/S12345678A`
+**STAFF_ID** | `sid/` | Blank inputs are not allowed <br> e.g., `sid/321`
 **PHONE_NUMBER** | `p/` | Local phone numbers are 8 digits long, and should start with 8 or 9. <br> e.g., `p/99999999`
 **ROOM_NUMBER** | `r/` | Only room numbers that exist in the hotel should be used.
 
