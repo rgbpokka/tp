@@ -337,16 +337,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | new user              | import staff/guest details from an existing system  | use data that is being kept track from other systems into the app                     |
 | `* *`    | expert user           | export staff/guest details out from the system      | transfer data to the next manager who takes over me or import data into other systems |
 | `* *`    | user                  | add tags to contacts                                | easily categorize and filter contacts                                                 |
-| `* *`    | user                  | filter contacts and save those lists                | splice my address book into more manageable lists.                                    |
+| `* *`    | user                  | filter contacts by tags                             | look at contacts in  more manageable lists.                                           |
 | `* *`    | new user              | learn how to use the app (Tutorial)                 | get more familiar with the features they offer and how I can use it better            |
 | `* *`    | CLI user              | be reminded of the commands available as a quick tip| quickly get a reminder of how to use a specific command.                              |
 | `* *`    | user                  | add images to my contacts                           | recognize them in real life to greet them; improve guest experience; recognize staff  |
 | `* *`    | user                  | search and view staff working on a given day        | manage the manpower within the hotel.                                                 |
 | `* *`    | user                  | categorize staff members by staff roles             | easily get an overview of the staff members working                                   |
 | `* *`    | user                  | search for a specified guest                        | easily get information on said guest, without having to navigate the entire list      |
-| `*`      | user                  | call my user's number directly via the application  | contact them instantly.                                                               |
 | `*`      | expert user           | personalize my GUI to my liking                     | optimise the layout to cater to my needs                                              |
-| `*`      | user                  | save guest information                              | help guests that return to have a faster check-in process                             |
 | `*`      | user                  | view staff working in a specified area              | manage the delegation of manpower within the hotel.                                   |
 | `*`      | CLI user              | add aliases to my commands                          | execute commands quickly with shorter syntax                                          |
 
@@ -357,15 +355,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `PH` and the **Actor** is the `user`, unless specified
 otherwise)
 
-**Use case: Clearing all details from the app**
+#### UC1: Clearing all details from the app
 
 **MSS**
 
 1. User requests to clear all the data.
-2. PH prompts user with a confirmation message.
-3. User confirms to proceed with the clear.
-4. PH clears all the data.
 
+2. **PH** prompts user with a confirmation message.
+
+3. User confirms to proceed with the clear.
+
+4. **PH** clears all the data.
+  
     Use case ends.
 
 **Extensions**
@@ -374,45 +375,59 @@ otherwise)
 
     Use case ends.
 
-**Use case: Saving data**
+#### UC2: Saving data
 
 **MSS**
 
 1. User enters a valid command with valid arguments
+
 2. Contact list which is modified gets saved and replaces existing save file.
-3. PH shows a success message to user indicating command has been executed successfully.
+
+3. **PH** shows a success message to user indicating command has been executed successfully.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. Error occurs when saving new contact list
-  * 2a1. PH reverts to old contact list before the execution of the command.
-  * 2a2. PH shows an error message to user.
+  
+  * 2a1. **PH** reverts to old contact list before the execution of the command.
+  
+  * 2a2. **PH** shows an error message to user.
+    
+    Use case ends.
 
-**Use case: Searching for a guest/staff**
+#### UC3: Searching for a guest/staff
 
 **MSS**
 
 1. User keys in command to search for a specified guest or staff.
-2. PH shows the specified guest/staff that matches the user's query.
+
+2. **PH** shows the specified guest/staff that matches the user's query.
+
+    Use case ends.
 
 **Extensions**
+
 * 1a. Contact list is empty.
 
     Use case ends.
 
 * 2a. No guest/staff found that matches user's query.
-  * 2a1. PH shows message indicating no such guest/staff exists in the list.
+  
+  * 2a1. **PH** shows message indicating no such guest/staff exists in the list.
 
-**Use case: Editing fields of guests/staff**
+    Use case ends.
+
+#### UC4: Editing fields of guests/staff
 
 **MSS**
 
 1. User keys in command to edit a particular field of a specified guest/ staff. 
-2. PH shows a success message to user which displays the new details of the guest/ staff.
 
-   Use case ends.
+2. **PH** shows a success message to user which displays the new details of the guest/ staff.
+
+    Use case ends.
 
 **Extensions**
 
@@ -420,61 +435,76 @@ otherwise)
 
     Use case ends.
 
-* 2a. No guest/staff found that matches user's query.
-    * 2a1. PH shows message indicating no such guest/staff exists in the list.
+* 1b. No guest/staff found that matches user's query.
+  
+  * 1b1. **PH** shows message indicating no such guest/staff exists in the list.
 
-* 3a. The field that the user wishes to edit does not exist.
-    * 3a1. PH shows message indicating no such field exists.
+    Use case ends.
 
-**Use case: Finding guests/staff**
+* 1c. The field that the user wishes to edit does not exist.
+  
+  * 1c1. **PH** shows message indicating no such field exists.
 
-**Use case: Adding guests/staff**
+    Use case ends.
+
+#### UC5: Adding guests/staff
 
 **MSS**
 
 1. User keys in command to add a guest or staff with unique passport numbers or staff IDs.
-2. PH shows a success message to user which displays the added guest/staff in the list.
+
+2. **PH** shows a success message to user which displays the added guest/staff in the list.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. Name, passport number or staff field is left blank.
-    * 1a1. PH shows message indicating a blank name, passport number or staff field is not allowed for both guests and staff.
+  
+  * 1a1. **PH** shows message indicating a blank name, passport number or staff field is not allowed for both guests and staff.
 
-* 2a. Both passport number and staff ID fields are filled in.
-    * 2a1. PH shows message indicating an entry cannot contain both a passport number and staff ID.
+    Use case ends.
 
-* 3a. Non-alphanumeric characters are used in the name field.
-    * 3a1. PH shows message indicating only alphanumeric characters are to be used for names.
+* 1b. Both passport number and staff ID fields are filled in.
+  
+  * 1b1. **PH** shows message indicating an entry cannot contain both a passport number and staff ID.
 
-**Use case: Filtering guests/staff**
+    Use case ends.
 
-**Use case: Deleting guests/ staff**
-**Actor**: User
+* 1c. Non-alphanumeric characters are used in the name field.
+  
+  * 1c1. **PH** shows message indicating only alphanumeric characters are to be used for names.
+
+    Use case ends.
+
+#### UC6: Deleting guests/ staff
 
 **MSS**
 
-1. User asks PH to delete a guest/ staff
-2. PH informs user that guest/ staff is deleted
-   Use case ends.
+1. User asks **PH** to delete a guest/ staff
+
+2. **PH** informs user that guest/ staff is deleted
+
+    Use case ends.
 
 **Extensions**
 
 * 2a. No guest/staff found that matches user's query
-    * 2a1. PH informs user that the guest/ staff does not exist
-
+  
+  * 2a1. **PH** informs user that the guest/ staff does not exist
+  
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on any **Mainstream OS** as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
-4. PH should retain all functionalities even without a connection to the internet.
-5. PH is meant to be used by single user at any given time.
+4. **PH** should retain all functionalities even without a connection to the internet.
+5. **PH** is meant to be used by single user at any given time.
 *{More to be added}*
 
 ### Glossary
