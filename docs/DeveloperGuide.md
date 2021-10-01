@@ -431,7 +431,21 @@ otherwise)
 
 **Use case: Filtering guests/staff**
 
-**Use case: Deleting guests/staff**
+**Use case: Deleting guests/ staff**
+**Actor**: User
+
+**MSS**
+
+1. User asks PH to delete a guest/ staff
+2. PH informs user that guest/ staff is deleted
+   Use case ends.
+
+**Extensions**
+
+* 2a. No guest/staff found that matches user's query
+    * 2a1. PH informs user that the guest/ staff does not exist
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
