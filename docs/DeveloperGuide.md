@@ -404,6 +404,27 @@ otherwise)
 * 2a. No guest/staff found that matches user's query.
   * 2a1. PH shows message indicating no such guest/staff exists in the list.
 
+**Use case: Editing fields of guests/staff**
+
+**MSS**
+
+1. User keys in command to edit a particular field of a specified guest/ staff. 
+2. PH shows a success message to user which displays the new details of the guest/ staff.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Contact list is empty.
+
+    Use case ends.
+
+* 2a. No guest/staff found that matches user's query.
+    * 2a1. PH shows message indicating no such guest/staff exists in the list.
+
+* 3a. The field that the user wishes to edit does not exist.
+    * 3a1. PH shows message indicating no such field exists.
+
 **Use case: Finding guests/staff**
 
 **Use case: Adding guests/staff**

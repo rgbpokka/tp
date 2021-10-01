@@ -41,10 +41,10 @@ fully to integrate it within your hotel management system.
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
+    * **`add`**`n/John Doe pn/X12345678F p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a guest
       named `John Doe` to the Address Book.
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
 
     * **`clear`** : Deletes all contacts.
 
@@ -93,23 +93,31 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 
 Adds a new guest or staff and their contact details into PH.
 
-Format: `add n/NAME pn/PASSPORT_NUMBER [p/PHONE_NUMBER] [r/ROOM_NUMBER]`
+Format: `add n/<NAME> pn/<PASSPORT_NUMBER> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]`/ `add n/<NAME> sid/<STAFF_ID> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]`
 
-Example:
+Example 1:
 ![AddDiagram](images/AddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
 * `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to the address book and shows the new
   contact list.
 
+Example 2:
+![StaffAddDiagram](images/StaffAddDiagram.png)
+
+* `list` command lists all contact details of people in the address book.
+* `add n/Jeremy sid/321 p/87655432 r/96` , adds a new staff, Jeremy to the address book and shows the new
+  contact list.
 [Back to Table of Contents](#table-of-contents)
 
 ### Editing fields of guests/staff: `edit`
 
-Edit a guest or staff’s contact details by their passport number. Only edits the fields that have been passed in as
+Edit a guest or staff’s contact details by their passport number and staff id respectively. Only edits the fields that have been passed in as
 parameters.
 
-Format: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
+Format: 
+<br>Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
+<br>Staff: `edit sid/<STAFF_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 
 * Existing values will be updated to the input values.
 
@@ -124,14 +132,25 @@ Examples:
 
 ### Deleting guests/staff : `delete`
 
-Deletes the existing guest or staff by their passport number.
+Deletes an existing guest or staff using the passport number or staff ID respectively.
 
-Format: `delete pn/<PASSPORT_NUMBER>`
+Format: 
 
-Example:
-![DeleteDiagram](images/DeleteDiagram.png)
+Guest: `delete pn/<PASSPORT_NUMBER>`
 
-* `delete pn/XNOO19390 (PASSPORT_NUMBER)`, passport belongs to Jonny Jonny. Jonny Jonny is deleted from the system.
+Staff: `delete sid/<STAFF_ID>`
+
+
+Example 1 (Delete guest):
+
+![GuestDeleteDiagram](images/GuestDeleteDiagram.png)
+
+* `delete pn/XNOO19390 (PASSPORT_NUMBER)`, guest, Jonny Jonny, who has passport number XNOO19390, is deleted from the system.
+
+Example 2 (Delete staff):
+
+![StaffDeleteDiagram](images/StaffDeleteDiagram.png)
+* `delete sid/123`, staff, Thomas The Train, who has the staff ID 123, is deleted from the system.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -147,14 +166,19 @@ Format: `list`
 
 ### Viewing a particular staff/guest: `view`
 
-Views the staff/guest by the PASSPORT_NUMBER parameter. All the details associated with the staff/guest will be shown in
-the GUI.
+Views the staff or guest by their STAFF_ID or PASSPORT_NUMBER parameter. All the details associated with the 
+staff/guest will be shown in the GUI.
 
-Format: `view pn/<PASSPORT_NUMBER>`
+Format: 
+
+`view pn/<PASSPORT_NUMBER>`
+
+`view sid/<STAFF_ID>`
 
 Example:
 
-* `view g/X12345678A` shows the details of the guest associated with the given passport number.
+* `view sid/123` shows the details of the staff associated with the given staff ID.
+* `view pn/X12345678A` shows the details of the guest associated with the given passport number.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -196,11 +220,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME pn/PASSPORT_NUMBER [p/PHONE_NUMBER] [r/ROOM_NUMBER]` <br> e.g., `add n/Bing Cheng pn/T0134568D p/99999999 r/69`
-**Edit** | `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>` <br> e.g., `edit pn/X12345678A p/99999999`
-**Delete** | `delete pn/<PASSPORT_NUMBER>`<br> e.g., `delete pn/XNOO19390`
+**Add** | Guest: `add n/<NAME> pn/<PASSPORT_NUMBER> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]` <br> Staff: `add n/<NAME> sid/<STAFF_ID> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]` <br> e.g., <br>`add n/Bing Cheng pn/T0134568D p/99999999 r/69` <br> `add n/Jeremy sid/321 p/87655432 r/96 `
+**Edit** | Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Staff:`edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>e.g.<br>`edit pn/X12345678A p/99999999`<br>`edit sid/S12345678A p/99999999`
+**Delete** | Guest: `delete pn/<PASSPORT_NUMBER>`<br>Staff: `delete sid/<STAFF_ID>`<br> e.g.,<br>`delete pn/XNOO19390`<br>`delete sid/321`
 **List** | `list`
-**View** | `view pn/<PASSPORT_NUMBER>`<br> e.g., `view g/X12345678A`
+**View** | Guest: `view pn/<PASSPORT_NUMBER>`<br>Staff: `view sid/<STAFF_ID>`<br> e.g.,<br>`view pn/X12345678A`<br>`view sid/123`
 **Exit** | `exit`
 
 [Back to Table of Contents](#table-of-contents)
@@ -212,7 +236,8 @@ Action | Format, Examples
 Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
 **NAME** | `n/` | Blank inputs are not allowed, and should only contain alphanumeric characters. <br> e.g., `n/Bing Cheng`
-**PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed <br> e.g., `pn/X12345678A`
+**PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed, should not be used with `sid/` <br> e.g., `pn/X12345678A`
+**STAFF_ID** | `sid/` |  Blank inputs are not allowed, not allowed to be used with `pn/` e.g., `sid/2131`
 **PHONE_NUMBER** | `p/` | Local phone numbers are 8 digits long, and should start with 8 or 9. <br> e.g., `p/99999999`
 **ROOM_NUMBER** | `r/` | Only room numbers that exist in the hotel should be used.
 
@@ -223,6 +248,8 @@ Parameter | Prefix | Constraints, Examples
 ## **Glossary**
 
 * **PH**: Acronym for Pocket Hotel
+* **Guest**: A guest at the hotel
+* **Staff**: An employee of the hotel
 
 [Back to Table of Contents](#table-of-contents)
 
