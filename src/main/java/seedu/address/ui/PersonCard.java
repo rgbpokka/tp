@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -39,6 +41,12 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label staffId;
+    @FXML
+    private Label roomNumber;
+    @FXML
+    private Label passportNumber;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -49,12 +57,23 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        
+        if (person instanceof Guest) {
+            Guest guest = (Guest) person;
+            roomNumber.setText(guest.getRoomNumber().value);
+            passportNumber.setText(guest.getPassportNumber().value);
+        } else { // person is a staff
+            Staff staff = (Staff) person;
+            address.setText(staff.getAddress().value);
+            phone.setText(staff.getPhone().value);
+            staffId.setText(staff.getStaffId().value);
+        }
+        
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        
     }
 
     @Override
