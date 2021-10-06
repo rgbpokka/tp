@@ -12,7 +12,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PassportNumber;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.RoomNumber;
+import seedu.address.model.person.StaffId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,6 +99,51 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String staffId} into a {@code staffId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code staffId} is invalid.
+     */
+    public static StaffId parseStaffId(String staffId) throws ParseException {
+        requireNonNull(staffId);
+        String trimmedStaffId = staffId.trim();
+        if (!StaffId.isValidStaffId(trimmedStaffId)) {
+            throw new ParseException(StaffId.MESSAGE_CONSTRAINTS);
+        }
+        return new StaffId(staffId);
+    }
+
+    /**
+     * Parses a {@code String roomNumber} into a {@code roomNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code roomNumber} is invalid.
+     */
+    public static RoomNumber parseRoomNumber(String roomNumber) throws ParseException {
+        requireNonNull(roomNumber);
+        String trimmedRoomNumber = roomNumber.trim();
+        if (!RoomNumber.isValidRoomNumber(trimmedRoomNumber)) {
+            throw new ParseException(RoomNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new RoomNumber(roomNumber);
+    }
+
+    /**
+     * Parses a {@code String passportNumber} into a {@code passportNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code passportNumber} is invalid.
+     */
+    public static PassportNumber parsePassportNumber(String passportNumber) throws ParseException {
+        requireNonNull(passportNumber);
+        String trimmedPassportNumber = passportNumber.trim();
+        if (!PassportNumber.isValidPassportNumber(trimmedPassportNumber)) {
+            throw new ParseException(PassportNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new PassportNumber(passportNumber);
+    } 
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -121,4 +169,5 @@ public class ParserUtil {
         }
         return tagSet;
     }
+    
 }
