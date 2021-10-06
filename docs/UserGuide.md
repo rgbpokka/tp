@@ -19,7 +19,8 @@ fully to integrate it within your hotel management system.
 
 ## **Table of Contents**
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -115,7 +116,7 @@ Example 2:
 
 ### Editing fields of guests/staff: `edit`
 
-Edit a guest or staff’s contact details by their passport number and staff id respectively. Only edits the fields that have been passed in as
+Edit a guest or staff’s contact details by their passport number or staff id respectively. Only edits the fields that have been passed in as
 parameters.
 
 Format: 
@@ -145,11 +146,11 @@ Format:
 Example 1 (Delete guest):
 <br>![GuestDeleteDiagram](images/GuestDeleteDiagram.png)
 
-* `delete pn/XNOO19390 (PASSPORT_NUMBER)`, The guest, Jonny Jonny, who has passport number XNOO19390, is deleted from the system.
+* `delete pn/XNOO19390 (PASSPORT_NUMBER)`, The guest, Jonny Jonny, who has passport number XNOO19390, is deleted from **PH**.
 
 Example 2 (Delete staff):
 <br>![StaffDeleteDiagram](images/StaffDeleteDiagram.png)
-* `delete sid/123`, The staff, Thomas The Train, who has the staff ID 123, is deleted from the system.
+* `delete sid/123`, The staff, Thomas The Train, who has the staff ID 123, is deleted from **PH**.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -165,7 +166,7 @@ Format: `list`
 
 ### Viewing a particular staff/guest: `view`
 
-Views the staff or guest by their STAFF_ID or PASSPORT_NUMBER parameter. All the details associated with the 
+Views the staff or guest by their `STAFF_ID` or `PASSPORT_NUMBER`. All the details associated with the 
 staff/guest will be shown in the GUI.
 
 Format:
@@ -187,10 +188,6 @@ Format: `exit`
 
 [Back to Table of Contents](#table-of-contents)
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ### Saving your Data
 
 Your data is saved automatically to the hard disk after every command you enter. The file is saved in `.json` format,
@@ -210,6 +207,10 @@ Editing the json file directly should only be done by a user experienced with .j
 </div>
 
 [Back to Table of Contents](#table-of-contents)
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
