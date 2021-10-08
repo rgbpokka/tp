@@ -341,11 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | new user              | learn how to use the app (Tutorial)                 | get more familiar with the features they offer and how I can use it better            |
 | `* *`    | CLI user              | be reminded of the commands available as a quick tip| quickly get a reminder of how to use a specific command.                              |
 | `* *`    | user                  | add images to my contacts                           | recognize them in real life to greet them; improve guest experience; recognize staff  |
-| `* *`    | user                  | search and view staff working on a given day        | manage the manpower within the hotel.                                                 |
-| `* *`    | user                  | categorize staff members by staff roles             | easily get an overview of the staff members working                                   |
-| `* *`    | user                  | search for a specified guest                        | easily get information on said guest, without having to navigate the entire list      |
 | `*`      | expert user           | personalize my GUI to my liking                     | optimise the layout to cater to my needs                                              |
-| `*`      | user                  | view staff working in a specified area              | manage the delegation of manpower within the hotel.                                   |
 | `*`      | CLI user              | add aliases to my commands                          | execute commands quickly with shorter syntax                                          |
 
 *{More to be added}*
