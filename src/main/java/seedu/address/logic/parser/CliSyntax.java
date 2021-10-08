@@ -19,5 +19,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_ROOM_NUMBER = new Prefix("r/");
     public static final Prefix PREFIX_PASSPORT_NUMBER = new Prefix("pn/");
 
-
 }
