@@ -16,12 +16,10 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PassportNumber;
-import seedu.address.model.person.Staff;
 import seedu.address.model.person.StaffId;
 import seedu.address.model.person.UniqueIdentifier;
 import seedu.address.model.tag.Tag;
@@ -41,16 +39,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                         PREFIX_STAFF_ID, PREFIX_PASSPORT_NUMBER, PREFIX_ROOM_NUMBER);
-
-        // person is no longer identified by index, but instead by staff id or passport num.
-
-//        Index index;
-//
-//        try {
-//            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-//        } catch (ParseException pe) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-//        }
 
         // will be assigned staff id or guest passport number depending on identity of person.
         UniqueIdentifier uniqueIdentifier;

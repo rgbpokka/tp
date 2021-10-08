@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -56,9 +54,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    // person is no longer identified by index, but instead by staff id or passport num.
-//    private final Index index;
-
     // this will be a passport number/ staff id, depending on identity of person.
     private final UniqueIdentifier uniqueIdentifier;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -79,10 +74,6 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-
-//        if (index.getZeroBased() >= lastShownList.size()) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//        }
 
         Person personToEdit;
 
