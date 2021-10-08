@@ -62,8 +62,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setPassportNumber(passportNumber);
             uniqueIdentifier = passportNumber;
         } else {
-            // should throw exception saying that staff id or passport number must be specified instead of doing this
-            uniqueIdentifier = null;
+            throw new ParseException("Invalid unique identifier");
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
