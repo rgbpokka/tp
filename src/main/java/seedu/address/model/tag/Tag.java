@@ -1,5 +1,9 @@
 package seedu.address.model.tag;
 
+import seedu.address.model.person.Person;
+
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
