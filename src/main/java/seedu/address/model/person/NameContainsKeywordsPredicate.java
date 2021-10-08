@@ -21,7 +21,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
             Staff staff = (Staff) person;
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(staff.getStaffId().value, keyword));
-        } else {
+        } else if (person instanceof Guest) {
             Guest guest = (Guest) person;
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getPassportNumber().value, keyword));
