@@ -14,16 +14,20 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PassportNumber;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.RoomNumber;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.StaffId;
+import seedu.address.model.person.UniqueIdentifier;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -50,18 +54,19 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
+    // this will be a passport number/ staff id, depending on identity of person.
+    private final UniqueIdentifier uniqueIdentifier;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param uniqueIdentifier of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(UniqueIdentifier uniqueIdentifier, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(uniqueIdentifier);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.uniqueIdentifier = uniqueIdentifier;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -70,11 +75,24 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        Person personToEdit;
+
+        // logic to decide whether this a staff or guest
+        // will result in assertion failure later if person does not exist on list
+        if (uniqueIdentifier instanceof StaffId) {
+            personToEdit = lastShownList
+                    .stream()
+                    .filter(p -> p instanceof Staff && ((Staff) p).getStaffId().equals(uniqueIdentifier))
+                    .findAny()
+                    .orElse(null);
+        } else {
+            personToEdit = lastShownList
+                    .stream()
+                    .filter(p -> p instanceof Guest && ((Guest) p).getPassportNumber().equals(uniqueIdentifier))
+                    .findAny()
+                    .orElse(null);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -94,12 +112,24 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Phone updatedPhone;
+        Address updatedAddress;
+        RoomNumber updatedRoomNumber;
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        if (personToEdit instanceof Staff) {
+            Staff staff = (Staff) personToEdit;
+            StaffId staffId = staff.getStaffId();
+            updatedPhone = editPersonDescriptor.getPhone().orElse(staff.getPhone());
+            updatedAddress = editPersonDescriptor.getAddress().orElse(staff.getAddress());
+            return new Staff(updatedName, updatedEmail, updatedTags, updatedAddress, staffId, updatedPhone);
+        } else {
+            Guest guest = (Guest) personToEdit;
+            PassportNumber passportNumber = guest.getPassportNumber();
+            updatedRoomNumber = editPersonDescriptor.getRoomNumber().orElse(guest.getRoomNumber());
+            return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, passportNumber);
+        }
     }
 
     @Override
@@ -116,7 +146,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return uniqueIdentifier.equals(e.uniqueIdentifier)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
@@ -130,6 +160,9 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private StaffId staffId;
+        private PassportNumber passportNumber;
+        private RoomNumber roomNumber;
 
         public EditPersonDescriptor() {}
 
@@ -143,6 +176,9 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setStaffId(toCopy.staffId);
+            setPassportNumber(toCopy.passportNumber);
+            setRoomNumber(toCopy.roomNumber);
         }
 
         /**
@@ -184,6 +220,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setStaffId(StaffId staffId) {
+            this.staffId = staffId;
+        }
+
+        public Optional<StaffId> getStaffId() { return Optional.ofNullable(staffId); }
+
+        public void setPassportNumber(PassportNumber passportNumber) { this.passportNumber = passportNumber; }
+
+        public Optional<PassportNumber> getPassportNumber() { return Optional.ofNullable(passportNumber); }
+
+        public void setRoomNumber(RoomNumber roomNumber) { this.roomNumber = roomNumber; }
+
+        public Optional<RoomNumber> getRoomNumber() { return Optional.ofNullable(roomNumber); }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -220,7 +270,10 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getStaffId().equals(e.getStaffId())
+                    && getPassportNumber().equals(e.getPassportNumber())
+                    && getRoomNumber().equals(e.getRoomNumber());
         }
     }
 }
