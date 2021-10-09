@@ -9,8 +9,8 @@ guests and staff to handle.
 
 **PH** provides a centralized location to store, organize and manage information linked to your guests and staff
 members. **PH**
-streamlines your workflow and is optimized for use via the Command Line Interface (CLI), whilst still embodying the
-benefits of a Graphical User Interface (GUI).
+streamlines your workflow and is optimized for use via the _Command Line Interface_ (**CLI**), whilst still embodying the
+benefits of a _Graphical User Interface_ (**GUI**).
 
 This user guide serves as an entry point for users to get oriented with how **PH** operates and how you may utilize it
 fully to integrate it within your hotel management system.
@@ -32,7 +32,7 @@ fully to integrate it within your hotel management system.
 
 4. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-5. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+5. Double-click the file to start the app. The **GUI** similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -134,7 +134,7 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting guests/staff : `delete`
+### Deleting guests/staff: `delete`
 
 Deletes an existing guest or staff using the passport number or staff ID respectively.
 
@@ -167,11 +167,11 @@ Format: `list`
 ### Viewing a particular staff/guest: `view`
 
 Views the staff or guest by their `STAFF_ID` or `PASSPORT_NUMBER`. All the details associated with the 
-staff/guest will be shown in the GUI.
+staff/guest will be shown in the **GUI**.
 
 Format:
-<br>`view pn/<PASSPORT_NUMBER>`
-<br>`view sid/<STAFF_ID>`
+<br>Guest: `view pn/<PASSPORT_NUMBER>`
+<br>Staff: `view sid/<STAFF_ID>`
 
 Example:
 
@@ -246,6 +246,8 @@ Parameter | Prefix | Constraints, Examples
 ## **Glossary**
 
 * **PH**: Acronym for Pocket Hotel
+* **CLI**: Command line interface
+* **GUI**: Graphical user interface
 * **Guest**: A guest at the hotel
 * **Staff**: An employee of the hotel
 
