@@ -23,7 +23,7 @@ public class Guest extends Person {
      */
     public Guest(Name name, Email email, Set<Tag> tags, RoomNumber roomNumber, PassportNumber passportNumber) {
         super(name, email, tags);
-        getTags().add(guestTag);
+//        getTags().add(guestTag);
         this.roomNumber = roomNumber;
         this.passportNumber = passportNumber;
     }

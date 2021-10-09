@@ -21,7 +21,7 @@ public class Staff extends Person {
      */
     public Staff(Name name, Email email, Set<Tag> tags, Address address, StaffId staffId, Phone phone) {
         super(name, email, tags);
-        getTags().add(StaffTag);
+//        getTags().add(StaffTag);
         this.address = address;
         this.staffId = staffId;
         this.phone = phone;

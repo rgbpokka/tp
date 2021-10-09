@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class RoomNumber {
     
     public static final String MESSAGE_CONSTRAINTS = "Room numbers must be a number greater than 0.";
-    public static final String VALIDATION_REGEX = "^0[1-9]\\d$";
+    public static final String VALIDATION_REGEX = "^[1-9][0-9]*$";
     
     public final String value;
 
