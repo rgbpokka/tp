@@ -393,7 +393,7 @@ otherwise)
   
   * 2a1. **PH** reverts to old contact list before the execution of the command.
   
-  * 2a2. **PH** shows an error message to user.
+  * 2a2. **PH** informs the user that saving the new contact list was unsuccessful.
     
     Use case ends.
 
@@ -512,6 +512,8 @@ otherwise)
 * **PH**: Acronym for Pocket Hotel
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Guest**: A person staying in Pocket Hotel
+* **Staff**: An employee of Pocket Hotel 
 
 --------------------------------------------------------------------------------------------------------------------
 
