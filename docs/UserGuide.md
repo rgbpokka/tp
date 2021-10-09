@@ -57,7 +57,7 @@ fully to integrate it within your hotel management system.
 
 ## **Features**
 
-PH’s features revolve around managing your guests and staff. For each command, a short description of its use is given
+**PH**’s features revolve around managing your guests and staff. For each command, a short description of its use is given
 which is then followed by the format and a short example to help ensure that you have executed the command correctly.
 
 A quick overview of all the commands can be found in the [command summary.](#command-summary)
@@ -109,7 +109,7 @@ Example 2:
 <br>![StaffAddDiagram](images/StaffAddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
-* `add n/Jeremy sid/321 p/87655432` , adds a new staff, Jeremy to PH and shows the new
+* `add n/Jeremy sid/321 p/87655432` , adds a new staff, Jeremy to **PH** and shows the new
   contact list.
 
 [Back to Table of Contents](#table-of-contents)
@@ -191,7 +191,7 @@ Format: `exit`
 ### Saving your Data
 
 Your data is saved automatically to the hard disk after every command you enter. The file is saved in `.json` format,
-which allows you to edit the file manually without even booting up PH.
+which allows you to edit the file manually without even booting up **PH**.
 
 [Back to Table of Contents](#table-of-contents)
 
