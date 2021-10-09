@@ -150,7 +150,7 @@ Example 1 (Delete guest):
 
 Example 2 (Delete staff):
 <br>![StaffDeleteDiagram](images/StaffDeleteDiagram.png)
-* `delete sid/123`, The staff, Thomas The Train, who has the staff ID 123, is deleted from **PH**.
+* `delete sid/321`, The staff, Thomas The Train, who has the staff ID 321, is deleted from **PH**.
 
 [Back to Table of Contents](#table-of-contents)
 
