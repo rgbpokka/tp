@@ -180,11 +180,27 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
+
+[Back to Table of Contents](#table-of-contents)
+
+### Clearing all entries: `clear`
+
+Clears all entries from PH.
+
+Format: `clear`
+
+[Back to Table of Contents](#table-of-contents)
+
+### Viewing help: `help`
+
+Shows a message explaining how to access the help page.
+
+Format: `help`
 
 [Back to Table of Contents](#table-of-contents)
 
