@@ -245,15 +245,25 @@ Action | Format, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Parameter Constraints Summary**
+## **Guest Parameter Constraints Summary**
 
 Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
-**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphanumeric characters. <br> e.g., `n/Bing Cheng`
-**PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed, should not be used with `sid/` <br> e.g., `pn/X12345678A`
+**PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed<br> e.g., `pn/X12345678A`
+**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters. <br> e.g., `n/Bing Cheng`
+**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used. e.g., `e/BingCheng@email.com`
+**ROOM_NUMBER** | `r/` | Blank inputs are not allowed, only alphanumeric characters allowed e.g., `r/500A`
+**TAG** | `t/` | Optional field.
+
+## **Staff Parameter Constraints Summary**
+Parameter | Prefix | Constraints, Examples
+----------|--------|-----------------------
 **STAFF_ID** | `sid/` |  Blank inputs are not allowed, not allowed to be used with `pn/` e.g., `sid/2131`
+**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters. <br> e.g., `n/Bing Cheng`
+**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used. e.g., `e/BingCheng@email.com`
 **PHONE_NUMBER** | `p/` | Local phone numbers are 8 digits long, and should start with 8 or 9. <br> e.g., `p/99999999`
-**ROOM_NUMBER** | `r/` | Only room numbers that exist in the hotel should be used.
+**ADDRESS** | `a/` | Blank inputs are not allowed.
+**TAG** | `t/` | Optional field.
 
 [Back to Table of Contents](#table-of-contents)
 
