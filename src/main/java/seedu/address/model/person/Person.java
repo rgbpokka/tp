@@ -20,7 +20,7 @@ public abstract class Person {
     private final Email email;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -52,14 +52,7 @@ public abstract class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
-    }
+    public abstract boolean isSamePerson(Person otherPerson);
 
     /**
      * Returns true if both persons have the same identity and data fields.

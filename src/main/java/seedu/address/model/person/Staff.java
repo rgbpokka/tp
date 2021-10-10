@@ -38,6 +38,20 @@ public class Staff extends Person {
     public Address getAddress() {
         return address;
     }
+    
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+        
+        if (otherPerson instanceof Staff) {
+            Staff otherStaff = (Staff) otherPerson;
+            return otherStaff.getStaffId().equals(getStaffId());
+        }
+        
+        return false; 
+    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -49,7 +63,7 @@ public class Staff extends Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Staff)) {
             return false;
         }
 
