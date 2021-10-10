@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page
+title: User Guide
 ---
 
 **_Welcome to the Pocket Hotel User Guide!_**
