@@ -154,7 +154,7 @@ Example 2 (Delete staff):
 
 [Back to Table of Contents](#table-of-contents)
 
-### Viewing all your staff/guests: `list`
+### List all guests/staff: `list`
 
 Shows a list of all people (staff and guests) found in **PH**.
 
@@ -164,7 +164,7 @@ Format: `list`
 
 [Back to Table of Contents](#table-of-contents)
 
-### Viewing a particular staff/guest: `view`
+### Viewing a particular guest/guest: `view`
 
 Views the staff or guest by their `STAFF_ID` or `PASSPORT_NUMBER`. All the details associated with the 
 staff/guest will be shown in the **GUI**.
@@ -239,6 +239,8 @@ Action | Format, Examples
 **Delete** | Guest: `delete pn/<PASSPORT_NUMBER>`<br>Staff: `delete sid/<STAFF_ID>`<br>e.g.,<br>`delete pn/XNOO19390`<br>`delete sid/321`
 **List** | `list`
 **View** | Guest: `view pn/<PASSPORT_NUMBER>`<br>Staff: `view sid/<STAFF_ID>`<br>e.g.,<br>`view pn/X12345678A`<br>`view sid/123`
+**Clear** | `clear`
+**Help** | `Help`
 **Exit** | `exit`
 
 [Back to Table of Contents](#table-of-contents)
