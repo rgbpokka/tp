@@ -95,8 +95,8 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 Adds a new guest or staff and their contact details into **PH**.
 
 Format:
-<br>Guest: `add n/<NAME> pn/<PASSPORT_NUMBER> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]`
-<br>Staff: `add n/<NAME> sid/<STAFF_ID> [p/<PHONE_NUMBER>]`
+<br>Guest: `add pn/<PASSPORT_NUMBER> n/<NAME> e/EMAIL r/<ROOM_NUMBER> [t/TAG]`
+<br>Staff: `add sid/<STAFF_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> [t/<TAG>]`
 
 Example 1:
 <br>![AddDiagram](images/AddDiagram.png)
@@ -234,8 +234,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | Guest: `add n/<NAME> pn/<PASSPORT_NUMBER> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]`<br>Staff: `add n/<NAME> sid/<STAFF_ID> [p/<PHONE_NUMBER>] [r/<ROOM_NUMBER>]`<br>e.g.,<br>`add n/Bing Cheng pn/T0134568D p/99999999 r/69`<br>`add n/Jeremy sid/321 p/87655432`
-**Edit** | Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Staff:`edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>e.g.<br>`edit pn/X12345678A p/99999999`<br>`edit sid/S12345678A p/99999999`
+**Add** | Guest: `add pn/<PASSPORT_NUMBER> n/<NAME> e/EMAIL r/<ROOM_NUMBER> [t/TAG]`<br>Staff: `add sid/<STAFF_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> [t/<TAG>]`<br>e.g.,<br>`add pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101`<br>`add sid/321 n/Jeremy e/jeremy@email.com p/87655432 a/Downing Street`
+**Edit** | Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Staff:`edit sid/<STAFF_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>e.g.<br>`edit pn/X12345678A p/99999999`<br>`edit sid/S12345678A p/99999999`
 **Delete** | Guest: `delete pn/<PASSPORT_NUMBER>`<br>Staff: `delete sid/<STAFF_ID>`<br>e.g.,<br>`delete pn/XNOO19390`<br>`delete sid/321`
 **List** | `list`
 **View** | Guest: `view pn/<PASSPORT_NUMBER>`<br>Staff: `view sid/<STAFF_ID>`<br>e.g.,<br>`view pn/X12345678A`<br>`view sid/123`
