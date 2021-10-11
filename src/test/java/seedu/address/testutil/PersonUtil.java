@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -45,8 +45,8 @@ public class PersonUtil {
             sb.append(PREFIX_ADDRESS + staff.getAddress().value + " ");
         } else { // person is a guest
             Guest guest = (Guest) person;
-            sb.append(PREFIX_ROOM_NUM + guest.getRoomNumber().value + " ");
-            sb.append(PREFIX_PASSPORT_NUM + guest.getPassportNumber().value + " ");
+            sb.append(PREFIX_ROOM_NUMBER + guest.getRoomNumber().value + " ");
+            sb.append(PREFIX_PASSPORT_NUMBER + guest.getPassportNumber().value + " ");
         }
 
         person.getTags().stream().forEach(

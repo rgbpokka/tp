@@ -1,7 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -57,9 +57,15 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    public void execute_staffIdCommandExecutionError_throwsCommandException() {
+        String deleteCommand = "delete sid/";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
+    }
+
+    @Test
+    public void execute_passportNumberCommandExecutionError_throwsCommandException() {
+        String deleteCommand = "delete pn/";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
     }
 
     @Test
