@@ -39,7 +39,7 @@ public class TagListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TagCard(tag, getIndex() + 1).getRoot());
+                setGraphic(new TagCard(tag).getRoot());
             }
         }
     }

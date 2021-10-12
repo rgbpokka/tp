@@ -2,6 +2,8 @@ package seedu.address.model.tag;
 
 import seedu.address.model.person.Person;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
@@ -17,6 +19,7 @@ public class Tag {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
+    public List<Person> taggedPeople;
 
     /**
      * Constructs a {@code Tag}.
@@ -27,6 +30,7 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+        this.taggedPeople = new ArrayList<>();
     }
 
     /**
@@ -46,6 +50,18 @@ public class Tag {
     @Override
     public int hashCode() {
         return tagName.hashCode();
+    }
+    
+    public void addPerson(Person person) {
+        taggedPeople.add(person);
+    }
+    
+    public void removePerson(Person person) {
+        taggedPeople.remove(person);
+    }
+    
+    public boolean noTaggedPerson() {
+        return taggedPeople.isEmpty();
     }
 
     /**
