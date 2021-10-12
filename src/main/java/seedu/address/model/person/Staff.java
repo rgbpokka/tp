@@ -10,7 +10,6 @@ public class Staff extends Person {
     private final Address address;
     private final StaffId staffId;
     private final Phone phone;
-    private final Tag StaffTag = new Tag("staff");
 
     /**
      * Every field must be present and not null.
@@ -21,7 +20,6 @@ public class Staff extends Person {
      */
     public Staff(Name name, Email email, Set<Tag> tags, Address address, StaffId staffId, Phone phone) {
         super(name, email, tags);
-//        getTags().add(StaffTag);
         this.address = address;
         this.staffId = staffId;
         this.phone = phone;

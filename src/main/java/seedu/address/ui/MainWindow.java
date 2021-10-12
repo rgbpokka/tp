@@ -32,8 +32,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private TagListPanel tagListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private StatisticsWindow statisticsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+    
+    @FXML
+    private StackPane tagListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -64,8 +69,9 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
+        
         helpWindow = new HelpWindow();
+        statisticsWindow = new StatisticsWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -112,6 +118,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        tagListPanel = new TagListPanel(logic.getFilteredTagList());
+        tagListPanelPlaceholder.getChildren().add(tagListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -160,7 +169,17 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        statisticsWindow.hide();
         primaryStage.hide();
+    }
+    
+    @FXML
+    private void handleStatistics() {
+        if (!statisticsWindow.isShowing()) {
+            statisticsWindow.show();
+        } else {
+            statisticsWindow.focus();
+        } 
     }
 
     public PersonListPanel getPersonListPanel() {
