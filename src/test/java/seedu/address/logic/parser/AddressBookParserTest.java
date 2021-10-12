@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -47,10 +48,17 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deleteStaff() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + STAFF_ID_FIRST_PERSON);
+        assertEquals(new DeleteCommand(STAFF_ID_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deleteGuest() throws Exception {
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + PASSPORT_NUMBER_FIRST_PERSON);
+        assertEquals(new DeleteCommand(PASSPORT_NUMBER_FIRST_PERSON), command);
     }
 
     @Test
