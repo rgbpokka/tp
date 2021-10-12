@@ -100,26 +100,6 @@ class JsonSerializableAddressBook {
             System.out.println("error");
         }
 
-        List<JsonAdaptedStaff> staffs = (List<JsonAdaptedStaff>) persons.get(0).get("staff");
-
-
-
-//        for (JsonAdaptedGuest jsonAdaptedGuest : guests) {
-//
-//            Person person = jsonAdaptedGuest.toModelType();
-//            if (addressBook.hasPerson(person)) {
-//                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-//            }
-//            addressBook.addPerson(person);
-//        }
-        // loop thru staffs and add them into the address book
-//        for (JsonAdaptedStaff jsonAdaptedStaff : staffs) {
-//            Person person = jsonAdaptedStaff.toModelType();
-//            if (addressBook.hasPerson(person)) {
-//                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-//            }
-//            addressBook.addPerson(person);
-//        }
         return addressBook;
     }
 
