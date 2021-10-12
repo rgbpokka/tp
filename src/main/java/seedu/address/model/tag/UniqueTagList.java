@@ -24,6 +24,10 @@ public class UniqueTagList implements Iterable<Tag> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
     }
+    
+    public Tag get(Tag tag) {
+        return internalList.stream().filter(tag::equals).findFirst().get();
+    }
 
     /**
      * Adds a tag to the list.

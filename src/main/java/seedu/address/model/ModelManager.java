@@ -130,6 +130,11 @@ public class ModelManager implements Model {
         addressBook.addTag(tag);
         updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
     }
+    
+    @Override
+    public Tag getTag(Tag tag) {
+        return addressBook.getTag(tag);
+    }
 
     @Override
     public void setTag(Tag target, Tag editedTag) {

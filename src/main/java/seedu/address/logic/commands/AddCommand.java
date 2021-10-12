@@ -12,6 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -57,16 +58,29 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         
+        modifyTags(model);
+        model.addPerson(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+    
+    public void modifyTags(Model model) {
         Set<Tag> tags = toAdd.getTags();
-        
+        Set<Tag> newTags = new HashSet<>();
+
         for (Tag tag: tags) {
             if (!model.hasTag(tag)) {
                 model.addTag(tag);
+                newTags.add(tag);
+            } else {
+                newTags.add(model.getTag(tag));
             }
         }
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        toAdd.setTags(newTags);
+
+        for (Tag tag : newTags) {
+            tag.addPerson(toAdd);
+        }
     }
 
     @Override

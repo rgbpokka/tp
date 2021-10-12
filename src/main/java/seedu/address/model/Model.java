@@ -96,6 +96,12 @@ public interface Model {
     void addTag(Tag tag);
 
     /**
+     * Gets the given tag inside the address book.
+     * @param tag
+     */
+    Tag getTag(Tag tag);
+
+    /**
      * Replaces the given tag {@code target} with {@code editedTag}.
      * {@code target} must exist in the address book.
      * The tag identity of {@code editedTag} must not be the same as another existing tag in the address book.
