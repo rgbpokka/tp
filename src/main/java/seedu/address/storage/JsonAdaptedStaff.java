@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,12 +20,15 @@ import seedu.address.model.person.StaffId;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Staff}.
  */
-class JsonAdaptedStaff extends JsonAdaptedPerson{
+class JsonAdaptedStaff{
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final String name;
+    private final String email;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String phone;
     private final String address;
     private final String staffId;
@@ -39,7 +43,11 @@ class JsonAdaptedStaff extends JsonAdaptedPerson{
                             @JsonProperty("address") String address,
                             @JsonProperty("staffId") String staffId,
                             @JsonProperty("phone") String phone) {
-        super(name, email, tagged);
+        this.name = name;
+        this.email = email;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
         this.address = address;
         this.staffId = staffId;
         this.phone = phone;
@@ -49,11 +57,27 @@ class JsonAdaptedStaff extends JsonAdaptedPerson{
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedStaff(Person source) {
-        super(source);
+        name = source.getName().fullName;
+        email = source.getEmail().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
         Staff staff = (Staff) source;
         phone = staff.getPhone().value;
         address = staff.getAddress().value;
         staffId = staff.getStaffId().value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public List<JsonAdaptedTag> getTags() {
+        return tagged;
     }
 
     /**
@@ -61,8 +85,8 @@ class JsonAdaptedStaff extends JsonAdaptedPerson{
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    @Override
-    public Person toModelType() throws IllegalValueException {
+//    @Override
+    public Staff toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : getTags()) {
             personTags.add(tag.toModelType());

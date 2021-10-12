@@ -23,7 +23,7 @@ public abstract class Person {
     private Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. hehe
      */
     public Person(Name name, Email email, Set<Tag> tags) {
         requireAllNonNull(name, email, tags);
