@@ -21,7 +21,7 @@ public class Staff extends Person {
      */
     public Staff(Name name, Email email, Set<Tag> tags, Address address, StaffId staffId, Phone phone) {
         super(name, email, tags);
-        getTags().add(StaffTag);
+//        getTags().add(StaffTag);
         this.address = address;
         this.staffId = staffId;
         this.phone = phone;
@@ -38,6 +38,20 @@ public class Staff extends Person {
     public Address getAddress() {
         return address;
     }
+    
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+        
+        if (otherPerson instanceof Staff) {
+            Staff otherStaff = (Staff) otherPerson;
+            return otherStaff.getStaffId().equals(getStaffId());
+        }
+        
+        return false; 
+    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -49,7 +63,7 @@ public class Staff extends Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Staff)) {
             return false;
         }
 

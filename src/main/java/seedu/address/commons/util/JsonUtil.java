@@ -12,10 +12,7 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -40,6 +37,11 @@ public class JsonUtil {
                     .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
 
     static <T> void serializeObjectToJsonFile(Path jsonFile, T objectToSerialize) throws IOException {
+//        final ObjectMapper mapper = new ObjectMapper();
+//        final ObjectWriter writer = mapper.writer().withRootName("person123");
+//        final String jsonMessage = writer.writeValueAsString(objectToSerialize);
+//        FileUtil.writeToFile(jsonFile, jsonMessage);
+        //actual writing to json file
         FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));
     }
 
@@ -69,7 +71,7 @@ public class JsonUtil {
         try {
             jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
         } catch (IOException e) {
-            logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
+            logger.warning("Error reading from jsonFile file " + filePath + ": " + classOfObjectToDeserialize + e);
             throw new DataConversionException(e);
         }
 
@@ -87,6 +89,7 @@ public class JsonUtil {
         requireNonNull(filePath);
         requireNonNull(jsonFile);
 
+        System.out.println(toJsonString(jsonFile)); // prints the json, to be removed
         serializeObjectToJsonFile(filePath, jsonFile);
     }
 

@@ -3,14 +3,19 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,9 +36,19 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+
+        if (person instanceof Staff) {
+            Staff staff = (Staff) person;
+            sb.append(PREFIX_STAFF_ID + staff.getStaffId().value + " ");
+            sb.append(PREFIX_PHONE + staff.getPhone().value + " ");
+            sb.append(PREFIX_ADDRESS + staff.getAddress().value + " ");
+        } else { // person is a guest
+            Guest guest = (Guest) person;
+            sb.append(PREFIX_ROOM_NUMBER + guest.getRoomNumber().value + " ");
+            sb.append(PREFIX_PASSPORT_NUMBER + guest.getPassportNumber().value + " ");
+        }
+
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

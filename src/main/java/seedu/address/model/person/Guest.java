@@ -23,7 +23,7 @@ public class Guest extends Person {
      */
     public Guest(Name name, Email email, Set<Tag> tags, RoomNumber roomNumber, PassportNumber passportNumber) {
         super(name, email, tags);
-        getTags().add(guestTag);
+//        getTags().add(guestTag);
         this.roomNumber = roomNumber;
         this.passportNumber = passportNumber;
     }
@@ -36,6 +36,20 @@ public class Guest extends Person {
         return passportNumber;
     }
 
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (otherPerson instanceof Guest) {
+            Guest otherGuest = (Guest) otherPerson;
+            return otherGuest.getPassportNumber().equals(getPassportNumber());
+        }
+
+        return false;
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -46,7 +60,7 @@ public class Guest extends Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Guest)) {
             return false;
         }
 
