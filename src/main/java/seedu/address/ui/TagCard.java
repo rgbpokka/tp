@@ -23,17 +23,14 @@ public class TagCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label id;
-    @FXML
     private Label tagName;
 
     /**
-     * Creates a {@code TagCode} with the given {@code Tag} and index to display.
+     * Creates a {@code TagCode} with the given {@code Tag} 
      */
-    public TagCard(Tag tag, int displayedIndex) {
+    public TagCard(Tag tag) {
         super(FXML);
         this.tag = tag;
-        id.setText(displayedIndex + ". ");
         tagName.setText(tag.toString());
     }
 
@@ -51,7 +48,7 @@ public class TagCard extends UiPart<Region> {
 
         // state check
         TagCard card = (TagCard) other;
-        return id.getText().equals(card.id.getText())
+        return tagName.getText().equals(card.tagName.getText())
                 && tag.equals(card.tag);
     }
     

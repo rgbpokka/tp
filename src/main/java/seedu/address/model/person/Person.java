@@ -47,6 +47,10 @@ public abstract class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+    
+    public void setTags(Set<Tag> newTags) {
+        tags = newTags;
+    }
 
     /**
      * Returns true if both persons have the same name.
