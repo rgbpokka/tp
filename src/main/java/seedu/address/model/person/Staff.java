@@ -10,7 +10,7 @@ public class Staff extends Person {
     private final Address address;
     private final StaffId staffId;
     private final Phone phone;
-    private final Tag StaffTag = new Tag("staff");
+    private final Tag StaffTag = new Tag("Staff");
 
     /**
      * Every field must be present and not null.

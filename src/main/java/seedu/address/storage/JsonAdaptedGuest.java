@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,12 +19,15 @@ import seedu.address.model.person.RoomNumber;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Guest}.
  */
-class JsonAdaptedGuest extends JsonAdaptedPerson{
+class JsonAdaptedGuest{
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final String name;
+    private final String email;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String roomNumber;
     private final String passportNumber;
 
@@ -32,11 +36,15 @@ class JsonAdaptedGuest extends JsonAdaptedPerson{
      */
     @JsonCreator
     public JsonAdaptedGuest(@JsonProperty("name") String name,
-                             @JsonProperty("email") String email,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                            @JsonProperty("email") String email,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                             @JsonProperty("roomNumber") String roomNumber,
                             @JsonProperty("passportNumber") String passportNumber) {
-        super(name, email, tagged);
+        this.name = name;
+        this.email = email;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
         this.roomNumber = roomNumber;
         this.passportNumber = passportNumber;
     }
@@ -45,10 +53,26 @@ class JsonAdaptedGuest extends JsonAdaptedPerson{
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedGuest(Person source) {
-        super(source);
+        name = source.getName().fullName;
+        email = source.getEmail().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
         Guest guest = (Guest) source;
         roomNumber = guest.getRoomNumber().value;
         passportNumber = guest.getPassportNumber().value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public List<JsonAdaptedTag> getTags() {
+        return tagged;
     }
 
     /**
@@ -56,8 +80,8 @@ class JsonAdaptedGuest extends JsonAdaptedPerson{
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    @Override
-    public Person toModelType() throws IllegalValueException {
+//    @Override
+    public Guest toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : getTags()) {
             personTags.add(tag.toModelType());

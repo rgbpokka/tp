@@ -9,7 +9,7 @@ public class Guest extends Person {
     
     private final RoomNumber roomNumber;
     private final PassportNumber passportNumber;
-    private final Tag guestTag = new Tag("guest");
+    private final Tag guestTag = new Tag("Guest");
     
     /**
      * Every field must be present and not null.
