@@ -7,9 +7,14 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PassportNumber;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.RoomNumber;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.StaffId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,10 +38,21 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        
+        if (person instanceof Guest) {
+            Guest guest = (Guest) person;
+            descriptor.setPassportNumber(guest.getPassportNumber());
+            descriptor.setRoomNumber((guest.getRoomNumber()));
+        }
+
+        if (person instanceof Staff) {
+            Staff staff = (Staff) person;
+            descriptor.setPhone(staff.getPhone());
+            descriptor.setAddress(staff.getAddress());
+            descriptor.setStaffId(staff.getStaffId());
+        }
     }
 
     /**
@@ -68,6 +84,30 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+    
+    /**
+     * Sets the {@code RoomNumber} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRoomNumber(String roomNumber) {
+        descriptor.setRoomNumber(new RoomNumber(roomNumber));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PassportNumber} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPassportNumber(String passportNumber) {
+        descriptor.setPassportNumber(new PassportNumber(passportNumber));
+        return this;
+    }
+
+    /**
+     * Sets the {@code StaffId} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withStaffId(String staffId) {
+        descriptor.setStaffId(new StaffId(staffId));
         return this;
     }
 
