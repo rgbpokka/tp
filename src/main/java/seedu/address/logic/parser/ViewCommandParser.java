@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new ViewCommand(new IdentifierContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
