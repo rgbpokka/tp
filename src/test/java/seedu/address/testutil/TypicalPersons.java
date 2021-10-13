@@ -16,31 +16,72 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
+    // Guests
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+    public static final Guest ALICE_GUEST = new GuestBuilder()
+            .withName("Alice Pauline")
+            .withEmail("alice@example.com")
+            .withTags("VIP")
+            .withRoomNumber("20202")
+            .withPassportNumber("T01919191")
+            .build();
+
+    public static final Guest BENSON_GUEST = new GuestBuilder()
+            .withName("Benson Meier")
+            .withEmail("johnd@example.com")
+            .withTags("NORMAL ROOM", "OUTSTANDING PAYMENT")
+            .withRoomNumber("20201")
+            .withPassportNumber("T01919190")
+            .build();
+
+    public static final Guest CARL_GUEST = new GuestBuilder()
+            .withName("Carl Kurz")
+            .withEmail("heinz@example.com")
+            .withRoomNumber("12321")
+            .withPassportNumber("T01988190")
+            .build();
+
+    public static final Staff DANIEL_STAFF = new StaffBuilder()
+            .withName("Daniel Meier")
+            .withEmail("cornelia@example.com")
+            .withTags("COUNTER STAFF")
+            .withAddress("10th street")
+            .withPhone("87652533")
+            .withStaffId("345")
+            .build();
+
+    public static final Staff ELLE_STAFF = new StaffBuilder()
+            .withName("Elle Meyer")
+            .withEmail("werner@example.com")
+            .withTags("MANAGER")
+            .withAddress("michegan ave")
+            .withPhone("9482224")
+            .withStaffId("678")
+            .build();
+
+    public static final Staff FIONA_STAFF = new StaffBuilder()
+            .withName("Fiona Kunz")
+            .withEmail("lydia@example.com")
+            .withAddress("little tokyo")
+            .withPhone("9482427")
+            .withStaffId("901")
+            .build();
+
+    public static final Staff GEORGE_STAFF = new StaffBuilder()
+            .withName("George Best")
+            .withEmail("anna@example.com")
+            .withAddress("4th street")
+            .withPhone("9482442")
+            .withStaffId("101")
+            .build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -71,6 +112,15 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(
+                Arrays.asList(
+                        ALICE_GUEST,
+                        BENSON_GUEST,
+                        CARL_GUEST,
+                        DANIEL_STAFF,
+                        ELLE_STAFF,
+                        FIONA_STAFF,
+                        GEORGE_STAFF)
+        );
     }
 }
