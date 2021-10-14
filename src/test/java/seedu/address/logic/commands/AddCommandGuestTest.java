@@ -24,7 +24,7 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.GuestBuilder;
 
-public class AddCommandTest {
+public class AddCommandGuestTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
