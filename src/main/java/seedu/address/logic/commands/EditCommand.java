@@ -59,7 +59,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param uniqueIdentifier of the person in the filtered person list to edit
+     * @param uniqueIdentifier     of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(UniqueIdentifier uniqueIdentifier, EditPersonDescriptor editPersonDescriptor) {
@@ -98,18 +98,25 @@ public class EditCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        
+
         modifyTags(model, editedPerson, personToEdit);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
-    
+
+    /**
+     * Modifies the tag list accordingly
+     *
+     * @param model        The model containing the tag list and person list.
+     * @param editedPerson The person being edited.
+     * @param personToEdit The person being replaced by the editedPerson.
+     */
     public void modifyTags(Model model, Person editedPerson, Person personToEdit) {
         Set<Tag> tags = editedPerson.getTags();
         Set<Tag> newTags = new HashSet<>();
 
-        for (Tag tag: tags) {
+        for (Tag tag : tags) {
             if (!model.hasTag(tag)) {
                 model.addTag(tag);
                 newTags.add(tag);
@@ -117,16 +124,16 @@ public class EditCommand extends Command {
                 newTags.add(model.getTag(tag));
             }
         }
-        
+
         for (Tag tag : newTags) {
             tag.addPerson(editedPerson);
         }
-        
+
         editedPerson.setTags(newTags);
-        
+
         Set<Tag> deletedTags = personToEdit.getTags();
 
-        for (Tag tag: deletedTags) {
+        for (Tag tag : deletedTags) {
             tag.removePerson(personToEdit);
             if (tag.noTaggedPerson()) {
                 model.deleteTag(tag);
@@ -194,7 +201,8 @@ public class EditCommand extends Command {
         private PassportNumber passportNumber;
         private RoomNumber roomNumber;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -254,15 +262,25 @@ public class EditCommand extends Command {
             this.staffId = staffId;
         }
 
-        public Optional<StaffId> getStaffId() { return Optional.ofNullable(staffId); }
+        public Optional<StaffId> getStaffId() {
+            return Optional.ofNullable(staffId);
+        }
 
-        public void setPassportNumber(PassportNumber passportNumber) { this.passportNumber = passportNumber; }
+        public void setPassportNumber(PassportNumber passportNumber) {
+            this.passportNumber = passportNumber;
+        }
 
-        public Optional<PassportNumber> getPassportNumber() { return Optional.ofNullable(passportNumber); }
+        public Optional<PassportNumber> getPassportNumber() {
+            return Optional.ofNullable(passportNumber);
+        }
 
-        public void setRoomNumber(RoomNumber roomNumber) { this.roomNumber = roomNumber; }
+        public void setRoomNumber(RoomNumber roomNumber) {
+            this.roomNumber = roomNumber;
+        }
 
-        public Optional<RoomNumber> getRoomNumber() { return Optional.ofNullable(roomNumber); }
+        public Optional<RoomNumber> getRoomNumber() {
+            return Optional.ofNullable(roomNumber);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

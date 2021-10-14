@@ -15,7 +15,7 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the staff or guest by"
-            + "the specified staff ID or passport number (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified staff ID or passport number (case-insensitive) and displays them as a list.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " 101";
 

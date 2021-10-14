@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -32,6 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
@@ -58,7 +58,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setStaffId(staffId);
             uniqueIdentifier = staffId;
         } else if (argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isPresent()) {
-            PassportNumber passportNumber = ParserUtil.parsePassportNumber(argMultimap.getValue(PREFIX_PASSPORT_NUMBER).get());
+            PassportNumber passportNumber =
+                    ParserUtil.parsePassportNumber(argMultimap.getValue(PREFIX_PASSPORT_NUMBER).get());
             editPersonDescriptor.setPassportNumber(passportNumber);
             uniqueIdentifier = passportNumber;
         } else {
@@ -73,7 +74,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
-            editPersonDescriptor.setRoomNumber(ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
+            editPersonDescriptor.setRoomNumber(
+                    ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

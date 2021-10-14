@@ -12,7 +12,9 @@ import seedu.address.model.tag.Tag;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
 
@@ -51,7 +53,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -97,6 +101,7 @@ public interface Model {
 
     /**
      * Gets the given tag inside the address book.
+     *
      * @param tag
      */
     Tag getTag(Tag tag);
@@ -108,22 +113,28 @@ public interface Model {
      */
     void setTag(Tag target, Tag editedTag);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered tag list */
-    ObservableList<Tag> getFilteredTagList(); 
+    /**
+     * Returns an unmodifiable view of the filtered tag list
+     */
+    ObservableList<Tag> getFilteredTagList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Updates the filter of the filtered tag list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredTagList(Predicate<Tag> predicate); 
-    
+    void updateFilteredTagList(Predicate<Tag> predicate);
+
 }

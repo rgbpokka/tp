@@ -64,11 +64,11 @@ public class LogicManager implements Logic {
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
-    
+
     @Override
     public ObservableList<Tag> getFilteredTagList() {
         return model.getFilteredTagList();
-    } 
+    }
 
     @Override
     public Path getAddressBookFilePath() {

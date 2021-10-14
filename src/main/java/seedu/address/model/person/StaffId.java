@@ -13,7 +13,7 @@ public class StaffId extends UniqueIdentifier {
     /**
      * Constructs an {@code StaffId}.
      *
-     * @param staffId A valid staffId 
+     * @param staffId A valid staffId
      */
     public StaffId(String staffId) {
         requireNonNull(staffId);
@@ -22,7 +22,7 @@ public class StaffId extends UniqueIdentifier {
     }
 
     /**
-     * Returns true if a given string is a valid staff ID.  
+     * Returns true if a given string is a valid staff ID.
      */
     public static boolean isValidStaffId(String staffId) {
         return staffId.matches(VALIDATION_REGEX);
@@ -44,6 +44,6 @@ public class StaffId extends UniqueIdentifier {
     public int hashCode() {
         return value.hashCode();
     }
-    
-    
+
+
 }

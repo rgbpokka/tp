@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 public class Staff extends Person {
 
@@ -28,7 +28,7 @@ public class Staff extends Person {
     public Phone getPhone() {
         return phone;
     }
-    
+
     public StaffId getStaffId() {
         return staffId;
     }
@@ -36,19 +36,19 @@ public class Staff extends Person {
     public Address getAddress() {
         return address;
     }
-    
+
     @Override
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
-        
+
         if (otherPerson instanceof Staff) {
             Staff otherStaff = (Staff) otherPerson;
             return otherStaff.getStaffId().equals(getStaffId());
         }
-        
-        return false; 
+
+        return false;
     }
 
     /**
@@ -87,7 +87,7 @@ public class Staff extends Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Staff ID: ")
-                .append(getStaffId()) 
+                .append(getStaffId())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Address: ")
