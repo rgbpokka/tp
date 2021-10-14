@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Staff}.
  */
-class JsonAdaptedStaff{
+class JsonAdaptedStaff {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -38,8 +38,8 @@ class JsonAdaptedStaff{
      */
     @JsonCreator
     public JsonAdaptedStaff(@JsonProperty("name") String name,
-                             @JsonProperty("email") String email, 
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                            @JsonProperty("email") String email,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                             @JsonProperty("address") String address,
                             @JsonProperty("staffId") String staffId,
                             @JsonProperty("phone") String phone) {
@@ -85,7 +85,7 @@ class JsonAdaptedStaff{
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-//    @Override
+    // @Override
     public Staff toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : getTags()) {
@@ -107,7 +107,7 @@ class JsonAdaptedStaff{
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(getEmail());
-        
+
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -122,8 +122,8 @@ class JsonAdaptedStaff{
         if (!StaffId.isValidStaffId(staffId)) {
             throw new IllegalValueException(StaffId.MESSAGE_CONSTRAINTS);
         }
-        final StaffId modelStaffId = new StaffId(staffId); 
-        
+        final StaffId modelStaffId = new StaffId(staffId);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }

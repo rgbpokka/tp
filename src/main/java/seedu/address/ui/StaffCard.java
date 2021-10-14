@@ -57,7 +57,7 @@ public class StaffCard extends UiPart<Region> {
     public StaffCard(Staff staff) {
         super(FXML);
         this.staff = staff;
-        staffId.setText("[" +staff.getStaffId().value + "]");
+        staffId.setText("[" + staff.getStaffId().value + "]");
         name.setText(staff.getName().fullName);
         email.setText(" " + staff.getEmail().value);
         address.setText(" " + staff.getAddress().value);
@@ -67,7 +67,7 @@ public class StaffCard extends UiPart<Region> {
         emailIcon.setImage(new Image(getClass().getResourceAsStream("/images/email_icon.png")));
         addressIcon.setImage(new Image(getClass().getResourceAsStream("/images/address_icon.png")));
         phoneIcon.setImage(new Image(getClass().getResourceAsStream("/images/phone_icon.png")));
-        
+
         staff.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -26,7 +26,7 @@ public class TagCard extends UiPart<Region> {
     private Label tagName;
 
     /**
-     * Creates a {@code TagCode} with the given {@code Tag} 
+     * Creates a {@code TagCode} with the given {@code Tag}
      */
     public TagCard(Tag tag) {
         super(FXML);
@@ -51,5 +51,5 @@ public class TagCard extends UiPart<Region> {
         return tagName.getText().equals(card.tagName.getText())
                 && tag.equals(card.tag);
     }
-    
+
 }

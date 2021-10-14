@@ -1,13 +1,12 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.person.Person;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Tag in the address book.
@@ -19,7 +18,7 @@ public class Tag {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
-    public List<Person> taggedPeople;
+    private List<Person> taggedPeople;
 
     /**
      * Constructs a {@code Tag}.
@@ -51,15 +50,15 @@ public class Tag {
     public int hashCode() {
         return tagName.hashCode();
     }
-    
+
     public void addPerson(Person person) {
         taggedPeople.add(person);
     }
-    
+
     public void removePerson(Person person) {
         taggedPeople.remove(person);
     }
-    
+
     public boolean noTaggedPerson() {
         return taggedPeople.isEmpty();
     }
