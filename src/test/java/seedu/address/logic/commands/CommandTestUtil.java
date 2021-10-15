@@ -20,7 +20,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditGuestDescriptorBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 
 /**
@@ -41,13 +40,17 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_PHONE_AMY = "88888888";
+    public static final String VALID_PHONE_BOB = "77777777";
     public static final String VALID_PHONE_CHARLIE = "11111111";
     public static final String VALID_PHONE_DELTA = "22222222";
 
-    public static final String VALID_ADDRESS_CHARLIE = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_DELTA = "Block 123, Bobby Street 3";
+    public static final String VALID_ADDRESS_AMY = "Block 888, Amy Street 1";
+    public static final String VALID_ADDRESS_BOB = "Block 999, Bobby Street 3";
+    public static final String VALID_ADDRESS_CHARLIE = "Block 312, charlie Street 1";
+    public static final String VALID_ADDRESS_DELTA = "Block 123, delta Street 3";
 
-//    public static final String VALID_SID_BOB = "123";
+    public static final String VALID_SID_BOB = "123";
     public static final String VALID_PASSPORT_NUMBER_AMY = "A123456789";
     public static final String VALID_PASSPORT_NUMBER_BOB = "A987654321";
 
@@ -82,7 +85,6 @@ public class CommandTestUtil {
     public static final EditCommand.EditStaffDescriptor DESC_CHARLIE;
     public static final EditCommand.EditStaffDescriptor DESC_DELTA;
 
-    // Should complete the fields for staff and guest
     static {
         DESC_AMY = new EditGuestDescriptorBuilder()
                 .withName(VALID_NAME_AMY)
