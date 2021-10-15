@@ -1,17 +1,24 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.BENSON_GUEST;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.storage.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON_GUEST;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PassportNumber;
+import seedu.address.model.person.RoomNumber;
+
+
+
 
 class JsonAdaptedGuestTest {
     private static final String INVALID_PASSPORTNUMBER = "@@@@@";
@@ -60,7 +67,8 @@ class JsonAdaptedGuestTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedGuest person = new JsonAdaptedGuest(null, VALID_EMAIL, VALID_TAGS, VALID_ROOMNUMBER, VALID_PASSPORTNUMBER);
+        JsonAdaptedGuest person = new JsonAdaptedGuest(null, VALID_EMAIL, VALID_TAGS,
+                VALID_ROOMNUMBER, VALID_PASSPORTNUMBER);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -90,7 +98,8 @@ class JsonAdaptedGuestTest {
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedGuest person = new JsonAdaptedGuest(VALID_NAME, null, VALID_TAGS, VALID_ROOMNUMBER, VALID_PASSPORTNUMBER);
+        JsonAdaptedGuest person = new JsonAdaptedGuest(VALID_NAME, null, VALID_TAGS,
+                VALID_ROOMNUMBER, VALID_PASSPORTNUMBER);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
