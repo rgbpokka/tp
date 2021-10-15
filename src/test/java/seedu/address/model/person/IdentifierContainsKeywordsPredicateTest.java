@@ -64,7 +64,7 @@ public class IdentifierContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new StaffBuilder().withStaffId("123").build()));
 
         predicate = new IdentifierContainsKeywordsPredicate(Collections.emptyList());
-        assertTrue(predicate.test(new GuestBuilder().withPassportNumber("T1231231D").build())); 
+        assertFalse(predicate.test(new GuestBuilder().withPassportNumber("T1231231D").build())); 
 
         // Non-matching keyword
         predicate = new IdentifierContainsKeywordsPredicate(Arrays.asList("001"));

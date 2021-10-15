@@ -38,7 +38,7 @@ public class PersonTest {
         assertTrue(FIONA_STAFF.isSamePerson(editedFiona));
 
         // different SID, all other attributes same -> returns false
-        editedFiona = new StaffBuilder(FIONA_STAFF).withName(VALID_SID_BOB).build();
+        editedFiona = new StaffBuilder(FIONA_STAFF).withStaffId(VALID_SID_BOB).build();
         assertFalse(FIONA_STAFF.isSamePerson(editedFiona));
 
         // name differs in case, all other attributes same -> returns false
