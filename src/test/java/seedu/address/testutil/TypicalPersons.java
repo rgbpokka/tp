@@ -27,8 +27,6 @@ import seedu.address.model.tag.Tag;
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
-    // Guests
-
     public static final Guest ALICE_GUEST = new GuestBuilder()
             .withName("Alice Pauline")
             .withEmail("alice@example.com")
@@ -40,7 +38,7 @@ public class TypicalPersons {
     public static final Guest BENSON_GUEST = new GuestBuilder()
             .withName("Benson Meier")
             .withEmail("johnd@example.com")
-            .withTags("NORMAL ROOM", "OUTSTANDING PAYMENT")
+            .withTags("NORMALROOM", "OUTSTANDINGPAYMENT")
             .withRoomNumber("20201")
             .withPassportNumber("T01919190")
             .build();
@@ -55,7 +53,7 @@ public class TypicalPersons {
     public static final Staff DANIEL_STAFF = new StaffBuilder()
             .withName("Daniel Meier")
             .withEmail("cornelia@example.com")
-            .withTags("COUNTER STAFF")
+            .withTags("COUNTERSTAFF")
             .withAddress("10th street")
             .withPhone("87652533")
             .withStaffId("345")
