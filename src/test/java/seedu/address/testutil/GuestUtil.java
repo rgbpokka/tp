@@ -1,12 +1,9 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -14,8 +11,6 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
 import seedu.address.model.person.Guest;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -53,8 +48,10 @@ public class GuestUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getPassportNumber().ifPresent(passportNumber -> sb.append(PREFIX_PASSPORT_NUMBER).append(passportNumber.value).append(" "));
-        descriptor.getRoomNumber().ifPresent(roomNumber -> sb.append(PREFIX_ROOM_NUMBER).append(roomNumber.value).append(" "));
+        descriptor.getPassportNumber().ifPresent(
+                passportNumber -> sb.append(PREFIX_PASSPORT_NUMBER).append(passportNumber.value).append(" "));
+        descriptor.getRoomNumber().ifPresent(
+                roomNumber -> sb.append(PREFIX_ROOM_NUMBER).append(roomNumber.value).append(" "));
 
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3212ddfcb113f6ecd809b41f42835cf9194a928c
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -21,8 +24,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.UniqueIdentifier;
 import seedu.address.testutil.EditGuestDescriptorBuilder;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 
@@ -183,8 +189,17 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new IdentifierContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        String uniqueIdentifier;
+
+        if (person instanceof Guest) {
+            Guest guest = (Guest) person;
+            uniqueIdentifier = guest.getPassportNumber().value;
+        } else {
+            Staff staff = (Staff) person;
+            uniqueIdentifier = staff.getStaffId().value;
+        }
+
+        model.updateFilteredPersonList(new IdentifierContainsKeywordsPredicate(Arrays.asList(uniqueIdentifier)));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

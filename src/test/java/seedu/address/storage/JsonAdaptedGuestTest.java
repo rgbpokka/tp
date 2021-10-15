@@ -69,7 +69,7 @@ class JsonAdaptedGuestTest {
     public void toModelType_invalidRoomNumber_throwsIllegalValueException() {
         JsonAdaptedGuest person =
                 new JsonAdaptedGuest(VALID_NAME, VALID_EMAIL, VALID_TAGS, INVALID_ROOMNUMBER, VALID_PASSPORTNUMBER);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = RoomNumber.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

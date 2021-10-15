@@ -154,20 +154,22 @@ public class EditCommand extends Command {
         Phone updatedPhone;
         Address updatedAddress;
         RoomNumber updatedRoomNumber;
+        StaffId updatedStaffId;
+        PassportNumber updatedPassportNumber;
 
         if (personToEdit instanceof Staff) {
             Staff staff = (Staff) personToEdit;
-            StaffId staffId = staff.getStaffId();
             EditStaffDescriptor editStaffDescriptor = (EditStaffDescriptor) editPersonDescriptor;
             updatedPhone = editStaffDescriptor.getPhone().orElse(staff.getPhone());
             updatedAddress = editStaffDescriptor.getAddress().orElse(staff.getAddress());
-            return new Staff(updatedName, updatedEmail, updatedTags, updatedAddress, staffId, updatedPhone);
+            updatedStaffId = editStaffDescriptor.getStaffId().orElse(staff.getStaffId());
+            return new Staff(updatedName, updatedEmail, updatedTags, updatedAddress, updatedStaffId, updatedPhone);
         } else {
             Guest guest = (Guest) personToEdit;
-            PassportNumber passportNumber = guest.getPassportNumber();
             EditGuestDescriptor editGuestDescriptor = (EditGuestDescriptor) editPersonDescriptor;
             updatedRoomNumber = editGuestDescriptor.getRoomNumber().orElse(guest.getRoomNumber());
-            return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, passportNumber);
+            updatedPassportNumber = editGuestDescriptor.getPassportNumber().orElse(guest.getPassportNumber());
+            return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber);
         }
     }
 
