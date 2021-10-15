@@ -13,8 +13,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
 import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_THIRD_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FOURTH_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_THIRD_PERSON;
 
@@ -29,8 +27,6 @@ import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -96,7 +92,8 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalPersons() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
@@ -110,7 +107,7 @@ public class TypicalPersons {
                 tagSet.add(tag);
             }
         }
-        
+
         for (Tag typicalTag : tagSet) {
             ab.addTag(typicalTag);
         }
