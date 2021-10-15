@@ -65,8 +65,6 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String VALID_SID_BOB = "a";
-
     public static final String VALID_PHONE_BOB = "77777777";
     public static final String VALID_PHONE_CHARLIE = "11111111";
 
