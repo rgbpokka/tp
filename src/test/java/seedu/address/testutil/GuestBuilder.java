@@ -15,7 +15,7 @@ public class GuestBuilder extends PersonBuilder {
 
     public static final RoomNumber DEFAULT_ROOM_NUMBER = new RoomNumber("10101");
     public static final PassportNumber DEFAULT_PASSPORT_NUMBER = new PassportNumber("E0123122G");
-    private final Tag DEFAULT_TAG = new Tag("staff");
+    private final Tag DEFAULT_TAG = new Tag("guest");
 
     /**
      * Creates a {@code GuestBuilder} with the default details.
