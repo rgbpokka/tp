@@ -37,7 +37,9 @@ public class EditStaffDescriptorTest {
         assertFalse(DESC_CHARLIE.equals(DESC_DANIEL));
 
         // different name -> returns false
-        EditStaffDescriptor editedCharlie = new EditStaffDescriptorBuilder(DESC_CHARLIE).withName(VALID_NAME_DANIEL).build();
+        EditStaffDescriptor editedCharlie = new EditStaffDescriptorBuilder(DESC_CHARLIE)
+                .withName(VALID_NAME_DANIEL)
+                .build();
         assertFalse(DESC_CHARLIE.equals(editedCharlie));
 
         // different email -> returns false

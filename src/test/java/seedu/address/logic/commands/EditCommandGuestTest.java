@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
 import static seedu.address.testutil.TypicalPersons.ALICE_GUEST;
 import static seedu.address.testutil.TypicalPersons.BENSON_GUEST;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -38,7 +38,7 @@ public class EditCommandGuestTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecified_UnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Guest guest = ALICE_GUEST;
         Guest editedGuest = new GuestBuilder().build();
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(editedGuest).build();
@@ -139,18 +139,18 @@ public class EditCommandGuestTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
     }
 
-//    @Test
-//    public void execute_invalidPassportNumberFilteredList_failure() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-//        // ensures that outOfBoundIndex is still in bounds of address book list
-//        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-//
-//        EditCommand editCommand = new EditCommand(outOfBoundIndex,
-//                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-//
-//        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//    }
+    //    @Test
+    //    public void execute_invalidPassportNumberFilteredList_failure() {
+    //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    //        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+    //        // ensures that outOfBoundIndex is still in bounds of address book list
+    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+    //
+    //        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+    //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+    //
+    //        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    //    }
 
     @Test
     public void equals() {
