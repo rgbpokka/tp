@@ -1,6 +1,5 @@
 ---
-layout: page
-title: About Us
+layout: page title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -16,28 +15,28 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/alyssa-savier)]
 [[portfolio](team/alyssa-savier.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
 
-### Jeremy Yeo Zhi Chen 
+### Jeremy Yeo Zhi Chen
 
 <img src="images/rgbpokka.png" width="200px">
 
 [[github](https://github.com/rgbpokka)]
 [[portfolio](team/rgbpokka.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
 
-### Calvin Tan 
+### Calvin Tan
 
 <img src="images/calvintanwj.png" width="200px">
 
 [[github](https://github.com/calvintanwj)]
 [[portfolio](team/calvintanwj.md)]
 
-* Role:  
-* Responsibilities: 
+* Role:
+* Responsibilities:
 
 ### Nicolas Chang
 
@@ -56,7 +55,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/bingcheng45)] 
 [[portfolio](team/bingcheng45.md)]
 
-* Role: 
+* Role:
 * Responsibilities: 
 
 
