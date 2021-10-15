@@ -13,12 +13,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -105,8 +108,16 @@ public class TypicalPersons {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
+        Set<Tag> tagSet = new HashSet<>();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
+            for (Tag tag : person.getTags()) {
+                tagSet.add(tag);
+            }
+        }
+        
+        for (Tag typicalTag : tagSet) {
+            ab.addTag(typicalTag);
         }
         return ab;
     }
