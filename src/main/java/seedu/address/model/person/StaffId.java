@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class StaffId extends UniqueIdentifier {
 
     public static final String MESSAGE_CONSTRAINTS = "StaffID must be alphanumeric.";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[\\w]+$";
 
     public final String value;
 

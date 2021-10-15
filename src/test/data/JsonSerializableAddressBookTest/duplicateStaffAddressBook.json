@@ -1,0 +1,19 @@
+{
+  "persons" : [ {
+    "staff" : [ {
+      "name" : "bob",
+      "email" : "bob@example.com",
+      "tagged" : [ "Staff" ],
+      "address" : "22 street",
+      "staffId" : "123",
+      "phone" : "12341234"
+    }, {
+      "name" : "bob2",
+      "email" : "bob@example.com",
+      "tagged" : [ "Staff" ],
+      "address" : "22 street",
+      "staffId" : "123",
+      "phone" : "12341234"
+    } ]
+  } ]
+}
