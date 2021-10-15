@@ -26,7 +26,7 @@ public class DeleteCommandStaffTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validStaffIdUnfilteredList_success() {
         Staff staffToDelete = (Staff) model.getFilteredPersonList()
                 .stream()
                 .filter(p -> p instanceof Staff && ((Staff) p).getStaffId().equals(STAFF_ID_FIRST_PERSON))

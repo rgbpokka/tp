@@ -26,7 +26,7 @@ public class DeleteCommandGuestTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validPassportNumberUnfilteredList_success() {
         Guest guestToDelete = (Guest) model.getFilteredPersonList()
                 .stream()
                 .filter(g -> g instanceof Guest && ((Guest) g).getPassportNumber().equals(PASSPORT_NUMBER_FIRST_PERSON))

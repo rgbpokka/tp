@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -99,7 +100,20 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        deleteTagAssociatedToPerson(target);
         addressBook.removePerson(target);
+
+    }
+
+    private void deleteTagAssociatedToPerson(Person target) {
+        Set<Tag> tags = target.getTags();
+
+        for (Tag tag : tags) {
+            tag.removePerson(target);
+            if (tag.noTaggedPerson()) {
+                this.deleteTag(tag);
+            }
+        }
     }
 
     @Override
