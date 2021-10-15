@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.StaffId;
@@ -18,7 +17,7 @@ public class StaffBuilder extends PersonBuilder {
     public static final Address DEFAULT_ADDRESS = new Address("123, Jurong West Ave 6, #08-111");
     public static final StaffId DEFAULT_STAFF_ID = new StaffId("321");
     public static final Phone DEFAULT_PHONE = new Phone("85355255");
-    public static final Tag DEFAULT_TAG = new Tag("staff");
+    public static final Tag DEFAULT_TAG = new Tag("Staff");
 
     /**
      * Creates a {@code StaffBuilder} with the default details.
