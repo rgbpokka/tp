@@ -45,7 +45,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
-    
+
     @FXML
     private StackPane tagListPanelPlaceholder;
 
@@ -69,7 +69,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-        
+
         helpWindow = new HelpWindow();
         statisticsWindow = new StatisticsWindow();
     }
@@ -84,6 +84,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -172,14 +173,14 @@ public class MainWindow extends UiPart<Stage> {
         statisticsWindow.hide();
         primaryStage.hide();
     }
-    
+
     @FXML
     private void handleStatistics() {
         if (!statisticsWindow.isShowing()) {
             statisticsWindow.show();
         } else {
             statisticsWindow.focus();
-        } 
+        }
     }
 
     public PersonListPanel getPersonListPanel() {

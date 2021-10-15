@@ -28,6 +28,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -141,7 +142,7 @@ public class ParserUtil {
             throw new ParseException(PassportNumber.MESSAGE_CONSTRAINTS);
         }
         return new PassportNumber(passportNumber);
-    } 
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -169,5 +170,5 @@ public class ParserUtil {
         }
         return tagSet;
     }
-    
+
 }

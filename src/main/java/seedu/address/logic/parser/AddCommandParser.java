@@ -4,26 +4,26 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Guest;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PassportNumber;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.StaffId;
-import seedu.address.model.person.PassportNumber;
-import seedu.address.model.person.RoomNumber;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Address;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,14 +42,14 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                         PREFIX_STAFF_ID, PREFIX_PASSPORT_NUMBER, PREFIX_ROOM_NUMBER);
 
-        if (arePrefixesPresent(argMultimap, PREFIX_PASSPORT_NUMBER, PREFIX_STAFF_ID) ||
-                !argMultimap.getPreamble().isEmpty()) {
+        if (arePrefixesPresent(argMultimap, PREFIX_PASSPORT_NUMBER, PREFIX_STAFF_ID)
+                || !argMultimap.getPreamble().isEmpty()) {
             //think of new error msg for only can have either passport number or staffid
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PASSPORT_NUMBER) &&
-                !arePrefixesPresent(argMultimap, PREFIX_STAFF_ID)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_PASSPORT_NUMBER)
+                && !arePrefixesPresent(argMultimap, PREFIX_STAFF_ID)) {
             // new error msg for needing passport number OR staff id
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }

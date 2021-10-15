@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tag.Tag;
 
 public class TagListPanel extends UiPart<Region> {
-    
+
     private static final String FXML = "TagListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TagListPanel.class);
 
@@ -24,13 +24,13 @@ public class TagListPanel extends UiPart<Region> {
     public TagListPanel(ObservableList<Tag> tagList) {
         super(FXML);
         tagListView.setItems(tagList);
-        tagListView.setCellFactory(listView -> new tagListViewCell());
+        tagListView.setCellFactory(listView -> new TagListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Tag} using a {@code TagCard}.
      */
-    static class tagListViewCell extends ListCell<Tag> {
+    static class TagListViewCell extends ListCell<Tag> {
         @Override
         protected void updateItem(Tag tag, boolean empty) {
             super.updateItem(tag, empty);
@@ -43,5 +43,5 @@ public class TagListPanel extends UiPart<Region> {
             }
         }
     }
-    
+
 }
