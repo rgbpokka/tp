@@ -20,8 +20,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.GuestBuilder;
 
 public class AddCommandGuestTest {
@@ -141,13 +142,48 @@ public class AddCommandGuestTest {
         }
 
         @Override
+        public boolean hasTag(Tag tag) {
+            return false;
+        }
+
+        @Override
+        public void deleteTag(Tag target) {
+
+        }
+
+        @Override
+        public void addTag(Tag tag) {
+
+        }
+
+        @Override
+        public Tag getTag(Tag tag) {
+            return null;
+        }
+
+        @Override
+        public void setTag(Tag target, Tag editedTag) {
+
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public ObservableList<Tag> getFilteredTagList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTagList(Predicate<Tag> predicate) {
+
         }
     }
 

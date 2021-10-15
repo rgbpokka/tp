@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Guest}.
  */
-class JsonAdaptedGuest{
+class JsonAdaptedGuest {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -80,7 +80,7 @@ class JsonAdaptedGuest{
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-//    @Override
+    // @Override
     public Guest toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : getTags()) {
@@ -104,7 +104,8 @@ class JsonAdaptedGuest{
         final Email modelEmail = new Email(getEmail());
 
         if (roomNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, RoomNumber.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, RoomNumber.class.getSimpleName()));
         }
         if (!RoomNumber.isValidRoomNumber(roomNumber)) {
             throw new IllegalValueException(RoomNumber.MESSAGE_CONSTRAINTS);
@@ -112,7 +113,8 @@ class JsonAdaptedGuest{
         final RoomNumber modelRoomNumber = new RoomNumber(roomNumber);
 
         if (passportNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PassportNumber.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, PassportNumber.class.getSimpleName()));
         }
         if (!PassportNumber.isValidPassportNumber(passportNumber)) {
             throw new IllegalValueException(PassportNumber.MESSAGE_CONSTRAINTS);

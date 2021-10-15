@@ -1,15 +1,15 @@
 package seedu.address.model.tag;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.tag.exceptions.DuplicateTagException;
-import seedu.address.model.tag.exceptions.TagNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.tag.exceptions.DuplicateTagException;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 public class UniqueTagList implements Iterable<Tag> {
 
@@ -24,7 +24,7 @@ public class UniqueTagList implements Iterable<Tag> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
     }
-    
+
     public Tag get(Tag tag) {
         return internalList.stream().filter(tag::equals).findFirst().get();
     }
@@ -89,7 +89,7 @@ public class UniqueTagList implements Iterable<Tag> {
 
         internalList.setAll(tags);
     }
-    
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -127,5 +127,5 @@ public class UniqueTagList implements Iterable<Tag> {
         }
         return true;
     }
-    
+
 }

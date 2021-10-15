@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,22 +25,29 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[]{
-//                new Guest(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"), getTagSet("friends"),
-//                        new RoomNumber("123"), new PassportNumber("EC4744643")),
-//                new Guest(new Name("Bernice Yu"), new Email("berniceyu@example.com"),
-//                        getTagSet("colleagues", "friends"),
-//                        new RoomNumber("456"), new PassportNumber("FG4741690")),
-//                new Staff(new Name("Charlotte Oliveiro"), new Email("charlotteo@example.com"), getTagSet("neighbours"),
-//                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new StaffId("001"),
-//                        new Phone("93210283")
-//                )
+            new Guest(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"), getTagSet("friends"),
+                    new RoomNumber("123"), new PassportNumber("EC4744643")),
+            new Guest(new Name("Bernice Yu"), new Email("berniceyu@example.com"),
+                    getTagSet("colleagues", "friends"),
+                    new RoomNumber("456"), new PassportNumber("FG4741690")),
+            new Staff(new Name("Charlotte Oliveiro"), new Email("charlotteo@example.com"), getTagSet("neighbours"),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new StaffId("001"),
+                    new Phone("93210283")
+                )
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
+        Set<Tag> tagSet = new HashSet<>();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+            for (Tag tag : samplePerson.getTags()) {
+                tagSet.add(tag);
+            }
+        }
+        for (Tag sampleTag : tagSet) {
+            sampleAb.addTag(sampleTag);
         }
         return sampleAb;
     }

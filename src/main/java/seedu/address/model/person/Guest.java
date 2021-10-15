@@ -1,24 +1,23 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.Tag;
+
 public class Guest extends Person {
-    
+
     private final RoomNumber roomNumber;
     private final PassportNumber passportNumber;
-    
+
     /**
      * Every field must be present and not null.
      *
      * @param name
      * @param email
      * @param tags
-     * @param roomNumber 
-     * @param passportNumber 
-     * 
+     * @param roomNumber
+     * @param passportNumber
      */
     public Guest(Name name, Email email, Set<Tag> tags, RoomNumber roomNumber, PassportNumber passportNumber) {
         super(name, email, tags);
@@ -94,5 +93,5 @@ public class Guest extends Person {
         }
         return builder.toString();
     }
-    
+
 }
