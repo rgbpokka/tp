@@ -20,14 +20,14 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditGuestDescriptorBuilder;
 import seedu.address.testutil.GuestBuilder;
 
 /**
@@ -41,7 +41,7 @@ public class EditCommandGuestTest {
     public void execute_allFieldsSpecified_UnfilteredList_success() {
         Guest guest = ALICE_GUEST;
         Guest editedGuest = new GuestBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedGuest).build();
+        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(editedGuest).build();
         EditCommand editCommand = new EditCommand(guest.getPassportNumber(), descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedGuest);
@@ -62,7 +62,7 @@ public class EditCommandGuestTest {
                 .withEmail(VALID_EMAIL_BOB)
                 .build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder()
                 .withName(VALID_NAME_BOB)
                 .withEmail(VALID_EMAIL_BOB)
                 .build();
@@ -82,7 +82,7 @@ public class EditCommandGuestTest {
         // no fields are changed, so the edited guest stays exactly the same
         Guest editedGuest = ALICE_GUEST;
 
-        EditCommand editCommand = new EditCommand(editedGuest.getPassportNumber(), new EditPersonDescriptor());
+        EditCommand editCommand = new EditCommand(editedGuest.getPassportNumber(), new EditGuestDescriptor());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedGuest);
 
@@ -101,7 +101,7 @@ public class EditCommandGuestTest {
                 .build();
         EditCommand editCommand = new EditCommand(
                 personInFilteredList.getPassportNumber(),
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build()
+                new EditGuestDescriptorBuilder().withName(VALID_NAME_BOB).build()
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedGuest);
@@ -115,7 +115,7 @@ public class EditCommandGuestTest {
     @Test
     public void execute_duplicateGuestUnfilteredList_failure() {
         Guest guest = ALICE_GUEST;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(guest).build();
+        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(guest).build();
         EditCommand editCommand = new EditCommand(BENSON_GUEST.getPassportNumber(), descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
@@ -125,16 +125,16 @@ public class EditCommandGuestTest {
     public void execute_duplicateGuestFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personInList = BENSON_GUEST;
+        Guest personInList = BENSON_GUEST;
         EditCommand editCommand = new EditCommand(ALICE_GUEST.getPassportNumber(),
-                new EditPersonDescriptorBuilder(personInList).build());
+                new EditGuestDescriptorBuilder(personInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
     public void execute_invalidPassportNumberUnfilteredList_failure() {
-        EditCommand editCommand = new EditCommand(PASSPORT_NUMBER_UNUSED, new EditPersonDescriptor());
+        EditCommand editCommand = new EditCommand(PASSPORT_NUMBER_UNUSED, new EditGuestDescriptor());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
     }
@@ -157,7 +157,7 @@ public class EditCommandGuestTest {
         final EditCommand standardCommand = new EditCommand(PASSPORT_NUMBER_FIRST_PERSON, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
+        EditGuestDescriptor copyDescriptor = new EditGuestDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(PASSPORT_NUMBER_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
