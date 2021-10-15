@@ -17,8 +17,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.UniqueIdentifier;
 import seedu.address.testutil.EditGuestDescriptorBuilder;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 
@@ -168,8 +171,17 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new IdentifierContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        String uniqueIdentifier;
+
+        if (person instanceof Guest) {
+            Guest guest = (Guest) person;
+            uniqueIdentifier = guest.getPassportNumber().value;
+        } else {
+            Staff staff = (Staff) person;
+            uniqueIdentifier = staff.getStaffId().value;
+        }
+
+        model.updateFilteredPersonList(new IdentifierContainsKeywordsPredicate(Arrays.asList(uniqueIdentifier)));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
