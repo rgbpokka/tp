@@ -25,9 +25,9 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
 import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
@@ -36,8 +36,8 @@ import seedu.address.testutil.EditGuestDescriptorBuilder;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 import seedu.address.testutil.GuestBuilder;
 import seedu.address.testutil.GuestUtil;
-import seedu.address.testutil.StaffUtil;
 import seedu.address.testutil.StaffBuilder;
+import seedu.address.testutil.StaffUtil;
 
 public class AddressBookParserTest {
 

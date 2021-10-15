@@ -24,7 +24,6 @@ import seedu.address.model.person.Guest;
 import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
-import seedu.address.model.person.UniqueIdentifier;
 import seedu.address.testutil.EditGuestDescriptorBuilder;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 

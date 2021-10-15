@@ -33,21 +33,25 @@ public class PersonTest {
         assertFalse(FIONA_STAFF.isSamePerson(null));
 
         // same SID, all other attributes different -> returns true
-        Person editedFiona =
-                new StaffBuilder(FIONA_STAFF).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).withEmail(
-                                VALID_EMAIL_BOB)
-                        .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Person editedFiona = new StaffBuilder(FIONA_STAFF)
+                .withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND)
+                .build();
+      
         assertTrue(FIONA_STAFF.isSamePerson(editedFiona));
 
         // different SID, all other attributes same -> returns false
         editedFiona = new StaffBuilder(FIONA_STAFF).withStaffId(VALID_SID_BOB).build();
         assertFalse(FIONA_STAFF.isSamePerson(editedFiona));
 
-        // name differs in case, all other attributes same -> returns false
+        //        // name differs in case, all other attributes same -> returns false
         //        Person editedBob = new StaffBuilder(FIONA_STAFF).withStaffId(VALID_NAME_BOB.toLowerCase()).build();
         //        assertFalse(BOB.isSamePerson(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
+        //
+        //        // name has trailing spaces, all other attributes same -> returns false
         //        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         //        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         //        assertFalse(BOB.isSamePerson(editedBob));
