@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.DANIEL_STAFF;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.StaffBuilder;
 
 public class PersonTest {
@@ -38,14 +39,14 @@ public class PersonTest {
         assertTrue(FIONA_STAFF.isSamePerson(editedFiona));
 
         // different SID, all other attributes same -> returns false
-        editedFiona = new StaffBuilder(FIONA_STAFF).withName(VALID_SID_BOB).build();
+        editedFiona = new StaffBuilder(FIONA_STAFF).withStaffId(VALID_SID_BOB).build();
         assertFalse(FIONA_STAFF.isSamePerson(editedFiona));
 
-        // name differs in case, all other attributes same -> returns false
+//        // name differs in case, all other attributes same -> returns false
 //        Person editedBob = new StaffBuilder(FIONA_STAFF).withStaffId(VALID_NAME_BOB.toLowerCase()).build();
 //        assertFalse(BOB.isSamePerson(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
+//
+//        // name has trailing spaces, all other attributes same -> returns false
 //        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
 //        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
 //        assertFalse(BOB.isSamePerson(editedBob));

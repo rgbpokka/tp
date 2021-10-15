@@ -1,10 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_DEFAULT;
+
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PassportNumber;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -14,7 +15,7 @@ public class GuestBuilder extends PersonBuilder {
     private PassportNumber passportNumber;
 
     public static final RoomNumber DEFAULT_ROOM_NUMBER = new RoomNumber("10101");
-    public static final PassportNumber DEFAULT_PASSPORT_NUMBER = new PassportNumber("E0123122G");
+    public static final PassportNumber DEFAULT_PASSPORT_NUMBER = new PassportNumber(PASSPORT_NUMBER_DEFAULT.toString());
 
     private final Tag DEFAULT_TAG = new Tag("Guest");
 
