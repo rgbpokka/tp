@@ -26,7 +26,7 @@ public class DeleteCommandGuestTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validPassportNumberUnfilteredList_success() {
+    public void execute_validPassportNumber_success() {
         Guest guestToDelete = (Guest) model.getFilteredPersonList()
                 .stream()
                 .filter(g -> g instanceof Guest && ((Guest) g).getPassportNumber().equals(PASSPORT_NUMBER_FIRST_PERSON))
@@ -43,7 +43,7 @@ public class DeleteCommandGuestTest {
     }
 
     @Test
-    public void execute_invalidPassportNumberUnfilteredList_throwsCommandException() {
+    public void execute_invalidPassportNumber_throwsCommandException() {
         DeleteCommand deleteCommand = new DeleteCommand(PASSPORT_NUMBER_UNUSED);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);

@@ -33,11 +33,13 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidPassportNumberArgs_throwsParseException() {
-        assertParseFailure(parser, "delete pn/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "delete pn/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidStaffIdArgs_throwsParseException() {
-        assertParseFailure(parser, "delete sid/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "delete sid/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

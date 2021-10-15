@@ -26,7 +26,7 @@ public class DeleteCommandStaffTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validStaffIdUnfilteredList_success() {
+    public void execute_validStaffId_success() {
         Staff staffToDelete = (Staff) model.getFilteredPersonList()
                 .stream()
                 .filter(p -> p instanceof Staff && ((Staff) p).getStaffId().equals(STAFF_ID_FIRST_PERSON))
@@ -43,7 +43,7 @@ public class DeleteCommandStaffTest {
     }
 
     @Test
-    public void execute_invalidStaffIdUnfilteredList_throwsCommandException() {
+    public void execute_invalidStaffId_throwsCommandException() {
         DeleteCommand deleteCommand = new DeleteCommand(STAFF_ID_UNUSED);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
