@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.PASSPORT_NUMBER_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ALICE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE_GUEST;
 
@@ -33,8 +32,6 @@ import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.GuestBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.StaffBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -90,8 +87,8 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand =
-                AddCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + NAME_DESC_ALICE + ROOM_NUMBER_DESC_ALICE +
-                        EMAIL_DESC_ALICE + TAG_DESC_ALICE;
+                AddCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + NAME_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
+                        + EMAIL_DESC_ALICE + TAG_DESC_ALICE;
         Person expectedPerson = new GuestBuilder(ALICE_GUEST).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);

@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_DEFAULT;
+
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -9,17 +11,15 @@ import seedu.address.model.person.StaffId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
-import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_DEFAULT;
-
 public class StaffBuilder extends PersonBuilder {
-    private Address address;
-    private StaffId staffId;
-    private Phone phone;
 
     public static final Address DEFAULT_ADDRESS = new Address("123, Jurong West Ave 6, #08-111");
     public static final StaffId DEFAULT_STAFF_ID = new StaffId(STAFF_ID_DEFAULT.toString());
     public static final Tag DEFAULT_TAG = new Tag("Staff");
     public static final Phone DEFAULT_PHONE = new Phone("85355255");
+    private Address address;
+    private StaffId staffId;
+    private Phone phone;
 
     /**
      * Creates a {@code StaffBuilder} with the default details.
@@ -53,7 +53,7 @@ public class StaffBuilder extends PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Staff} that we are building.
      */
-    public StaffBuilder withTags(String ... tags) {
+    public StaffBuilder withTags(String... tags) {
         setTags(SampleDataUtil.getTagSet(tags));
         return this;
     }
