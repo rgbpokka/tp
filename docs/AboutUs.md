@@ -52,10 +52,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/bingcheng45.png" width="200px">
 
-[[github](http://github.com/bingcheng45)] 
+[[github](http://github.com/bingcheng45)]
 [[portfolio](team/bingcheng45.md)]
 
 * Role:
-* Responsibilities: 
+* Responsibilities:
 
 
