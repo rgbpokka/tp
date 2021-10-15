@@ -40,7 +40,7 @@ public class PersonTest {
                 .withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
-      
+
         assertTrue(FIONA_STAFF.isSamePerson(editedFiona));
 
         // different SID, all other attributes same -> returns false
