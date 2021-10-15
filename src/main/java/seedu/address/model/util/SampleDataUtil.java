@@ -25,16 +25,16 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[]{
-                new Guest(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"), getTagSet("friends", "Guest"),
-                        new RoomNumber("123"), new PassportNumber("EC4744643")),
-                new Guest(new Name("Bernice Yu"), new Email("berniceyu@example.com"),
-                        getTagSet("colleagues", "friends", "Guest"),
-                        new RoomNumber("456"), new PassportNumber("FG4741690")),
-                new Staff(new Name("Charlotte Oliveiro"), new Email("charlotteo@example.com"),
-                        getTagSet("neighbours", "Staff"),
-                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new StaffId("001"),
-                        new Phone("93210283")
-                )
+            new Guest(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"), getTagSet("friends", "Guest"),
+                    new RoomNumber("123"), new PassportNumber("EC4744643")),
+            new Guest(new Name("Bernice Yu"), new Email("berniceyu@example.com"),
+                    getTagSet("colleagues", "friends", "Guest"),
+                    new RoomNumber("456"), new PassportNumber("FG4741690")),
+            new Staff(new Name("Charlotte Oliveiro"), new Email("charlotteo@example.com"),
+                    getTagSet("neighbours", "Staff"),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new StaffId("001"),
+                    new Phone("93210283")
+            )
         };
     }
 
