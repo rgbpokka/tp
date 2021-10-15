@@ -5,8 +5,7 @@ title: Developer Guide
 
 ## **Table of Contents**
 
-* Table of Contents 
-{:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -349,8 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PH` and the **Actor** is the `user`, unless specified
-otherwise)
+(For all use cases below, the **System** is the `PH` and the **Actor** is the `user`, unless specified otherwise)
 
 #### UC1: Clearing all details from the app
 
@@ -363,14 +361,14 @@ otherwise)
 3. User confirms to proceed with the clear.
 
 4. **PH** clears all the data.
-  
-    Use case ends.
+
+   Use case ends.
 
 **Extensions**
 
 * 3a. User does not confirm to clearing entries.
 
-    Use case ends.
+  Use case ends.
 
 #### UC2: Saving data
 
@@ -382,17 +380,17 @@ otherwise)
 
 3. **PH** shows a success message to user indicating command has been executed successfully.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. Error occurs when saving new contact list
-  
-  * 2a1. **PH** reverts to old contact list before the execution of the command.
-  
-  * 2a2. **PH** shows an error message to user.
-    
-    Use case ends.
+
+    * 2a1. **PH** reverts to old contact list before the execution of the command.
+
+    * 2a2. **PH** informs the user that saving the new contact list was unsuccessful.
+
+      Use case ends.
 
 #### UC3: Searching for a guest/staff
 
@@ -402,47 +400,47 @@ otherwise)
 
 2. **PH** shows the specified guest/staff that matches the user's query.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. Contact list is empty.
 
-    Use case ends.
+  Use case ends.
 
 * 2a. No guest/staff found that matches user's query.
-  
-  * 2a1. **PH** shows message indicating no such guest/staff exists in the list.
 
-    Use case ends.
+    * 2a1. **PH** shows message indicating no such guest/staff exists in the list.
+
+      Use case ends.
 
 #### UC4: Editing fields of guests/staff
 
 **MSS**
 
-1. User keys in command to edit a particular field of a specified guest/ staff. 
+1. User keys in command to edit a particular field of a specified guest/ staff.
 
 2. **PH** shows a success message to user which displays the new details of the guest/ staff.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. Contact list is empty.
 
-    Use case ends.
+  Use case ends.
 
 * 1b. No guest/staff found that matches user's query.
-  
-  * 1b1. **PH** shows message indicating no such guest/staff exists in the list.
 
-    Use case ends.
+    * 1b1. **PH** shows message indicating no such guest/staff exists in the list.
+
+      Use case ends.
 
 * 1c. The field that the user wishes to edit does not exist.
-  
-  * 1c1. **PH** shows message indicating no such field exists.
 
-    Use case ends.
+    * 1c1. **PH** shows message indicating no such field exists.
+
+      Use case ends.
 
 #### UC5: Adding guests/staff
 
@@ -457,22 +455,23 @@ otherwise)
 **Extensions**
 
 * 1a. Name, passport number or staff field is left blank.
-  
-  * 1a1. **PH** shows message indicating a blank name, passport number or staff field is not allowed for both guests and staff.
 
-    Use case ends.
+    * 1a1. **PH** shows message indicating a blank name, passport number or staff field is not allowed for both guests
+      and staff.
+
+      Use case ends.
 
 * 1b. Both passport number and staff ID fields are filled in.
-  
-  * 1b1. **PH** shows message indicating an entry cannot contain both a passport number and staff ID.
 
-    Use case ends.
+    * 1b1. **PH** shows message indicating an entry cannot contain both a passport number and staff ID.
+
+      Use case ends.
 
 * 1c. Non-alphanumeric characters are used in the name field.
-  
-  * 1c1. **PH** shows message indicating only alphanumeric characters are to be used for names.
 
-    Use case ends.
+    * 1c1. **PH** shows message indicating only alphanumeric characters are to be used for names.
+
+      Use case ends.
 
 #### UC6: Deleting guests/ staff
 
@@ -482,15 +481,15 @@ otherwise)
 
 2. **PH** informs user that guest/ staff is deleted
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. No guest/staff found that matches user's query
-  
-  * 2a1. **PH** informs user that the guest/ staff does not exist
-  
-    Use case ends.
+
+    * 2a1. **PH** informs user that the guest/ staff does not exist
+
+      Use case ends.
 
 *{More to be added}*
 
@@ -502,13 +501,15 @@ otherwise)
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. **PH** should retain all functionalities even without a connection to the internet.
 5. **PH** is meant to be used by single user at any given time.
-*{More to be added}*
+   *{More to be added}*
 
 ### Glossary
 
 * **PH**: Acronym for Pocket Hotel
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Guest**: A person staying in Pocket Hotel
+* **Staff**: An employee of Pocket Hotel
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -561,6 +562,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   i. Test case: go to `data\addressbook.json` and corrupt the file.
-      On bootup of the program, there should be a notification in the command box saying
-      "File corrupted! Restored a new file." and the program will delete and load a fresh new file.
+   i. Test case: go to `data\addressbook.json` and corrupt the file. On bootup of the program, there should be a
+   notification in the command box saying
+   "File corrupted! Restored a new file." and the program will delete and load a fresh new file.

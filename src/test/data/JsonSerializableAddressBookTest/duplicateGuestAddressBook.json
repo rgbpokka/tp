@@ -1,0 +1,17 @@
+{
+  "persons" : [ {
+    "guest" : [ {
+      "name" : "Bill",
+      "email" : "bill@example.com",
+      "tagged" : [ "Guest" ],
+      "roomNumber" : "123",
+      "passportNumber" : "111111D"
+    }, {
+      "name" : "Bill2",
+      "email" : "bill@example.com",
+      "tagged" : [ "Guest" ],
+      "roomNumber" : "1234",
+      "passportNumber" : "111111D"
+    } ]
+  } ]
+}
