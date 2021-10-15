@@ -30,6 +30,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.logic.commands.CommandTestUtil.*;
+
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
@@ -88,8 +90,9 @@ public class TypicalPersons {
             .withEmail("anna@example.com")
             .withAddress("4th street")
             .withPhone("9482442")
-            .withStaffId(STAFF_ID_FOURTH_PERSON.toString())
+            .withStaffId("101")
             .build();
+
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
