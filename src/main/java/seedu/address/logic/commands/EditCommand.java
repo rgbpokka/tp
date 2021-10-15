@@ -67,7 +67,7 @@ public class EditCommand extends Command {
         requireNonNull(editPersonDescriptor);
 
         this.uniqueIdentifier = uniqueIdentifier;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPersonDescriptor = editPersonDescriptor;
     }
 
     @Override
@@ -154,18 +154,22 @@ public class EditCommand extends Command {
         Phone updatedPhone;
         Address updatedAddress;
         RoomNumber updatedRoomNumber;
+        StaffId updatedStaffId;
+        PassportNumber updatedPassportNumber;
 
         if (personToEdit instanceof Staff) {
             Staff staff = (Staff) personToEdit;
-            StaffId staffId = staff.getStaffId();
-            updatedPhone = editPersonDescriptor.getPhone().orElse(staff.getPhone());
-            updatedAddress = editPersonDescriptor.getAddress().orElse(staff.getAddress());
-            return new Staff(updatedName, updatedEmail, updatedTags, updatedAddress, staffId, updatedPhone);
+            EditStaffDescriptor editStaffDescriptor = (EditStaffDescriptor) editPersonDescriptor;
+            updatedPhone = editStaffDescriptor.getPhone().orElse(staff.getPhone());
+            updatedAddress = editStaffDescriptor.getAddress().orElse(staff.getAddress());
+            updatedStaffId = editStaffDescriptor.getStaffId().orElse(staff.getStaffId());
+            return new Staff(updatedName, updatedEmail, updatedTags, updatedAddress, updatedStaffId, updatedPhone);
         } else {
             Guest guest = (Guest) personToEdit;
-            PassportNumber passportNumber = guest.getPassportNumber();
-            updatedRoomNumber = editPersonDescriptor.getRoomNumber().orElse(guest.getRoomNumber());
-            return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, passportNumber);
+            EditGuestDescriptor editGuestDescriptor = (EditGuestDescriptor) editPersonDescriptor;
+            updatedRoomNumber = editGuestDescriptor.getRoomNumber().orElse(guest.getRoomNumber());
+            updatedPassportNumber = editGuestDescriptor.getPassportNumber().orElse(guest.getPassportNumber());
+            return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber);
         }
     }
 
@@ -191,56 +195,32 @@ public class EditCommand extends Command {
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static abstract class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
         private Email email;
-        private Address address;
         private Set<Tag> tags;
-        private StaffId staffId;
-        private PassportNumber passportNumber;
-        private RoomNumber roomNumber;
 
         public EditPersonDescriptor() {
         }
 
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setStaffId(toCopy.staffId);
-            setPassportNumber(toCopy.passportNumber);
-            setRoomNumber(toCopy.roomNumber);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, email, tags);
         }
 
         public void setName(Name name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
+        public Optional<Name> getName() { return Optional.ofNullable(name); }
 
         public void setEmail(Email email) {
             this.email = email;
@@ -248,38 +228,6 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        public void setStaffId(StaffId staffId) {
-            this.staffId = staffId;
-        }
-
-        public Optional<StaffId> getStaffId() {
-            return Optional.ofNullable(staffId);
-        }
-
-        public void setPassportNumber(PassportNumber passportNumber) {
-            this.passportNumber = passportNumber;
-        }
-
-        public Optional<PassportNumber> getPassportNumber() {
-            return Optional.ofNullable(passportNumber);
-        }
-
-        public void setRoomNumber(RoomNumber roomNumber) {
-            this.roomNumber = roomNumber;
-        }
-
-        public Optional<RoomNumber> getRoomNumber() {
-            return Optional.ofNullable(roomNumber);
         }
 
         /**
@@ -315,13 +263,153 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
-                    && getStaffId().equals(e.getStaffId())
+                    && getTags().equals(e.getTags());
+        }
+    }
+
+    /**
+     * Stores the details to edit the guest with. Each non-empty field value will replace the
+     * corresponding field value of the person.
+     */
+    public static class EditGuestDescriptor extends EditPersonDescriptor {
+        private PassportNumber passportNumber;
+        private RoomNumber roomNumber;
+
+        public EditGuestDescriptor() {
+            super();
+        }
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditGuestDescriptor(EditGuestDescriptor toCopy) {
+            super(toCopy);
+            setPassportNumber(toCopy.passportNumber);
+            setRoomNumber(toCopy.roomNumber);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(getName(), getEmail(), getTags(), roomNumber, passportNumber);
+        }
+
+        public void setPassportNumber(PassportNumber passportNumber) {
+            this.passportNumber = passportNumber;
+        }
+
+        public Optional<PassportNumber> getPassportNumber() {
+            return Optional.ofNullable(passportNumber);
+        }
+
+        public void setRoomNumber(RoomNumber roomNumber) {
+            this.roomNumber = roomNumber;
+        }
+
+        public Optional<RoomNumber> getRoomNumber() {
+            return Optional.ofNullable(roomNumber);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditGuestDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditGuestDescriptor e = (EditGuestDescriptor) other;
+
+            return super.equals(e)
                     && getPassportNumber().equals(e.getPassportNumber())
                     && getRoomNumber().equals(e.getRoomNumber());
         }
     }
+
+    /**
+     * Stores the details to edit the staff with. Each non-empty field value will replace the
+     * corresponding field value of the person.
+     */
+    public static class EditStaffDescriptor extends EditPersonDescriptor{
+        private Phone phone;
+        private Address address;
+        private StaffId staffId;
+
+        public EditStaffDescriptor() {
+            super();
+        }
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditStaffDescriptor(EditStaffDescriptor toCopy) {
+            super(toCopy);
+            setPhone(toCopy.phone);
+            setAddress(toCopy.address);
+            setStaffId(toCopy.staffId);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(getName(), phone, getEmail(), address, getTags(), staffId);
+        }
+
+        public void setPhone(Phone phone) {
+            this.phone = phone;
+        }
+
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
+
+        public void setAddress(Address address) {
+            this.address = address;
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
+        public void setStaffId(StaffId staffId) {
+            this.staffId = staffId;
+        }
+
+        public Optional<StaffId> getStaffId() {
+            return Optional.ofNullable(staffId);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditStaffDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditStaffDescriptor e = (EditStaffDescriptor) other;
+
+            return super.equals(e)
+                    && getAddress().equals(e.getAddress())
+                    && getPhone().equals(e.getPhone())
+                    && getStaffId().equals(e.getStaffId());
+        }
+    }
+
+
 }

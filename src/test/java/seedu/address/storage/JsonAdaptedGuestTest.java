@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON_GUEST;
 
@@ -69,7 +69,7 @@ class JsonAdaptedGuestTest {
     public void toModelType_invalidRoomNumber_throwsIllegalValueException() {
         JsonAdaptedGuest person =
                 new JsonAdaptedGuest(VALID_NAME, VALID_EMAIL, VALID_TAGS, INVALID_ROOMNUMBER, VALID_PASSPORTNUMBER);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = RoomNumber.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

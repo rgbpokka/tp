@@ -17,6 +17,8 @@ import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
+import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PassportNumber;
 import seedu.address.model.person.StaffId;
@@ -43,46 +45,65 @@ public class EditCommandParser implements Parser<EditCommand> {
         // will be assigned staff id or guest passport number depending on identity of person.
         UniqueIdentifier uniqueIdentifier;
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
         // determine if person is staff or guest based on whether staff id or passport number is present
         if (argMultimap.getValue(PREFIX_STAFF_ID).isPresent()) {
             StaffId staffId = ParserUtil.parseStaffId(argMultimap.getValue(PREFIX_STAFF_ID).get());
-            editPersonDescriptor.setStaffId(staffId);
+            EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptor();
+            editStaffDescriptor.setStaffId(staffId);
+
+            if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+                editStaffDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            }
+
+            if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+                editStaffDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            }
+
+            parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStaffDescriptor::setTags);
+
+            if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+                editStaffDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            }
+            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+                editStaffDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            }
+
+            if (!editStaffDescriptor.isAnyFieldEdited()) {
+                throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            }
             uniqueIdentifier = staffId;
+
+            return new EditCommand(uniqueIdentifier, editStaffDescriptor);
         } else if (argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isPresent()) {
             PassportNumber passportNumber =
                     ParserUtil.parsePassportNumber(argMultimap.getValue(PREFIX_PASSPORT_NUMBER).get());
-            editPersonDescriptor.setPassportNumber(passportNumber);
+            EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
+            editGuestDescriptor.setPassportNumber(passportNumber);
+
+            if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+                editGuestDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            }
+
+            if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+                editGuestDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            }
+
+            parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editGuestDescriptor::setTags);
+
+            if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
+                editGuestDescriptor.setRoomNumber(
+                        ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
+            }
+
+            if (!editGuestDescriptor.isAnyFieldEdited()) {
+                throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            }
+
             uniqueIdentifier = passportNumber;
+            return new EditCommand(uniqueIdentifier, editGuestDescriptor);
         } else {
             throw new ParseException("Invalid unique identifier");
         }
-
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-
-        if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
-            editPersonDescriptor.setRoomNumber(
-                    ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
-        }
-
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditCommand(uniqueIdentifier, editPersonDescriptor);
     }
 
     /**

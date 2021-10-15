@@ -1,13 +1,34 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_THIRD_PERSON;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FOURTH_PERSON;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_SECOND_PERSON;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_THIRD_PERSON;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.tag.Tag;
 
 import static seedu.address.logic.commands.CommandTestUtil.*;
 
@@ -15,38 +36,36 @@ import static seedu.address.logic.commands.CommandTestUtil.*;
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
-    // Guests
-
     public static final Guest ALICE_GUEST = new GuestBuilder()
-            .withName("Alice Pauline")
-            .withEmail("alice@example.com")
-            .withTags("VIP")
-            .withRoomNumber("20202")
-            .withPassportNumber("T01919191")
+            .withName(VALID_NAME_ALICE)
+            .withEmail(VALID_EMAIL_ALICE)
+            .withTags(VALID_TAG_ALICE)
+            .withRoomNumber(VALID_ROOM_NUMBER_ALICE)
+            .withPassportNumber(VALID_PASSPORT_NUMBER_ALICE)
             .build();
 
     public static final Guest BENSON_GUEST = new GuestBuilder()
             .withName("Benson Meier")
             .withEmail("johnd@example.com")
-            .withTags("NORMAL ROOM", "OUTSTANDING PAYMENT")
+            .withTags("NORMALROOM", "OUTSTANDINGPAYMENT")
             .withRoomNumber("20201")
-            .withPassportNumber("T01919190")
+            .withPassportNumber(PASSPORT_NUMBER_SECOND_PERSON.toString())
             .build();
 
     public static final Guest CARL_GUEST = new GuestBuilder()
             .withName("Carl Kurz")
             .withEmail("heinz@example.com")
             .withRoomNumber("12321")
-            .withPassportNumber("T01988190")
+            .withPassportNumber(PASSPORT_NUMBER_THIRD_PERSON.toString())
             .build();
 
     public static final Staff DANIEL_STAFF = new StaffBuilder()
-            .withName("Daniel Meier")
-            .withEmail("cornelia@example.com")
-            .withTags("COUNTER STAFF")
-            .withAddress("10th street")
-            .withPhone("87652533")
-            .withStaffId("345")
+            .withName(VALID_NAME_DANIEL)
+            .withEmail(VALID_EMAIL_DANIEL)
+            .withTags(VALID_TAG_DANIEL)
+            .withAddress(VALID_ADDRESS_DANIEL)
+            .withPhone(VALID_PHONE_DANIEL)
+            .withStaffId(VALID_STAFF_ID_DANIEL)
             .build();
 
     public static final Staff ELLE_STAFF = new StaffBuilder()
@@ -55,7 +74,7 @@ public class TypicalPersons {
             .withTags("MANAGER")
             .withAddress("michegan ave")
             .withPhone("9482224")
-            .withStaffId("678")
+            .withStaffId(STAFF_ID_SECOND_PERSON.toString())
             .build();
 
     public static final Staff FIONA_STAFF = new StaffBuilder()
@@ -63,7 +82,7 @@ public class TypicalPersons {
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .withPhone("9482427")
-            .withStaffId("901")
+            .withStaffId(STAFF_ID_THIRD_PERSON.toString())
             .build();
 
     public static final Staff GEORGE_STAFF = new StaffBuilder()
@@ -74,18 +93,6 @@ public class TypicalPersons {
             .withStaffId("101")
             .build();
 
-    // Manually added
-//    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-//            .withEmail("stefan@example.com").withAddress("little india").build();
-//    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-//            .withEmail("hans@example.com").withAddress("chicago ave").build();
-
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Staff AMY = new StaffBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Staff BOB = new StaffBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withStaffId(VALID_SID_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -96,8 +103,16 @@ public class TypicalPersons {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
+        Set<Tag> tagSet = new HashSet<>();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
+            for (Tag tag : person.getTags()) {
+                tagSet.add(tag);
+            }
+        }
+        
+        for (Tag typicalTag : tagSet) {
+            ab.addTag(typicalTag);
         }
         return ab;
     }
