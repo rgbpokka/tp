@@ -14,8 +14,8 @@ import seedu.address.model.person.Person;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "StaffID must be alphanumeric.";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String VALIDATION_REGEX = "^[\\w\\-\\s]+$";
 
     public final String tagName;
     private List<Person> taggedPeople;

@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,7 +13,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.StaffId;
 import seedu.address.model.person.UniqueIdentifier;
-import seedu.address.model.tag.Tag;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -25,9 +23,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the passport number or staff id used in the displayed person list.\n"
-            + "Parameters: passport number/ Staff ID\n"
-            + "Example: " + COMMAND_WORD + " 1";
-
+            + "Parameters: Passport Number or Staff ID\n"
+            + "Example: " + COMMAND_WORD + " sid/211 or pn/A021231B";
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final UniqueIdentifier uniqueIdentifier;
@@ -63,27 +60,27 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
         }
 
-        modifyTags(model, personToDelete);
+//        modifyTags(model, personToDelete);
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
-    /**
-     * Modifies the tags list accordingly.
-     *
-     * @param model          The model containing the tag list.
-     * @param personToDelete The person to delete from the person list.
-     */
-    public void modifyTags(Model model, Person personToDelete) {
-        Set<Tag> tags = personToDelete.getTags();
-
-        for (Tag tag : tags) {
-            tag.removePerson(personToDelete);
-            if (tag.noTaggedPerson()) {
-                model.deleteTag(tag);
-            }
-        }
-    }
+//    /**
+//     * Modifies the tags list accordingly.
+//     *
+//     * @param model          The model containing the tag list.
+//     * @param personToDelete The person to delete from the person list.
+//     */
+//    public void modifyTags(Model model, Person personToDelete) {
+//        Set<Tag> tags = personToDelete.getTags();
+//
+//        for (Tag tag : tags) {
+//            tag.removePerson(personToDelete);
+//            if (tag.noTaggedPerson()) {
+//                model.deleteTag(tag);
+//            }
+//        }
+//    }
 
     @Override
     public boolean equals(Object other) {
