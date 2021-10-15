@@ -7,7 +7,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_DEFAULT;
 import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_DEFAULT;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -82,8 +84,8 @@ public class AddressBookParserTest {
         Guest guest = new GuestBuilder().build();
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(guest).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + PASSPORT_NUMBER_FIRST_PERSON + " " + GuestUtil.getEditGuestDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(PASSPORT_NUMBER_FIRST_PERSON, descriptor), command);
+                + PASSPORT_NUMBER_DEFAULT + " " + GuestUtil.getEditGuestDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(PASSPORT_NUMBER_DEFAULT, descriptor), command);
     }
 
     @Test
@@ -91,9 +93,9 @@ public class AddressBookParserTest {
         Staff staff = new StaffBuilder().build();
         EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(staff).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + STAFF_ID_FIRST_PERSON + " " + StaffUtil.getEditStaffDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(STAFF_ID_FIRST_PERSON, descriptor), command);
-    } 
+                + STAFF_ID_DEFAULT.toString() + " " + StaffUtil.getEditStaffDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(STAFF_ID_DEFAULT, descriptor), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
