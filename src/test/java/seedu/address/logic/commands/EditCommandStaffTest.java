@@ -2,10 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CHARLIE;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_DELTA;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -179,7 +177,7 @@ public class EditCommandStaffTest {
         assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_SECOND_PERSON, DESC_CHARLIE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_FIRST_PERSON, DESC_DELTA)));
+        assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_FIRST_PERSON, DESC_DANIEL)));
     }
 
 }

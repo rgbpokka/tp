@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -27,46 +30,54 @@ import seedu.address.testutil.EditStaffDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_ALICE = "Alice Pauline";
+    public static final String VALID_EMAIL_ALICE = "alice@example.com";
+    public static final String VALID_TAG_ALICE = "VIP";
+    public static final String VALID_ROOM_NUMBER_ALICE = "20202";
+    public static final String VALID_PASSPORT_NUMBER_ALICE = "A123456789";
+    public static final String NAME_DESC_ALICE = " " + PREFIX_NAME + VALID_NAME_ALICE;
+    public static final String ROOM_NUMBER_DESC_ALICE = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_ALICE;
+    public static final String EMAIL_DESC_ALICE = " " + PREFIX_EMAIL + VALID_EMAIL_ALICE;
+    public static final String PASSPORT_NUMBER_DESC_ALICE = " " + PREFIX_PASSPORT_NUMBER + VALID_PASSPORT_NUMBER_ALICE;
+    public static final String TAG_DESC_ALICE = " " + PREFIX_TAG + VALID_TAG_ALICE;
+
+    public static final String VALID_NAME_DANIEL = "Daniel Meier";
+    public static final String VALID_EMAIL_DANIEL = "cornelia@example.com";
+    public static final String VALID_TAG_DANIEL = "COUNTER STAFF";
+    public static final String VALID_ADDRESS_DANIEL = "10th street";
+    public static final String VALID_PHONE_DANIEL = "87652533";
+    public static final String VALID_STAFF_ID_DANIEL = "201";
+    public static final String NAME_DESC_DANIEL = " " + PREFIX_NAME + VALID_NAME_DANIEL;
+    public static final String EMAIL_DESC_DANIEL = " " + PREFIX_EMAIL + VALID_EMAIL_DANIEL;
+    public static final String ADDRESS_DESC_DANIEL = " " + PREFIX_ADDRESS + VALID_ADDRESS_DANIEL;
+    public static final String PHONE_DESC_DANIEL = " " + PREFIX_PHONE + VALID_PHONE_DANIEL;
+    public static final String STAFF_ID_DESC_DANIEL = " " + PREFIX_STAFF_ID + VALID_STAFF_ID_DANIEL;
+
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_NAME_CHARLIE = "Charlie Choo";
-    public static final String VALID_NAME_DELTA = "Delta Choo";
 
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_EMAIL_CHARLIE = "charlie@example.com";
-    public static final String VALID_EMAIL_DELTA = "delta@example.com";
 
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String VALID_PHONE_AMY = "88888888";
     public static final String VALID_PHONE_BOB = "77777777";
     public static final String VALID_PHONE_CHARLIE = "11111111";
-    public static final String VALID_PHONE_DELTA = "22222222";
 
-    public static final String VALID_ADDRESS_AMY = "Block 888, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 999, Bobby Street 3";
     public static final String VALID_ADDRESS_CHARLIE = "Block 312, charlie Street 1";
-    public static final String VALID_ADDRESS_DELTA = "Block 123, delta Street 3";
 
     public static final String VALID_SID_BOB = "123";
-    public static final String VALID_PASSPORT_NUMBER_AMY = "A123456789";
     public static final String VALID_PASSPORT_NUMBER_BOB = "A987654321";
 
-    public static final String VALID_ROOM_NUMBER_AMY = "333";
     public static final String VALID_ROOM_NUMBER_BOB = "555";
 
     public static final String VALID_STAFF_ID_CHARLIE = "S12345";
-    public static final String VALID_STAFF_ID_DELTA = "S54321";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
@@ -80,18 +91,18 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditGuestDescriptor DESC_AMY;
+    public static final EditCommand.EditGuestDescriptor DESC_ALICE;
     public static final EditCommand.EditGuestDescriptor DESC_BOB;
     public static final EditCommand.EditStaffDescriptor DESC_CHARLIE;
-    public static final EditCommand.EditStaffDescriptor DESC_DELTA;
+    public static final EditCommand.EditStaffDescriptor DESC_DANIEL;
 
     static {
-        DESC_AMY = new EditGuestDescriptorBuilder()
-                .withName(VALID_NAME_AMY)
-                .withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND)
-                .withRoomNumber(VALID_ROOM_NUMBER_AMY)
-                .withPassportNumber(VALID_PASSPORT_NUMBER_AMY)
+        DESC_ALICE = new EditGuestDescriptorBuilder()
+                .withName(VALID_NAME_ALICE)
+                .withEmail(VALID_EMAIL_ALICE)
+                .withTags(VALID_TAG_ALICE)
+                .withRoomNumber(VALID_ROOM_NUMBER_ALICE)
+                .withPassportNumber(VALID_PASSPORT_NUMBER_ALICE)
                 .build();
         DESC_BOB = new EditGuestDescriptorBuilder()
                 .withName(VALID_NAME_BOB)
@@ -108,13 +119,13 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_CHARLIE)
                 .withStaffId(VALID_STAFF_ID_CHARLIE)
                 .build();
-        DESC_DELTA = new EditStaffDescriptorBuilder()
-                .withName(VALID_NAME_DELTA)
-                .withEmail(VALID_EMAIL_DELTA)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-                .withAddress(VALID_ADDRESS_DELTA)
-                .withPhone(VALID_PHONE_DELTA)
-                .withStaffId(VALID_STAFF_ID_DELTA)
+        DESC_DANIEL = new EditStaffDescriptorBuilder()
+                .withName(VALID_NAME_DANIEL)
+                .withEmail(VALID_EMAIL_DANIEL)
+                .withTags(VALID_TAG_DANIEL)
+                .withAddress(VALID_ADDRESS_DANIEL)
+                .withPhone(VALID_PHONE_DANIEL)
+                .withStaffId(VALID_STAFF_ID_DANIEL)
                 .build();
     }
 
@@ -124,7 +135,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -139,7 +150,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -160,8 +171,9 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIdentifier} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
