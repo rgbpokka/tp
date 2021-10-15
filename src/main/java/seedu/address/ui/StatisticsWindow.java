@@ -37,6 +37,9 @@ public class StatisticsWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    /**
+     * Shows the stats window.
+     */
     public void show() {
         logger.fine("Showing stats page about the application.");
         getRoot().show();

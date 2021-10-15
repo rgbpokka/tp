@@ -67,11 +67,17 @@ public class DeleteCommand extends Command {
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
-    
+
+    /**
+     * Modifies the tags list accordingly.
+     *
+     * @param model          The model containing the tag list.
+     * @param personToDelete The person to delete from the person list.
+     */
     public void modifyTags(Model model, Person personToDelete) {
         Set<Tag> tags = personToDelete.getTags();
 
-        for (Tag tag: tags) {
+        for (Tag tag : tags) {
             tag.removePerson(personToDelete);
             if (tag.noTaggedPerson()) {
                 model.deleteTag(tag);

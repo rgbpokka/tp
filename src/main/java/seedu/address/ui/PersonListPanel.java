@@ -48,7 +48,7 @@ public class PersonListPanel extends UiPart<Region> {
                     setGraphic(new StaffCard(staff).getRoot());
                 } else {
                     Guest guest = (Guest) person;
-                    setGraphic(new GuestCard(guest).getRoot()); 
+                    setGraphic(new GuestCard(guest).getRoot());
                 }
             }
         }

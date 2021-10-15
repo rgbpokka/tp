@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class RoomNumber {
-    
+
     public static final String MESSAGE_CONSTRAINTS = "Room numbers must be a number greater than 0.";
     public static final String VALIDATION_REGEX = "^[1-9][0-9]*$";
-    
+
     public final String value;
 
     /**
@@ -18,7 +18,7 @@ public class RoomNumber {
     public RoomNumber(String roomNumber) {
         requireNonNull(roomNumber);
         checkArgument(isValidRoomNumber(roomNumber), MESSAGE_CONSTRAINTS);
-        this.value = roomNumber; 
+        this.value = roomNumber;
     }
 
     /**

@@ -32,7 +32,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         tags = new UniqueTagList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -58,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setTags(List<Tag> tags) {
         this.tags.setTags(tags);
-    } 
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -115,7 +116,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(tag);
         return tags.contains(tag);
     }
-    
+
     public Tag getTag(Tag tag) {
         requireNonNull(tag);
         return tags.get(tag);
@@ -164,7 +165,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Tag> getTagList() {
         return tags.asUnmodifiableObservableList();
-    } 
+    }
 
     @Override
     public boolean equals(Object other) {

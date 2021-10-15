@@ -130,7 +130,7 @@ public class ModelManager implements Model {
         addressBook.addTag(tag);
         updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
     }
-    
+
     @Override
     public Tag getTag(Tag tag) {
         return addressBook.getTag(tag);
@@ -140,7 +140,7 @@ public class ModelManager implements Model {
     public void setTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
         addressBook.setTag(target, editedTag);
-    } 
+    }
 
     //=========== Filtered Person/Tag List Accessors =============================================================
 
@@ -156,7 +156,7 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Tag> getFilteredTagList() {
         return filteredTags;
-    } 
+    }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
