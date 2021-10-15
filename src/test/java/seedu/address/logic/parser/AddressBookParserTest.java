@@ -20,18 +20,21 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.person.Staff;
+import seedu.address.testutil.EditGuestDescriptorBuilder;
+import seedu.address.testutil.EditStaffDescriptorBuilder;
 import seedu.address.testutil.GuestBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.GuestUtil;
+import seedu.address.testutil.StaffUtil;
 import seedu.address.testutil.StaffBuilder;
 
 public class AddressBookParserTest {
@@ -40,16 +43,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addGuest() throws Exception {
-        Person person = new GuestBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Guest guest = new GuestBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(GuestUtil.getAddCommand(guest));
+        assertEquals(new AddCommand(guest), command);
     }
 
     @Test
     public void parseCommand_addStaff() throws Exception {
-        Person person = new StaffBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Staff staff = new StaffBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(StaffUtil.getAddCommand(staff));
+        assertEquals(new AddCommand(staff), command);
     }
 
     @Test
@@ -76,19 +79,19 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_editGuest() throws Exception {
-        Person person = new GuestBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Guest guest = new GuestBuilder().build();
+        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(guest).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + PASSPORT_NUMBER_FIRST_PERSON + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + PASSPORT_NUMBER_FIRST_PERSON + " " + GuestUtil.getEditGuestDescriptorDetails(descriptor));
         assertEquals(new EditCommand(PASSPORT_NUMBER_FIRST_PERSON, descriptor), command);
     }
 
     @Test
     public void parseCommand_editStaff() throws Exception {
-        Person person = new StaffBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Staff staff = new StaffBuilder().build();
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(staff).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + STAFF_ID_FIRST_PERSON + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + STAFF_ID_FIRST_PERSON + " " + StaffUtil.getEditStaffDescriptorDetails(descriptor));
         assertEquals(new EditCommand(STAFF_ID_FIRST_PERSON, descriptor), command);
     } 
 

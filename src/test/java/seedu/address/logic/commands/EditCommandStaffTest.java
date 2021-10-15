@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CHARLIE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_DELTA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -20,14 +22,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditStaffDescriptorBuilder;
 import seedu.address.testutil.StaffBuilder;
 
 /**
@@ -41,7 +43,7 @@ public class EditCommandStaffTest {
     public void execute_allFieldsSpecified_UnfilteredList_success() {
         Staff staff = DANIEL_STAFF;
         Staff editedStaff = new StaffBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedStaff).build();
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(editedStaff).build();
         EditCommand editCommand = new EditCommand(staff.getStaffId(), descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStaff);
@@ -62,7 +64,7 @@ public class EditCommandStaffTest {
                 .withEmail(VALID_EMAIL_BOB)
                 .build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder()
                 .withName(VALID_NAME_BOB)
                 .withEmail(VALID_EMAIL_BOB)
                 .build();
@@ -82,7 +84,7 @@ public class EditCommandStaffTest {
         // no fields are changed, so the edited staff stays exactly the same
         Staff staff = DANIEL_STAFF;
 
-        EditCommand editCommand = new EditCommand(staff.getStaffId(), new EditPersonDescriptor());
+        EditCommand editCommand = new EditCommand(staff.getStaffId(), new EditStaffDescriptor());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, staff);
 
@@ -102,7 +104,7 @@ public class EditCommandStaffTest {
                 .build();
         EditCommand editCommand = new EditCommand(
                 personInFilteredList.getStaffId(),
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build()
+                new EditStaffDescriptorBuilder().withName(VALID_NAME_BOB).build()
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStaff);
@@ -116,7 +118,7 @@ public class EditCommandStaffTest {
     @Test
     public void execute_duplicateStaffUnfilteredList_failure() {
         Staff staff = DANIEL_STAFF;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(staff).build();
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(staff).build();
         EditCommand editCommand = new EditCommand(ELLE_STAFF.getStaffId(), descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
@@ -127,16 +129,16 @@ public class EditCommandStaffTest {
         // Hard-coded to show first Staff in TypicalPersons list
         showPersonAtIndex(model, Index.fromZeroBased(3));
 
-        Person personInList = ELLE_STAFF;
+        Staff personInList = ELLE_STAFF;
         EditCommand editCommand = new EditCommand(DANIEL_STAFF.getStaffId(),
-                new EditPersonDescriptorBuilder(personInList).build());
+                new EditStaffDescriptorBuilder(personInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
     public void execute_invalidStaffIdUnfilteredList_failure() {
-        EditCommand editCommand = new EditCommand(STAFF_ID_UNUSED, new EditPersonDescriptor());
+        EditCommand editCommand = new EditCommand(STAFF_ID_UNUSED, new EditStaffDescriptor());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
     }
@@ -156,11 +158,11 @@ public class EditCommandStaffTest {
 
     @Test
     public void equals() {
-        // Something needs to be done about DESC_AMY?? Change to something else??
-        final EditCommand standardCommand = new EditCommand(STAFF_ID_FIRST_PERSON, DESC_AMY);
+        // Something needs to be done about DESC_CHARLIE?? Change to something else??
+        final EditCommand standardCommand = new EditCommand(STAFF_ID_FIRST_PERSON, DESC_CHARLIE);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
+        EditStaffDescriptor copyDescriptor = new EditStaffDescriptor(DESC_CHARLIE);
         EditCommand commandWithSameValues = new EditCommand(STAFF_ID_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -173,11 +175,11 @@ public class EditCommandStaffTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different passport number -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_SECOND_PERSON, DESC_AMY)));
+        // different staff id -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_SECOND_PERSON, DESC_CHARLIE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_FIRST_PERSON, DESC_DELTA)));
     }
 
 }

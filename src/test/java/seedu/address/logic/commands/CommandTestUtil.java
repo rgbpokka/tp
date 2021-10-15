@@ -19,7 +19,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditGuestDescriptorBuilder;
+import seedu.address.testutil.EditStaffDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -28,15 +29,36 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_NAME_CHARLIE = "Charlie Choo";
+    public static final String VALID_NAME_DELTA = "Delta Choo";
+
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_EMAIL_CHARLIE = "charlie@example.com";
+    public static final String VALID_EMAIL_DELTA = "delta@example.com";
+
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_PHONE_AMY = "88888888";
+    public static final String VALID_PHONE_BOB = "77777777";
+    public static final String VALID_PHONE_CHARLIE = "11111111";
+    public static final String VALID_PHONE_DELTA = "22222222";
+
+    public static final String VALID_ADDRESS_AMY = "Block 888, Amy Street 1";
+    public static final String VALID_ADDRESS_BOB = "Block 999, Bobby Street 3";
+    public static final String VALID_ADDRESS_CHARLIE = "Block 312, charlie Street 1";
+    public static final String VALID_ADDRESS_DELTA = "Block 123, delta Street 3";
+
     public static final String VALID_SID_BOB = "123";
+    public static final String VALID_PASSPORT_NUMBER_AMY = "A123456789";
+    public static final String VALID_PASSPORT_NUMBER_BOB = "A987654321";
+
+    public static final String VALID_ROOM_NUMBER_AMY = "333";
+    public static final String VALID_ROOM_NUMBER_BOB = "555";
+
+    public static final String VALID_STAFF_ID_CHARLIE = "S12345";
+    public static final String VALID_STAFF_ID_DELTA = "S54321";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -58,16 +80,42 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditGuestDescriptor DESC_AMY;
+    public static final EditCommand.EditGuestDescriptor DESC_BOB;
+    public static final EditCommand.EditStaffDescriptor DESC_CHARLIE;
+    public static final EditCommand.EditStaffDescriptor DESC_DELTA;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY = new EditGuestDescriptorBuilder()
+                .withName(VALID_NAME_AMY)
+                .withEmail(VALID_EMAIL_AMY)
+                .withTags(VALID_TAG_FRIEND)
+                .withRoomNumber(VALID_ROOM_NUMBER_AMY)
+                .withPassportNumber(VALID_PASSPORT_NUMBER_AMY)
+                .build();
+        DESC_BOB = new EditGuestDescriptorBuilder()
+                .withName(VALID_NAME_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withRoomNumber(VALID_ROOM_NUMBER_BOB)
+                .withPassportNumber(VALID_PASSPORT_NUMBER_BOB)
+                .build();
+        DESC_CHARLIE = new EditStaffDescriptorBuilder()
+                .withName(VALID_NAME_CHARLIE)
+                .withEmail(VALID_EMAIL_CHARLIE)
+                .withTags(VALID_TAG_HUSBAND)
+                .withAddress(VALID_ADDRESS_CHARLIE)
+                .withPhone(VALID_PHONE_CHARLIE)
+                .withStaffId(VALID_STAFF_ID_CHARLIE)
+                .build();
+        DESC_DELTA = new EditStaffDescriptorBuilder()
+                .withName(VALID_NAME_DELTA)
+                .withEmail(VALID_EMAIL_DELTA)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withAddress(VALID_ADDRESS_DELTA)
+                .withPhone(VALID_PHONE_DELTA)
+                .withStaffId(VALID_STAFF_ID_DELTA)
+                .build();
     }
 
     /**
