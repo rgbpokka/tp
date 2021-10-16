@@ -5,7 +5,8 @@ title: Developer Guide
 
 ## **Table of Contents**
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -334,17 +335,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                  | save the details I enter                            |                                                                                       |
 | `* *  `  | new user              | clear all current data                              | get rid of sample data                                                                |
 | `* *  `  | potential user        | see app populated with sample contacts              | easily learn and get a feel for the app                                               |
-| `* *`    | new user              | import staff/guest details from an existing system  | use data that is being kept track from other systems into the app                     |
 | `* *`    | expert user           | export staff/guest details out from the system      | transfer data to the next manager who takes over me or import data into other systems |
 | `* *`    | user                  | add tags to contacts                                | easily categorize and filter contacts                                                 |
 | `* *`    | user                  | filter contacts by tags                             | look at contacts in  more manageable lists.                                           |
-| `* *`    | new user              | learn how to use the app (Tutorial)                 | get more familiar with the features they offer and how I can use it better            |
 | `* *`    | CLI user              | be reminded of the commands available as a quick tip| quickly get a reminder of how to use a specific command.                              |
-| `* *`    | user                  | add images to my contacts                           | recognize them in real life to greet them; improve guest experience; recognize staff  |
+| `* *`    | user                  | view certain statistics of my guests/staff          | improve hotel experience depending on the data I can see.                             |
+| `* *`    | user                  | sort the staff/guests by a certain criteria         | so that I can find people quicker, based on whichever sorting criteria I set          |
+| `* *`    | CLI user              | undo commands                                       | so that I can undo a command if I choose to do so.                                    |
 | `*`      | expert user           | personalize my GUI to my liking                     | optimise the layout to cater to my needs                                              |
 | `*`      | CLI user              | add aliases to my commands                          | execute commands quickly with shorter syntax                                          |
-
-*{More to be added}*
+| `*`      | new user              | import staff/guest details from an existing system  | use data that is being kept track from other systems into the app                     |
+| `*`      | new user              | learn how to use the app (Tutorial)                 | get more familiar with the features they offer and how I can use it better            |
+| `*  `    | user                  | add images to my contacts                           | recognize them in real life to greet them; improve guest experience; recognize staff  |
 
 ### Use cases
 
