@@ -11,6 +11,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_THIRD_PERSON;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FOURTH_PERSON;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_SECOND_PERSON;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_THIRD_PERSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,20 +38,45 @@ import seedu.address.testutil.EditStaffDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    // Guests
     public static final String VALID_NAME_ALICE = "Alice Pauline";
     public static final String VALID_EMAIL_ALICE = "alice@example.com";
-    public static final String VALID_TAG_ALICE = "VIP";
+    public static final String[] VALID_TAG_ALICE = {"VIP"};
     public static final String VALID_ROOM_NUMBER_ALICE = "20202";
-    public static final String VALID_PASSPORT_NUMBER_ALICE = "A123456789";
+    public static final String VALID_PASSPORT_NUMBER_ALICE = PASSPORT_NUMBER_FIRST_PERSON.toString();
     public static final String NAME_DESC_ALICE = " " + PREFIX_NAME + VALID_NAME_ALICE;
     public static final String ROOM_NUMBER_DESC_ALICE = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_ALICE;
     public static final String EMAIL_DESC_ALICE = " " + PREFIX_EMAIL + VALID_EMAIL_ALICE;
     public static final String PASSPORT_NUMBER_DESC_ALICE = " " + PREFIX_PASSPORT_NUMBER + VALID_PASSPORT_NUMBER_ALICE;
     public static final String TAG_DESC_ALICE = " " + PREFIX_TAG + VALID_TAG_ALICE;
 
+    public static final String VALID_NAME_BENSON = "Benson Meier";
+    public static final String VALID_EMAIL_BENSON = "benson@example.com";
+    public static final String[] VALID_TAG_BENSON = {"NORMALROOM", "OUTSTANDINGPAYMENT"};
+    public static final String VALID_ROOM_NUMBER_BENSON = "20201";
+    public static final String VALID_PASSPORT_NUMBER_BENSON = PASSPORT_NUMBER_SECOND_PERSON.toString();
+    public static final String NAME_DESC_BENSON = " " + PREFIX_NAME + VALID_NAME_BENSON;
+    public static final String ROOM_NUMBER_DESC_BENSON = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_BENSON;
+    public static final String EMAIL_DESC_BENSON = " " + PREFIX_EMAIL + VALID_EMAIL_BENSON;
+    public static final String PASSPORT_NUMBER_DESC_BENSON = " " + PREFIX_PASSPORT_NUMBER
+            + VALID_PASSPORT_NUMBER_BENSON;
+    public static final String TAG_DESC_BENSON = " " + PREFIX_TAG + VALID_TAG_BENSON;
+
+    public static final String VALID_NAME_CARL = "Carl Kurz";
+    public static final String VALID_EMAIL_CARL = "carl@example.com";
+    public static final String[] VALID_TAG_CARL = {"DELUXESUITE", "PAID"};
+    public static final String VALID_ROOM_NUMBER_CARL = "12321";
+    public static final String VALID_PASSPORT_NUMBER_CARL = PASSPORT_NUMBER_THIRD_PERSON.toString();
+    public static final String NAME_DESC_CARL = " " + PREFIX_NAME + VALID_NAME_CARL;
+    public static final String ROOM_NUMBER_DESC_CARL = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_CARL;
+    public static final String EMAIL_DESC_CARL = " " + PREFIX_EMAIL + VALID_EMAIL_CARL;
+    public static final String PASSPORT_NUMBER_DESC_CARL = " " + PREFIX_PASSPORT_NUMBER + VALID_PASSPORT_NUMBER_CARL;
+    public static final String TAG_DESC_CARL = " " + PREFIX_TAG + VALID_TAG_CARL;
+
+    // Staff
     public static final String VALID_NAME_DANIEL = "Daniel Meier";
     public static final String VALID_EMAIL_DANIEL = "cornelia@example.com";
-    public static final String VALID_TAG_DANIEL = "COUNTER STAFF";
+    public static final String[] VALID_TAG_DANIEL = {"COUNTER STAFF"};
     public static final String VALID_ADDRESS_DANIEL = "10th street";
     public static final String VALID_PHONE_DANIEL = "87652533";
     public static final String VALID_STAFF_ID_DANIEL = "201";
@@ -55,36 +86,48 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_DANIEL = " " + PREFIX_PHONE + VALID_PHONE_DANIEL;
     public static final String STAFF_ID_DESC_DANIEL = " " + PREFIX_STAFF_ID + VALID_STAFF_ID_DANIEL;
 
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_NAME_CHARLIE = "Charlie Choo";
+    public static final String VALID_NAME_ELLE = "Elle Meyer";
+    public static final String VALID_EMAIL_ELLE = "elle@example.com";
+    public static final String[] VALID_TAG_ELLE = {"MANAGER"};
+    public static final String VALID_ADDRESS_ELLE = "michegan ave";
+    public static final String VALID_PHONE_ELLE = "9482224";
+    public static final String VALID_STAFF_ID_ELLE = STAFF_ID_SECOND_PERSON.toString();
+    public static final String NAME_DESC_ELLE = " " + PREFIX_NAME + VALID_NAME_ELLE;
+    public static final String EMAIL_DESC_ELLE = " " + PREFIX_EMAIL + VALID_EMAIL_ELLE;
+    public static final String ADDRESS_DESC_ELLE = " " + PREFIX_ADDRESS + VALID_ADDRESS_ELLE;
+    public static final String PHONE_DESC_ELLE = " " + PREFIX_PHONE + VALID_PHONE_ELLE;
+    public static final String STAFF_ID_DESC_ELLE = " " + PREFIX_STAFF_ID + VALID_STAFF_ID_ELLE;
 
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_EMAIL_CHARLIE = "charlie@example.com";
+    public static final String VALID_NAME_FIONA = "Fiona Kunz";
+    public static final String VALID_EMAIL_FIONA = "fiona@example.com";
+    public static final String[] VALID_TAG_FIONA = {"Waitress"};
+    public static final String VALID_ADDRESS_FIONA = "little tokyo";
+    public static final String VALID_PHONE_FIONA = "9482427";
+    public static final String VALID_STAFF_ID_FIONA = STAFF_ID_THIRD_PERSON.toString();
+    public static final String NAME_DESC_FIONA = " " + PREFIX_NAME + VALID_NAME_FIONA;
+    public static final String EMAIL_DESC_FIONA = " " + PREFIX_EMAIL + VALID_EMAIL_FIONA;
+    public static final String ADDRESS_DESC_FIONA = " " + PREFIX_ADDRESS + VALID_ADDRESS_FIONA;
+    public static final String PHONE_DESC_FIONA = " " + PREFIX_PHONE + VALID_PHONE_FIONA;
+    public static final String STAFF_ID_DESC_FIONA = " " + PREFIX_STAFF_ID + VALID_STAFF_ID_FIONA;
 
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_NAME_GEORGE = "George Best";
+    public static final String VALID_EMAIL_GEORGE = "george@example.com";
+    public static final String[] VALID_TAG_GEORGE = {"Head of Staff"};
+    public static final String VALID_ADDRESS_GEORGE = "4th street";
+    public static final String VALID_PHONE_GEORGE = "9482442";
+    public static final String VALID_STAFF_ID_GEORGE = STAFF_ID_FOURTH_PERSON.toString();
+    public static final String NAME_DESC_GEORGE = " " + PREFIX_NAME + VALID_NAME_GEORGE;
+    public static final String EMAIL_DESC_GEORGE = " " + PREFIX_EMAIL + VALID_EMAIL_GEORGE;
+    public static final String ADDRESS_DESC_GEORGE = " " + PREFIX_ADDRESS + VALID_ADDRESS_GEORGE;
+    public static final String PHONE_DESC_GEORGE = " " + PREFIX_PHONE + VALID_PHONE_GEORGE;
+    public static final String STAFF_ID_DESC_GEORGE = " " + PREFIX_STAFF_ID + VALID_STAFF_ID_GEORGE;
 
-    public static final String VALID_PHONE_BOB = "77777777";
-    public static final String VALID_PHONE_CHARLIE = "11111111";
+    // Valid tags
+    public static final String VALID_TAG_VIP = " " + PREFIX_TAG + "VIP";
+    public static final String VALID_TAG_DELUXE_ROOM = " " + PREFIX_TAG + "Deluxe Room";
+    public static final String VALID_TAG_SENIOR_STAFF = " " + PREFIX_TAG + "Senior Staff";
 
-    public static final String VALID_ADDRESS_BOB = "Block 999, Bobby Street 3";
-    public static final String VALID_ADDRESS_CHARLIE = "Block 312, charlie Street 1";
-
-    public static final String VALID_SID_BOB = "123";
-    public static final String VALID_PASSPORT_NUMBER_BOB = "A987654321";
-
-    public static final String VALID_ROOM_NUMBER_BOB = "555";
-
-    public static final String VALID_STAFF_ID_CHARLIE = "S12345";
-
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String STAFF_ID_DESC_BOB = " " + PREFIX_STAFF_ID + VALID_SID_BOB;
-
+    // Invalid fields
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -96,9 +139,9 @@ public class CommandTestUtil {
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditGuestDescriptor DESC_ALICE;
-    public static final EditCommand.EditGuestDescriptor DESC_BOB;
-    public static final EditCommand.EditStaffDescriptor DESC_CHARLIE;
+    public static final EditCommand.EditGuestDescriptor DESC_BENSON;
     public static final EditCommand.EditStaffDescriptor DESC_DANIEL;
+    public static final EditCommand.EditStaffDescriptor DESC_ELLE;
 
     static {
         DESC_ALICE = new EditGuestDescriptorBuilder()
@@ -108,21 +151,15 @@ public class CommandTestUtil {
                 .withRoomNumber(VALID_ROOM_NUMBER_ALICE)
                 .withPassportNumber(VALID_PASSPORT_NUMBER_ALICE)
                 .build();
-        DESC_BOB = new EditGuestDescriptorBuilder()
-                .withName(VALID_NAME_BOB)
-                .withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-                .withRoomNumber(VALID_ROOM_NUMBER_BOB)
-                .withPassportNumber(VALID_PASSPORT_NUMBER_BOB)
+
+        DESC_BENSON = new EditGuestDescriptorBuilder()
+                .withName(VALID_NAME_BENSON)
+                .withEmail(VALID_EMAIL_BENSON)
+                .withTags(VALID_TAG_VIP, VALID_TAG_DELUXE_ROOM)
+                .withRoomNumber(VALID_ROOM_NUMBER_BENSON)
+                .withPassportNumber(VALID_PASSPORT_NUMBER_BENSON)
                 .build();
-        DESC_CHARLIE = new EditStaffDescriptorBuilder()
-                .withName(VALID_NAME_CHARLIE)
-                .withEmail(VALID_EMAIL_CHARLIE)
-                .withTags(VALID_TAG_HUSBAND)
-                .withAddress(VALID_ADDRESS_CHARLIE)
-                .withPhone(VALID_PHONE_CHARLIE)
-                .withStaffId(VALID_STAFF_ID_CHARLIE)
-                .build();
+
         DESC_DANIEL = new EditStaffDescriptorBuilder()
                 .withName(VALID_NAME_DANIEL)
                 .withEmail(VALID_EMAIL_DANIEL)
@@ -130,6 +167,15 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_DANIEL)
                 .withPhone(VALID_PHONE_DANIEL)
                 .withStaffId(VALID_STAFF_ID_DANIEL)
+                .build();
+
+        DESC_ELLE = new EditStaffDescriptorBuilder()
+                .withName(VALID_NAME_ELLE)
+                .withEmail(VALID_EMAIL_ELLE)
+                .withTags(VALID_TAG_SENIOR_STAFF)
+                .withAddress(VALID_ADDRESS_ELLE)
+                .withPhone(VALID_PHONE_ELLE)
+                .withStaffId(VALID_STAFF_ID_ELLE)
                 .build();
     }
 
