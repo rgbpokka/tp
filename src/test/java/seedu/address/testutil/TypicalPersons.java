@@ -39,10 +39,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIONA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GEORGE;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_THIRD_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_SECOND_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_THIRD_PERSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
