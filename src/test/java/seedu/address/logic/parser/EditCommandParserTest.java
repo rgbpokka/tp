@@ -8,12 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_SENIOR_STAFF;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CHEF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DANIEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
@@ -75,16 +75,16 @@ public class EditCommandParserTest {
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PHONE_DESC_DANIEL + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_SENIOR_STAFF + TAG_EMPTY + TAG_DESC_CHEF, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_BOB + VALID_PHONE_BOB,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_DANIEL + VALID_PHONE_DANIEL,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -92,13 +92,13 @@ public class EditCommandParserTest {
     //    @Test
     //    public void parse_allFieldsSpecified_success() {
     //        UniqueIdentifier targetIdentifier = STAFF_ID_FIRST_PERSON;
-    //        String userInput = targetIdentifier + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-    //                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+    //        String userInput = targetIdentifier + PHONE_DESC_DANIEL + TAG_DESC_CHEF
+    //                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_SENIOR_STAFF;
     //
     //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
     //                .withStaffId("123").withName(VALID_NAME_AMY)
-    //                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-    //                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    //                .withPhone(VALID_PHONE_DANIEL).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+    //                .withTags(VALID_TAG_CHEF, VALID_TAG_SENIOR_STAFF).build();
     //        EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
     //
     //        assertParseSuccess(parser, userInput, expectedCommand);
@@ -107,9 +107,9 @@ public class EditCommandParserTest {
     //    @Test
     //    public void parse_someFieldsSpecified_success() {
     //        UniqueIdentifier targetIdentifier = STAFF_ID_FIRST_PERSON;
-    //        String userInput = targetIdentifier + PHONE_DESC_BOB + EMAIL_DESC_AMY;
+    //        String userInput = targetIdentifier + PHONE_DESC_DANIEL + EMAIL_DESC_AMY;
     //
-    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_DANIEL)
     //                .withEmail(VALID_EMAIL_AMY).build();
     //        EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
     //
@@ -144,8 +144,8 @@ public class EditCommandParserTest {
     //        assertParseSuccess(parser, userInput, expectedCommand);
     //
     //        // tags
-    //        userInput = targetIdentifier + TAG_DESC_FRIEND;
-    //        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+    //        userInput = targetIdentifier + TAG_DESC_SENIOR_STAFF;
+    //        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_SENIOR_STAFF).build();
     //        expectedCommand = new EditCommand(targetIdentifier, descriptor);
     //        assertParseSuccess(parser, userInput, expectedCommand);
     //    }
@@ -154,12 +154,12 @@ public class EditCommandParserTest {
     //    public void parse_multipleRepeatedFields_acceptsLast() {
     //        UniqueIdentifier targetIdentifier = STAFF_ID_FIRST_PERSON;
     //        String userInput = targetIdentifier + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-    //                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-    //                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+    //                + TAG_DESC_SENIOR_STAFF + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_SENIOR_STAFF
+    //                + PHONE_DESC_DANIEL + ADDRESS_DESC_DANIEL + EMAIL_DESC_DANIEL + TAG_DESC_CHEF;
     //
-    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-    //                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-    //                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_DANIEL)
+    //                .withEmail(VALID_EMAIL_DANIEL).withAddress(VALID_ADDRESS_DANIEL)
+    //                .withTags(VALID_TAG_SENIOR_STAFF, VALID_TAG_CHEF).build();
     //        EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
     //
     //        assertParseSuccess(parser, userInput, expectedCommand);
@@ -169,16 +169,16 @@ public class EditCommandParserTest {
     //    public void parse_invalidValueFollowedByValidValue_success() {
     //        // no other valid values specified
     //        UniqueIdentifier targetIdentifier = STAFF_ID_FIRST_PERSON;
-    //        String userInput = targetIdentifier + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+    //        String userInput = targetIdentifier + INVALID_PHONE_DESC + PHONE_DESC_DANIEL;
+    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_DANIEL).build();
     //        EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
     //        assertParseSuccess(parser, userInput, expectedCommand);
     //
     //        // other valid values specified
-    //        userInput = targetIdentifier + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-    //                + PHONE_DESC_BOB;
-    //        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-    //                .withAddress(VALID_ADDRESS_BOB).build();
+    //        userInput = targetIdentifier + EMAIL_DESC_DANIEL + INVALID_PHONE_DESC + ADDRESS_DESC_DANIEL
+    //                + PHONE_DESC_DANIEL;
+    //        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_DANIEL).withEmail(VALID_EMAIL_DANIEL)
+    //                .withAddress(VALID_ADDRESS_DANIEL).build();
     //        expectedCommand = new EditCommand(targetIdentifier, descriptor);
     //        assertParseSuccess(parser, userInput, expectedCommand);
     //    }
