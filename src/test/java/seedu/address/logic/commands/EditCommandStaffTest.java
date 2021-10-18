@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_CHARLIE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DANIEL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -38,7 +38,7 @@ public class EditCommandStaffTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecified_UnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Staff staff = DANIEL_STAFF;
         Staff editedStaff = new StaffBuilder().build();
         EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(editedStaff).build();
@@ -58,13 +58,13 @@ public class EditCommandStaffTest {
 
         StaffBuilder staffBuilder = new StaffBuilder(staff);
         Person editedStaff = staffBuilder
-                .withName(VALID_NAME_BOB)
-                .withEmail(VALID_EMAIL_BOB)
+                .withName(VALID_NAME_DANIEL)
+                .withEmail(VALID_EMAIL_DANIEL)
                 .build();
 
         EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder()
-                .withName(VALID_NAME_BOB)
-                .withEmail(VALID_EMAIL_BOB)
+                .withName(VALID_NAME_DANIEL)
+                .withEmail(VALID_EMAIL_DANIEL)
                 .build();
 
         EditCommand editCommand = new EditCommand(staff.getStaffId(), descriptor);
@@ -98,11 +98,11 @@ public class EditCommandStaffTest {
 
         Staff personInFilteredList = DANIEL_STAFF;
         Person editedStaff = new StaffBuilder(personInFilteredList)
-                .withName(VALID_NAME_BOB)
+                .withName(VALID_NAME_DANIEL)
                 .build();
         EditCommand editCommand = new EditCommand(
                 personInFilteredList.getStaffId(),
-                new EditStaffDescriptorBuilder().withName(VALID_NAME_BOB).build()
+                new EditStaffDescriptorBuilder().withName(VALID_NAME_DANIEL).build()
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStaff);
@@ -141,26 +141,26 @@ public class EditCommandStaffTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
     }
 
-//    @Test
-//    public void execute_invalidPassportNumberFilteredList_failure() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-//        // ensures that outOfBoundIndex is still in bounds of address book list
-//        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-//
-//        EditCommand editCommand = new EditCommand(outOfBoundIndex,
-//                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-//
-//        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//    }
+    //    @Test
+    //    public void execute_invalidPassportNumberFilteredList_failure() {
+    //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    //        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+    //        // ensures that outOfBoundIndex is still in bounds of address book list
+    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+    //
+    //        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+    //                new EditPersonDescriptorBuilder().withName(VALID_NAME_DANIEL).build());
+    //
+    //        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    //    }
 
     @Test
     public void equals() {
-        // Something needs to be done about DESC_CHARLIE?? Change to something else??
-        final EditCommand standardCommand = new EditCommand(STAFF_ID_FIRST_PERSON, DESC_CHARLIE);
+        // Something needs to be done about DESC_ELLE?? Change to something else??
+        final EditCommand standardCommand = new EditCommand(STAFF_ID_FIRST_PERSON, DESC_ELLE);
 
         // same values -> returns true
-        EditStaffDescriptor copyDescriptor = new EditStaffDescriptor(DESC_CHARLIE);
+        EditStaffDescriptor copyDescriptor = new EditStaffDescriptor(DESC_ELLE);
         EditCommand commandWithSameValues = new EditCommand(STAFF_ID_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -174,7 +174,7 @@ public class EditCommandStaffTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different staff id -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_SECOND_PERSON, DESC_CHARLIE)));
+        assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_SECOND_PERSON, DESC_ELLE)));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_FIRST_PERSON, DESC_DANIEL)));

@@ -11,13 +11,12 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 public class GuestBuilder extends PersonBuilder {
-    private RoomNumber roomNumber;
-    private PassportNumber passportNumber;
-
     public static final RoomNumber DEFAULT_ROOM_NUMBER = new RoomNumber("10101");
     public static final PassportNumber DEFAULT_PASSPORT_NUMBER = new PassportNumber(PASSPORT_NUMBER_DEFAULT.toString());
+    private static final Tag DEFAULT_TAG = new Tag("Guest");
 
-    private final Tag DEFAULT_TAG = new Tag("Guest");
+    private RoomNumber roomNumber;
+    private PassportNumber passportNumber;
 
     /**
      * Creates a {@code GuestBuilder} with the default details.

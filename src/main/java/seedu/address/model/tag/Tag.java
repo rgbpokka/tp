@@ -13,7 +13,10 @@ import seedu.address.model.person.Person;
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
+<<<<<<< HEAD
     
+=======
+>>>>>>> 89228dcaf4ea381e0e4fe7643662c2ab4343cbc0
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "^[\\w\\-\\s]+$";
 

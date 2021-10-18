@@ -38,7 +38,7 @@ public class StaffUtil {
         sb.append(PREFIX_ADDRESS + staff.getAddress().value + " ");
 
         staff.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }

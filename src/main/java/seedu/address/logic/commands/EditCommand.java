@@ -70,6 +70,13 @@ public class EditCommand extends Command {
         this.editPersonDescriptor = editPersonDescriptor;
     }
 
+    /**
+     * Execute the edit command.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -99,46 +106,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        modifyTags(model, editedPerson, personToEdit);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
-    }
-
-    /**
-     * Modifies the tag list accordingly
-     *
-     * @param model        The model containing the tag list and person list.
-     * @param editedPerson The person being edited.
-     * @param personToEdit The person being replaced by the editedPerson.
-     */
-    public void modifyTags(Model model, Person editedPerson, Person personToEdit) {
-        Set<Tag> tags = editedPerson.getTags();
-        Set<Tag> newTags = new HashSet<>();
-
-        for (Tag tag : tags) {
-            if (!model.hasTag(tag)) {
-                model.addTag(tag);
-                newTags.add(tag);
-            } else {
-                newTags.add(model.getTag(tag));
-            }
-        }
-
-        for (Tag tag : newTags) {
-            tag.addPerson(editedPerson);
-        }
-
-        editedPerson.setTags(newTags);
-
-        Set<Tag> deletedTags = personToEdit.getTags();
-
-        for (Tag tag : deletedTags) {
-            tag.removePerson(personToEdit);
-            if (tag.noTaggedPerson()) {
-                model.deleteTag(tag);
-            }
-        }
     }
 
     /**
@@ -195,7 +165,7 @@ public class EditCommand extends Command {
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static abstract class EditPersonDescriptor {
+    public abstract static class EditPersonDescriptor {
         private Name name;
         private Email email;
         private Set<Tag> tags;
@@ -203,6 +173,11 @@ public class EditCommand extends Command {
         public EditPersonDescriptor() {
         }
 
+        /**
+         * Creates a edit person descriptor instance.
+         *
+         * @param toCopy
+         */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setEmail(toCopy.email);
@@ -220,7 +195,9 @@ public class EditCommand extends Command {
             this.name = name;
         }
 
-        public Optional<Name> getName() { return Optional.ofNullable(name); }
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
 
         public void setEmail(Email email) {
             this.email = email;
@@ -338,7 +315,7 @@ public class EditCommand extends Command {
      * Stores the details to edit the staff with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditStaffDescriptor extends EditPersonDescriptor{
+    public static class EditStaffDescriptor extends EditPersonDescriptor {
         private Phone phone;
         private Address address;
         private StaffId staffId;
