@@ -104,11 +104,12 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+    public void parseCommand_view() throws Exception {
         ViewCommand command = (ViewCommand) parser.parseCommand(
-                ViewCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new ViewCommand(new IdentifierContainsKeywordsPredicate(keywords)), command);
+                ViewCommand.COMMAND_WORD + " " + PREFIX_STAFF_ID + STAFF_ID_FIRST_PERSON.toString());
+        assertEquals(
+                new ViewCommand(new IdentifierContainsKeywordsPredicate(List.of(STAFF_ID_FIRST_PERSON.toString()))),
+                command);
     }
 
     @Test
@@ -126,7 +127,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

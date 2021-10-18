@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL_GUEST;
-import static seedu.address.testutil.TypicalPersons.ELLE_STAFF;
-import static seedu.address.testutil.TypicalPersons.FIONA_STAFF;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -21,7 +18,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code ViewCommand}.
  */
 public class ViewCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -30,9 +27,9 @@ public class ViewCommandTest {
     @Test
     public void equals() {
         IdentifierContainsKeywordsPredicate firstPredicate =
-                new IdentifierContainsKeywordsPredicate(Collections.singletonList("first"));
+                new IdentifierContainsKeywordsPredicate(Collections.singletonList("123"));
         IdentifierContainsKeywordsPredicate secondPredicate =
-                new IdentifierContainsKeywordsPredicate(Collections.singletonList("second"));
+                new IdentifierContainsKeywordsPredicate(Collections.singletonList("123456121D"));
 
         ViewCommand findFirstCommand = new ViewCommand(firstPredicate);
         ViewCommand findSecondCommand = new ViewCommand(secondPredicate);
@@ -55,23 +52,13 @@ public class ViewCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_noIdentifier_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         IdentifierContainsKeywordsPredicate predicate = preparePredicate(" ");
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    }
-
-    @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        IdentifierContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        ViewCommand command = new ViewCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL_GUEST, ELLE_STAFF, FIONA_STAFF), model.getFilteredPersonList());
     }
 
     /**
