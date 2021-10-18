@@ -106,46 +106,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        modifyTags(model, editedPerson, personToEdit);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
-    }
-
-    /**
-     * Modifies the tag list accordingly
-     *
-     * @param model        The model containing the tag list and person list.
-     * @param editedPerson The person being edited.
-     * @param personToEdit The person being replaced by the editedPerson.
-     */
-    public void modifyTags(Model model, Person editedPerson, Person personToEdit) {
-        Set<Tag> tags = editedPerson.getTags();
-        Set<Tag> newTags = new HashSet<>();
-
-        for (Tag tag : tags) {
-            if (!model.hasTag(tag)) {
-                model.addTag(tag);
-                newTags.add(tag);
-            } else {
-                newTags.add(model.getTag(tag));
-            }
-        }
-
-        for (Tag tag : newTags) {
-            tag.addPerson(editedPerson);
-        }
-
-        editedPerson.setTags(newTags);
-
-        Set<Tag> deletedTags = personToEdit.getTags();
-
-        for (Tag tag : deletedTags) {
-            tag.removePerson(personToEdit);
-            if (tag.noTaggedPerson()) {
-                model.deleteTag(tag);
-            }
-        }
     }
 
     /**

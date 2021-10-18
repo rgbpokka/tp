@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -117,14 +118,65 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Person person) {
+        addTagAssociatedToPerson(person);
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+    
+    private void addTagAssociatedToPerson(Person toAdd) {
+        Set<Tag> tags = toAdd.getTags();
+        Set<Tag> newTags = new HashSet<>();
+
+        for (Tag tag : tags) {
+            if (!addressBook.hasTag(tag)) {
+                addressBook.addTag(tag);
+                newTags.add(tag);
+            } else {
+                newTags.add(addressBook.getTag(tag));
+            }
+        }
+
+        toAdd.setTags(newTags);
+
+        for (Tag tag : newTags) {
+            tag.addPerson(toAdd);
+        }
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
+        setTagsAssociatedToPerson(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
+    }
+    
+    private void setTagsAssociatedToPerson(Person personToEdit, Person editedPerson) {
+        Set<Tag> tags = editedPerson.getTags();
+        Set<Tag> newTags = new HashSet<>();
+
+        for (Tag tag : tags) {
+            if (!addressBook.hasTag(tag)) {
+                addressBook.addTag(tag);
+                newTags.add(tag);
+            } else {
+                newTags.add(addressBook.getTag(tag));
+            }
+        }
+
+        for (Tag tag : newTags) {
+            tag.addPerson(editedPerson);
+        }
+
+        editedPerson.setTags(newTags);
+
+        Set<Tag> deletedTags = personToEdit.getTags();
+
+        for (Tag tag : deletedTags) {
+            tag.removePerson(personToEdit);
+            if (tag.noTaggedPerson()) {
+                addressBook.removeTag(tag);
+            }
+        }
     }
 
     @Override
