@@ -38,8 +38,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CARL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
 
 import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
-import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_SECOND_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_THIRD_PERSON;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIONA;
