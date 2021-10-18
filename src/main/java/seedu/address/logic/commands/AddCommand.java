@@ -75,34 +75,8 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        modifyTags(model);
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    /**
-     * Modifies the tag list accordingly.
-     *
-     * @param model The model containing the tag list.
-     */
-    public void modifyTags(Model model) {
-        Set<Tag> tags = toAdd.getTags();
-        Set<Tag> newTags = new HashSet<>();
-
-        for (Tag tag : tags) {
-            if (!model.hasTag(tag)) {
-                model.addTag(tag);
-                newTags.add(tag);
-            } else {
-                newTags.add(model.getTag(tag));
-            }
-        }
-
-        toAdd.setTags(newTags);
-
-        for (Tag tag : newTags) {
-            tag.addPerson(toAdd);
-        }
     }
 
     @Override
