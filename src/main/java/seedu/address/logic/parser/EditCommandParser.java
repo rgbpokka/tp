@@ -16,9 +16,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
 import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PassportNumber;
 import seedu.address.model.person.StaffId;

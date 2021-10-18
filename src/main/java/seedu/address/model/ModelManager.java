@@ -102,7 +102,6 @@ public class ModelManager implements Model {
     public void deletePerson(Person target) {
         deleteTagAssociatedToPerson(target);
         addressBook.removePerson(target);
-
     }
 
     private void deleteTagAssociatedToPerson(Person target) {

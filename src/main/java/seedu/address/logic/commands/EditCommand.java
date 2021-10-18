@@ -70,6 +70,13 @@ public class EditCommand extends Command {
         this.editPersonDescriptor = editPersonDescriptor;
     }
 
+    /**
+     * Execute the edit command.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -195,7 +202,7 @@ public class EditCommand extends Command {
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static abstract class EditPersonDescriptor {
+    public abstract static class EditPersonDescriptor {
         private Name name;
         private Email email;
         private Set<Tag> tags;
@@ -203,6 +210,11 @@ public class EditCommand extends Command {
         public EditPersonDescriptor() {
         }
 
+        /**
+         * Creates a edit person descriptor instance.
+         *
+         * @param toCopy
+         */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setEmail(toCopy.email);
@@ -220,7 +232,9 @@ public class EditCommand extends Command {
             this.name = name;
         }
 
-        public Optional<Name> getName() { return Optional.ofNullable(name); }
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
 
         public void setEmail(Email email) {
             this.email = email;
@@ -338,7 +352,7 @@ public class EditCommand extends Command {
      * Stores the details to edit the staff with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditStaffDescriptor extends EditPersonDescriptor{
+    public static class EditStaffDescriptor extends EditPersonDescriptor {
         private Phone phone;
         private Address address;
         private StaffId staffId;
