@@ -11,8 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_ALI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_THIRD_PERSON;
+import static seedu.address.testutil.TypicalPassportNumbers.*;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_THIRD_PERSON;
 
@@ -53,6 +52,13 @@ public class TypicalPersons {
             .withEmail("heinz@example.com")
             .withRoomNumber("12321")
             .withPassportNumber(PASSPORT_NUMBER_THIRD_PERSON.toString())
+            .build();
+
+    public static final Guest JEONGYEON_GUEST = new GuestBuilder()
+            .withName("Jeong Yeon")
+            .withEmail("jy@example.com")
+            .withRoomNumber("22233")
+            .withPassportNumber(PASSPORT_NUMBER_UNUSED.toString())
             .build();
 
     public static final Staff DANIEL_STAFF = new StaffBuilder()

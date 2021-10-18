@@ -3,9 +3,7 @@
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertFalse;
 //import static seedu.address.testutil.Assert.assertThrows;
-//import static seedu.address.testutil.TypicalPersons.ALICE_GUEST;
-//import static seedu.address.testutil.TypicalPersons.BENSON_GUEST;
-//import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+//import static seedu.address.testutil.TypicalPersons.*;
 //
 //import java.io.IOException;
 //import java.nio.file.Path;
@@ -71,18 +69,20 @@
 //        assertEquals(original, new AddressBook(readBack));
 //
 //        // Modify data, overwrite exiting file, and read back
-//        original.addPerson(ALICE_GUEST);
-//        original.removePerson(ALICE_GUEST);
+//        original.addPerson(JEONGYEON_GUEST);
+//        original.removePerson(JEONGYEON_GUEST);
 //        jsonAddressBookStorage.saveAddressBook(original, filePath);
 //        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
 //        assertEquals(original, new AddressBook(readBack));
 //
 //        // Save and read without specifying file path
-//        original.addPerson(BENSON_GUEST);
+//        original.addPerson(JEONGYEON_GUEST);
 //        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
 //        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+//        System.out.println("Original hash" + original.hashCode());
+//        System.out.println("new hash" + readBack.hashCode());
+//        System.out.println(original.equals(readBack));
 //        assertEquals(original, new AddressBook(readBack));
-//
 //    }
 //
 //    @Test

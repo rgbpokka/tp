@@ -1,10 +1,7 @@
 package seedu.address.storage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -46,9 +43,12 @@ class JsonSerializableAddressBook {
         @SuppressWarnings("unchecked")
         List<JsonAdaptedGuest> jsonGuest = (List<JsonAdaptedGuest>) persons.get(0).get("guest");
         //  this.guests.addAll(jsonGuest);
+        @SuppressWarnings("unchecked")
+        List<Tag> jsonTags = (List<Tag>) persons.get(0).get("tags");
         Map<String, List<? extends Object>> jsonMap = new HashMap<>();
         jsonMap.put("staff", jsonStaff);
         jsonMap.put("guest", jsonGuest);
+        jsonMap.put("tags", jsonTags);
         this.persons.add(jsonMap);
     }
 
@@ -66,8 +66,12 @@ class JsonSerializableAddressBook {
         staffs.addAll(source.getPersonList().stream().filter(x -> x.getTags().contains(new Tag("Staff"))).map(
                 JsonAdaptedStaff::new).collect(Collectors.toList()));
         Map<String, List<? extends Object>> jsonMap = new HashMap<>();
+        Set<JsonAdaptedTag> tags = new HashSet<>();
+        guests.forEach(x -> tags.addAll(x.getTags()));
+        staffs.forEach(x -> tags.addAll(x.getTags()));
         jsonMap.put("staff", staffs);
         jsonMap.put("guest", guests);
+        jsonMap.put("tags", new ArrayList<>(tags));
         persons.add(jsonMap);
     }
 
@@ -79,7 +83,7 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-
+        Set<Tag> tagSet = new HashSet<>();
         try {
             List<JsonAdaptedGuest> guests =
                     jsonArrayToObjectList(toJsonString(persons.get(0).get("guest")), JsonAdaptedGuest.class);
@@ -91,6 +95,7 @@ class JsonSerializableAddressBook {
                 if (addressBook.hasPerson(person)) {
                     throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
                 }
+                tagSet.addAll(person.getTags());
                 addressBook.addPerson(person);
             }
 
@@ -99,8 +104,10 @@ class JsonSerializableAddressBook {
                 if (addressBook.hasPerson(person)) {
                     throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
                 }
+                tagSet.addAll(person.getTags());
                 addressBook.addPerson(person);
             }
+            addressBook.setTags(new ArrayList<>(tagSet));
             return addressBook;
         } catch (Exception e) {
             System.out.println("error");
