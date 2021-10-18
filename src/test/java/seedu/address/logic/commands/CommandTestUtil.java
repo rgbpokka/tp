@@ -2,10 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-<<<<<<< HEAD
 
-=======
->>>>>>> 3212ddfcb113f6ecd809b41f42835cf9194a928c
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -79,6 +76,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_CARL = " " + PREFIX_TAG + VALID_TAG_CARL;
 
     // Staff
+    public static final String VALID_STAFF_TAG = "Staff";
     public static final String VALID_NAME_DANIEL = "Daniel Meier";
     public static final String VALID_EMAIL_DANIEL = "cornelia@example.com";
     public static final String VALID_TAG_DANIEL = "COUNTER STAFF";
@@ -88,8 +86,10 @@ public class CommandTestUtil {
     public static final String NAME_DESC_DANIEL = " " + PREFIX_NAME + VALID_NAME_DANIEL;
     public static final String EMAIL_DESC_DANIEL = " " + PREFIX_EMAIL + VALID_EMAIL_DANIEL;
     public static final String ADDRESS_DESC_DANIEL = " " + PREFIX_ADDRESS + VALID_ADDRESS_DANIEL;
+    public static final String TAG_DESC_DANIEL = " " + PREFIX_TAG + VALID_TAG_DANIEL;
     public static final String PHONE_DESC_DANIEL = " " + PREFIX_PHONE + VALID_PHONE_DANIEL;
     public static final String STAFF_ID_DESC_DANIEL = " " + PREFIX_STAFF_ID + VALID_STAFF_ID_DANIEL;
+    public static final String TAG_DESC_DANIEL_TWO = " " + PREFIX_TAG + VALID_TAG_DANIEL + PREFIX_TAG + VALID_STAFF_TAG;
 
     public static final String VALID_NAME_ELLE = "Elle Meyer";
     public static final String VALID_EMAIL_ELLE = "elle@example.com";
