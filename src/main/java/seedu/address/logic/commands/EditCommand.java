@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -14,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -38,17 +42,29 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the unique identifier of the person. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Format for Staff: "
+            + "Parameters:  "
+            + "[" + PREFIX_STAFF_ID + "STAFF_ID"
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "Example: " + COMMAND_WORD + " sid/123 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com"
+            + "Format for Guest: "
+            + "Parameters:  "
+            + "[" + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER] "
+            + "Example: " + COMMAND_WORD + " pn/A12345678 "
+            + PREFIX_ROOM_NUMBER + "1233"
+            + PREFIX_EMAIL + "johndoe@example.com" ;
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -98,6 +114,10 @@ public class EditCommand extends Command {
                     .filter(p -> p instanceof Guest && ((Guest) p).getPassportNumber().equals(uniqueIdentifier))
                     .findAny()
                     .orElse(null);
+        }
+
+        if (personToEdit == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
         }
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
