@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MULTIPLE_UNIQUE_IDENTIFIER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
@@ -41,5 +42,14 @@ public class DeleteCommandParserTest {
     public void parse_invalidStaffIdArgs_throwsParseException() {
         assertParseFailure(parser, "delete sid/",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_multipleUniqueIdentifiers_throwsParseException() {
+        assertParseFailure(parser, "delete pn/E0123122G sid/123",
+                String.format(MESSAGE_INVALID_MULTIPLE_UNIQUE_IDENTIFIER, DeleteCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "delete sid/123 pn/E0123122G",
+                String.format(MESSAGE_INVALID_MULTIPLE_UNIQUE_IDENTIFIER, DeleteCommand.MESSAGE_USAGE));
     }
 }
