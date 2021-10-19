@@ -115,8 +115,6 @@ public class UniqueTagList implements Iterable<Tag> {
         return Objects.hash(internalList, internalUnmodifiableList);
     }
 
-
-
     /**
      * Returns true if {@code tags} contains only unique tags.
      */
