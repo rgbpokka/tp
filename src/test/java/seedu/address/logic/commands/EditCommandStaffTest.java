@@ -82,7 +82,10 @@ public class EditCommandStaffTest {
         // no fields are changed, so the edited staff stays exactly the same
         Staff staff = DANIEL_STAFF;
 
-        EditCommand editCommand = new EditCommand(staff.getStaffId(), new EditStaffDescriptor());
+        EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptor();
+        editStaffDescriptor.setStaffId(staff.getStaffId());
+
+        EditCommand editCommand = new EditCommand(staff.getStaffId(), editStaffDescriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, staff);
 

@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SENIOR_STAFF;
 
 import org.junit.jupiter.api.Test;
@@ -47,7 +48,7 @@ public class EditStaffDescriptorTest {
         assertFalse(DESC_ELLE.equals(editedELLE));
 
         // different tags -> returns false
-        editedELLE = new EditStaffDescriptorBuilder(DESC_ELLE).withTags(VALID_TAG_SENIOR_STAFF).build();
+        editedELLE = new EditStaffDescriptorBuilder(DESC_ELLE).withTags(VALID_TAG_DANIEL).build();
         assertFalse(DESC_ELLE.equals(editedELLE));
 
         // different address -> returns false
