@@ -319,25 +319,14 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValueFollowedByValidValueForGuest_success() {
-        // no other valid values specified
         UniqueIdentifier targetIdentifier = new PassportNumber(VALID_PASSPORT_NUMBER_ALICE);
-        String userInput = EditCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + INVALID_EMAIL_DESC + ROOM_NUMBER_DESC_ALICE;
-        System.out.println(userInput);
+        String userInput = EditCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + INVALID_EMAIL_DESC + ROOM_NUMBER_DESC_ALICE + EMAIL_DESC_ALICE;
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder()
-                .withPassportNumber(VALID_PASSPORT_NUMBER_ALICE)
-                .withRoomNumber(VALID_ROOM_NUMBER_ALICE)
-                .build();
-        EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // other valid values specified
-        userInput = EditCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + INVALID_EMAIL_DESC + ROOM_NUMBER_DESC_ALICE + EMAIL_DESC_ALICE;
-        descriptor = new EditGuestDescriptorBuilder()
                 .withPassportNumber(VALID_PASSPORT_NUMBER_ALICE)
                 .withRoomNumber(VALID_ROOM_NUMBER_ALICE)
                 .withEmail(VALID_EMAIL_ALICE)
                 .build();
-        expectedCommand = new EditCommand(targetIdentifier, descriptor);
+        EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

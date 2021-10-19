@@ -50,6 +50,8 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
@@ -136,19 +138,11 @@ public class TypicalPersons {
      * Returns an {@code AddressBook} with all the typical persons.
      */
     public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        Set<Tag> tagSet = new HashSet<>();
+        ModelManager modelManager = new ModelManager(new AddressBook(), new UserPrefs());
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-            for (Tag tag : person.getTags()) {
-                tagSet.add(tag);
-            }
+            modelManager.addPerson(person);
         }
-
-        for (Tag typicalTag : tagSet) {
-            ab.addTag(typicalTag);
-        }
-        return ab;
+        return (AddressBook) modelManager.getAddressBook();
     }
 
     public static List<Person> getTypicalPersons() {
