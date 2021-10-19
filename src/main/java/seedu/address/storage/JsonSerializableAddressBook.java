@@ -44,10 +44,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<Map<String, List<? extends Object>>> persons) {
         @SuppressWarnings("unchecked")
         List<JsonAdaptedStaff> jsonStaff = (List<JsonAdaptedStaff>) persons.get(0).get("staff");
-        // this.staffs.addAll(jsonStaff);
         @SuppressWarnings("unchecked")
         List<JsonAdaptedGuest> jsonGuest = (List<JsonAdaptedGuest>) persons.get(0).get("guest");
-        //  this.guests.addAll(jsonGuest);
         @SuppressWarnings("unchecked")
         List<Tag> jsonTags = (List<Tag>) persons.get(0).get("tags");
         Map<String, List<? extends Object>> jsonMap = new HashMap<>();
