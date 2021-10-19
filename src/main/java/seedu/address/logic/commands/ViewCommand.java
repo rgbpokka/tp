@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
+
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
@@ -15,9 +18,10 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the staff or guest by"
-            + "the specified staff ID or passport number (case-insensitive) and displays them as a list.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " 101";
+            + "the specified staff ID or passport number (case-insensitive) and displays them.\n"
+            + "Parameters: " + PREFIX_PASSPORT_NUMBER + "PASSPORT NUMBER " + "or" + PREFIX_STAFF_ID + "STAFF ID" +
+            "...\n"
+            +"Example: " + COMMAND_WORD + PREFIX_STAFF_ID + " 101";
 
     private final IdentifierContainsKeywordsPredicate predicate;
 
