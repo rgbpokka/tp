@@ -38,6 +38,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StaffId;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.StaffBuilder;
 
@@ -133,11 +134,11 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_ELLE + PHONE_DESC_ELLE + EMAIL_DESC_ELLE + ADDRESS_DESC_ELLE
-                + INVALID_TAG_DESC + VALID_TAG_CHEF + STAFF_ID_DESC_ELLE, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + TAG_DESC_CHEF + STAFF_ID_DESC_ELLE, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid staff id
         assertParseFailure(parser, NAME_DESC_ELLE + PHONE_DESC_ELLE + EMAIL_DESC_ELLE + ADDRESS_DESC_ELLE
-                + TAG_DESC_SENIOR_STAFF + VALID_TAG_CHEF + INVALID_STAFF_ID_DESC, Tag.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF + INVALID_STAFF_ID_DESC, StaffId.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_ELLE + EMAIL_DESC_ELLE + INVALID_ADDRESS_DESC
