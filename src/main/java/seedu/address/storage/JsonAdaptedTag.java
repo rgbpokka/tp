@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 
+import java.util.Objects;
+
 /**
  * Jackson-friendly version of {@link Tag}.
  */
@@ -31,6 +33,18 @@ class JsonAdaptedTag {
     @JsonValue
     public String getTagName() {
         return tagName;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof JsonAdaptedTag // instanceof handles nulls
+                && tagName.equals(((JsonAdaptedTag) other).getTagName())); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tagName);
     }
 
     /**

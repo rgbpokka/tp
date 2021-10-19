@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page
+title: Developer Guide
 ---
 
 ## **Table of Contents**
@@ -334,22 +335,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                  | save the details I enter                            |                                                                                       |
 | `* *  `  | new user              | clear all current data                              | get rid of sample data                                                                |
 | `* *  `  | potential user        | see app populated with sample contacts              | easily learn and get a feel for the app                                               |
-| `* *`    | new user              | import staff/guest details from an existing system  | use data that is being kept track from other systems into the app                     |
 | `* *`    | expert user           | export staff/guest details out from the system      | transfer data to the next manager who takes over me or import data into other systems |
 | `* *`    | user                  | add tags to contacts                                | easily categorize and filter contacts                                                 |
 | `* *`    | user                  | filter contacts by tags                             | look at contacts in  more manageable lists.                                           |
-| `* *`    | new user              | learn how to use the app (Tutorial)                 | get more familiar with the features they offer and how I can use it better            |
 | `* *`    | CLI user              | be reminded of the commands available as a quick tip| quickly get a reminder of how to use a specific command.                              |
-| `* *`    | user                  | add images to my contacts                           | recognize them in real life to greet them; improve guest experience; recognize staff  |
+| `* *`    | user                  | view certain statistics of my guests/staff          | improve hotel experience depending on the data I can see.                             |
+| `* *`    | user                  | sort the staff/guests by a certain criteria         | so that I can find people quicker, based on whichever sorting criteria I set          |
+| `* *`    | CLI user              | undo commands                                       | so that I can undo a command if I choose to do so.                                    |
 | `*`      | expert user           | personalize my GUI to my liking                     | optimise the layout to cater to my needs                                              |
 | `*`      | CLI user              | add aliases to my commands                          | execute commands quickly with shorter syntax                                          |
-
-*{More to be added}*
+| `*`      | new user              | import staff/guest details from an existing system  | use data that is being kept track from other systems into the app                     |
+| `*`      | new user              | learn how to use the app (Tutorial)                 | get more familiar with the features they offer and how I can use it better            |
+| `*  `    | user                  | add images to my contacts                           | recognize them in real life to greet them; improve guest experience; recognize staff  |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PH` and the **Actor** is the `user`, unless specified
-otherwise)
+(For all use cases below, the **System** is the `PH` and the **Actor** is the `user`, unless specified otherwise)
 
 #### UC1: Clearing all details from the app
 
@@ -362,14 +363,14 @@ otherwise)
 3. User confirms to proceed with the clear.
 
 4. **PH** clears all the data.
-  
-    Use case ends.
+
+   Use case ends.
 
 **Extensions**
 
 * 3a. User does not confirm to clearing entries.
 
-    Use case ends.
+  Use case ends.
 
 #### UC2: Saving data
 
@@ -381,17 +382,17 @@ otherwise)
 
 3. **PH** shows a success message to user indicating command has been executed successfully.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. Error occurs when saving new contact list
-  
-  * 2a1. **PH** reverts to old contact list before the execution of the command.
-  
-  * 2a2. **PH** informs the user that saving the new contact list was unsuccessful.
-    
-    Use case ends.
+
+    * 2a1. **PH** reverts to old contact list before the execution of the command.
+
+    * 2a2. **PH** informs the user that saving the new contact list was unsuccessful.
+
+      Use case ends.
 
 #### UC3: Searching for a guest/staff
 
@@ -401,47 +402,47 @@ otherwise)
 
 2. **PH** shows the specified guest/staff that matches the user's query.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. Contact list is empty.
 
-    Use case ends.
+  Use case ends.
 
 * 2a. No guest/staff found that matches user's query.
-  
-  * 2a1. **PH** shows message indicating no such guest/staff exists in the list.
 
-    Use case ends.
+    * 2a1. **PH** shows message indicating no such guest/staff exists in the list.
+
+      Use case ends.
 
 #### UC4: Editing fields of guests/staff
 
 **MSS**
 
-1. User keys in command to edit a particular field of a specified guest/ staff. 
+1. User keys in command to edit a particular field of a specified guest/ staff.
 
 2. **PH** shows a success message to user which displays the new details of the guest/ staff.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. Contact list is empty.
 
-    Use case ends.
+  Use case ends.
 
 * 1b. No guest/staff found that matches user's query.
-  
-  * 1b1. **PH** shows message indicating no such guest/staff exists in the list.
 
-    Use case ends.
+    * 1b1. **PH** shows message indicating no such guest/staff exists in the list.
+
+      Use case ends.
 
 * 1c. The field that the user wishes to edit does not exist.
-  
-  * 1c1. **PH** shows message indicating no such field exists.
 
-    Use case ends.
+    * 1c1. **PH** shows message indicating no such field exists.
+
+      Use case ends.
 
 #### UC5: Adding guests/staff
 
@@ -456,22 +457,23 @@ otherwise)
 **Extensions**
 
 * 1a. Name, passport number or staff field is left blank.
-  
-  * 1a1. **PH** shows message indicating a blank name, passport number or staff field is not allowed for both guests and staff.
 
-    Use case ends.
+    * 1a1. **PH** shows message indicating a blank name, passport number or staff field is not allowed for both guests
+      and staff.
+
+      Use case ends.
 
 * 1b. Both passport number and staff ID fields are filled in.
-  
-  * 1b1. **PH** shows message indicating an entry cannot contain both a passport number and staff ID.
 
-    Use case ends.
+    * 1b1. **PH** shows message indicating an entry cannot contain both a passport number and staff ID.
+
+      Use case ends.
 
 * 1c. Non-alphanumeric characters are used in the name field.
-  
-  * 1c1. **PH** shows message indicating only alphanumeric characters are to be used for names.
 
-    Use case ends.
+    * 1c1. **PH** shows message indicating only alphanumeric characters are to be used for names.
+
+      Use case ends.
 
 #### UC6: Deleting guests/ staff
 
@@ -481,15 +483,15 @@ otherwise)
 
 2. **PH** informs user that guest/ staff is deleted
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. No guest/staff found that matches user's query
-  
-  * 2a1. **PH** informs user that the guest/ staff does not exist
-  
-    Use case ends.
+
+    * 2a1. **PH** informs user that the guest/ staff does not exist
+
+      Use case ends.
 
 *{More to be added}*
 
@@ -501,7 +503,7 @@ otherwise)
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. **PH** should retain all functionalities even without a connection to the internet.
 5. **PH** is meant to be used by single user at any given time.
-*{More to be added}*
+   *{More to be added}*
 
 ### Glossary
 
@@ -509,7 +511,7 @@ otherwise)
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Guest**: A person staying in Pocket Hotel
-* **Staff**: An employee of Pocket Hotel 
+* **Staff**: An employee of Pocket Hotel
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -562,6 +564,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   i. Test case: go to `data\addressbook.json` and corrupt the file.
-      On bootup of the program, there should be a notification in the command box saying
-      "File corrupted! Restored a new file." and the program will delete and load a fresh new file.
+   i. Test case: go to `data\addressbook.json` and corrupt the file. On bootup of the program, there should be a
+   notification in the command box saying
+   "File corrupted! Restored a new file." and the program will delete and load a fresh new file.
