@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -25,8 +27,11 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.PassportNumber;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.StaffId;
+import seedu.address.model.person.UniqueIdentifier;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 import seedu.address.testutil.StaffBuilder;
 
@@ -48,7 +53,7 @@ public class EditCommandStaffTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(staff, editedStaff);
-
+        
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -80,15 +85,11 @@ public class EditCommandStaffTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         // no fields are changed, so the edited staff stays exactly the same
-        Staff staff = DANIEL_STAFF;
-
-        EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptor();
-        editStaffDescriptor.setStaffId(staff.getStaffId());
-
-        EditCommand editCommand = new EditCommand(staff.getStaffId(), editStaffDescriptor);
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, staff);
-
+        UniqueIdentifier targetIdentifier = new StaffId(VALID_STAFF_ID_DANIEL);
+        EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL).build();
+        EditCommand editCommand = new EditCommand(targetIdentifier, editStaffDescriptor);
+        
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, DANIEL_STAFF);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
