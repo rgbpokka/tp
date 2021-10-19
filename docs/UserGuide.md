@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 <h3><i>Welcome to the Pocket Hotel User Guide!</i></h3>
