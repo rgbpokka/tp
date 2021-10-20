@@ -130,6 +130,7 @@ Format:
 <br>Staff: `edit sid/<STAFF_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 
 * Existing values will be updated to the input values.
+* You can edit more than one field at a time (See example below).
 * Note that when changing a guest of staff unique identifier, it is important that there is no pre-existing staff or 
 guest with that unique identifer already.
 
@@ -140,8 +141,8 @@ Example 1 (Edit guest):
 
 Example 2 (Edit staff):
 
-* `edit sid/123 p/99999999` locates the staff Jeremy, by his staff ID, 123 and overwrites the phone number
-   field with the new phone number provided.
+* `edit sid/123 p/99999999 e/j@mailer.com` locates the staff Jeremy, by his staff ID, 123 and overwrites the phone number
+   field with the new phone number provided, and the email with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 
