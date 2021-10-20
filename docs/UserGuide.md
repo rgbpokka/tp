@@ -142,7 +142,7 @@ Example 1 (Edit guest):
 Example 2 (Edit staff):
 
 * `edit sid/123 p/99999999 e/j@mailer.com` locates the staff Jeremy, by his staff ID, 123 and overwrites the phone number
-   field with the new phone number provided, and the email with the new email provided.
+   field with the new phone number provided, and the email field with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 
