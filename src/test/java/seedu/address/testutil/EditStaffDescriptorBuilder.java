@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditStaffDescriptorBuilder {
 
-    private EditStaffDescriptor descriptor;
+    private final EditStaffDescriptor descriptor;
 
     public EditStaffDescriptorBuilder() {
         descriptor = new EditStaffDescriptor();

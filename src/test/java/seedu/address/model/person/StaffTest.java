@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.StaffBuilder;
 
-public class PersonTest {
+public class StaffTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -47,14 +47,10 @@ public class PersonTest {
         editedFiona = new StaffBuilder(FIONA_STAFF).withStaffId(VALID_STAFF_ID_DANIEL).build();
         assertFalse(FIONA_STAFF.isSamePerson(editedFiona));
 
-        //        // name differs in case, all other attributes same -> returns false
-        //        Person editedDANIEL = new StaffBuilder(FIONA_STAFF).withStaffId(VALID_NAME_DANIEL.toLowerCase()).build();
-        //        assertFalse(DANIEL.isSamePerson(editedDANIEL));
-        //
-        //        // name has trailing spaces, all other attributes same -> returns false
-        //        String nameWithTrailingSpaces = VALID_NAME_DANIEL + " ";
-        //        editedDANIEL = new PersonBuilder(DANIEL).withName(nameWithTrailingSpaces).build();
-        //        assertFalse(DANIEL.isSamePerson(editedDANIEL));
+        // SID has trailing spaces, all other attributes same -> returns false
+        String idWithTrailingSpaces = VALID_STAFF_ID_DANIEL + "  ";
+        Person editedDANIEL = new StaffBuilder(DANIEL_STAFF).withStaffId(idWithTrailingSpaces).build();
+        assertFalse(DANIEL_STAFF.isSamePerson(editedDANIEL));
     }
 
     @Test

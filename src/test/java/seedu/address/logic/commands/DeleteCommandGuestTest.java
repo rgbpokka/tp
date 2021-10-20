@@ -29,7 +29,8 @@ public class DeleteCommandGuestTest {
     public void execute_validPassportNumber_success() {
         Guest guestToDelete = (Guest) model.getFilteredPersonList()
                 .stream()
-                .filter(g -> g instanceof Guest && ((Guest) g).getPassportNumber().equals(PASSPORT_NUMBER_FIRST_PERSON))
+                .filter(g -> g instanceof Guest
+                        && ((Guest) g).getPassportNumber().equals(PASSPORT_NUMBER_FIRST_PERSON))
                 .findAny()
                 .orElse(null);
         DeleteCommand deleteCommand = new DeleteCommand(PASSPORT_NUMBER_FIRST_PERSON);
