@@ -10,6 +10,9 @@ import seedu.address.model.person.RoomNumber;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class GuestBuilder extends PersonBuilder {
     public static final RoomNumber DEFAULT_ROOM_NUMBER = new RoomNumber("10101");
     public static final PassportNumber DEFAULT_PASSPORT_NUMBER = new PassportNumber(PASSPORT_NUMBER_DEFAULT.toString());
@@ -49,7 +52,9 @@ public class GuestBuilder extends PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Guest} that we are building.
      */
     public GuestBuilder withTags(String... tags) {
-        setTags(SampleDataUtil.getTagSet(tags));
+        Set<Tag> guestTag = SampleDataUtil.getTagSet(tags);
+        guestTag.add(new Tag("Guest"));
+        setTags(guestTag);
         return this;
     }
 

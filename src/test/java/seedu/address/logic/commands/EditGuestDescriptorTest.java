@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,7 @@ public class EditGuestDescriptorTest {
         assertFalse(DESC_ALICE.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditGuestDescriptorBuilder(DESC_ALICE).withTags(VALID_TAG_VIP).build();
+        editedAmy = new EditGuestDescriptorBuilder(DESC_ALICE).withTags(VALID_TAG_BENSON).build();
         assertFalse(DESC_ALICE.equals(editedAmy));
 
         // different passport number -> returns false

@@ -1,16 +1,17 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
-**_Welcome to the Pocket Hotel User Guide!_**
+<h3><i>Welcome to the Pocket Hotel User Guide!</i></h3>
 
 **Pocket Hotel (PH)** is a specialized contact management desktop app targeted towards hotel managers who have many
 guests and staff to handle.
 
 **PH** provides a centralized location to store, organize and manage information linked to your guests and staff
 members. **PH**
-streamlines your workflow and is optimized for use via the _Command Line Interface_ (**CLI**), whilst still embodying the
-benefits of a _Graphical User Interface_ (**GUI**).
+streamlines your workflow and is optimized for use via the _Command Line Interface_ (**CLI**), whilst still embodying
+the benefits of a _Graphical User Interface_ (**GUI**).
 
 This user guide serves as an entry point for users to get oriented with how **PH** operates and how you may utilize it
 fully to integrate it within your hotel management system.
@@ -30,39 +31,45 @@ fully to integrate it within your hotel management system.
 
 2. Download the latest `PH.jar` from [here](https://github.com/AY2122S1-CS2103T-W12-3/tp/releases).
 
-4. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for **PH**.
 
-5. Double-click the file to start the app. The **GUI** similar to the below should appear in a few seconds. Note how the app
-   contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. To start the application, you may either:
+    1. Double-click the `PH.jar` file to boot up the app.
+    2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
+![Ui](images/Ui.png)
+<p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
+
+5. Type any command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe pn/X12345678F p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a guest
+    * **`add`**`n/John Doe pn/X12345678F r/123 e/johnd@example.com t/Senior Citizen` : Adds a guest
       named `John Doe` to the Address Book.
 
     * **`delete`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
 
-    * **`clear`** : Deletes all contacts.
+    * **`clear`** : Clears all contacts. 
 
     * **`exit`** : Exits the app.
-
-7. Refer to the [Features](#features) below for details of each command.
+    
+You may refer to the [features](#features) below for details of each command and to get familiarized with the syntax of 
+the commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Features**
 
-**PH**’s features revolve around managing your guests and staff. For each command, a short description of its use is given
-which is then followed by the format and a short example to help ensure that you have executed the command correctly.
+**PH**’s features revolve around managing your guests and staff. For each command, a short description of its use is
+given which is then followed by the format and a short example to help ensure that you have executed the command
+correctly.
 
 A quick overview of all the commands can be found in the [command summary.](#command-summary)
 
-Certain commands require parameters, which may have certain constraints. A quick overview of all the underlying
+Certain commands require parameters, which may have constraints. A quick overview of all the underlying
 constraints can be found in the [parameter constraints.](#parameter-constraints-summary)
 
 <div markdown="block" class="alert alert-info">
@@ -75,7 +82,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 * Parameter prefixes such as `n/` and `pn/` are special keywords that indicate a start of a parameter.
 
 * Fields with square brackets are optional.<br>
-  e.g `n/NAME [p/PHONE_NUMBER]` can be used as `n/Bing Cheng p/99999999` or as `n/Bing Cheng`.
+  e.g `n/NAME [t/TAG]` can be used as `n/Bing Cheng t/VIP` or as `n/Bing Cheng`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME pn/PASSPORT_NUMBER`, `pn/PASSPORT_NUMBER n/NAME` is also acceptable.
@@ -87,78 +94,92 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Only one unique identifier can be used in a command. The unique identifier is used to identify if the contact is a staff or guest.
 
 </div>
 
+### Contacts in Pocket Hotel
+There are 2 types of contacts in _PH_, guests and staff. Guests represent guests of the hotel, and staff represent staff in the hotel. Guest are identified by their `PASSPORT_NUMBER`
+and Staff are identified by their `STAFF_ID`. These fields are their unique identifier, and no two contacts can have the same unique identifier.
+
+It is possible for guests and staff ot have the same unique identifier for example, STAFF_ID of a guest is 111 and PASSPORT_NUMBER for a guest is 111, as they represent 2 different entities.
+
+Guests and staff have different parameters, which can be found in the [parameter constraints table.](#parameter-constraints-summary)
 ### Adding guests/staff : `add`
 
-Adds a new guest or staff and their contact details into **PH**.
+Adds a new **guest** or **staff** and their contact details into **PH**. Each entity has their own unique fields.
 
 Format:
 <br>Guest: `add pn/<PASSPORT_NUMBER> n/<NAME> e/EMAIL r/<ROOM_NUMBER> [t/TAG]`
 <br>Staff: `add sid/<STAFF_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> [t/<TAG>]`
 
-Example 1:
+Example 1 (Add guest):
 <br>![AddDiagram](images/AddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
-* `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to **PH** and shows the new
-  contact list.
+* `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
+  list.
 
-Example 2:
+Example 2 (Add staff):
 <br>![StaffAddDiagram](images/StaffAddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
-* `add n/Jeremy sid/321 p/87655432` , adds a new staff, Jeremy to **PH** and shows the new
-  contact list.
+* `add n/Jeremy sid/321 p/87655432` , adds a new staff, Jeremy to **PH** and shows the new contact list.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Editing fields of guests/staff: `edit`
 
-Edit a guest or staff’s contact details by their passport number or staff id respectively. Only edits the fields that have been passed in as
-parameters.
+Edit a **guest** or **staff’s** contact details by their _unique identifier_. Only edits the fields that have been passed in as parameters. 
 
-Format: 
+Format:
 <br>Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 <br>Staff: `edit sid/<STAFF_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 
 * Existing values will be updated to the input values.
+* You can edit more than one field at a time (See example below).
+* Note that when changing a guest of staff unique identifier, it is important that there is no pre-existing staff or 
+guest with that unique identifer already.
 
-Examples:
+Example 1 (Edit guest):
 
-* `edit pn/X12345678A p/99999999` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the phone number field with the new phone
-  number provided.
-* `edit pn/X98765432B r/123` locates the guest Jeremy, by his passport number X98765432B and overwrites the room number field with the new room number
-  provided.
+* `edit pn/X12345678A r/123` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the
+   room number field with the new room number provided.
+
+Example 2 (Edit staff):
+
+* `edit sid/123 p/99999999 e/j@mailer.com` locates the staff Jeremy, by his staff ID, 123 and overwrites the phone number
+   field with the new phone number provided, and the email field with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting guests/staff: `delete`
 
-Deletes an existing guest or staff using the passport number or staff ID respectively.
+Deletes an existing **guest** or **staff** using their _unique identifier_.
 
 Format:
 <br>Guest: `delete pn/<PASSPORT_NUMBER>`
 <br>Staff: `delete sid/<STAFF_ID>`
 
-
 Example 1 (Delete guest):
 <br>![GuestDeleteDiagram](images/GuestDeleteDiagram.png)
 
-* `delete pn/XNOO19390 (PASSPORT_NUMBER)`, The guest, Jonny Jonny, who has passport number XNOO19390, is deleted from **PH**.
+* `delete pn/XNOO19390`, The guest, Jonny Jonny who has passport number XNOO19390, is deleted from **
+  PH**.
 
 Example 2 (Delete staff):
 <br>![StaffDeleteDiagram](images/StaffDeleteDiagram.png)
+
 * `delete sid/321`, The staff, Thomas The Train, who has the staff ID 321, is deleted from **PH**.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### List all guests/staff: `list`
 
-Shows a list of all people (staff and guests) found in **PH**.
+Shows a list of all people (**staff** and **guests**) found in **PH**.
 
-* Contacts are not arranged in a particular order e.g staff contacts followed by guest contacts
+* Contacts are not arranged in any particular order e.g staff contacts followed by guest contacts
+* After a filter or view, this command may come in handy when you wish to view back the whole list.
 
 Format: `list`
 
@@ -166,16 +187,17 @@ Format: `list`
 
 ### Viewing a particular guest/guest: `view`
 
-Views the staff or guest by their `STAFF_ID` or `PASSPORT_NUMBER`. All the details associated with the 
-staff/guest will be shown in the **GUI**.
+Views the **staff** or **guest** by their _unique identifier_. All the details associated with 
+the staff/guest will be shown in the **GUI**.
 
 Format:
 <br>Guest: `view pn/<PASSPORT_NUMBER>`
 <br>Staff: `view sid/<STAFF_ID>`
 
-Example:
-
+Example 1 (View Guest):
 * `view pn/X12345678A` shows the details of the guest associated with the given passport number.
+
+Example 2 (View Staff):
 * `view sid/123` shows the details of the staff associated with the given staff ID.
 
 [Back to Table of Contents](#table-of-contents)
@@ -234,11 +256,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | Guest: `add pn/<PASSPORT_NUMBER> n/<NAME> e/EMAIL r/<ROOM_NUMBER> [t/TAG]`<br>Staff: `add sid/<STAFF_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> [t/<TAG>]`<br>e.g.,<br>`add pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101`<br>`add sid/321 n/Jeremy e/jeremy@email.com p/87655432 a/Downing Street`
-**Edit** | Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Staff:`edit sid/<STAFF_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>e.g.<br>`edit pn/X12345678A p/99999999`<br>`edit sid/S12345678A p/99999999`
-**Delete** | Guest: `delete pn/<PASSPORT_NUMBER>`<br>Staff: `delete sid/<STAFF_ID>`<br>e.g.,<br>`delete pn/XNOO19390`<br>`delete sid/321`
+**Add** | Guest: `add pn/<PASSPORT_NUMBER> n/<NAME> e/EMAIL r/<ROOM_NUMBER> [t/TAG]`<br>Staff: `add sid/<STAFF_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> [t/<TAG>]`<br> Examples:<br>`add pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101` <br>`add sid/321 n/Jeremy e/jeremy@email.com p/87655432 a/Downing Street`
+**Edit** | Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Staff:`edit sid/<STAFF_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br> Examples:<br>`edit pn/X12345678A p/99999999`<br>`edit sid/S12345678A p/99999999`
+**Delete** | Guest: `delete pn/<PASSPORT_NUMBER>`<br>Staff: `delete sid/<STAFF_ID>`<br> Examples:<br>`delete pn/XNOO19390`<br>`delete sid/321`
 **List** | `list`
-**View** | Guest: `view pn/<PASSPORT_NUMBER>`<br>Staff: `view sid/<STAFF_ID>`<br>e.g.,<br>`view pn/X12345678A`<br>`view sid/123`
+**View** | Guest: `view pn/<PASSPORT_NUMBER>`<br>Staff: `view sid/<STAFF_ID>`<br> Examples:<br>`view pn/X12345678A`<br>`view sid/123`
 **Clear** | `clear`
 **Help** | `Help`
 **Exit** | `exit`
@@ -251,19 +273,20 @@ Action | Format, Examples
 
 Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
-**PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed<br> e.g., `pn/X12345678A`
-**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters. <br> e.g., `n/Bing Cheng`
-**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used. e.g., `e/BingCheng@email.com`
-**ROOM_NUMBER** | `r/` | Blank inputs are not allowed, only alphanumeric characters allowed e.g., `r/500A`
-**TAG** | `t/` | Optional field.
+**PASSPORT_NUMBER** | `pn/` | *Unique Identifier*<br>Blank inputs are not allowed<br>Example: `pn/X12345678A`
+**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters.<br> Example: `n/Bing Cheng`
+**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used.<br>Example: `e/BingCheng@email.com`
+**ROOM_NUMBER** | `r/` | Blank inputs are not allowed, only numbers greater than 0 are valid.<br>Example: `r/500`
+**TAG** | `t/` | Optional field.<br>Example: `t/Vaccinated`
 
 ## **Staff Parameter Constraints Summary**
+
 Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
-**STAFF_ID** | `sid/` |  Blank inputs are not allowed, not allowed to be used with `pn/` e.g., `sid/2131`
-**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters. <br> e.g., `n/Bing Cheng`
-**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used. e.g., `e/BingCheng@email.com`
-**PHONE_NUMBER** | `p/` | Local phone numbers are 8 digits long, and should start with 8 or 9. <br> e.g., `p/99999999`
+**STAFF_ID** | `sid/` |  *Unique Identifier*<br>Blank inputs are not allowed, not allowed to be used with `pn/`<br>Example: `sid/2131`
+**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters.<br>Example: `n/Bing Cheng`
+**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used.<br>Example: `e/BingCheng@email.com`
+**PHONE_NUMBER** | `p/` | Local phone numbers are 8 digits long, and should start with 8 or 9. <br>Example: `p/99999999`
 **ADDRESS** | `a/` | Blank inputs are not allowed.
 **TAG** | `t/` | Optional field.
 
@@ -278,6 +301,7 @@ Parameter | Prefix | Constraints, Examples
 * **GUI**: Graphical user interface
 * **Guest**: A guest at the hotel
 * **Staff**: An employee of the hotel
+* **Unique Identifier**: An attribute that uniquely identifies a contact in the address book and the type of fields it has i.e if a contact is a staff or guest
 
 [Back to Table of Contents](#table-of-contents)
 

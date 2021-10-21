@@ -9,7 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.PASSPORT_NUMBER_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ALICE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
 import static seedu.address.testutil.TypicalPersons.ALICE_GUEST;
+import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_UNUSED;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -59,13 +61,15 @@ public class LogicManagerTest {
 
     @Test
     public void execute_staffIdCommandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete sid/1";
+        // checks if deleting an unused staff id is possible
+        String deleteCommand = "delete sid/" + STAFF_ID_UNUSED.toString();
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
     }
 
     @Test
     public void execute_passportNumberCommandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete pn/1";
+        // checks if deleting an unused passport number is possible
+        String deleteCommand = "delete pn/" + PASSPORT_NUMBER_UNUSED.toString();
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
     }
 

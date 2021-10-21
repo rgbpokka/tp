@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_STAFF_ID;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STAFF_ID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ELLE;
@@ -142,11 +142,11 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_ELLE + PHONE_DESC_ELLE + EMAIL_DESC_ELLE + ADDRESS_DESC_ELLE
-                + INVALID_TAG_DESC + VALID_TAG_CHEF + STAFF_ID_DESC_ELLE, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + TAG_DESC_CHEF + STAFF_ID_DESC_ELLE, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid staff id
         assertParseFailure(parser, NAME_DESC_ELLE + PHONE_DESC_ELLE + EMAIL_DESC_ELLE + ADDRESS_DESC_ELLE
-                + TAG_DESC_SENIOR_STAFF + VALID_TAG_CHEF + INVALID_STAFF_ID, StaffId.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF + INVALID_STAFF_ID_DESC, StaffId.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_ELLE + EMAIL_DESC_ELLE + INVALID_ADDRESS_DESC
