@@ -11,6 +11,8 @@ import seedu.address.model.person.StaffId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
+import java.util.Set;
+
 public class StaffBuilder extends PersonBuilder {
 
     public static final Address DEFAULT_ADDRESS = new Address("123, Jurong West Ave 6, #08-111");
@@ -54,7 +56,9 @@ public class StaffBuilder extends PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Staff} that we are building.
      */
     public StaffBuilder withTags(String... tags) {
-        setTags(SampleDataUtil.getTagSet(tags));
+        Set<Tag> staffTag = SampleDataUtil.getTagSet(tags);
+        staffTag.add(new Tag("Staff"));
+        setTags(staffTag);
         return this;
     }
 

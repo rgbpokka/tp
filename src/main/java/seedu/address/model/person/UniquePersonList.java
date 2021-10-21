@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -118,7 +119,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return Objects.hash(internalList, internalUnmodifiableList);
     }
 
     /**
