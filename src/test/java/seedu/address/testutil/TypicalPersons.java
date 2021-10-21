@@ -1,5 +1,45 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_GEORGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_CARL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GEORGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CARL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_GEORGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_CARL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_GEORGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_CARL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_GEORGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CARL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GEORGE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -11,8 +51,6 @@ import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -77,8 +115,6 @@ public class TypicalPersons {
             .withPhone(VALID_PHONE_GEORGE)
             .withStaffId(VALID_STAFF_ID_GEORGE)
             .build();
-
-
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
