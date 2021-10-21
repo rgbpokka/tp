@@ -122,7 +122,7 @@ public class ModelManager implements Model {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
-    
+
     private void addTagAssociatedToPerson(Person toAdd) {
         Set<Tag> tags = toAdd.getTags();
         Set<Tag> newTags = new HashSet<>();
@@ -149,7 +149,7 @@ public class ModelManager implements Model {
         setTagsAssociatedToPerson(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
     }
-    
+
     private void setTagsAssociatedToPerson(Person personToEdit, Person editedPerson) {
         Set<Tag> tags = editedPerson.getTags();
         Set<Tag> newTags = new HashSet<>();

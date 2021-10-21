@@ -58,5 +58,5 @@ public class ViewCommandParserTest {
         // whitespaces between keywords
         assertParseSuccess(parser, " " + PREFIX_STAFF_ID + "     " + VALID_STAFF_ID_DANIEL, expectedViewCommand);
     }
-    
+
 }

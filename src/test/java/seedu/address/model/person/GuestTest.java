@@ -1,18 +1,19 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.GuestBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENSON;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SENIOR_STAFF;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE_GUEST;
 import static seedu.address.testutil.TypicalPersons.BENSON_GUEST;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.GuestBuilder;
 
 public class GuestTest {
 
@@ -83,7 +84,7 @@ public class GuestTest {
         // different tags -> returns false
         editedFiona = new GuestBuilder(ALICE_GUEST).withTags(VALID_TAG_SENIOR_STAFF).build();
         assertFalse(ALICE_GUEST.equals(editedFiona));
-    } 
-    
-    
+    }
+
+
 }

@@ -20,6 +20,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
@@ -27,7 +28,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                String.format(MESSAGE_MISSING_ARGUMENTS, ViewCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MISSING_ARGUMENTS, ViewCommand.MESSAGE_USAGE));
         }
 
         String[] splitArguments = trimmedArgs.split(String.format("%s|%s", PREFIX_STAFF_ID, PREFIX_PASSPORT_NUMBER));
@@ -50,7 +51,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
         return new ViewCommand(new IdentifierContainsKeywordsPredicate(Arrays.asList(trimmedArgs)));
     }
-    
+
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
@@ -58,5 +59,5 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-    
+
 }

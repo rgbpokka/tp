@@ -5,7 +5,7 @@ title: Developer Guide
 
 ## **Table of Contents**
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -415,7 +415,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. **PH** shows message indicating no such guest exists in the list.
 
       Use case ends.
-  
+
 #### UC4: Searching for a staff
 
 Same as UC3 except that guest is replaced with staff.

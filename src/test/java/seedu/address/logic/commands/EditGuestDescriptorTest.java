@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BENSON;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 
 import org.junit.jupiter.api.Test;
 
