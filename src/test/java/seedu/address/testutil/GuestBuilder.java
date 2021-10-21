@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_DEFAULT;
 
+import java.util.Set;
+
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Name;
@@ -49,7 +51,9 @@ public class GuestBuilder extends PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Guest} that we are building.
      */
     public GuestBuilder withTags(String... tags) {
-        setTags(SampleDataUtil.getTagSet(tags));
+        Set<Tag> guestTag = SampleDataUtil.getTagSet(tags);
+        guestTag.add(new Tag("Guest"));
+        setTags(guestTag);
         return this;
     }
 

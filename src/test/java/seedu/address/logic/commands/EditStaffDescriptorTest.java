@@ -2,14 +2,14 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_CHARLIE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,46 +21,46 @@ public class EditStaffDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditStaffDescriptor descriptorWithSameValues = new EditStaffDescriptor(DESC_CHARLIE);
-        assertTrue(DESC_CHARLIE.equals(descriptorWithSameValues));
+        EditStaffDescriptor descriptorWithSameValues = new EditStaffDescriptor(DESC_ELLE);
+        assertTrue(DESC_ELLE.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_CHARLIE.equals(DESC_CHARLIE));
+        assertTrue(DESC_ELLE.equals(DESC_ELLE));
 
         // null -> returns false
-        assertFalse(DESC_CHARLIE.equals(null));
+        assertFalse(DESC_ELLE.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_CHARLIE.equals(5));
+        assertFalse(DESC_ELLE.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_CHARLIE.equals(DESC_DANIEL));
+        assertFalse(DESC_ELLE.equals(DESC_DANIEL));
 
         // different name -> returns false
-        EditStaffDescriptor editedCharlie = new EditStaffDescriptorBuilder(DESC_CHARLIE)
+        EditStaffDescriptor editedElle = new EditStaffDescriptorBuilder(DESC_ELLE)
                 .withName(VALID_NAME_DANIEL)
                 .build();
-        assertFalse(DESC_CHARLIE.equals(editedCharlie));
+        assertFalse(DESC_ELLE.equals(editedElle));
 
         // different email -> returns false
-        editedCharlie = new EditStaffDescriptorBuilder(DESC_CHARLIE).withEmail(VALID_EMAIL_DANIEL).build();
-        assertFalse(DESC_CHARLIE.equals(editedCharlie));
+        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withEmail(VALID_EMAIL_DANIEL).build();
+        assertFalse(DESC_ELLE.equals(editedElle));
 
         // different tags -> returns false
-        editedCharlie = new EditStaffDescriptorBuilder(DESC_CHARLIE).withTags(VALID_TAG_FRIEND).build();
-        assertFalse(DESC_CHARLIE.equals(editedCharlie));
+        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withTags(VALID_TAG_DANIEL).build();
+        assertFalse(DESC_ELLE.equals(editedElle));
 
         // different address -> returns false
-        editedCharlie = new EditStaffDescriptorBuilder(DESC_CHARLIE).withAddress(VALID_ADDRESS_DANIEL).build();
-        assertFalse(DESC_CHARLIE.equals(editedCharlie));
+        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withAddress(VALID_ADDRESS_DANIEL).build();
+        assertFalse(DESC_ELLE.equals(editedElle));
 
         // different phone -> returns false
-        editedCharlie = new EditStaffDescriptorBuilder(DESC_CHARLIE).withPhone(VALID_PHONE_DANIEL).build();
-        assertFalse(DESC_CHARLIE.equals(editedCharlie));
+        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withPhone(VALID_PHONE_DANIEL).build();
+        assertFalse(DESC_ELLE.equals(editedElle));
 
         // different staff id -> returns false
-        editedCharlie = new EditStaffDescriptorBuilder(DESC_CHARLIE).withStaffId(VALID_STAFF_ID_DANIEL).build();
-        assertFalse(DESC_CHARLIE.equals(editedCharlie));
+        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withStaffId(VALID_STAFF_ID_DANIEL).build();
+        assertFalse(DESC_ELLE.equals(editedElle));
     }
 }
 

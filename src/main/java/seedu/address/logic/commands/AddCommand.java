@@ -10,13 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * Adds a person to the address book.
@@ -75,34 +71,8 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        modifyTags(model);
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    /**
-     * Modifies the tag list accordingly.
-     *
-     * @param model The model containing the tag list.
-     */
-    public void modifyTags(Model model) {
-        Set<Tag> tags = toAdd.getTags();
-        Set<Tag> newTags = new HashSet<>();
-
-        for (Tag tag : tags) {
-            if (!model.hasTag(tag)) {
-                model.addTag(tag);
-                newTags.add(tag);
-            } else {
-                newTags.add(model.getTag(tag));
-            }
-        }
-
-        toAdd.setTags(newTags);
-
-        for (Tag tag : newTags) {
-            tag.addPerson(toAdd);
-        }
     }
 
     @Override

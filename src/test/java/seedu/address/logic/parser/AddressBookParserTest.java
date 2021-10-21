@@ -12,9 +12,7 @@ import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRS
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_DEFAULT;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -104,11 +102,12 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+    public void parseCommand_view() throws Exception {
         ViewCommand command = (ViewCommand) parser.parseCommand(
-                ViewCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new ViewCommand(new IdentifierContainsKeywordsPredicate(keywords)), command);
+                ViewCommand.COMMAND_WORD + " " + PREFIX_STAFF_ID + STAFF_ID_FIRST_PERSON.toString());
+        assertEquals(
+                new ViewCommand(new IdentifierContainsKeywordsPredicate(List.of(STAFF_ID_FIRST_PERSON.toString()))),
+                command);
     }
 
     @Test

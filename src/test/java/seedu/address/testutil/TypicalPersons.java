@@ -1,32 +1,56 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_GEORGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_CARL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GEORGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CARL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_GEORGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER_CARL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_GEORGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_CARL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_GEORGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BENSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CARL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_THIRD_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_SECOND_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_THIRD_PERSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GEORGE;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FOURTH_PERSON_NOT_ADDED;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -41,18 +65,26 @@ public class TypicalPersons {
             .build();
 
     public static final Guest BENSON_GUEST = new GuestBuilder()
-            .withName("Benson Meier")
-            .withEmail("johnd@example.com")
-            .withTags("NORMALROOM", "OUTSTANDINGPAYMENT")
-            .withRoomNumber("20201")
-            .withPassportNumber(PASSPORT_NUMBER_SECOND_PERSON.toString())
+            .withName(VALID_NAME_BENSON)
+            .withEmail(VALID_EMAIL_BENSON)
+            .withTags(VALID_TAG_BENSON)
+            .withRoomNumber(VALID_ROOM_NUMBER_BENSON)
+            .withPassportNumber(VALID_PASSPORT_NUMBER_BENSON)
             .build();
 
     public static final Guest CARL_GUEST = new GuestBuilder()
-            .withName("Carl Kurz")
-            .withEmail("heinz@example.com")
-            .withRoomNumber("12321")
-            .withPassportNumber(PASSPORT_NUMBER_THIRD_PERSON.toString())
+            .withName(VALID_NAME_CARL)
+            .withEmail(VALID_EMAIL_CARL)
+            .withTags(VALID_TAG_CARL)
+            .withRoomNumber(VALID_ROOM_NUMBER_CARL)
+            .withPassportNumber(VALID_PASSPORT_NUMBER_CARL)
+            .build();
+
+    public static final Guest JEONGYEON_GUEST = new GuestBuilder()
+            .withName("Jeong Yeon")
+            .withEmail("jy@example.com")
+            .withRoomNumber("22233")
+            .withPassportNumber(PASSPORT_NUMBER_FOURTH_PERSON_NOT_ADDED.toString())
             .build();
 
     public static final Staff DANIEL_STAFF = new StaffBuilder()
@@ -65,30 +97,31 @@ public class TypicalPersons {
             .build();
 
     public static final Staff ELLE_STAFF = new StaffBuilder()
-            .withName("Elle Meyer")
-            .withEmail("werner@example.com")
-            .withTags("MANAGER")
-            .withAddress("michegan ave")
-            .withPhone("9482224")
-            .withStaffId(STAFF_ID_SECOND_PERSON.toString())
+            .withName(VALID_NAME_ELLE)
+            .withEmail(VALID_EMAIL_ELLE)
+            .withTags(VALID_TAG_ELLE)
+            .withAddress(VALID_ADDRESS_ELLE)
+            .withPhone(VALID_PHONE_ELLE)
+            .withStaffId(VALID_STAFF_ID_ELLE)
             .build();
 
     public static final Staff FIONA_STAFF = new StaffBuilder()
-            .withName("Fiona Kunz")
-            .withEmail("lydia@example.com")
-            .withAddress("little tokyo")
-            .withPhone("9482427")
-            .withStaffId(STAFF_ID_THIRD_PERSON.toString())
+            .withName(VALID_NAME_FIONA)
+            .withEmail(VALID_EMAIL_FIONA)
+            .withTags(VALID_TAG_FIONA)
+            .withAddress(VALID_ADDRESS_FIONA)
+            .withPhone(VALID_PHONE_FIONA)
+            .withStaffId(VALID_STAFF_ID_FIONA)
             .build();
 
     public static final Staff GEORGE_STAFF = new StaffBuilder()
-            .withName("George Best")
-            .withEmail("anna@example.com")
-            .withAddress("4th street")
-            .withPhone("9482442")
-            .withStaffId("101")
+            .withName(VALID_NAME_GEORGE)
+            .withEmail(VALID_EMAIL_GEORGE)
+            .withTags(VALID_TAG_GEORGE)
+            .withAddress(VALID_ADDRESS_GEORGE)
+            .withPhone(VALID_PHONE_GEORGE)
+            .withStaffId(VALID_STAFF_ID_GEORGE)
             .build();
-
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -99,19 +132,11 @@ public class TypicalPersons {
      * Returns an {@code AddressBook} with all the typical persons.
      */
     public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        Set<Tag> tagSet = new HashSet<>();
+        ModelManager modelManager = new ModelManager(new AddressBook(), new UserPrefs());
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-            for (Tag tag : person.getTags()) {
-                tagSet.add(tag);
-            }
+            modelManager.addPerson(person);
         }
-
-        for (Tag typicalTag : tagSet) {
-            ab.addTag(typicalTag);
-        }
-        return ab;
+        return (AddressBook) modelManager.getAddressBook();
     }
 
     public static List<Person> getTypicalPersons() {

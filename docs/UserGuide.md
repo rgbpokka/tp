@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page
+title: User Guide
 ---
 
 <h3><i>Welcome to the Pocket Hotel User Guide!</i></h3>
@@ -19,7 +20,7 @@ fully to integrate it within your hotel management system.
 
 ## **Table of Contents**
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -46,16 +47,16 @@ The **GUI** similar to the below should appear in a few seconds. Note how the ap
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe pn/X12345678F r/123 e/johnd@example.com a/John street, block 123, #01-01` : Adds a guest
+    * **`add`**`n/John Doe pn/X12345678F r/123 e/johnd@example.com t/Senior Citizen` : Adds a guest
       named `John Doe` to the Address Book.
 
     * **`delete`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
 
-    * **`clear`** : Clears all contacts. 
+    * **`clear`** : Clears all contacts.
 
     * **`exit`** : Exits the app.
-    
-You may refer to the [Features](#features) below for details of each command and to get familiarized with the syntax of 
+
+You may refer to the [features](#features) below for details of each command and to get familiarized with the syntax of
 the commands.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -68,7 +69,7 @@ correctly.
 
 A quick overview of all the commands can be found in the [command summary.](#command-summary)
 
-Certain commands require parameters, which may have certain constraints. A quick overview of all the underlying
+Certain commands require parameters, which may have constraints. A quick overview of all the underlying
 constraints can be found in the [parameter constraints.](#parameter-constraints-summary)
 
 <div markdown="block" class="alert alert-info">
@@ -81,7 +82,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 * Parameter prefixes such as `n/` and `pn/` are special keywords that indicate a start of a parameter.
 
 * Fields with square brackets are optional.<br>
-  e.g `n/NAME [p/PHONE_NUMBER]` can be used as `n/Bing Cheng p/99999999` or as `n/Bing Cheng`.
+  e.g `n/NAME [t/TAG]` can be used as `n/Bing Cheng t/VIP` or as `n/Bing Cheng`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME pn/PASSPORT_NUMBER`, `pn/PASSPORT_NUMBER n/NAME` is also acceptable.
@@ -93,9 +94,17 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Only one unique identifier can be used in a command. The unique identifier is used to identify if the contact is a staff or guest.
 
 </div>
 
+### Contacts in Pocket Hotel
+There are 2 types of contacts in _PH_, guests and staff. Guests represent guests of the hotel, and staff represent staff in the hotel. Guest are identified by their `PASSPORT_NUMBER`
+and Staff are identified by their `STAFF_ID`. These fields are their unique identifier, and no two contacts can have the same unique identifier.
+
+It is possible for guests and staff ot have the same unique identifier for example, STAFF_ID of a guest is 111 and PASSPORT_NUMBER for a guest is 111, as they represent 2 different entities.
+
+Guests and staff have different parameters, which can be found in the [parameter constraints table.](#parameter-constraints-summary)
 ### Adding guests/staff : `add`
 
 Adds a new **guest** or **staff** and their contact details into **PH**. Each entity has their own unique fields.
@@ -121,15 +130,15 @@ Example 2 (Add staff):
 
 ### Editing fields of guests/staff: `edit`
 
-Edit a **guest** or **staff’s** contact details by their unique identifier (Guest are identified by their `PASSPORT_NUMBER` 
-and Staff are identified by their `STAFF_ID`). Only edits the fields that have been passed in as parameters. 
+Edit a **guest** or **staff’s** contact details by their _unique identifier_. Only edits the fields that have been passed in as parameters.
 
 Format:
 <br>Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 <br>Staff: `edit sid/<STAFF_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 
 * Existing values will be updated to the input values.
-* Note that when changing a guest of staff unique identifier, it is important that there is no pre-existing staff or 
+* You can edit more than one field at a time (See example below).
+* Note that when changing a guest of staff unique identifier, it is important that there is no pre-existing staff or
 guest with that unique identifer already.
 
 Example 1 (Edit guest):
@@ -139,14 +148,14 @@ Example 1 (Edit guest):
 
 Example 2 (Edit staff):
 
-* `edit sid/123 p/99999999` locates the staff Jeremy, by his staff ID, 123 and overwrites the phone number
-   field with the new phone number provided.
+* `edit sid/123 p/99999999 e/j@mailer.com` locates the staff Jeremy, by his staff ID, 123 and overwrites the phone number
+   field with the new phone number provided, and the email field with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting guests/staff: `delete`
 
-Deletes an existing **guest** or **staff** using their unique identifier (`PASSPORT_NUMBER` and `STAFF_ID` respectively).
+Deletes an existing **guest** or **staff** using their _unique identifier_.
 
 Format:
 <br>Guest: `delete pn/<PASSPORT_NUMBER>`
@@ -155,7 +164,7 @@ Format:
 Example 1 (Delete guest):
 <br>![GuestDeleteDiagram](images/GuestDeleteDiagram.png)
 
-* `delete pn/XNOO19390 (PASSPORT_NUMBER)`, The guest, Jonny Jonny who has passport number XNOO19390, is deleted from **
+* `delete pn/XNOO19390`, The guest, Jonny Jonny who has passport number XNOO19390, is deleted from **
   PH**.
 
 Example 2 (Delete staff):
@@ -178,7 +187,7 @@ Format: `list`
 
 ### Viewing a particular guest/guest: `view`
 
-Views the **staff** or **guest** by their unique identifier, `STAFF_ID` or `PASSPORT_NUMBER`. All the details associated with 
+Views the **staff** or **guest** by their _unique identifier_. All the details associated with
 the staff/guest will be shown in the **GUI**.
 
 Format:
@@ -264,20 +273,20 @@ Action | Format, Examples
 
 Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
-**PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed<br> Example: `pn/X12345678A`
-**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters. <br> Example: `n/Bing Cheng`
-**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used. Example: `e/BingCheng@email.com`
-**ROOM_NUMBER** | `r/` | Blank inputs are not allowed, only numbers greater than 0 are valid. Example: `r/500`
-**TAG** | `t/` | Optional field. Example: `t/Vaccinated`
+**PASSPORT_NUMBER** | `pn/` | *Unique Identifier*<br>Blank inputs are not allowed<br>Example: `pn/X12345678A`
+**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters.<br> Example: `n/Bing Cheng`
+**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used.<br>Example: `e/BingCheng@email.com`
+**ROOM_NUMBER** | `r/` | Blank inputs are not allowed, only numbers greater than 0 are valid.<br>Example: `r/500`
+**TAG** | `t/` | Optional field.<br>Example: `t/Vaccinated`
 
 ## **Staff Parameter Constraints Summary**
 
 Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
-**STAFF_ID** | `sid/` |  Blank inputs are not allowed, not allowed to be used with `pn/` e.g., `sid/2131`
-**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters. <br> e.g., `n/Bing Cheng`
-**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used. e.g., `e/BingCheng@email.com`
-**PHONE_NUMBER** | `p/` | Local phone numbers are 8 digits long, and should start with 8 or 9. <br> e.g., `p/99999999`
+**STAFF_ID** | `sid/` |  *Unique Identifier*<br>Blank inputs are not allowed, not allowed to be used with `pn/`<br>Example: `sid/2131`
+**NAME** | `n/` | Blank inputs are not allowed, and should only contain alphabetical characters.<br>Example: `n/Bing Cheng`
+**EMAIL** | `e/` | Blanks inputs are not allowed, a valid email address should be used.<br>Example: `e/BingCheng@email.com`
+**PHONE_NUMBER** | `p/` | Local phone numbers are 8 digits long, and should start with 8 or 9. <br>Example: `p/99999999`
 **ADDRESS** | `a/` | Blank inputs are not allowed.
 **TAG** | `t/` | Optional field.
 
@@ -292,6 +301,7 @@ Parameter | Prefix | Constraints, Examples
 * **GUI**: Graphical user interface
 * **Guest**: A guest at the hotel
 * **Staff**: An employee of the hotel
+* **Unique Identifier**: An attribute that uniquely identifies a contact in the address book and the type of fields it has i.e if a contact is a staff or guest
 
 [Back to Table of Contents](#table-of-contents)
 

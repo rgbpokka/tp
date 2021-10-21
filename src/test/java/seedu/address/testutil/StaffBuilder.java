@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_DEFAULT;
 
+import java.util.Set;
+
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -54,7 +56,9 @@ public class StaffBuilder extends PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Staff} that we are building.
      */
     public StaffBuilder withTags(String... tags) {
-        setTags(SampleDataUtil.getTagSet(tags));
+        Set<Tag> staffTag = SampleDataUtil.getTagSet(tags);
+        staffTag.add(new Tag("Staff"));
+        setTags(staffTag);
         return this;
     }
 

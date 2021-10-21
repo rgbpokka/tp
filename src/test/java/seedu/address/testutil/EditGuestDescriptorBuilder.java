@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditGuestDescriptorBuilder {
 
-    private EditGuestDescriptor descriptor;
+    private final EditGuestDescriptor descriptor;
 
     public EditGuestDescriptorBuilder() {
         descriptor = new EditGuestDescriptor();
