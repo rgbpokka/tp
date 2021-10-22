@@ -1,20 +1,21 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.GuestBuilder;
-import seedu.address.testutil.StaffBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ELLE;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.GuestBuilder;
+import seedu.address.testutil.StaffBuilder;
 
 public class TagContainsKeywordsPredicateTest {
 
@@ -80,8 +81,8 @@ public class TagContainsKeywordsPredicateTest {
 
         predicate = new TagContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(
-                new GuestBuilder().withTags(VALID_TAG_ALICE).build())); 
-        
+                new GuestBuilder().withTags(VALID_TAG_ALICE).build()));
+
         // Non-matching keyword
         predicate =
                 new TagContainsKeywordsPredicate(Arrays.asList(new Tag(VALID_TAG_DANIEL)));

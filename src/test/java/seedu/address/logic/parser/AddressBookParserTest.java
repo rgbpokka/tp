@@ -12,9 +12,7 @@ import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRS
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_DEFAULT;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -127,7 +125,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+            -> parser.parseCommand(""));
     }
 
     @Test

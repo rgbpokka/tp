@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: User Guide
 ---
 
@@ -20,7 +20,7 @@ fully to integrate it within your hotel management system.
 
 ## **Table of Contents**
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -52,11 +52,11 @@ The **GUI** similar to the below should appear in a few seconds. Note how the ap
 
     * **`delete`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
 
-    * **`clear`** : Clears all contacts. 
+    * **`clear`** : Clears all contacts.
 
     * **`exit`** : Exits the app.
-    
-You may refer to the [features](#features) below for details of each command and to get familiarized with the syntax of 
+
+You may refer to the [features](#features) below for details of each command and to get familiarized with the syntax of
 the commands.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -130,7 +130,7 @@ Example 2 (Add staff):
 
 ### Editing fields of guests/staff: `edit`
 
-Edit a **guest** or **staff’s** contact details by their _unique identifier_. Only edits the fields that have been passed in as parameters. 
+Edit a **guest** or **staff’s** contact details by their _unique identifier_. Only edits the fields that have been passed in as parameters.
 
 Format:
 <br>Guest: `edit pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
@@ -138,7 +138,7 @@ Format:
 
 * Existing values will be updated to the input values.
 * You can edit more than one field at a time (See example below).
-* Note that when changing a guest of staff unique identifier, it is important that there is no pre-existing staff or 
+* Note that when changing a guest of staff unique identifier, it is important that there is no pre-existing staff or
 guest with that unique identifer already.
 
 Example 1 (Edit guest):
@@ -187,7 +187,7 @@ Format: `list`
 
 ### Viewing a particular guest/guest: `view`
 
-Views the **staff** or **guest** by their _unique identifier_. All the details associated with 
+Views the **staff** or **guest** by their _unique identifier_. All the details associated with
 the staff/guest will be shown in the **GUI**.
 
 Format:

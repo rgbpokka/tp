@@ -49,8 +49,8 @@ public class StaffTest {
 
         // SID has trailing spaces, all other attributes same -> returns false
         String idWithTrailingSpaces = VALID_STAFF_ID_DANIEL + "  ";
-        Person editedDANIEL = new StaffBuilder(DANIEL_STAFF).withStaffId(idWithTrailingSpaces).build();
-        assertFalse(DANIEL_STAFF.isSamePerson(editedDANIEL));
+        Person editedDaniel = new StaffBuilder(DANIEL_STAFF).withStaffId(idWithTrailingSpaces).build();
+        assertFalse(DANIEL_STAFF.isSamePerson(editedDaniel));
     }
 
     @Test

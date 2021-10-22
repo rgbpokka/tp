@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_DEFAULT;
 
+import java.util.Set;
+
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Name;
@@ -9,9 +11,6 @@ import seedu.address.model.person.PassportNumber;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class GuestBuilder extends PersonBuilder {
     public static final RoomNumber DEFAULT_ROOM_NUMBER = new RoomNumber("10101");
