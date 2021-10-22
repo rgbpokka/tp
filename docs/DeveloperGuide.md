@@ -364,6 +364,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 4. **PH** clears all the data.
 
+5. `data\addressbook.json` becomes empty
+
    Use case ends.
 
 **Extensions**
@@ -606,3 +608,7 @@ testers are expected to do more *exploratory* testing.
    i. Test case: go to `data\addressbook.json` and corrupt the file. On bootup of the program, there should be a
    notification in the command box saying
    "File corrupted! Restored a new file." and the program will delete and load a fresh new file.
+    
+    ii. Rename `data\addressbook.json` to something else like `data\addressbook.json` would cause the addressbook
+    to be not found and load the sample contacts into the addressbook.
+2. _{ more test cases …​ }_

@@ -38,6 +38,7 @@ class JsonAdaptedGuestTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+        assert(BENSON_GUEST != null);
         JsonAdaptedGuest person = new JsonAdaptedGuest(BENSON_GUEST);
         assertEquals(BENSON_GUEST, person.toModelType());
     }
