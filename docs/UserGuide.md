@@ -121,7 +121,7 @@ Example 1 (Add guest):
   list.
 
 Example 2 (Add staff):
-<br>![StaffAddDiagram](images/NewStaffAddDiagramm.png)
+<br>![StaffAddDiagram](images/NewStaffAddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
 * `add n/Jeremy sid/123 e/j@mail.com p/9999999 a/Blk 123 Jurong Town t/Chef` , adds a new staff, Jeremy to **PH** and shows the new contact list.
