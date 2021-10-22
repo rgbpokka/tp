@@ -25,12 +25,9 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.Guest;
-import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Staff;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.IdentifierContainsKeywordsPredicate;
 import seedu.address.testutil.EditGuestDescriptorBuilder;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 

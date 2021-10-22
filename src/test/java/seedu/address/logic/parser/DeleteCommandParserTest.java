@@ -10,7 +10,7 @@ import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.model.person.StaffId;
+import seedu.address.model.vendor.VendorId;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -37,14 +37,14 @@ public class DeleteCommandParserTest {
     public void parse_invalidPassportNumberArgs_throwsParseException() {
         assertParseFailure(parser, "delete pn/",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE,
-                        StaffId.MESSAGE_CONSTRAINTS));
+                        VendorId.MESSAGE_CONSTRAINTS));
     }
 
     @Test
     public void parse_invalidStaffIdArgs_throwsParseException() {
         assertParseFailure(parser, "delete sid/",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE,
-                        StaffId.MESSAGE_CONSTRAINTS));
+                        VendorId.MESSAGE_CONSTRAINTS));
     }
 
     @Test

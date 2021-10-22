@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,8 +11,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.guest.GuestManager;
+import seedu.address.model.guest.ReadOnlyGuestManager;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.vendor.Vendor;
+import seedu.address.model.guest.Guest;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.VendorManager;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,28 +25,30 @@ import seedu.address.model.tag.Tag;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final GuestManager guestManager;
+    private final VendorManager vendorManager;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Tag> filteredTags;
+    private final FilteredList<Guest> filteredGuests;
+    private final FilteredList<Vendor> filteredVendors;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given guestManager, vendorManager and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyGuestManager guestManager, ReadOnlyVendorManager vendorManager, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(guestManager, vendorManager, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Pocket Hotel: " + guestManager + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.guestManager = new GuestManager(guestManager);
+        this.vendorManager = new VendorManager(vendorManager);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredTags = new FilteredList<>(this.addressBook.getTagList());
+        filteredGuests = new FilteredList<>(this.guestManager.getGuestList());
+        filteredVendors = new FilteredList<>(this.vendorManager.getVendorList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new GuestManager(), new VendorManager(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,168 +76,116 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getGuestManagerFilePath() {
+        return userPrefs.getGuestManagerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setGuestManagerFilePath(Path guestManagerFilePath) {
+        requireNonNull(guestManagerFilePath);
+        userPrefs.setGuestManagerFilePath(guestManagerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Guest Manager ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setGuestManager(ReadOnlyGuestManager guestManager) {
+        this.guestManager.resetData(guestManager);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyGuestManager getGuestManager() {
+        return guestManager;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        deleteTagAssociatedToPerson(target);
-        addressBook.removePerson(target);
-    }
-
-    private void deleteTagAssociatedToPerson(Person target) {
-        Set<Tag> tags = target.getTags();
-
-        for (Tag tag : tags) {
-            tag.removePerson(target);
-            if (tag.noTaggedPerson()) {
-                this.deleteTag(tag);
-            }
-        }
+    public boolean hasGuest(Guest guest) {
+        requireNonNull(guest);
+        return guestManager.hasGuest(guest);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addTagAssociatedToPerson(person);
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    private void addTagAssociatedToPerson(Person toAdd) {
-        Set<Tag> tags = toAdd.getTags();
-        Set<Tag> newTags = new HashSet<>();
-
-        for (Tag tag : tags) {
-            if (!addressBook.hasTag(tag)) {
-                addressBook.addTag(tag);
-                newTags.add(tag);
-            } else {
-                newTags.add(addressBook.getTag(tag));
-            }
-        }
-
-        toAdd.setTags(newTags);
-
-        for (Tag tag : newTags) {
-            tag.addPerson(toAdd);
-        }
+    public void deleteGuest(Guest target) {
+        guestManager.removeGuest(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        setTagsAssociatedToPerson(target, editedPerson);
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    private void setTagsAssociatedToPerson(Person personToEdit, Person editedPerson) {
-        Set<Tag> tags = editedPerson.getTags();
-        Set<Tag> newTags = new HashSet<>();
-
-        for (Tag tag : tags) {
-            if (!addressBook.hasTag(tag)) {
-                addressBook.addTag(tag);
-                newTags.add(tag);
-            } else {
-                newTags.add(addressBook.getTag(tag));
-            }
-        }
-
-        for (Tag tag : newTags) {
-            tag.addPerson(editedPerson);
-        }
-
-        editedPerson.setTags(newTags);
-
-        Set<Tag> deletedTags = personToEdit.getTags();
-
-        for (Tag tag : deletedTags) {
-            tag.removePerson(personToEdit);
-            if (tag.noTaggedPerson()) {
-                addressBook.removeTag(tag);
-            }
-        }
+    public void addGuest(Guest guest) {
+        guestManager.addGuest(guest);
+        updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
     }
 
     @Override
-    public boolean hasTag(Tag tag) {
-        requireNonNull(tag);
-        return addressBook.hasTag(tag);
+    public void setGuest(Guest target, Guest editedGuest) {
+        requireAllNonNull(target, editedGuest);
+        guestManager.setGuest(target, editedGuest);
+    }
+
+    //=========== Vendor Manager ================================================================================
+    @Override
+    public boolean hasVendor(Vendor vendor) {
+        requireNonNull(vendor);
+        return vendorManager.hasVendor(vendor);
     }
 
     @Override
-    public void deleteTag(Tag target) {
-        addressBook.removeTag(target);
+    public void deleteVendor(Vendor target) {
+        vendorManager.removeVendor(target);
     }
 
     @Override
-    public void addTag(Tag tag) {
-        addressBook.addTag(tag);
-        updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
+    public void addVendor(Vendor vendor) {
+        vendorManager.addVendor(vendor);
+        updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
     }
 
     @Override
-    public Tag getTag(Tag tag) {
-        return addressBook.getTag(tag);
+    public void setVendor(Vendor target, Vendor editedVendor) {
+        requireAllNonNull(target, editedVendor);
+        vendorManager.setVendor(target, editedVendor);
     }
 
-    @Override
-    public void setTag(Tag target, Tag editedTag) {
-        requireAllNonNull(target, editedTag);
-        addressBook.setTag(target, editedTag);
-    }
-
-    //=========== Filtered Person/Tag List Accessors =============================================================
+    //=========== Filtered Guest/Vendor List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Guest} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Guest> getFilteredGuestList() {
+        return filteredGuests;
     }
 
     @Override
-    public ObservableList<Tag> getFilteredTagList() {
-        return filteredTags;
+    public ObservableList<Vendor> getFilteredVendorList() {
+        return filteredVendors;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredGuestList(Predicate<Guest> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredGuests.setPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredTagList(Predicate<Tag> predicate) {
+    public void updateFilteredVendorList(Predicate<Vendor> predicate) {
         requireNonNull(predicate);
-        filteredTags.setPredicate(predicate);
+        filteredVendors.setPredicate(predicate);
+    }
+
+    @Override
+    public void setVendorManager(ReadOnlyVendorManager vendorManager) {
+        this.vendorManager.resetData(vendorManager);
+    }
+
+    @Override
+    public ReadOnlyVendorManager getVendorManager() {
+        return vendorManager;
+    }
+
+    @Override
+    public Path getVendorManagerFilePath() {
+        return userPrefs.getVendorManagerFilePath();
     }
 
     @Override
@@ -250,10 +203,11 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
 
-        return addressBook.equals(other.addressBook)
+        return guestManager.equals(other.guestManager)
+                && vendorManager.equals(other.vendorManager)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && filteredTags.equals(other.filteredTags);
+                && filteredGuests.equals(other.filteredGuests)
+                && filteredVendors.equals(other.filteredVendors);
     }
 
 }

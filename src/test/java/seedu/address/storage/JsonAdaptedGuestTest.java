@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.guest.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON_GUEST;
 
@@ -12,12 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PassportNumber;
-import seedu.address.model.person.RoomNumber;
-
-
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.RoomNumber;
+import seedu.address.storage.guest.JsonAdaptedGuest;
 
 
 class JsonAdaptedGuestTest {

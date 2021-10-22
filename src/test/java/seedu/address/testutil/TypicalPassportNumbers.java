@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.PassportNumber;
+import seedu.address.model.guest.PassportNumber;
 
 public class TypicalPassportNumbers {
     public static final PassportNumber PASSPORT_NUMBER_FIRST_PERSON = new PassportNumber("E0123122G");

@@ -7,9 +7,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.guest.ReadOnlyGuestManager;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.vendor.Vendor;
 
 /**
  * API of the Logic component
@@ -26,26 +27,38 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the GuestManager.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getGuestManager()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyGuestManager getGuestManager();
 
     /**
-     * Returns an unmodifiable view of the filtered list of persons
+     * Returns an unmodifiable view of the filtered list of guests 
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Guest> getFilteredGuestList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of tags
+     * Returns the VendorManager.
+     *
+     * @see seedu.address.model.Model#getVendorManager()
      */
-    ObservableList<Tag> getFilteredTagList();
+    ReadOnlyVendorManager getVendorManager();
+    
+    /**
+     * Returns an unmodifiable view of the filtered list of vendors 
+     */
+    ObservableList<Vendor> getFilteredVendorList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' guest manager file path.
      */
-    Path getAddressBookFilePath();
+    Path getGuestManagerFilePath();
+
+    /**
+     * Returns the user prefs' vendor manager file path.
+     */
+    Path getVendorManagerFilePath(); 
 
     /**
      * Returns the user prefs' GUI settings.

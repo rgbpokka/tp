@@ -21,12 +21,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.commands.guest.ClearGuestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Guest;
-import seedu.address.model.person.Person;
+import seedu.address.model.guest.Guest;
 import seedu.address.testutil.EditGuestDescriptorBuilder;
 import seedu.address.testutil.GuestBuilder;
 
@@ -168,7 +167,7 @@ public class EditCommandGuestTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearGuestCommand()));
 
         // different passport number -> returns false
         assertFalse(standardCommand.equals(new EditCommand(PASSPORT_NUMBER_SECOND_PERSON, DESC_ALICE)));

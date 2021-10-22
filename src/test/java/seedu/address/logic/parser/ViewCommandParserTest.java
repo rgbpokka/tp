@@ -17,7 +17,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ViewCommand;
-import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
+import seedu.address.model.IdentifierContainsKeywordsPredicate;
 
 public class ViewCommandParserTest {
 

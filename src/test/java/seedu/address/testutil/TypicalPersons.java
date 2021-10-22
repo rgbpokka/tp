@@ -45,12 +45,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Guest;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Staff;
+import seedu.address.model.guest.Guest;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

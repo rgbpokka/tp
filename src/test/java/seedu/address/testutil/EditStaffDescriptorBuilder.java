@@ -5,12 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Staff;
-import seedu.address.model.person.StaffId;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.VendorId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -77,7 +76,7 @@ public class EditStaffDescriptorBuilder {
      * Sets the {@code StaffId} of the {@code EditStaffDescriptor} that we are building.
      */
     public EditStaffDescriptorBuilder withStaffId(String staffId) {
-        descriptor.setStaffId(new StaffId(staffId));
+        descriptor.setStaffId(new VendorId(staffId));
         return this;
     }
 

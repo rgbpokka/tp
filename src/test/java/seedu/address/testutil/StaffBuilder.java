@@ -4,23 +4,22 @@ import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_DEFAULT;
 
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Staff;
-import seedu.address.model.person.StaffId;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.VendorId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 public class StaffBuilder extends PersonBuilder {
 
     public static final Address DEFAULT_ADDRESS = new Address("123, Jurong West Ave 6, #08-111");
-    public static final StaffId DEFAULT_STAFF_ID = new StaffId(STAFF_ID_DEFAULT.toString());
+    public static final VendorId DEFAULT_STAFF_ID = new VendorId(STAFF_ID_DEFAULT.toString());
     public static final Tag DEFAULT_TAG = new Tag("Staff");
     public static final Phone DEFAULT_PHONE = new Phone("85355255");
     private Address address;
-    private StaffId staffId;
+    private VendorId vendorId;
     private Phone phone;
 
     /**
@@ -29,7 +28,7 @@ public class StaffBuilder extends PersonBuilder {
     public StaffBuilder() {
         super();
         address = DEFAULT_ADDRESS;
-        staffId = DEFAULT_STAFF_ID;
+        vendorId = DEFAULT_STAFF_ID;
         phone = DEFAULT_PHONE;
         getTags().add(DEFAULT_TAG);
     }
@@ -40,7 +39,7 @@ public class StaffBuilder extends PersonBuilder {
     public StaffBuilder(Staff staffToCopy) {
         super(staffToCopy);
         address = staffToCopy.getAddress();
-        staffId = staffToCopy.getStaffId();
+        vendorId = staffToCopy.getStaffId();
         phone = staffToCopy.getPhone();
     }
 
@@ -82,7 +81,7 @@ public class StaffBuilder extends PersonBuilder {
      * Sets the {@code StaffId} of the {@code Staff} that we are building.
      */
     public StaffBuilder withStaffId(String staffId) {
-        this.staffId = new StaffId(staffId);
+        this.vendorId = new VendorId(staffId);
         return this;
     }
 
@@ -95,6 +94,6 @@ public class StaffBuilder extends PersonBuilder {
     }
 
     public Staff build() {
-        return new Staff(getName(), getEmail(), getTags(), address, staffId, phone);
+        return new Staff(getName(), getEmail(), getTags(), address, vendorId, phone);
     }
 }

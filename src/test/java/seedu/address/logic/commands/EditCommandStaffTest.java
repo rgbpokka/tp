@@ -22,14 +22,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.commands.guest.ClearGuestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Staff;
-import seedu.address.model.person.StaffId;
-import seedu.address.model.person.UniqueIdentifier;
+import seedu.address.model.vendor.VendorId;
+import seedu.address.model.UniqueIdentifier;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 import seedu.address.testutil.StaffBuilder;
 
@@ -83,7 +81,7 @@ public class EditCommandStaffTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         // no fields are changed, so the edited staff stays exactly the same
-        UniqueIdentifier targetIdentifier = new StaffId(VALID_STAFF_ID_DANIEL);
+        UniqueIdentifier targetIdentifier = new VendorId(VALID_STAFF_ID_DANIEL);
         EditStaffDescriptor editStaffDescriptor =
                 new EditStaffDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL).build();
         EditCommand editCommand = new EditCommand(targetIdentifier, editStaffDescriptor);
@@ -174,7 +172,7 @@ public class EditCommandStaffTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearGuestCommand()));
 
         // different staff id -> returns false
         assertFalse(standardCommand.equals(new EditCommand(STAFF_ID_SECOND_PERSON, DESC_ELLE)));

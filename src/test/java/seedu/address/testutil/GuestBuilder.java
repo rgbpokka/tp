@@ -4,11 +4,11 @@ import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_DEFA
 
 import java.util.Set;
 
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Guest;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PassportNumber;
-import seedu.address.model.person.RoomNumber;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.RoomNumber;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

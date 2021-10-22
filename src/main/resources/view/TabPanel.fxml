@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<HBox fx:id="tabPanel" layoutY="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0"
+      AnchorPane.topAnchor="30.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <Button fx:id="guests" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSwitchToGuestList"
+            VBox.vgrow="NEVER">
+        <padding>
+            <Insets top="2.0"/>
+        </padding>
+    </Button>
+    <Button fx:id="vendors" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSwitchToVendorList"
+            VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="2.0"/>
+        </padding>
+    </Button>
+</HBox>

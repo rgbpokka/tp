@@ -14,8 +14,9 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-
+    private Path guestManagerFilePath = Paths.get("data" , "guests.json");
+    private Path vendorManagerFilePath = Paths.get("data", "vendors.json");
+    
     /**
      * Creates a {@code UserPrefs} with default values.
      */
@@ -35,7 +36,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setGuestManagerFilePath(newUserPrefs.getGuestManagerFilePath());
+        setVendorManagerFilePath(newUserPrefs.getVendorManagerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +49,22 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getGuestManagerFilePath() {
+        return guestManagerFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setGuestManagerFilePath(Path guestManagerFilePath) {
+        requireNonNull(guestManagerFilePath);
+        this.guestManagerFilePath= guestManagerFilePath;
+    }
+
+    public Path getVendorManagerFilePath() {
+        return vendorManagerFilePath;
+    }
+
+    public void setVendorManagerFilePath(Path vendorManagerFilePath) {
+        requireNonNull(vendorManagerFilePath);
+        this.vendorManagerFilePath= vendorManagerFilePath;
     }
 
     @Override
@@ -68,19 +79,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && guestManagerFilePath.equals(o.guestManagerFilePath)
+                && vendorManagerFilePath.equals(o.vendorManagerFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, guestManagerFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + guestManagerFilePath);
         return sb.toString();
     }
 

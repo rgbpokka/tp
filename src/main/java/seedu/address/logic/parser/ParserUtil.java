@@ -9,13 +9,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PassportNumber;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.RoomNumber;
-import seedu.address.model.person.StaffId;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.guest.RoomNumber;
+import seedu.address.model.vendor.ServiceName;
+import seedu.address.model.vendor.VendorId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,18 +102,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String staffId} into a {@code staffId}.
+     * Parses a {@code String vendorId} into a {@code vendorId}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code staffId} is invalid.
+     * @throws ParseException if the given {@code vendorId} is invalid.
      */
-    public static StaffId parseStaffId(String staffId) throws ParseException {
-        requireNonNull(staffId);
-        String trimmedStaffId = staffId.trim();
-        if (!StaffId.isValidStaffId(trimmedStaffId)) {
-            throw new ParseException(StaffId.MESSAGE_CONSTRAINTS);
+    public static VendorId parseVendorId(String vendorId) throws ParseException {
+        requireNonNull(vendorId);
+        String trimmedStaffId = vendorId.trim();
+        if (!VendorId.isValidVendorId(trimmedStaffId)) {
+            throw new ParseException(VendorId.MESSAGE_CONSTRAINTS);
         }
-        return new StaffId(staffId);
+        return new VendorId(vendorId);
     }
 
     /**
@@ -169,6 +171,71 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String serviceName} into a {@code ServiceName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ServiceName} is invalid.
+     */
+    public static ServiceName parseServiceName(String serviceName) throws ParseException {
+        requireNonNull(serviceName);
+        String trimmedServiceName = serviceName.trim();
+        if (!ServiceName.isValidServiceName(trimmedServiceName)) {
+            throw new ParseException(ServiceName.MESSAGE_CONSTRAINTS);
+        }
+        return new ServiceName(trimmedServiceName);
+    }
+
+    /**
+     * Parses a {@code String cost} into a {@code Cost}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Cost} is invalid.
+     */
+    public static Cost parseCost(String cost) throws ParseException {
+        requireNonNull(cost);
+        String trimmedCost = cost.trim();
+        Double result;
+        try {
+            result = Double.parseDouble(trimmedCost);
+        } catch (Exception e) {
+            throw new ParseException(Cost.INVALID_DOUBLE);
+        }
+        if (!Cost.isValidCost(result)) {
+            throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
+        }
+        return new Cost(result);
+    }
+
+    /**
+     * Parses a {@code String operatingHours} into a {@code OperatingHours}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code OperatingHours} is invalid.
+     */
+    public static OperatingHours parseOperatingHours(String operatingHours) throws ParseException {
+        requireNonNull(operatingHours);
+        String trimmedOperatingHours = operatingHours.trim();
+        String[] args = trimmedOperatingHours.split("\\s+");
+        String days = args[0];
+        String[] timings = args[1].split("-");
+
+        if (args.length > 2 || timings.length > 2) {
+            throw new ParseException(OperatingHours.MESSAGE_CONSTRAINTS);
+        }
+
+        Double result;
+        try {
+            result = Double.parseDouble(trimmedCost);
+        } catch (Exception e) {
+            throw new ParseException(Cost.INVALID_DOUBLE);
+        }
+        if (!Cost.isValidCost(result)) {
+            throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
+        }
+        return new Cost(result);
     }
 
 }

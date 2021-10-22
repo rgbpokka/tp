@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.StaffId;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.VendorId;
 
 
 class JsonAdaptedStaffTest {
@@ -47,7 +47,7 @@ class JsonAdaptedStaffTest {
     public void toModelType_invalidSId_throwsIllegalValueException() {
         JsonAdaptedStaff person =
                 new JsonAdaptedStaff(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ADDRESS, INVALID_SID, VALID_PHONE);
-        String expectedMessage = StaffId.MESSAGE_CONSTRAINTS;
+        String expectedMessage = VendorId.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -55,7 +55,7 @@ class JsonAdaptedStaffTest {
     public void toModelType_nullSId_throwsIllegalValueException() {
         JsonAdaptedStaff person =
                 new JsonAdaptedStaff(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ADDRESS, null, VALID_PHONE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StaffId.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, VendorId.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

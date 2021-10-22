@@ -9,9 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.guest.CheckInCommand;
 import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
-import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,7 +22,7 @@ public class StaffUtil {
      * Returns an add command string for adding the {@code staff}.
      */
     public static String getAddCommand(Staff staff) {
-        return AddCommand.COMMAND_WORD + " " + getStaffDetails(staff);
+        return CheckInCommand.COMMAND_WORD + " " + getStaffDetails(staff);
     }
 
     /**

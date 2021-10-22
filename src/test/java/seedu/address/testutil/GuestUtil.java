@@ -8,9 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.guest.CheckInCommand;
 import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
-import seedu.address.model.person.Guest;
+import seedu.address.model.guest.Guest;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,7 +22,7 @@ public class GuestUtil {
      * Returns an add command string for adding the {@code guest}.
      */
     public static String getAddCommand(Guest guest) {
-        return AddCommand.COMMAND_WORD + " " + getGuestDetails(guest);
+        return CheckInCommand.COMMAND_WORD + " " + getGuestDetails(guest);
     }
 
     /**
