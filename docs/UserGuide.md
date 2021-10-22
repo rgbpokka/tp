@@ -114,17 +114,17 @@ Format:
 <br>Staff: `add sid/<STAFF_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> [t/<TAG>]`
 
 Example 1 (Add guest):
-<br>![AddDiagram](images/AddDiagram.png)
+<br>![AddDiagram](images/NewGuestAddDiagram.png)
 
 * `list` command lists all contact details of people in the address book.
-* `add n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
+* `add n/Bing Cheng pn/T0120432D e/bc45@email.com r/123 t/Vaccinated` , adds a new guest, Bing Cheng to **PH** and shows the new contact
   list.
 
 Example 2 (Add staff):
-<br>![StaffAddDiagram](images/StaffAddDiagram.png)
+<br>![StaffAddDiagram](images/NewStaffAddDiagramm.png)
 
 * `list` command lists all contact details of people in the address book.
-* `add n/Jeremy sid/321 p/87655432` , adds a new staff, Jeremy to **PH** and shows the new contact list.
+* `add n/Jeremy sid/123 e/j@mail.com p/9999999 a/Blk 123 Jurong Town t/Chef` , adds a new staff, Jeremy to **PH** and shows the new contact list.
 
 [Back to Table of Contents](#table-of-contents)
 
