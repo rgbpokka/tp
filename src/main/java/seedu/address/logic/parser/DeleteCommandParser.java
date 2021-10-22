@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MULTIPLE_UNIQUE_IDENTIFIER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 
@@ -27,13 +28,17 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         UniqueIdentifier uniqueIdentifier;
         try {
             // Identify staff or guest
-            if (argMultimap.getValue(PREFIX_STAFF_ID).isPresent()) {
+            if (argMultimap.getValue(PREFIX_STAFF_ID).isPresent()
+                    && argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isPresent()) {
+                throw new ParseException(MESSAGE_INVALID_MULTIPLE_UNIQUE_IDENTIFIER);
+            } else if (argMultimap.getValue(PREFIX_STAFF_ID).isPresent()) {
                 uniqueIdentifier = ParserUtil.parseStaffId(argMultimap.getValue(PREFIX_STAFF_ID).get());
             } else if (argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isPresent()) {
                 uniqueIdentifier = ParserUtil.parsePassportNumber(
                         argMultimap.getValue(PREFIX_PASSPORT_NUMBER).get());
             } else {
-                throw new ParseException("Invalid unique identifier");
+                // Message left blank as the catch statements message is already sufficient
+                throw new ParseException("");
             }
             return new DeleteCommand(uniqueIdentifier);
 

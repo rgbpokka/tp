@@ -63,7 +63,7 @@ The rest of the App consists of four components.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `delete sid/123`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -123,7 +123,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete sid/123")` API
 call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -368,7 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. User does not confirm to clearing entries.
+* 2a. User does not confirm to clearing entries.
 
   Use case ends.
 
@@ -386,7 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. Error occurs when saving new contact list
+* 1a. Error occurs when saving new contact list
 
     * 2a1. **PH** reverts to old contact list before the execution of the command.
 
@@ -394,13 +394,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-#### UC3: Searching for a guest/staff
+#### UC3: Searching for a guest
 
 **MSS**
 
-1. User keys in command to search for a specified guest or staff.
+1. User keys in command to search for a specified guest.
 
-2. **PH** shows the specified guest/staff that matches the user's query.
+2. **PH** shows the specified guest that matches the user's query.
 
    Use case ends.
 
@@ -410,19 +410,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 2a. No guest/staff found that matches user's query.
+* 1b. No guest found that matches user's query.
 
-    * 2a1. **PH** shows message indicating no such guest/staff exists in the list.
+    * 1b1. **PH** shows message indicating no such guest exists in the list.
+
+      Use case ends.
+  
+#### UC4: Searching for a staff
+
+Same as UC3 except that guest is replaced with staff.
+
+#### UC4: Searching for a staff
+
+**MSS**
+
+1. User keys in command to search for a specified guest.
+
+2. **PH** shows the specified guest that matches the user's query.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Contact list is empty.
+
+  Use case ends.
+
+* 1b. No guest found that matches user's query.
+
+    * 1b1. **PH** shows message indicating no such guest exists in the list.
 
       Use case ends.
 
-#### UC4: Editing fields of guests/staff
+#### UC5: Editing fields of guest
 
 **MSS**
 
-1. User keys in command to edit a particular field of a specified guest/ staff.
+1. User keys in command to edit a particular field of a specified guest.
 
-2. **PH** shows a success message to user which displays the new details of the guest/ staff.
+2. **PH** shows a success message to user which displays the new details of the guest.
 
    Use case ends.
 
@@ -432,9 +458,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 1b. No guest/staff found that matches user's query.
+* 1b. No guest found that matches user's query.
 
-    * 1b1. **PH** shows message indicating no such guest/staff exists in the list.
+    * 1b1. **PH** shows message indicating no such guest exists in the list.
 
       Use case ends.
 
@@ -444,13 +470,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-#### UC5: Adding guests/staff
+#### UC6: Editing fields of staff
+
+Same as UC5 except that guest is replaced with staff.
+
+#### UC7: Adding guests
 
 **MSS**
 
-1. User keys in command to add a guest or staff with unique passport numbers or staff IDs.
+1. User keys in command to add a guest.
 
-2. **PH** shows a success message to user which displays the added guest/staff in the list.
+2. **PH** shows a success message to user which displays the added guest in the list.
 
    Use case ends.
 
@@ -475,23 +505,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-#### UC6: Deleting guests/ staff
+#### UC8: Adding staff
+
+Same as UC7 except that guest is replaced with staff.
+
+#### UC9: Deleting guest
 
 **MSS**
 
-1. User asks **PH** to delete a guest/ staff
+1. User asks **PH** to delete a guest
 
-2. **PH** informs user that guest/ staff is deleted
+2. **PH** informs user that guest is deleted
 
    Use case ends.
 
 **Extensions**
 
-* 2a. No guest/staff found that matches user's query
+* 2a. No guest found that matches user's query
 
-    * 2a1. **PH** informs user that the guest/ staff does not exist
+    * 2a1. **PH** informs user that the guest does not exist
 
       Use case ends.
+
+#### UC10: Deleting staff
+
+Same as UC9 except that guest is replaced with staff.
+
 
 *{More to be added}*
 

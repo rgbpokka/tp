@@ -17,6 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.STAFF_ID_DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.STAFF_ID_DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CHEF;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_SENIOR_STAFF;
@@ -24,6 +25,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHEF;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SENIOR_STAFF;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -47,41 +49,47 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new StaffBuilder(DANIEL_STAFF).withTags(VALID_TAG_SENIOR_STAFF).build();
+
+        Person expectedPerson = new StaffBuilder(DANIEL_STAFF).withTags(VALID_TAG_CHEF, VALID_STAFF_TAG).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL
-                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF + STAFF_ID_DESC_DANIEL, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_ELLE + NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL
-                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF + STAFF_ID_DESC_DANIEL, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_ELLE + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL
-                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF + STAFF_ID_DESC_DANIEL, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_ELLE + EMAIL_DESC_DANIEL
-                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF + STAFF_ID_DESC_DANIEL, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
+
         assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL + ADDRESS_DESC_ELLE
-                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF + STAFF_ID_DESC_DANIEL, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new StaffBuilder(DANIEL_STAFF).withTags(VALID_TAG_CHEF, VALID_TAG_SENIOR_STAFF)
-                .build();
+        Person expectedPersonMultipleTags = new StaffBuilder(DANIEL_STAFF).withTags(VALID_TAG_CHEF,
+                        VALID_TAG_SENIOR_STAFF, VALID_STAFF_TAG).build();
 
         assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL + ADDRESS_DESC_DANIEL
-                + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF, new AddCommand(expectedPersonMultipleTags));
+                        + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF + STAFF_ID_DESC_DANIEL,
+                new AddCommand(expectedPersonMultipleTags));
+
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new StaffBuilder(DANIEL_STAFF).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL + ADDRESS_DESC_DANIEL,
+
+        Person expectedPerson = new StaffBuilder(DANIEL_STAFF).withTags(VALID_STAFF_TAG).build();
+        assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL
+                        + ADDRESS_DESC_DANIEL + STAFF_ID_DESC_DANIEL,
                 new AddCommand(expectedPerson));
     }
 

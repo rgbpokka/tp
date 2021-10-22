@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MULTIPLE_UNIQUE_IDENTIFIER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
@@ -9,6 +10,7 @@ import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.model.person.StaffId;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -34,12 +36,31 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_invalidPassportNumberArgs_throwsParseException() {
         assertParseFailure(parser, "delete pn/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE,
+                        StaffId.MESSAGE_CONSTRAINTS));
     }
 
     @Test
     public void parse_invalidStaffIdArgs_throwsParseException() {
         assertParseFailure(parser, "delete sid/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE,
+                        StaffId.MESSAGE_CONSTRAINTS));
+    }
+
+    @Test
+    public void parse_invalidDeleteCommand_throwsParseException() {
+        assertParseFailure(parser, "delete",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_multipleUniqueIdentifiers_throwsParseException() {
+        assertParseFailure(parser, "delete pn/E0123122G sid/123",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE,
+                        MESSAGE_INVALID_MULTIPLE_UNIQUE_IDENTIFIER));
+
+        assertParseFailure(parser, "delete sid/123 pn/E0123122G",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE,
+                        MESSAGE_INVALID_MULTIPLE_UNIQUE_IDENTIFIER));
     }
 }

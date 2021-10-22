@@ -128,7 +128,6 @@ public class TypicalPersons {
             .withStaffId(VALID_STAFF_ID_GEORGE)
             .build();
 
-
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {
