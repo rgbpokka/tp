@@ -21,7 +21,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         if (tags.isEmpty()) {
             return false;
         }
-        
+
         if (person instanceof Staff) {
             Staff staff = (Staff) person;
             return tags.stream()

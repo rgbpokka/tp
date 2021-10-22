@@ -1,10 +1,10 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class PassportNumberTest {
 
@@ -21,16 +21,16 @@ public class PassportNumberTest {
 
     @Test
     public void isValidPassportNumber() {
-        // null passport number 
+        // null passport number
         assertThrows(NullPointerException.class, () -> PassportNumber.isValidPassportNumber(null));
 
-        // invalid passport numbers 
+        // invalid passport numbers
         assertFalse(PassportNumber.isValidPassportNumber("")); // empty string
         assertFalse(PassportNumber.isValidPassportNumber(" ")); // spaces only
         assertFalse(PassportNumber.isValidPassportNumber("^")); // only non-alphanumeric characters
         assertFalse(PassportNumber.isValidPassportNumber("peter*")); // contains non-alphanumeric characters
 
-        // valid passport numbers 
+        // valid passport numbers
         assertTrue(PassportNumber.isValidPassportNumber("fdsfsdafs")); // alphabets only
         assertTrue(PassportNumber.isValidPassportNumber("12345312312")); // numbers only
         assertTrue(PassportNumber.isValidPassportNumber("fsdaf2312")); // alphanumeric characters

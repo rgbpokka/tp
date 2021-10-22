@@ -75,6 +75,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_CARL = " " + PREFIX_TAG + VALID_TAG_CARL;
 
     // Staff
+    public static final String VALID_STAFF_TAG = "Staff";
     public static final String VALID_NAME_DANIEL = "Daniel Meier";
     public static final String VALID_EMAIL_DANIEL = "cornelia@example.com";
     public static final String VALID_TAG_DANIEL = "COUNTER STAFF";
@@ -84,8 +85,10 @@ public class CommandTestUtil {
     public static final String NAME_DESC_DANIEL = " " + PREFIX_NAME + VALID_NAME_DANIEL;
     public static final String EMAIL_DESC_DANIEL = " " + PREFIX_EMAIL + VALID_EMAIL_DANIEL;
     public static final String ADDRESS_DESC_DANIEL = " " + PREFIX_ADDRESS + VALID_ADDRESS_DANIEL;
+    public static final String TAG_DESC_DANIEL = " " + PREFIX_TAG + VALID_TAG_DANIEL;
     public static final String PHONE_DESC_DANIEL = " " + PREFIX_PHONE + VALID_PHONE_DANIEL;
     public static final String STAFF_ID_DESC_DANIEL = " " + PREFIX_STAFF_ID + VALID_STAFF_ID_DANIEL;
+    public static final String TAG_DESC_DANIEL_TWO = " " + PREFIX_TAG + VALID_TAG_DANIEL + PREFIX_TAG + VALID_STAFF_TAG;
 
     public static final String VALID_NAME_ELLE = "Elle Meyer";
     public static final String VALID_EMAIL_ELLE = "elle@example.com";
@@ -142,8 +145,10 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_STAFF_ID_DESC = " " + PREFIX_STAFF_ID + "1#2"; //'#' not allowed in staff id
-    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + "-1"; //' room numbers must be a number greater than 0.
-    public static final String INVALID_PASSPORT_NUMBER_DESC = " " + PREFIX_PASSPORT_NUMBER + "@3333"; // passport numbers should be alphanumeric
+    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + "-1";
+    //' room numbers must be a number greater than 0.
+    public static final String INVALID_PASSPORT_NUMBER_DESC = " " + PREFIX_PASSPORT_NUMBER + "@3333";
+    // passport numbers should be alphanumeric
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

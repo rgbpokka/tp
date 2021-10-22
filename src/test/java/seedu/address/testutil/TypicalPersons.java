@@ -36,18 +36,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CARL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
-
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FOURTH_PERSON_NOT_ADDED;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIONA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GEORGE;
+import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FOURTH_PERSON_NOT_ADDED;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ModelManager;
@@ -55,7 +51,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -127,7 +122,6 @@ public class TypicalPersons {
             .withPhone(VALID_PHONE_GEORGE)
             .withStaffId(VALID_STAFF_ID_GEORGE)
             .build();
-
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

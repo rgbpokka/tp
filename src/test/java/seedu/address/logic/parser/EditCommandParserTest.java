@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_ALICE;
@@ -24,9 +23,9 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.STAFF_ID_DESC_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CHEF;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DELUXE_ROOM;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_SENIOR_STAFF;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CHEF;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_VIP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_ALICE;
@@ -49,10 +48,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
 import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
@@ -83,9 +80,9 @@ public class EditCommandParserTest {
         editGuestDescriptor.setPassportNumber(new PassportNumber("E0123122G"));
         assertParseSuccess(parser,
                 EditCommand.COMMAND_WORD
-                + " "
-                + PREFIX_PASSPORT_NUMBER
-                + PASSPORT_NUMBER_FIRST_PERSON,
+                        + " "
+                        + PREFIX_PASSPORT_NUMBER
+                        + PASSPORT_NUMBER_FIRST_PERSON,
                 new EditCommand(PASSPORT_NUMBER_FIRST_PERSON, editGuestDescriptor));
     }
 
@@ -96,9 +93,9 @@ public class EditCommandParserTest {
         editStaffDescriptor.setStaffId(new StaffId("123"));
         assertParseSuccess(parser,
                 EditCommand.COMMAND_WORD
-                + " "
-                + PREFIX_STAFF_ID
-                + STAFF_ID_FIRST_PERSON,
+                        + " "
+                        + PREFIX_STAFF_ID
+                        + STAFF_ID_FIRST_PERSON,
                 new EditCommand(STAFF_ID_FIRST_PERSON, editStaffDescriptor));
     }
 
@@ -113,7 +110,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, partialUserInput + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, partialUserInput + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, partialUserInput + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, partialUserInput + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, partialUserInput + INVALID_ADDRESS_DESC,
+                Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, partialUserInput + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
@@ -121,16 +119,21 @@ public class EditCommandParserTest {
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, partialUserInput + PHONE_DESC_DANIEL + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, partialUserInput + PHONE_DESC_DANIEL + INVALID_PHONE_DESC,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, partialUserInput + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, partialUserInput + TAG_DESC_SENIOR_STAFF + TAG_EMPTY + TAG_DESC_CHEF, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, partialUserInput + TAG_EMPTY + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, partialUserInput + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF + TAG_EMPTY,
+                Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, partialUserInput + TAG_DESC_SENIOR_STAFF + TAG_EMPTY + TAG_DESC_CHEF,
+                Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, partialUserInput + TAG_EMPTY + TAG_DESC_SENIOR_STAFF + TAG_DESC_CHEF,
+                Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, partialUserInput + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_DANIEL + VALID_PHONE_DANIEL,
+        assertParseFailure(parser,
+                partialUserInput + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_DANIEL + VALID_PHONE_DANIEL,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -142,29 +145,40 @@ public class EditCommandParserTest {
                 + PASSPORT_NUMBER_FIRST_PERSON;
 
         assertParseFailure(parser, "edit pn/", PassportNumber.MESSAGE_CONSTRAINTS); // invalid passport number
-        assertParseFailure(parser, partialUserInput + INVALID_PASSPORT_NUMBER_DESC, PassportNumber.MESSAGE_CONSTRAINTS); // invalid room number
+        assertParseFailure(parser, partialUserInput + INVALID_PASSPORT_NUMBER_DESC,
+                PassportNumber.MESSAGE_CONSTRAINTS); // invalid room number
         assertParseFailure(parser, partialUserInput + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, partialUserInput + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, partialUserInput + INVALID_ROOM_NUMBER_DESC, RoomNumber.MESSAGE_CONSTRAINTS); // invalid room number
+        assertParseFailure(parser, partialUserInput + INVALID_ROOM_NUMBER_DESC,
+                RoomNumber.MESSAGE_CONSTRAINTS); // invalid room number
         assertParseFailure(parser, partialUserInput + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid room number followed by valid email
-        assertParseFailure(parser, partialUserInput + INVALID_ROOM_NUMBER_DESC + EMAIL_DESC_ALICE, RoomNumber.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, partialUserInput + INVALID_ROOM_NUMBER_DESC + EMAIL_DESC_ALICE,
+                RoomNumber.MESSAGE_CONSTRAINTS);
 
-        // valid room number followed by invalid room number. The test case for invalid room number followed by valid room number
+        // valid room number followed by invalid room number. The test case for invalid room number followed
+        // by valid room number
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, partialUserInput + VALID_ROOM_NUMBER_ALICE + INVALID_ROOM_NUMBER_DESC, RoomNumber.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, partialUserInput + VALID_ROOM_NUMBER_ALICE + INVALID_ROOM_NUMBER_DESC,
+                RoomNumber.MESSAGE_CONSTRAINTS);
 
 
-        // is this still relevant for us?
-//        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
-//        // parsing it together with a valid tag results in error
-//        assertParseFailure(parser, partialUserInput + VALID_TAG_VIP + VALID_TAG_DELUXE_ROOM + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-//        assertParseFailure(parser, partialUserInput + VALID_TAG_VIP + TAG_EMPTY + VALID_TAG_DELUXE_ROOM, Tag.MESSAGE_CONSTRAINTS);
-//        assertParseFailure(parser, partialUserInput + TAG_EMPTY + VALID_TAG_VIP + VALID_TAG_DELUXE_ROOM, Tag.MESSAGE_CONSTRAINTS);
+        //        is this still relevant for us ?
+        //                // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person}
+        //                  being edited,
+        //                // parsing it together with a valid tag results in error
+        //                assertParseFailure(parser, partialUserInput + VALID_TAG_VIP + VALID_TAG_DELUXE_ROOM
+        //                + TAG_EMPTY,
+        //                        Tag.MESSAGE_CONSTRAINTS);
+        //        assertParseFailure(parser, partialUserInput + VALID_TAG_VIP + TAG_EMPTY + VALID_TAG_DELUXE_ROOM,
+        //                Tag.MESSAGE_CONSTRAINTS);
+        //        assertParseFailure(parser, partialUserInput + TAG_EMPTY + VALID_TAG_VIP + VALID_TAG_DELUXE_ROOM,
+        //                Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, partialUserInput + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ROOM_NUMBER_ALICE + VALID_PASSPORT_NUMBER_ALICE,
+        assertParseFailure(parser, partialUserInput + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ROOM_NUMBER_ALICE
+                        + VALID_PASSPORT_NUMBER_ALICE,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -320,7 +334,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValueForGuest_success() {
         UniqueIdentifier targetIdentifier = new PassportNumber(VALID_PASSPORT_NUMBER_ALICE);
-        String userInput = EditCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + INVALID_EMAIL_DESC + ROOM_NUMBER_DESC_ALICE + EMAIL_DESC_ALICE;
+        String userInput =
+                EditCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + INVALID_EMAIL_DESC + ROOM_NUMBER_DESC_ALICE
+                        + EMAIL_DESC_ALICE;
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder()
                 .withPassportNumber(VALID_PASSPORT_NUMBER_ALICE)
                 .withRoomNumber(VALID_ROOM_NUMBER_ALICE)
@@ -335,7 +351,8 @@ public class EditCommandParserTest {
         UniqueIdentifier targetIdentifier = new StaffId(VALID_STAFF_ID_DANIEL);
         String userInput = EditCommand.COMMAND_WORD + STAFF_ID_DESC_DANIEL + TAG_EMPTY;
 
-        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL).withTags().build();
+        EditStaffDescriptor descriptor =
+                new EditStaffDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL).withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -346,7 +363,8 @@ public class EditCommandParserTest {
         UniqueIdentifier targetIdentifier = new PassportNumber(VALID_PASSPORT_NUMBER_ALICE);
         String userInput = EditCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + TAG_EMPTY;
 
-        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder().withPassportNumber(VALID_PASSPORT_NUMBER_ALICE).withTags().build();
+        EditGuestDescriptor descriptor =
+                new EditGuestDescriptorBuilder().withPassportNumber(VALID_PASSPORT_NUMBER_ALICE).withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

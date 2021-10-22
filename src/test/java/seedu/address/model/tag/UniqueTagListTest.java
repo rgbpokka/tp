@@ -1,12 +1,13 @@
 package seedu.address.model.tag;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.exceptions.DuplicateTagException;
-import seedu.address.model.tag.exceptions.TagNotFoundException;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.List;
 
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.tag.exceptions.DuplicateTagException;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 public class UniqueTagListTest {
 
@@ -39,7 +40,7 @@ public class UniqueTagListTest {
 
         assertThrows(TagNotFoundException.class, () -> tagList.setTag(new Tag("newTag"), tag));
         assertThrows(DuplicateTagException.class, () -> tagList.setTag(tag, secondTag));
-        
+
     }
 
 }
