@@ -405,17 +405,18 @@ which allows you to edit the file manually without even booting up **PH**.
 
 Here’s a snippet of the editable text file in JSON that is found at:
 `[JAR file location]/data/addressbook.json`
+<img src="images/JsonSnippet.png" width="300">
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Editing the json file directly should only be done by a user experienced with .json format files.
 </div>
 
-![JsonSnippet](images/JsonSnippet.png)
+### Guest in archive data format
+
+The archived guests would have the room number and services field emptied in the Json file as shown in the image above.
+<br> Archived guest are also not shown in the UI.
 
 [Back to Table of Contents](#table-of-contents)
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
