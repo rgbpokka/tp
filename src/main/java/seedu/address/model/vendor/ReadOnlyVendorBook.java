@@ -3,7 +3,7 @@ package seedu.address.model.vendor;
 import javafx.collections.ObservableList;
 
 /**
- * Unmodifiable view of a vendor manager 
+ * Unmodifiable view of a vendor book 
  */
 public interface ReadOnlyVendorBook {
 

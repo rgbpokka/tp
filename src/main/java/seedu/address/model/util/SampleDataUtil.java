@@ -26,7 +26,7 @@ import seedu.address.model.vendor.VendorBook;
 import seedu.address.model.vendor.VendorId;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code VendorBook} and {@code GuestBook} with sample data.
  */
 public class SampleDataUtil {
     public static Guest[] getSampleGuests() {

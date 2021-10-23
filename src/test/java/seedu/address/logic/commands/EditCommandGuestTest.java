@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showGuestAtPassportNumber;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
@@ -92,7 +92,7 @@ public class EditCommandGuestTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showGuestAtPassportNumber(model, INDEX_FIRST_PERSON);
 
         Guest personInFilteredList = ALICE_GUEST;
         Person editedGuest = new GuestBuilder(personInFilteredList)
@@ -122,7 +122,7 @@ public class EditCommandGuestTest {
 
     @Test
     public void execute_duplicateGuestFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showGuestAtPassportNumber(model, INDEX_FIRST_PERSON);
 
         Guest personInList = BENSON_GUEST;
         EditCommand editCommand = new EditCommand(ALICE_GUEST.getPassportNumber(),

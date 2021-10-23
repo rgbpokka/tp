@@ -3,7 +3,7 @@ package seedu.address.model.guest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SENIOR_STAFF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DELUXE_ROOM;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
 import static seedu.address.testutil.guest.TypicalGuests.getTypicalGuestBook;
@@ -45,7 +45,7 @@ public class GuestBookTest {
     public void resetData_withDuplicateGuests_throwsDuplicateItemException() {
         // Two guests with the same identity fields
         Guest editedAlice =
-                new GuestBuilder(ALICE_GUEST).withTags(VALID_TAG_SENIOR_STAFF)
+                new GuestBuilder(ALICE_GUEST).withTags(VALID_TAG_DELUXE_ROOM)
                         .build();
         List<Guest> newGuests = Arrays.asList(ALICE_GUEST, editedAlice);
         GuestBookStub newData = new GuestBookStub(newGuests);
@@ -73,7 +73,7 @@ public class GuestBookTest {
     public void hasGuest_guestWithSameIdentityFieldsInGuestBook_returnsTrue() {
         guestBook.addGuest(ALICE_GUEST);
         Guest editedAlice =
-                new GuestBuilder(ALICE_GUEST).withTags(VALID_TAG_SENIOR_STAFF)
+                new GuestBuilder(ALICE_GUEST).withTags(VALID_TAG_DELUXE_ROOM)
                         .build();
         assertTrue(guestBook.hasGuest(editedAlice));
     }

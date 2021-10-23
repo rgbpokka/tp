@@ -32,7 +32,7 @@ public class GuestListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Guest} using a {@code GuestCard}.
      */
     class GuestListViewCell extends ListCell<Guest> {
         @Override

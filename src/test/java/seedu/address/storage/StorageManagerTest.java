@@ -14,10 +14,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.guest.ReadOnlyGuestBook;
-import seedu.address.model.vendor.Vendor;
 import seedu.address.storage.guest.JsonGuestBookStorage;
 import seedu.address.storage.vendor.JsonVendorBookStorage;
-import seedu.address.storage.vendor.VendorBookStorage;
+import seedu.address.storage.vendor.JsonVendorBookStorageTest;
 
 public class StorageManagerTest {
 

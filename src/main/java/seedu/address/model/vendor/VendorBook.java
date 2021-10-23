@@ -1,8 +1,6 @@
 package seedu.address.model.vendor;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.guest.Guest;
-import seedu.address.model.guest.PassportNumber;
 
 import java.util.List;
 import java.util.Optional;
@@ -88,7 +86,7 @@ public class VendorBook implements ReadOnlyVendorBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code VendorBook}.
      * {@code key} must exist in the address book.
      */
     public void removeVendor(Vendor key) {

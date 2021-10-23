@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a cost in the address book.
+ * Represents a cost in the vendor book.
  * Guarantees: immutable; is valid as declared in {@link #isValidCost(Double)}
  */
 public class Cost {
