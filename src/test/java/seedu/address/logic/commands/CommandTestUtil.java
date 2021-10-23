@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -146,8 +145,10 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_STAFF_ID_DESC = " " + PREFIX_STAFF_ID + "1#2"; //'#' not allowed in staff id
-    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + "-1"; //' room numbers must be a number greater than 0.
-    public static final String INVALID_PASSPORT_NUMBER_DESC = " " + PREFIX_PASSPORT_NUMBER + "@3333"; // passport numbers should be alphanumeric
+    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + "-1";
+    //' room numbers must be a number greater than 0.
+    public static final String INVALID_PASSPORT_NUMBER_DESC = " " + PREFIX_PASSPORT_NUMBER + "@3333";
+    // passport numbers should be alphanumeric
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

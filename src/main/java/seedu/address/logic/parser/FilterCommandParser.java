@@ -40,12 +40,12 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         List<Tag> culledArguments =
                 List.of(splitArguments).stream().filter(x -> !x.isEmpty()).map(String::trim).map(Tag::new).collect(
                         Collectors.toList());
-        
+
         if (culledArguments.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_MISSING_ARGUMENTS, FilterCommand.MESSAGE_USAGE));
         }
-        
+
         return new FilterCommand(new TagContainsKeywordsPredicate(culledArguments));
     }
 

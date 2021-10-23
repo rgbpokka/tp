@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
@@ -51,7 +51,7 @@ public class EditCommandStaffTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(staff, editedStaff);
-        
+
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -84,9 +84,10 @@ public class EditCommandStaffTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         // no fields are changed, so the edited staff stays exactly the same
         UniqueIdentifier targetIdentifier = new StaffId(VALID_STAFF_ID_DANIEL);
-        EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL).build();
+        EditStaffDescriptor editStaffDescriptor =
+                new EditStaffDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL).build();
         EditCommand editCommand = new EditCommand(targetIdentifier, editStaffDescriptor);
-        
+
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, DANIEL_STAFF);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
