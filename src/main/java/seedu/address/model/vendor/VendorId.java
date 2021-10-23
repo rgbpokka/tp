@@ -1,11 +1,9 @@
 package seedu.address.model.vendor;
 
-import seedu.address.model.UniqueIdentifier;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public class VendorId extends UniqueIdentifier {
+public class VendorId {
 
     public static final String MESSAGE_CONSTRAINTS = "VendorID must be alphanumeric and non-empty.";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_][a-zA-Z0-9_ ]+$";

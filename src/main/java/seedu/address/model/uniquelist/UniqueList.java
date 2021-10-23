@@ -104,6 +104,13 @@ public class UniqueList<T extends UniqueListItem> implements Iterable<T> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns the backing list as a modifiable {@code ObservableList}
+     */
+    public ObservableList<T> asModifiableObservableList() {
+        return internalList;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return internalList.iterator();

@@ -56,7 +56,12 @@ public class VendorCard extends UiPart<Region> {
     private ImageView phoneIcon;
     @FXML
     private ImageView vendorIdIcon;
-
+    @FXML
+    private ImageView serviceNameIcon;
+    @FXML
+    private ImageView costIcon;
+    @FXML
+    private ImageView operatingHoursIcon;
     /**
      * Creates a {@code VendorCard} with the given {@code Vendor} and index to display.
      */
@@ -72,10 +77,13 @@ public class VendorCard extends UiPart<Region> {
         serviceName.setText(" " + vendor.getServiceName().serviceName);
         operatingHours.setText(" " + vendor.getOperatingHours().toString());
 
-        vendorIdIcon.setImage(new Image(getClass().getResourceAsStream("/images/staff_id_icon.png")));
+        vendorIdIcon.setImage(new Image(getClass().getResourceAsStream("/images/vendor_id_icon.png")));
         emailIcon.setImage(new Image(getClass().getResourceAsStream("/images/email_icon.png")));
         addressIcon.setImage(new Image(getClass().getResourceAsStream("/images/address_icon.png")));
         phoneIcon.setImage(new Image(getClass().getResourceAsStream("/images/phone_icon.png")));
+        serviceNameIcon.setImage(new Image(getClass().getResourceAsStream("/images/service_name_icon.png")));
+        costIcon.setImage(new Image(getClass().getResourceAsStream("/images/cost_icon.png")));
+        operatingHoursIcon.setImage(new Image(getClass().getResourceAsStream("/images/operating_hours_icon.png")));
 
         vendor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 /**
  * Unmodifiable view of a vendor manager 
  */
-public interface ReadOnlyVendorManager {
+public interface ReadOnlyVendorBook {
 
     /**
      * Returns an unmodifiable view of the vendor list.

@@ -22,7 +22,7 @@
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <ImageView fx:id="staffIdIcon" fitHeight="18" fitWidth="16" />
+                <ImageView fx:id="vendorIdIcon" fitHeight="18" fitWidth="16" />
                 <Label fx:id="vendorId" styleClass="cell_unique_identifier" text="\$vendorId">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
@@ -57,18 +57,21 @@
             </padding>
             </HBox>
             <HBox>
+                <ImageView fx:id="serviceNameIcon" fitHeight="18" fitWidth="16" />
                 <Label fx:id="serviceName" styleClass="cell_small_label" text="\$serviceName" />
                 <padding>
                     <Insets left="10.0" />
                 </padding>
             </HBox>
             <HBox>
+                <ImageView fx:id="costIcon" fitHeight="18" fitWidth="16" />
                 <Label fx:id="cost" styleClass="cell_small_label" text="\$cost" />
                 <padding>
                     <Insets left="10.0" />
                 </padding>
             </HBox>
             <HBox>
+                <ImageView fx:id="operatingHoursIcon" fitHeight="18" fitWidth="16" />
                 <Label fx:id="operatingHours" styleClass="cell_small_label" text="\$operatingHours" />
                 <padding>
                     <Insets left="10.0" />

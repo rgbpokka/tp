@@ -8,8 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.guest.Guest;
-import seedu.address.model.guest.ReadOnlyGuestManager;
-import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.guest.ReadOnlyGuestBook;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.Vendor;
 
 /**
@@ -27,11 +27,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the GuestManager.
+     * Returns the GuestBook.
      *
-     * @see seedu.address.model.Model#getGuestManager()
+     * @see seedu.address.model.Model#getGuestBook()
      */
-    ReadOnlyGuestManager getGuestManager();
+    ReadOnlyGuestBook getGuestBook();
 
     /**
      * Returns an unmodifiable view of the filtered list of guests 
@@ -39,11 +39,11 @@ public interface Logic {
     ObservableList<Guest> getFilteredGuestList();
 
     /**
-     * Returns the VendorManager.
+     * Returns the VendorBook.
      *
-     * @see seedu.address.model.Model#getVendorManager()
+     * @see seedu.address.model.Model#getVendorBook()
      */
-    ReadOnlyVendorManager getVendorManager();
+    ReadOnlyVendorBook getVendorBook();
     
     /**
      * Returns an unmodifiable view of the filtered list of vendors 
@@ -51,14 +51,14 @@ public interface Logic {
     ObservableList<Vendor> getFilteredVendorList();
 
     /**
-     * Returns the user prefs' guest manager file path.
+     * Returns the user prefs' guest book file path.
      */
-    Path getGuestManagerFilePath();
+    Path getGuestBookFilePath();
 
     /**
-     * Returns the user prefs' vendor manager file path.
+     * Returns the user prefs' vendor book file path.
      */
-    Path getVendorManagerFilePath(); 
+    Path getVendorBookFilePath(); 
 
     /**
      * Returns the user prefs' GUI settings.

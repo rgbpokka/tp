@@ -1,11 +1,9 @@
 package seedu.address.model.guest;
 
-import seedu.address.model.UniqueIdentifier;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public class PassportNumber extends UniqueIdentifier {
+public class PassportNumber {
 
     public static final String MESSAGE_CONSTRAINTS = "Passport Number must be alphanumeric.";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";

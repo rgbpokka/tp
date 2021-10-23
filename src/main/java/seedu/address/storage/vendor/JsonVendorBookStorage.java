@@ -5,8 +5,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.vendor.ReadOnlyVendorManager;
-import seedu.address.storage.vendor.JsonSerializableVendorManager;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,36 +14,36 @@ import java.util.logging.Logger;
 
 import static java.util.Objects.requireNonNull;
 
-public class JsonVendorStorage implements VendorStorage {
+public class JsonVendorBookStorage implements VendorBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonVendorStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonVendorBookStorage.class);
 
     private Path filePath;
 
-    public JsonVendorStorage(Path filePath) {
+    public JsonVendorBookStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getVendorManagerFilePath() {
+    public Path getVendorBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyVendorManager> readVendorManager() throws DataConversionException {
-        return readVendorManager(filePath);
+    public Optional<ReadOnlyVendorBook> readVendorBook() throws DataConversionException {
+        return readVendorBook(filePath);
     }
 
     /**
-     * Similar to {@link #readVendorManager()}.
+     * Similar to {@link #readVendorBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyVendorManager> readVendorManager(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyVendorBook> readVendorBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableVendorManager> jsonVendorManager = JsonUtil.readJsonFile(
-                filePath, JsonSerializableVendorManager.class);
+        Optional<JsonSerializableVendorBook> jsonVendorManager = JsonUtil.readJsonFile(
+                filePath, JsonSerializableVendorBook.class);
         if (!jsonVendorManager.isPresent()) {
             return Optional.empty();
         }
@@ -58,21 +57,21 @@ public class JsonVendorStorage implements VendorStorage {
     }
 
     @Override
-    public void saveVendorManager(ReadOnlyVendorManager vendorManager) throws IOException {
-        saveVendorManager(vendorManager, filePath);
+    public void saveVendorBook(ReadOnlyVendorBook vendorManager) throws IOException {
+        saveVendorBook(vendorManager, filePath);
     }
 
     /**
-     * Similar to {@link #saveVendorManager(ReadOnlyVendorManager)}.
+     * Similar to {@link #saveVendorBook(ReadOnlyVendorBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveVendorManager(ReadOnlyVendorManager vendorManager, Path filePath) throws IOException {
+    public void saveVendorBook(ReadOnlyVendorBook vendorManager, Path filePath) throws IOException {
         requireNonNull(vendorManager);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableVendorManager(vendorManager), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableVendorBook(vendorManager), filePath);
     }
 
 

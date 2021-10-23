@@ -1,12 +1,15 @@
 package seedu.address.model.vendor;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.guest.PassportNumber;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 
-public class VendorManager implements ReadOnlyVendorManager {
+public class VendorBook implements ReadOnlyVendorBook {
 
     private final UniqueVendorList vendors;
 
@@ -20,13 +23,13 @@ public class VendorManager implements ReadOnlyVendorManager {
         vendors = new UniqueVendorList();
     }
 
-    public VendorManager() {
+    public VendorBook() {
     }
 
     /**
      * Creates a Vendor Manager using the entities in the {@code toBeCopied}
      */
-    public VendorManager(ReadOnlyVendorManager toBeCopied) {
+    public VendorBook(ReadOnlyVendorBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -42,9 +45,9 @@ public class VendorManager implements ReadOnlyVendorManager {
     }
 
     /**
-     * Resets the existing data of this {@code VendorManager} with {@code newData}.
+     * Resets the existing data of this {@code VendorBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyVendorManager newData) {
+    public void resetData(ReadOnlyVendorBook newData) {
         requireNonNull(newData);
         setVendors(newData.getVendorList());
     }
@@ -76,6 +79,15 @@ public class VendorManager implements ReadOnlyVendorManager {
     }
 
     /**
+     * Gets the given vendor in the list with the given vendorId. 
+     * If Vendor does not exist in the vendor book, then Optional is empty.
+     */
+    public Optional<Vendor> getVendor(VendorId vendorId) {
+        requireNonNull(vendorId);
+        return vendors.get(vendorId);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -96,8 +108,8 @@ public class VendorManager implements ReadOnlyVendorManager {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof VendorManager // instanceof handles nulls
-                && vendors.equals(((VendorManager) other).vendors));
+                || (other instanceof VendorBook // instanceof handles nulls
+                && vendors.equals(((VendorBook) other).vendors));
     }
 
     @Override

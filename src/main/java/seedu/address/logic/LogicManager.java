@@ -14,8 +14,8 @@ import seedu.address.logic.parser.PocketHotelParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.guest.Guest;
-import seedu.address.model.guest.ReadOnlyGuestManager;
-import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.guest.ReadOnlyGuestBook;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.storage.Storage;
 
@@ -48,8 +48,8 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveGuestManager(model.getGuestManager());
-            storage.saveVendorManager(model.getVendorManager());
+            storage.saveGuestBook(model.getGuestBook());
+            storage.saveVendorBook(model.getVendorBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -58,8 +58,8 @@ public class LogicManager implements Logic {
     }
     
     @Override
-    public ReadOnlyVendorManager getVendorManager() {
-        return model.getVendorManager();
+    public ReadOnlyVendorBook getVendorBook() {
+        return model.getVendorBook();
     }
 
     @Override
@@ -68,13 +68,13 @@ public class LogicManager implements Logic {
     }
     
     @Override
-    public Path getVendorManagerFilePath() {
-        return model.getVendorManagerFilePath();
+    public Path getVendorBookFilePath() {
+        return model.getVendorBookFilePath();
     }
 
     @Override
-    public ReadOnlyGuestManager getGuestManager() {
-        return model.getGuestManager();
+    public ReadOnlyGuestBook getGuestBook() {
+        return model.getGuestBook();
     }
 
     @Override
@@ -83,8 +83,8 @@ public class LogicManager implements Logic {
     }
     
     @Override
-    public Path getGuestManagerFilePath() {
-        return model.getGuestManagerFilePath();
+    public Path getGuestBookFilePath() {
+        return model.getGuestBookFilePath();
     }
 
     @Override

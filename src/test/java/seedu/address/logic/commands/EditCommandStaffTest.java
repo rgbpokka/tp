@@ -27,7 +27,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.vendor.VendorId;
-import seedu.address.model.UniqueIdentifier;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 import seedu.address.testutil.StaffBuilder;
 

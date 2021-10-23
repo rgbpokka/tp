@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,13 +12,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.guest.GuestManager;
-import seedu.address.model.guest.ReadOnlyGuestManager;
-import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.guest.GuestBook;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.ReadOnlyGuestBook;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.guest.Guest;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.vendor.VendorManager;
+import seedu.address.model.vendor.VendorBook;
+import seedu.address.model.vendor.VendorId;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,30 +27,30 @@ import seedu.address.model.vendor.VendorManager;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final GuestManager guestManager;
-    private final VendorManager vendorManager;
+    private final GuestBook guestBook;
+    private final VendorBook vendorBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Guest> filteredGuests;
     private final FilteredList<Vendor> filteredVendors;
 
     /**
-     * Initializes a ModelManager with the given guestManager, vendorManager and userPrefs.
+     * Initializes a ModelManager with the given guestBook, vendorBook and userPrefs.
      */
-    public ModelManager(ReadOnlyGuestManager guestManager, ReadOnlyVendorManager vendorManager, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyGuestBook guestBook, ReadOnlyVendorBook vendorBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(guestManager, vendorManager, userPrefs);
+        requireAllNonNull(guestBook, vendorBook, userPrefs);
 
-        logger.fine("Initializing with Pocket Hotel: " + guestManager + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Pocket Hotel: " + guestBook + " and user prefs " + userPrefs);
 
-        this.guestManager = new GuestManager(guestManager);
-        this.vendorManager = new VendorManager(vendorManager);
+        this.guestBook = new GuestBook(guestBook);
+        this.vendorBook = new VendorBook(vendorBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredGuests = new FilteredList<>(this.guestManager.getGuestList());
-        filteredVendors = new FilteredList<>(this.vendorManager.getVendorList());
+        filteredGuests = new FilteredList<>(this.guestBook.getGuestList());
+        filteredVendors = new FilteredList<>(this.vendorBook.getVendorList());
     }
 
     public ModelManager() {
-        this(new GuestManager(), new VendorManager(), new UserPrefs());
+        this(new GuestBook(), new VendorBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -76,73 +78,83 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getGuestManagerFilePath() {
-        return userPrefs.getGuestManagerFilePath();
+    public Path getGuestBookFilePath() {
+        return userPrefs.getGuestBookFilePath();
     }
 
     @Override
-    public void setGuestManagerFilePath(Path guestManagerFilePath) {
-        requireNonNull(guestManagerFilePath);
-        userPrefs.setGuestManagerFilePath(guestManagerFilePath);
+    public void setGuestBookFilePath(Path guestBookFilePath) {
+        requireNonNull(guestBookFilePath);
+        userPrefs.setGuestBookFilePath(guestBookFilePath);
     }
 
     //=========== Guest Manager ================================================================================
 
     @Override
-    public void setGuestManager(ReadOnlyGuestManager guestManager) {
-        this.guestManager.resetData(guestManager);
+    public void setGuestBook(ReadOnlyGuestBook guestBook) {
+        this.guestBook.resetData(guestBook);
     }
 
     @Override
-    public ReadOnlyGuestManager getGuestManager() {
-        return guestManager;
+    public ReadOnlyGuestBook getGuestBook() {
+        return guestBook;
     }
 
     @Override
     public boolean hasGuest(Guest guest) {
         requireNonNull(guest);
-        return guestManager.hasGuest(guest);
+        return guestBook.hasGuest(guest);
     }
 
     @Override
     public void deleteGuest(Guest target) {
-        guestManager.removeGuest(target);
+        guestBook.removeGuest(target);
     }
 
     @Override
     public void addGuest(Guest guest) {
-        guestManager.addGuest(guest);
+        guestBook.addGuest(guest);
         updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
+    }
+    
+    @Override
+    public Optional<Guest> getGuest(PassportNumber passportNumber) {
+        return guestBook.getGuest(passportNumber);
     }
 
     @Override
     public void setGuest(Guest target, Guest editedGuest) {
         requireAllNonNull(target, editedGuest);
-        guestManager.setGuest(target, editedGuest);
+        guestBook.setGuest(target, editedGuest);
     }
 
     //=========== Vendor Manager ================================================================================
     @Override
     public boolean hasVendor(Vendor vendor) {
         requireNonNull(vendor);
-        return vendorManager.hasVendor(vendor);
+        return vendorBook.hasVendor(vendor);
     }
 
     @Override
     public void deleteVendor(Vendor target) {
-        vendorManager.removeVendor(target);
+        vendorBook.removeVendor(target);
     }
 
     @Override
     public void addVendor(Vendor vendor) {
-        vendorManager.addVendor(vendor);
+        vendorBook.addVendor(vendor);
         updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
+    }
+
+    @Override
+    public Optional<Vendor> getVendor(VendorId vendorId) {
+        return vendorBook.getVendor(vendorId);
     }
 
     @Override
     public void setVendor(Vendor target, Vendor editedVendor) {
         requireAllNonNull(target, editedVendor);
-        vendorManager.setVendor(target, editedVendor);
+        vendorBook.setVendor(target, editedVendor);
     }
 
     //=========== Filtered Guest/Vendor List Accessors =============================================================
@@ -174,18 +186,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setVendorManager(ReadOnlyVendorManager vendorManager) {
-        this.vendorManager.resetData(vendorManager);
+    public void setVendorBook(ReadOnlyVendorBook vendorBook) {
+        this.vendorBook.resetData(vendorBook);
     }
 
     @Override
-    public ReadOnlyVendorManager getVendorManager() {
-        return vendorManager;
+    public ReadOnlyVendorBook getVendorBook() {
+        return vendorBook;
     }
 
     @Override
-    public Path getVendorManagerFilePath() {
-        return userPrefs.getVendorManagerFilePath();
+    public Path getVendorBookFilePath() {
+        return userPrefs.getVendorBookFilePath();
     }
 
     @Override
@@ -203,8 +215,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
 
-        return guestManager.equals(other.guestManager)
-                && vendorManager.equals(other.vendorManager)
+        return guestBook.equals(other.guestBook)
+                && vendorBook.equals(other.vendorBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredGuests.equals(other.filteredGuests)
                 && filteredVendors.equals(other.filteredVendors);

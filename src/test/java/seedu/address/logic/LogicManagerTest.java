@@ -28,8 +28,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.testutil.GuestBuilder;
 
 public class LogicManagerTest {

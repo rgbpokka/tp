@@ -1,15 +1,17 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.guest.ReadOnlyGuestManager;
-import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.ReadOnlyGuestBook;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.guest.Guest;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.VendorId;
 
 /**
  * The API of the Model component.
@@ -44,22 +46,22 @@ public interface Model {
     /**
      * Returns the user prefs' guest manager file path.
      */
-    Path getGuestManagerFilePath();
+    Path getGuestBookFilePath();
 
     /**
      * Sets the user prefs' guest manager file path.
      */
-    void setGuestManagerFilePath(Path guestManagerFilePath);
+    void setGuestBookFilePath(Path guestManagerFilePath);
 
     /**
-     * Replaces pocket hotel data with the data in {@code guestManager}.
+     * Replaces pocket hotel data with the data in {@code guestBook}.
      */
-    void setGuestManager(ReadOnlyGuestManager guestManager);
+    void setGuestBook(ReadOnlyGuestBook guestBook);
 
     /**
-     * Returns the GuestManager
+     * Returns the GuestBook
      */
-    ReadOnlyGuestManager getGuestManager();
+    ReadOnlyGuestBook getGuestBook();
     
     // ==================== Guest operations =====================    
     /**
@@ -78,6 +80,11 @@ public interface Model {
      * {@code guest} must not already exist in the address book.
      */
     void addGuest(Guest guest);
+
+    /**
+     * Gets guest given the passport number
+     */
+    Optional<Guest> getGuest(PassportNumber passportNumber);
 
     /**
      * Replaces the given guest {@code target} with {@code editedGuest}.
@@ -124,6 +131,11 @@ public interface Model {
     void setVendor(Vendor target, Vendor editedVendor);
 
     /**
+     * Gets vendor given the vendor id 
+     */
+    Optional<Vendor> getVendor(VendorId vendorId);
+
+    /**
      * Returns an unmodifiable view of the filtered vendor list
      */
     ObservableList<Vendor> getFilteredVendorList();
@@ -138,12 +150,12 @@ public interface Model {
     /**
      * Replaces pocket hotel data with the data in {@code vendorManager}.
      */
-    void setVendorManager(ReadOnlyVendorManager vendorManager);
+    void setVendorBook(ReadOnlyVendorBook vendorManager);
 
     /**
-     * Returns the VendorManager
+     * Returns the VendorBook
      */
-    ReadOnlyVendorManager getVendorManager();
+    ReadOnlyVendorBook getVendorBook();
 
-    Path getVendorManagerFilePath();
+    Path getVendorBookFilePath();
 }

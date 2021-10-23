@@ -41,7 +41,6 @@ public class Cost {
         return VALIDATION_PREDICATE.test(test);
     }
 
-
     @Override
     public String toString() {
         return value.toString();

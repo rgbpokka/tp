@@ -16,7 +16,9 @@ import seedu.address.model.commonattributes.Name;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.RoomNumber;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.Vendor;
 import seedu.address.storage.JsonAdaptedTag;
+import seedu.address.storage.vendor.JsonAdaptedVendor;
 
 /**
  * Jackson-friendly version of {@link Guest}.
@@ -30,16 +32,18 @@ class JsonAdaptedGuest {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String roomNumber;
     private final String passportNumber;
+    private final List<JsonAdaptedVendor> vendorsHired = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedGuest} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedGuest(@JsonProperty("name") String name,
                             @JsonProperty("email") String email,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                             @JsonProperty("roomNumber") String roomNumber,
-                            @JsonProperty("passportNumber") String passportNumber) {
+                            @JsonProperty("passportNumber") String passportNumber,
+                            @JsonProperty("vendorsHired") List<JsonAdaptedVendor> vendorsHired) {
         this.name = name;
         this.email = email;
         if (tagged != null) {
@@ -47,10 +51,13 @@ class JsonAdaptedGuest {
         }
         this.roomNumber = roomNumber;
         this.passportNumber = passportNumber;
+        if (vendorsHired != null) {
+            this.vendorsHired.addAll(vendorsHired);
+        }
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Guest} into this class for Jackson use.
      */
     public JsonAdaptedGuest(Guest source) {
         name = source.getName().fullName;
@@ -60,6 +67,9 @@ class JsonAdaptedGuest {
                 .collect(Collectors.toList()));
         roomNumber = source.getRoomNumber().value;
         passportNumber = source.getPassportNumber().value;
+        vendorsHired.addAll(source.getVendorsHired().stream()
+                .map(JsonAdaptedVendor::new)
+                .collect(Collectors.toList()));
     }
 
     public String getName() {
@@ -73,6 +83,10 @@ class JsonAdaptedGuest {
     public List<JsonAdaptedTag> getTags() {
         return tagged;
     }
+    
+    public List<JsonAdaptedVendor> getVendors() {
+        return vendorsHired;
+    }
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
@@ -84,6 +98,11 @@ class JsonAdaptedGuest {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : getTags()) {
             personTags.add(tag.toModelType());
+        }
+        
+        final List<Vendor> modelVendors = new ArrayList<>();
+        for (JsonAdaptedVendor vendor : getVendors()) {
+            modelVendors.add(vendor.toModelType());
         }
 
         if (getName() == null) {
@@ -121,7 +140,8 @@ class JsonAdaptedGuest {
         final PassportNumber modelPassportNumber = new PassportNumber(passportNumber);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Guest(modelName, modelEmail, modelTags, modelRoomNumber, modelPassportNumber);
+        
+        return new Guest(modelName, modelEmail, modelTags, modelRoomNumber, modelPassportNumber, modelVendors);
     }
 
 }

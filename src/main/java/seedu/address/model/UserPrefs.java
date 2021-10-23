@@ -14,8 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path guestManagerFilePath = Paths.get("data" , "guests.json");
-    private Path vendorManagerFilePath = Paths.get("data", "vendors.json");
+    private Path guestBookFilePath = Paths.get("data" , "guests.json");
+    private Path vendorBookFilePath = Paths.get("data", "vendors.json");
     
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,8 +36,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setGuestManagerFilePath(newUserPrefs.getGuestManagerFilePath());
-        setVendorManagerFilePath(newUserPrefs.getVendorManagerFilePath());
+        setGuestBookFilePath(newUserPrefs.getGuestBookFilePath());
+        setVendorBookFilePath(newUserPrefs.getVendorBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -49,22 +49,22 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getGuestManagerFilePath() {
-        return guestManagerFilePath;
+    public Path getGuestBookFilePath() {
+        return guestBookFilePath;
     }
 
-    public void setGuestManagerFilePath(Path guestManagerFilePath) {
-        requireNonNull(guestManagerFilePath);
-        this.guestManagerFilePath= guestManagerFilePath;
+    public void setGuestBookFilePath(Path guestBookFilePath) {
+        requireNonNull(guestBookFilePath);
+        this.guestBookFilePath= guestBookFilePath;
     }
 
-    public Path getVendorManagerFilePath() {
-        return vendorManagerFilePath;
+    public Path getVendorBookFilePath() {
+        return vendorBookFilePath;
     }
 
-    public void setVendorManagerFilePath(Path vendorManagerFilePath) {
-        requireNonNull(vendorManagerFilePath);
-        this.vendorManagerFilePath= vendorManagerFilePath;
+    public void setVendorBookFilePath(Path vendorBookFilePath) {
+        requireNonNull(vendorBookFilePath);
+        this.vendorBookFilePath= vendorBookFilePath;
     }
 
     @Override
@@ -79,20 +79,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && guestManagerFilePath.equals(o.guestManagerFilePath)
-                && vendorManagerFilePath.equals(o.vendorManagerFilePath);
+                && guestBookFilePath.equals(o.guestBookFilePath)
+                && vendorBookFilePath.equals(o.vendorBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, guestManagerFilePath);
+        return Objects.hash(guiSettings, guestBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + guestManagerFilePath);
+        sb.append("\nLocal data file location : " + guestBookFilePath);
         return sb.toString();
     }
 

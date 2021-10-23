@@ -7,14 +7,14 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.guest.ReadOnlyGuestManager;
-import seedu.address.storage.guest.GuestStorage;
-import seedu.address.storage.vendor.VendorStorage;
+import seedu.address.model.guest.ReadOnlyGuestBook;
+import seedu.address.storage.guest.GuestBookStorage;
+import seedu.address.storage.vendor.VendorBookStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends GuestStorage, VendorStorage, UserPrefsStorage {
+public interface Storage extends GuestBookStorage, VendorBookStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -23,12 +23,12 @@ public interface Storage extends GuestStorage, VendorStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getGuestManagerFilePath();
+    Path getGuestBookFilePath();
 
     @Override
-    Optional<ReadOnlyGuestManager> readGuestManager() throws DataConversionException, IOException;
+    Optional<ReadOnlyGuestBook> readGuestBook() throws DataConversionException, IOException;
 
     @Override
-    void saveGuestManager(ReadOnlyGuestManager guestManager) throws IOException;
+    void saveGuestBook(ReadOnlyGuestBook guestManager) throws IOException;
 
 }

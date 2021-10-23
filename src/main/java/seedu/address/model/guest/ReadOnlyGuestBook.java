@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 /**
  * Unmodifiable view of a guest manager 
  */
-public interface ReadOnlyGuestManager {
+public interface ReadOnlyGuestBook {
 
     /**
      * Returns an unmodifiable view of the guest list.

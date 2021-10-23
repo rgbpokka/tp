@@ -3,7 +3,7 @@ package seedu.address.logic.commands.vendor;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.vendor.VendorManager;
+import seedu.address.model.vendor.VendorBook;
 
 import static java.util.Objects.requireNonNull;
 
@@ -15,7 +15,7 @@ public class ClearVendorCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setVendorManager(new VendorManager());
+        model.setVendorBook(new VendorBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

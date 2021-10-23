@@ -3,10 +3,11 @@ package seedu.address.model.guest;
 import javafx.collections.ObservableList;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 
-public class GuestManager implements ReadOnlyGuestManager {
+public class GuestBook implements ReadOnlyGuestBook {
 
     private final UniqueGuestList guests;
 
@@ -20,14 +21,14 @@ public class GuestManager implements ReadOnlyGuestManager {
         guests = new UniqueGuestList();
     }
     
-    public GuestManager() {
+    public GuestBook() {
          
     }
 
     /**
-     * Creates an GuestManager using the entities in the {@code toBeCopied}
+     * Creates an GuestBook using the entities in the {@code toBeCopied}
      */
-    public GuestManager(ReadOnlyGuestManager toBeCopied) {
+    public GuestBook(ReadOnlyGuestBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -41,9 +42,9 @@ public class GuestManager implements ReadOnlyGuestManager {
     }
     
     /**
-     * Resets the existing data of this {@code GuestManager} with {@code newData}.
+     * Resets the existing data of this {@code GuestBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyGuestManager newData) {
+    public void resetData(ReadOnlyGuestBook newData) {
         requireNonNull(newData);
         setGuests(newData.getGuestList());
     }
@@ -75,6 +76,15 @@ public class GuestManager implements ReadOnlyGuestManager {
     }
 
     /**
+     * Gets the given guest in the list with the given passportNumber. 
+     * If Guest does not exist in the guest book, then Optional is empty.
+     */
+    public Optional<Guest> getGuest(PassportNumber passportNumber) {
+        requireNonNull(passportNumber);
+        return guests.get(passportNumber);
+    } 
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -95,8 +105,8 @@ public class GuestManager implements ReadOnlyGuestManager {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof GuestManager // instanceof handles nulls
-                && guests.equals(((GuestManager) other).guests));
+                || (other instanceof GuestBook // instanceof handles nulls
+                && guests.equals(((GuestBook) other).guests));
     }
 
     @Override

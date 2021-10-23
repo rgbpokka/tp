@@ -60,7 +60,6 @@ import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.vendor.Phone;
 import seedu.address.model.guest.RoomNumber;
 import seedu.address.model.vendor.VendorId;
-import seedu.address.model.UniqueIdentifier;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditGuestDescriptorBuilder;
 import seedu.address.testutil.EditStaffDescriptorBuilder;

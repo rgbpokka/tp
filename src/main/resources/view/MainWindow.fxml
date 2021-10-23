@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
          title="Pocket Hotel" minWidth="450" minHeight="600" onCloseRequest="#handleExit" >
     <icons>
         <Image url="@/images/pocket_hotel_32.png"/>
@@ -50,7 +50,7 @@
                 <StackPane fx:id="tabPanelPlaceholder" prefHeight="40.0" styleClass="pane-with-border"/>
                 
                 <HBox VBox.vgrow="ALWAYS">
-                    <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                    <VBox fx:id="contactList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
                           VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>

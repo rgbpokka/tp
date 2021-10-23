@@ -14,37 +14,62 @@ public class OperatingHours {
             "Operating Hours must only have valid days of the week (1 - 7), and the end time and " +
                     "start must be between 0000 and 2359, and start time less than end time.";
 
+    public static final String VALIDATION_REGEX = "[1-7]{1,7}[\\s][0-2][0-9][0-5][0-9][-][0-2][0-9][0-5][0-9]";
+
     public final LocalTime startTime;
     public final LocalTime endTime;
     public final List<DayOfWeek> recurringDays;
-    
+
     /**
-     * 
-     * @param startTime The starting time.
-     * @param endTime The ending time.
+     * @param startTime     The starting time.
+     * @param endTime       The ending time.
      * @param recurringDays The days of the week it operates on.
      */
     public OperatingHours(LocalTime startTime, LocalTime endTime, List<DayOfWeek> recurringDays) {
-        checkArgument(isValidOperatingHours(startTime, endTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTimings(startTime, endTime), MESSAGE_CONSTRAINTS);
         this.startTime = startTime;
         this.endTime = endTime;
         this.recurringDays = recurringDays;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true is startTime is before endTime
+     *
+     * @param startTime The starting time.
+     * @param endTime   The ending time.
+     * @return
      */
-    public static boolean isValidOperatingHours(LocalTime startTime, LocalTime endTime) {
+    public static boolean isValidTimings(LocalTime startTime, LocalTime endTime) {
         return startTime.isBefore(endTime);
+    }
+
+    /**
+     * Returns true if a given string are valid operating hours.
+     */
+    public static boolean isValidOperatingHours(String test) {
+        System.out.println(test);
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public List<DayOfWeek> getRecurringDays() {
+        return recurringDays;
     }
 
     @Override
     public String toString() {
-        String resultString = "Recurring Days: ";
+        StringBuilder resultString = new StringBuilder("Every ");
         for (DayOfWeek dayOfWeek : recurringDays) {
-            resultString += dayOfWeek.toString();
+            resultString.append(dayOfWeek.toString() + ", ");
         }
-        return resultString + "\n" + startTime.toString() + "\n" + endTime.toString();
+        return resultString + " " + startTime.toString() + "-" + endTime.toString();
     }
 
     @Override

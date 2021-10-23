@@ -2,8 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -14,6 +20,7 @@ import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.OperatingHours;
 import seedu.address.model.vendor.Phone;
 import seedu.address.model.guest.RoomNumber;
 import seedu.address.model.vendor.ServiceName;
@@ -185,7 +192,7 @@ public class ParserUtil {
         if (!ServiceName.isValidServiceName(trimmedServiceName)) {
             throw new ParseException(ServiceName.MESSAGE_CONSTRAINTS);
         }
-        return new ServiceName(trimmedServiceName);
+        return new ServiceName(StringUtil.capitalizeFirstLetter(trimmedServiceName));
     }
 
     /**
@@ -218,24 +225,43 @@ public class ParserUtil {
     public static OperatingHours parseOperatingHours(String operatingHours) throws ParseException {
         requireNonNull(operatingHours);
         String trimmedOperatingHours = operatingHours.trim();
-        String[] args = trimmedOperatingHours.split("\\s+");
-        String days = args[0];
-        String[] timings = args[1].split("-");
 
-        if (args.length > 2 || timings.length > 2) {
+        if (!OperatingHours.isValidOperatingHours(trimmedOperatingHours)) {
             throw new ParseException(OperatingHours.MESSAGE_CONSTRAINTS);
         }
 
-        Double result;
-        try {
-            result = Double.parseDouble(trimmedCost);
-        } catch (Exception e) {
-            throw new ParseException(Cost.INVALID_DOUBLE);
+        String[] args = trimmedOperatingHours.split("\\s+");
+        String days = args[0];
+        String startTimeString = args[1].split("-")[0];
+        Integer startTimeHour = Integer.parseInt(startTimeString.substring(0, 2));
+        Integer startTimeMinutes = Integer.parseInt(startTimeString.substring(2));
+        String endTimeString = args[1].split("-")[1];
+        Integer endTimeHour = Integer.parseInt(endTimeString.substring(0, 2));
+        Integer endTimeMinutes = Integer.parseInt(endTimeString.substring(2));
+
+        LocalTime startTime = LocalTime.of(startTimeHour, startTimeMinutes);
+        LocalTime endTime = LocalTime.of(endTimeHour, endTimeMinutes);
+
+        if (!OperatingHours.isValidTimings(startTime, endTime)) {
+            throw new ParseException(OperatingHours.MESSAGE_CONSTRAINTS);
         }
-        if (!Cost.isValidCost(result)) {
-            throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
+
+        List<DayOfWeek> operatingDays = new ArrayList<>();
+
+        for (int i = 0; i < days.length(); i++) {
+            DayOfWeek day = DayOfWeek.of(Character.getNumericValue(days.charAt(i)));
+            if (!operatingDays.contains(day)) {
+                operatingDays.add(day);
+            }
         }
-        return new Cost(result);
+
+        operatingDays.sort(new Comparator<DayOfWeek>() {
+            public int compare(DayOfWeek d1, DayOfWeek d2) {
+                return d1.compareTo(d2);
+            }
+        });
+
+        return new OperatingHours(startTime, endTime, operatingDays);
     }
 
 }

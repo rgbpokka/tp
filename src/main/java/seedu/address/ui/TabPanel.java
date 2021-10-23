@@ -17,12 +17,12 @@ public class TabPanel extends UiPart<Region> {
     }
 
     @FXML
-    private void handleSwitchToVendorList() {
+    private void handleClickVendorTab() {
         consumer.accept(VendorListPanel.TAB_NAME);
     }
 
     @FXML
-    private void handleSwitchToGuestList() {
+    private void handleClickGuestTab() {
         consumer.accept(GuestListPanel.TAB_NAME);
     }
     

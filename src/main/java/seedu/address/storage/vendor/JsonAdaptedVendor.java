@@ -1,6 +1,5 @@
 package seedu.address.storage.vendor;
 
-import java.sql.Time;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import seedu.address.storage.JsonAdaptedTag;
 /**
  * Jackson-friendly version of {@link Vendor}.
  */
-class JsonAdaptedVendor {
+public class JsonAdaptedVendor {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Vendor's %s field is missing!";
 
@@ -39,6 +38,8 @@ class JsonAdaptedVendor {
     private final String phone;
     private final String address;
     private final String vendorId;
+    private final String serviceName;
+    private final Double cost;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -49,7 +50,9 @@ class JsonAdaptedVendor {
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("address") String address,
                              @JsonProperty("vendorId") String vendorId,
-                             @JsonProperty("phone") String phone) {
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("serviceName") String serviceName, 
+                             @JsonProperty("cost") Double cost) {
         this.name = name;
         this.email = email;
         if (tagged != null) {
@@ -58,6 +61,8 @@ class JsonAdaptedVendor {
         this.address = address;
         this.vendorId = vendorId;
         this.phone = phone;
+        this.serviceName = serviceName;
+        this.cost = cost;
     }
 
     /**
@@ -72,6 +77,8 @@ class JsonAdaptedVendor {
         phone = source.getPhone().value;
         address = source.getAddress().value;
         vendorId = source.getVendorId().value;
+        serviceName = source.getServiceName().serviceName;
+        cost = source.getCost().value;
     }
 
     public String getName() {
@@ -140,15 +147,23 @@ class JsonAdaptedVendor {
         final Phone modelPhone = new Phone(phone);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        
+        if (!Cost.isValidCost(cost)) {
+            throw new IllegalValueException(Cost.MESSAGE_CONSTRAINTS);
+        }
+        
+        final Cost modelCost = new Cost(cost);
+        
+        if (!ServiceName.isValidServiceName(serviceName)) {
+            throw new IllegalValueException(ServiceName.MESSAGE_CONSTRAINTS);
+        }
 
-        final Cost modelCost = new Cost(1.2);
-
+        final ServiceName modelServiceName = new ServiceName(serviceName);
+        
         final OperatingHours modelOperatingHours =
                 new OperatingHours(LocalTime.of(10, 0), LocalTime.of(15, 0), new ArrayList<DayOfWeek>(
                         Collections.singleton(DayOfWeek.of(1))));
-
-        final ServiceName modelServiceName = new ServiceName("massage");
-
+        
         return new Vendor(modelName, modelEmail, modelTags, modelVendorId, modelPhone, modelServiceName, modelAddress,
                 modelCost, modelOperatingHours);
     }

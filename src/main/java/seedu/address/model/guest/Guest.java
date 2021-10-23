@@ -41,6 +41,16 @@ public class Guest extends UniqueListItem implements Taggable {
         this.vendorsHired = new ArrayList<>();
     }
 
+    public Guest(Name name, Email email, Set<Tag> tags, RoomNumber roomNumber, PassportNumber passportNumber, 
+                 List<Vendor> vendorsHired) {
+        this.name = name;
+        this.email = email;
+        this.tags.addAll(tags);
+        this.roomNumber = roomNumber;
+        this.passportNumber = passportNumber;
+        this.vendorsHired = vendorsHired;
+    }
+
     public Name getName() {
         return name;
     }
@@ -64,9 +74,13 @@ public class Guest extends UniqueListItem implements Taggable {
     public PassportNumber getPassportNumber() {
         return passportNumber;
     }
-    
+
     public List<Vendor> getVendorsHired() {
         return vendorsHired;
+    }
+    
+    public void charge(Vendor vendor) {
+        this.vendorsHired.add(vendor);
     }
 
     @Override
@@ -120,9 +134,7 @@ public class Guest extends UniqueListItem implements Taggable {
                 .append("; RoomNumber: ")
                 .append(getRoomNumber())
                 .append("; PassportNumber: ")
-                .append(getPassportNumber())
-                .append("; Vendors Hired: ")
-                .append(getVendorsHired().toString());
+                .append(getPassportNumber());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

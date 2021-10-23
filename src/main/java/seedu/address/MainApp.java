@@ -19,20 +19,19 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.guest.GuestManager;
-import seedu.address.model.guest.ReadOnlyGuestManager;
+import seedu.address.model.guest.GuestBook;
+import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.model.vendor.ReadOnlyVendorManager;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.VendorManager;
-import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
+import seedu.address.model.vendor.VendorBook;
 import seedu.address.storage.Storage;
+import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.storage.guest.GuestStorage;
-import seedu.address.storage.guest.JsonGuestStorage;
-import seedu.address.storage.vendor.JsonVendorStorage;
-import seedu.address.storage.vendor.VendorStorage;
+import seedu.address.storage.guest.GuestBookStorage;
+import seedu.address.storage.guest.JsonGuestBookStorage;
+import seedu.address.storage.vendor.JsonVendorBookStorage;
+import seedu.address.storage.vendor.VendorBookStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -61,9 +60,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        GuestStorage guestStorage = new JsonGuestStorage(userPrefs.getGuestManagerFilePath());
-        VendorStorage vendorStorage = new JsonVendorStorage(userPrefs.getVendorManagerFilePath());
-        storage = new StorageManager(guestStorage, vendorStorage, userPrefsStorage);
+        GuestBookStorage guestBookStorage = new JsonGuestBookStorage(userPrefs.getGuestBookFilePath());
+        VendorBookStorage vendorBookStorage = new JsonVendorBookStorage(userPrefs.getVendorBookFilePath());
+        storage = new StorageManager(guestBookStorage, vendorBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -80,54 +79,54 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        ReadOnlyGuestManager guestManager = initGuestManager(storage);
-        ReadOnlyVendorManager vendorManager = initVendorManager(storage);
+        ReadOnlyGuestBook guestManager = initGuestBook(storage);
+        ReadOnlyVendorBook vendorManager = initVendorBook(storage);
         return new ModelManager(guestManager, vendorManager, userPrefs);
     }
 
     /**
-     * Returns a {@code ReadOnlyGuestManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code ReadOnlyGuestBook} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private ReadOnlyGuestManager initGuestManager(Storage storage) {
-        ReadOnlyGuestManager initialData;
+    private ReadOnlyGuestBook initGuestBook(Storage storage) {
+        ReadOnlyGuestBook initialData;
         try {
-            Optional<ReadOnlyGuestManager> guestManagerOptional = storage.readGuestManager();
-            if (!guestManagerOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample GuestManager");
+            Optional<ReadOnlyGuestBook> guestBookOptional = storage.readGuestBook();
+            if (!guestBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample GuestBook");
             }
-            initialData = guestManagerOptional.orElseGet(SampleDataUtil::getSampleGuestManager);
+            initialData = guestBookOptional.orElseGet(SampleDataUtil::getSampleGuestBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty GuestManager");
-            initialData = new GuestManager();
+            logger.warning("Data file not in the correct format. Will be starting with an empty GuestBook");
+            initialData = new GuestBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty GuestManager");
-            initialData = new GuestManager();
+            logger.warning("Problem while reading from the file. Will be starting with an empty GuestBook");
+            initialData = new GuestBook();
         }
 
         return initialData;
     }
 
     /**
-     * Returns a {@code ReadOnlyGuestManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code ReadOnlyGuestBook} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private ReadOnlyVendorManager initVendorManager(Storage storage) {
-        ReadOnlyVendorManager initialData;
+    private ReadOnlyVendorBook initVendorBook(Storage storage) {
+        ReadOnlyVendorBook initialData;
         try {
-            Optional<ReadOnlyVendorManager> vendorManagerOptional = storage.readVendorManager();
-            if (!vendorManagerOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample VendorManager");
+            Optional<ReadOnlyVendorBook> vendorBookOptional = storage.readVendorBook();
+            if (!vendorBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample VendorBook");
             }
-            initialData = vendorManagerOptional.orElseGet(SampleDataUtil::getSampleVendorManager);
+            initialData = vendorBookOptional.orElseGet(SampleDataUtil::getSampleVendorBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty VendorManager");
-            initialData = new VendorManager();
+            logger.warning("Data file not in the correct format. Will be starting with an empty VendorBook");
+            initialData = new VendorBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty VendorManager");
-            initialData = new VendorManager();
+            logger.warning("Problem while reading from the file. Will be starting with an empty VendorBook");
+            initialData = new VendorBook();
         }
         return initialData;
     }
