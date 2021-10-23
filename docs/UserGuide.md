@@ -240,6 +240,8 @@ Here’s a snippet of the editable text file in JSON that is found at:
 
 <img src="https://github.com/bingcheng45/tp/blob/playground/docs/images/JsonSnippet.png" width="100" height="100">
 
+<img src="images/JsonSnippet.png" width="500">
+
 ![JsonSnippet](images/JsonSnippet.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
