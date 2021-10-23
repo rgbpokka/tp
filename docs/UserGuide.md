@@ -98,56 +98,10 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 
 // TODO add note: commands can be executed regardless of current list being viewed, e.g clearguest can be executed though the current list viewed is the vendor
 
-// TODO Remove summary tables
-### Guest Command Summary
-
-Action | Format, Examples
---------|------------------
-**checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
-**checkin(returning guest)** | `checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `checkin pn/T0134568D r/101`
-**checkout** | `checkout pn/<PASSPORT_NUMBER>`<br>Example: `checkout pn/T0134568D`
-**editguest** | `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit pn/X12345678A p/99999999`
-**deleteguest** | `deleteguest pn/<PASSPORT_NUMBER>`<br>Example: `deleteguest pn/T0134568D`
-**clearguest** | `clearguest`
-**listguest** | `listguest`
-**filterguest** | `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filterguest n/Bing t/VIP`
-**chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
-**addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
-**editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit vid/111 sn/Laundry`
-**deletevendor** | `deletevendor vid/<VENDOR_ID>`<br>Example: `deletevendor vid/112`
-**clearvendor** | `clearvendor`
-**listvendor** | `listvendor`
-**filtervendor** | `filtervendor vid/<VENDOR_ID> <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filtervendor sn/Food t/satay`
-**help** | `Help`
-**exit** | `exit`
 
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-# **Parameter Constraints Section**
-## **Guest Parameter Constraints Summary**
-
-Parameter | Prefix | Constraints, Examples
-----------|--------|-----------------------
-**PASSPORT_NUMBER** | `pn/` | Blank inputs are not allowed.<br>Should only contain alphanumeric characters.<br>Example: `pn/X12345678A`
-**NAME** | `n/` | Blank inputs are not allowed.<br>Example: `n/Bing Cheng`
-**EMAIL** | `e/` | Blanks inputs are not allowed.<br>A valid email address should be used.<br>Example: `e/BingCheng@email.com`
-**ROOM_NUMBER** | `r/` | Blank inputs are not allowed.<br>Only numbers greater than 0 are valid.<br>Example: `r/500`
-**TAG** | `t/` | Blank inputs are not allowed.<br>An optional field, more than one can be included in each command.<br>Example: `t/Vaccinated t/Vegetarian`
-
-## **Vendor Parameter Constraints Summary**
-
-Parameter | Prefix | Constraints, Examples
-----------|--------|-----------------------
-**VENDOR_ID** | `vid/` |  Blank inputs are not allowed.<br>Should only contain alphanumeric characters.<br>Example: `vid/2131`
-**NAME** | `n/` | Blank inputs are not allowed.<br>Should only contain alphabetical characters.<br>Example: `n/Wang's Satay`
-**EMAIL** | `e/` | Blanks inputs are not allowed.<br>A valid email address should be used.<br>Example: `e/satayMan@email.com`
-**PHONE_NUMBER** | `p/` | Blank inputs are not allowed.<br>At least 3 digits long, should only contain numbers<br>Example: `p/84711231`
-**ADDRESS** | `a/` | Blank inputs are not allowed.<br>Example: `a/Geylang Street 31`
-**SERVICE_NAME** | `sn/` | Blank inputs are not allowed.<br>Alphabetical characters and spaces are allowed.<br>Example: `sn/Satay`
-**SERVICE_COST** | `c/` | Blank inputs are not allowed.<br>Number greater than 0, will be rounded to 2 decimal places.<br>Example: `c/5`
-**OPERATING_HOURS** | `oh/` | Blank inputs are not allowed.<br>Duplicates are allowed.<br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
-**TAG** | `t/` | Blank inputs are not allowed.<br>An optional field, more than one can be included in each command.<br>Example: `t/Halal t/Free flow`
 
 ### Contacts in Pocket Hotel
 There are 2 types of contacts in **PH**, guests and vendors. Guests represent guests of the hotel, and vendors represent external companies employed by a hotel for services hotel. Guest are identified by their `PASSPORT_NUMBER`
@@ -206,6 +160,10 @@ Checks out a **guest** by archiving their details and generate an invoice of all
 Format:
 <br>`checkout pn/<PASSPORT_NUMBER>`
 
+Example:
+
+* `editguest pn/X12345678A` checks out the guest Bing Cheng, whose passport number is X12345678A.
+
 ### Editing fields of a guest : `editguest`
 
 Edit a **guest**' contact details. Only edits the fields that have been passed in as parameters.
@@ -215,10 +173,13 @@ Format:
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes:**<br>
-* Existing values will be updated to the input values.
+
+* Existing field values will be overwritten by the newly provided field values.
+
 * You can edit more than one field at a time (See example below).
-* Note that when changing a guest, it is important that there is no pre-existing staff or
-  guest with that unique identifier already.
+
+* Note that when changing a guest, it is important that there is no pre-existing
+  guest with that passport number already.
 </div>
 
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
@@ -230,6 +191,9 @@ Example:
 
 * `editguest pn/X12345678A r/123` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the
   room number field with the new room number provided.
+  
+* `editguest pn/X87654321A r/124 e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites the
+    room number field with the new room number provided, and overwrites the old email field with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -242,7 +206,7 @@ Format:
 <br>`deleteguest pn/<PASSPORT_NUMBER>`
 
 Example:
-`deleteguest pn/XNOO19390`, The guest who has passport number XNOO19390 from **PH**.
+`deleteguest pn/XNOO19390` deletes the guest who has passport number XNOO19390 from **PH**.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -347,10 +311,10 @@ Example:
 Deletes a vendors contact details from **PH**.
 
 Format:
-<br>`delete vid/<VENDOR_ID>`
+<br>`deletevendor vid/<VENDOR_ID>`
 
 Example:
-<br>`delete vid/321`  deletes the vendor with `VENDOR_ID` deleted from **PH**.
+<br>`deletevendor vid/321`  deletes the vendor with `VENDOR_ID` 321 from **PH**.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -426,6 +390,8 @@ The archived guests would have the room number and services field emptied in the
 
 ## **Command Summary**
 
+
+### Guest Command Summary
 Action | Format, Examples
 --------|------------------
 **checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
@@ -437,6 +403,10 @@ Action | Format, Examples
 **listguest** | `listguest`
 **filterguest** | `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filterguest n/Bing t/VIP`
 **chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
+
+### Vendor Command Summary
+Action | Format, Examples
+--------|------------------
 **addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000` 
 **editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit vid/111 sn/Laundry`
 **deletevendor** | `deletevendor vid/<VENDOR_ID>`<br>Example: `deletevendor vid/112`
@@ -483,7 +453,7 @@ Parameter | Prefix | Constraints, Examples
 * **PH**: Acronym for Pocket Hotel
 * **CLI**: Command line interface
 * **GUI**: Graphical user interface
-* **Guest**: A guest at the hotel!
+* **Guest**: A guest at the hotel
 * **Vendor**: An external entity that a hotel uses for services 
 * **Unique Identifier**: An attribute that uniquely identifies a contact in the address book.
 * **Archived Guests**: Guests that are not checked into the hotel and are not displayed, but whose details are stored in **PH**.
