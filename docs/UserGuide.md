@@ -383,13 +383,12 @@ The archived guests would have the room number and services field emptied in the
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Command Summary**
+# **Command Summary**
 
+## Guest Command Summary
 
-### Guest Command Summary
-
-Action | Format, Examples
--------|------------------
+Action | Format, Examples 
+-------|------------------|
 **checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
 **checkin(returning guest)** | `checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `checkin pn/T0134568D r/101`
 **checkout** | `checkout pn/<PASSPORT_NUMBER>`<br>Example: `checkout pn/T0134568D`
@@ -400,7 +399,7 @@ Action | Format, Examples
 **filterguest** | `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filterguest n/Bing t/VIP`
 **chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
 
-### Vendor Command Summary
+## Vendor Command Summary
 
 Action | Format, Examples
 -------|------------------
@@ -445,7 +444,7 @@ Parameter | Prefix | Constraints, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Glossary**
+# **Glossary**
 
 * **PH**: Acronym for Pocket Hotel
 * **CLI**: Command line interface
@@ -460,7 +459,7 @@ Parameter | Prefix | Constraints, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **FAQ**
+# **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app on your other computer and run it. Overwrite the empty .json file that is created with your old
