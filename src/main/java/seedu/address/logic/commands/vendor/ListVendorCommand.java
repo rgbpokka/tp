@@ -17,7 +17,7 @@ public class ListVendorCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, "Vendors");
     }
     
 }

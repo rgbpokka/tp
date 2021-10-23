@@ -14,7 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
-import seedu.address.testutil.EditStaffDescriptorBuilder;
+import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
 
 public class EditStaffDescriptorTest {
 
@@ -37,29 +37,29 @@ public class EditStaffDescriptorTest {
         assertFalse(DESC_ELLE.equals(DESC_DANIEL));
 
         // different name -> returns false
-        EditStaffDescriptor editedElle = new EditStaffDescriptorBuilder(DESC_ELLE)
+        EditStaffDescriptor editedElle = new EditVendorDescriptorBuilder(DESC_ELLE)
                 .withName(VALID_NAME_DANIEL)
                 .build();
         assertFalse(DESC_ELLE.equals(editedElle));
 
         // different email -> returns false
-        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withEmail(VALID_EMAIL_DANIEL).build();
+        editedElle = new EditVendorDescriptorBuilder(DESC_ELLE).withEmail(VALID_EMAIL_DANIEL).build();
         assertFalse(DESC_ELLE.equals(editedElle));
 
         // different tags -> returns false
-        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withTags(VALID_TAG_DANIEL).build();
+        editedElle = new EditVendorDescriptorBuilder(DESC_ELLE).withTags(VALID_TAG_DANIEL).build();
         assertFalse(DESC_ELLE.equals(editedElle));
 
         // different address -> returns false
-        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withAddress(VALID_ADDRESS_DANIEL).build();
+        editedElle = new EditVendorDescriptorBuilder(DESC_ELLE).withAddress(VALID_ADDRESS_DANIEL).build();
         assertFalse(DESC_ELLE.equals(editedElle));
 
         // different phone -> returns false
-        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withPhone(VALID_PHONE_DANIEL).build();
+        editedElle = new EditVendorDescriptorBuilder(DESC_ELLE).withPhone(VALID_PHONE_DANIEL).build();
         assertFalse(DESC_ELLE.equals(editedElle));
 
         // different staff id -> returns false
-        editedElle = new EditStaffDescriptorBuilder(DESC_ELLE).withStaffId(VALID_STAFF_ID_DANIEL).build();
+        editedElle = new EditVendorDescriptorBuilder(DESC_ELLE).withStaffId(VALID_STAFF_ID_DANIEL).build();
         assertFalse(DESC_ELLE.equals(editedElle));
     }
 }

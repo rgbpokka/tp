@@ -48,13 +48,13 @@ public class SampleDataUtil {
                         getTagSet("Chinese", "Non-Halal"), new VendorId("001"), new Phone("80180880"),
                         new ServiceName("Food"), new Address("12 Clementi Rd, 231123"), new Cost(12.99),
                         new OperatingHours(LocalTime.of(8, 0), LocalTime.of(15, 30), new ArrayList<DayOfWeek>(
-                                Arrays.asList(DayOfWeek.of(1), DayOfWeek.of(3), DayOfWeek.of(5))))),
+                                Arrays.asList(DayOfWeek.of(1), DayOfWeek.of(3), DayOfWeek.of(5))), "135 0800-1530")),
                 new Vendor(new Name("Bing Massage Parlour"), new Email("bmassage@example.com"),
                         getTagSet("Foot Massage", "Body Massage"), new VendorId("002"), new Phone("67381280"),
                         new ServiceName("Massage"), new Address("75 Clementi Rd, 211823"), new Cost(40.00),
                         new OperatingHours(LocalTime.of(16, 0), LocalTime.of(22, 30), new ArrayList<DayOfWeek>(
                                 Arrays.asList(DayOfWeek.of(1), DayOfWeek.of(2), DayOfWeek.of(3),
-                                        DayOfWeek.of(4), DayOfWeek.of(5))))),
+                                        DayOfWeek.of(4), DayOfWeek.of(5))), "12345 1600-2230")),
         };
     }
 

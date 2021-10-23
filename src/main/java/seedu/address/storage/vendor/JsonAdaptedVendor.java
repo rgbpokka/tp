@@ -1,9 +1,6 @@
 package seedu.address.storage.vendor;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.vendor.Address;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
@@ -40,6 +38,7 @@ public class JsonAdaptedVendor {
     private final String vendorId;
     private final String serviceName;
     private final Double cost;
+    private final String operatingHours;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -51,8 +50,9 @@ public class JsonAdaptedVendor {
                              @JsonProperty("address") String address,
                              @JsonProperty("vendorId") String vendorId,
                              @JsonProperty("phone") String phone,
-                             @JsonProperty("serviceName") String serviceName, 
-                             @JsonProperty("cost") Double cost) {
+                             @JsonProperty("serviceName") String serviceName,
+                             @JsonProperty("cost") Double cost,
+                             @JsonProperty("operatingHours") String operatingHours) {
         this.name = name;
         this.email = email;
         if (tagged != null) {
@@ -63,6 +63,7 @@ public class JsonAdaptedVendor {
         this.phone = phone;
         this.serviceName = serviceName;
         this.cost = cost;
+        this.operatingHours = operatingHours;
     }
 
     /**
@@ -79,6 +80,7 @@ public class JsonAdaptedVendor {
         vendorId = source.getVendorId().value;
         serviceName = source.getServiceName().serviceName;
         cost = source.getCost().value;
+        operatingHours = source.getOperatingHours().operatingHoursStringRep;
     }
 
     public String getName() {
@@ -147,23 +149,25 @@ public class JsonAdaptedVendor {
         final Phone modelPhone = new Phone(phone);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        
+
         if (!Cost.isValidCost(cost)) {
             throw new IllegalValueException(Cost.MESSAGE_CONSTRAINTS);
         }
-        
+
         final Cost modelCost = new Cost(cost);
-        
+
         if (!ServiceName.isValidServiceName(serviceName)) {
             throw new IllegalValueException(ServiceName.MESSAGE_CONSTRAINTS);
         }
 
         final ServiceName modelServiceName = new ServiceName(serviceName);
-        
-        final OperatingHours modelOperatingHours =
-                new OperatingHours(LocalTime.of(10, 0), LocalTime.of(15, 0), new ArrayList<DayOfWeek>(
-                        Collections.singleton(DayOfWeek.of(1))));
-        
+
+        if (!OperatingHours.isValidOperatingHours(operatingHours)) {
+            throw new IllegalValueException(OperatingHours.MESSAGE_CONSTRAINTS);
+        }
+
+        final OperatingHours modelOperatingHours = ParserUtil.parseOperatingHours(operatingHours);
+
         return new Vendor(modelName, modelEmail, modelTags, modelVendorId, modelPhone, modelServiceName, modelAddress,
                 modelCost, modelOperatingHours);
     }

@@ -20,7 +20,7 @@ import seedu.address.logic.commands.guest.CheckInCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.StaffBuilder;
+import seedu.address.testutil.vendor.VendorBuilder;
 
 public class CheckInCommandStaffTest {
 
@@ -33,7 +33,7 @@ public class CheckInCommandStaffTest {
     @Test
     public void execute_staffAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validStaff = new StaffBuilder().build();
+        Person validStaff = new VendorBuilder().build();
 
         CommandResult commandResult = new CheckInCommand(validStaff).execute(modelStub);
 
@@ -43,7 +43,7 @@ public class CheckInCommandStaffTest {
 
     @Test
     public void execute_duplicateStaff_throwsCommandException() {
-        Person validStaff = new StaffBuilder().build();
+        Person validStaff = new VendorBuilder().build();
         CheckInCommand checkInCommand = new CheckInCommand(validStaff);
         ModelStub modelStub = new ModelStubWithPerson(validStaff);
 
@@ -52,8 +52,8 @@ public class CheckInCommandStaffTest {
 
     @Test
     public void equals() {
-        Staff alice = new StaffBuilder().withName("Alice").build();
-        Staff bob = new StaffBuilder().withName("Bob").build();
+        Staff alice = new VendorBuilder().withName("Alice").build();
+        Staff bob = new VendorBuilder().withName("Bob").build();
         CheckInCommand addAliceCommand = new CheckInCommand(alice);
         CheckInCommand addBobCommand = new CheckInCommand(bob);
 

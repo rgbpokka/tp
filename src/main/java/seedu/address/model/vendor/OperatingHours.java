@@ -19,17 +19,20 @@ public class OperatingHours {
     public final LocalTime startTime;
     public final LocalTime endTime;
     public final List<DayOfWeek> recurringDays;
+    public final String operatingHoursStringRep;
 
     /**
      * @param startTime     The starting time.
      * @param endTime       The ending time.
      * @param recurringDays The days of the week it operates on.
+     * @param stringRep     The string representation of the operating hours.
      */
-    public OperatingHours(LocalTime startTime, LocalTime endTime, List<DayOfWeek> recurringDays) {
+    public OperatingHours(LocalTime startTime, LocalTime endTime, List<DayOfWeek> recurringDays, String stringRep) {
         checkArgument(isValidTimings(startTime, endTime), MESSAGE_CONSTRAINTS);
         this.startTime = startTime;
         this.endTime = endTime;
         this.recurringDays = recurringDays;
+        this.operatingHoursStringRep = stringRep;
     }
 
     /**
@@ -61,6 +64,10 @@ public class OperatingHours {
 
     public List<DayOfWeek> getRecurringDays() {
         return recurringDays;
+    }
+    
+    public String getOperatingHoursStringRep() {
+        return operatingHoursStringRep;
     }
 
     @Override

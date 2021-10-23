@@ -30,7 +30,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHEF;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SENIOR_STAFF;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.DANIEL_STAFF;
+import static seedu.address.testutil.guest.TypicalGuests.DANIEL_STAFF;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,7 @@ import seedu.address.model.commonattributes.Name;
 import seedu.address.model.vendor.Phone;
 import seedu.address.model.vendor.VendorId;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.StaffBuilder;
+import seedu.address.testutil.vendor.VendorBuilder;
 
 public class CheckInCommandParserTest {
     private CheckInCommandParser parser = new CheckInCommandParser();
@@ -50,7 +50,7 @@ public class CheckInCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
 
-        Person expectedPerson = new StaffBuilder(DANIEL_STAFF).withTags(VALID_TAG_CHEF, VALID_STAFF_TAG).build();
+        Person expectedPerson = new VendorBuilder(DANIEL_STAFF).withTags(VALID_TAG_CHEF, VALID_STAFF_TAG).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL
@@ -74,7 +74,7 @@ public class CheckInCommandParserTest {
                 + ADDRESS_DESC_DANIEL + TAG_DESC_CHEF + STAFF_ID_DESC_DANIEL, new CheckInCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new StaffBuilder(DANIEL_STAFF).withTags(VALID_TAG_CHEF,
+        Person expectedPersonMultipleTags = new VendorBuilder(DANIEL_STAFF).withTags(VALID_TAG_CHEF,
                         VALID_TAG_SENIOR_STAFF, VALID_STAFF_TAG).build();
 
         assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL + ADDRESS_DESC_DANIEL
@@ -87,7 +87,7 @@ public class CheckInCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
 
-        Person expectedPerson = new StaffBuilder(DANIEL_STAFF).withTags(VALID_STAFF_TAG).build();
+        Person expectedPerson = new VendorBuilder(DANIEL_STAFF).withTags(VALID_STAFF_TAG).build();
         assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL
                         + ADDRESS_DESC_DANIEL + STAFF_ID_DESC_DANIEL,
                 new CheckInCommand(expectedPerson));

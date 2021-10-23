@@ -9,8 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PASSPORT_NUMBER_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ALICE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
-import static seedu.address.testutil.TypicalPersons.ALICE_GUEST;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
+import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_UNUSED;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.testutil.GuestBuilder;
+import seedu.address.testutil.guest.GuestBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

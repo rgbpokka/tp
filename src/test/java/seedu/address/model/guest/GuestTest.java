@@ -8,12 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSPORT_NUMBER
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SENIOR_STAFF;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE_GUEST;
-import static seedu.address.testutil.TypicalPersons.BENSON_GUEST;
+import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
+import static seedu.address.testutil.guest.TypicalGuests.BENSON_GUEST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.GuestBuilder;
+import seedu.address.testutil.guest.GuestBuilder;
 
 public class GuestTest {
 

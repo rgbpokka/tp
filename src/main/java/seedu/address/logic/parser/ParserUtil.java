@@ -261,7 +261,7 @@ public class ParserUtil {
             }
         });
 
-        return new OperatingHours(startTime, endTime, operatingDays);
+        return new OperatingHours(startTime, endTime, operatingDays, trimmedOperatingHours);
     }
 
 }

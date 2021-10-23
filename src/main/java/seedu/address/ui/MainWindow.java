@@ -204,6 +204,12 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             
+            Optional<String> tabNameToToggleTo = commandResult.getTabNameToToggleTo();
+            
+            if (tabNameToToggleTo.isPresent()) {
+                toggleTab(tabNameToToggleTo.get());
+            }
+            
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

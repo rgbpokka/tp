@@ -20,6 +20,6 @@ public class ListGuestCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, "Guests");
     }
 }

@@ -13,6 +13,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.guest.CheckOutCommand;
 import seedu.address.logic.commands.guest.ClearGuestCommand;
+import seedu.address.logic.commands.guest.DeleteGuestCommand;
 import seedu.address.logic.commands.guest.EditGuestCommand;
 import seedu.address.logic.commands.guest.ListGuestCommand;
 import seedu.address.logic.commands.vendor.AddVendorCommand;
@@ -24,6 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.guest.ChargeGuestCommandParser;
 import seedu.address.logic.parser.guest.CheckInCommandParser;
 import seedu.address.logic.parser.guest.CheckOutCommandParser;
+import seedu.address.logic.parser.guest.DeleteGuestCommandParser;
 import seedu.address.logic.parser.guest.EditGuestCommandParser;
 import seedu.address.logic.parser.vendor.AddVendorCommandParser;
 import seedu.address.logic.parser.vendor.DeleteVendorCommandParser;
@@ -71,6 +73,9 @@ public class PocketHotelParser {
         
         case ListGuestCommand.COMMAND_WORD:
             return new ListGuestCommand();
+            
+        case DeleteGuestCommand.COMMAND_WORD:
+            return new DeleteGuestCommandParser().parse(arguments);
         
 //        case FilterGuestCommand.COMMAND_WORD:
 //            return new FilterGuestCommandParser().parse(arguments);

@@ -7,8 +7,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_DEFAULT;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_DEFAULT;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_DEFAULT;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 
@@ -29,12 +29,12 @@ import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.IdentifierContainsKeywordsPredicate;
-import seedu.address.testutil.EditGuestDescriptorBuilder;
-import seedu.address.testutil.EditStaffDescriptorBuilder;
-import seedu.address.testutil.GuestBuilder;
-import seedu.address.testutil.GuestUtil;
-import seedu.address.testutil.StaffBuilder;
-import seedu.address.testutil.StaffUtil;
+import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
+import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
+import seedu.address.testutil.guest.GuestBuilder;
+import seedu.address.testutil.guest.GuestUtil;
+import seedu.address.testutil.vendor.VendorBuilder;
+import seedu.address.testutil.vendor.StaffUtil;
 
 public class PocketHotelParserTest {
 
@@ -49,7 +49,7 @@ public class PocketHotelParserTest {
 
     @Test
     public void parseCommand_addStaff() throws Exception {
-        Staff staff = new StaffBuilder().build();
+        Staff staff = new VendorBuilder().build();
         CheckInCommand command = (CheckInCommand) parser.parseCommand(StaffUtil.getAddCommand(staff));
         assertEquals(new CheckInCommand(staff), command);
     }
@@ -87,8 +87,8 @@ public class PocketHotelParserTest {
 
     @Test
     public void parseCommand_editStaff() throws Exception {
-        Staff staff = new StaffBuilder().build();
-        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(staff).build();
+        Staff staff = new VendorBuilder().build();
+        EditStaffDescriptor descriptor = new EditVendorDescriptorBuilder(staff).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + STAFF_ID_DEFAULT.toString() + " " + StaffUtil.getEditStaffDescriptorDetails(descriptor));
         assertEquals(new EditCommand(STAFF_ID_DEFAULT, descriptor), command);

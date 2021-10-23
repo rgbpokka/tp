@@ -21,7 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.GuestBuilder;
+import seedu.address.testutil.guest.GuestBuilder;
 
 public class CheckInCommandGuestTest {
 
