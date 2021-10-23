@@ -34,7 +34,6 @@ fully to integrate it within your hotel management system.
 4. To start the application, you may either:
     1. Double-click the `PH.jar` file to boot up the app.
     2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
-// TODO change the GUI picture
 The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
 ![Ui](images/Ui.png)
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
@@ -96,9 +95,6 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 * The tag field is optional and can be omitted entirely
 </div>
 
-// TODO add note: commands can be executed regardless of current list being viewed, e.g clearguest can be executed though the current list viewed is the vendor
-
-
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -132,12 +128,9 @@ Checks in a new **guest** by adding their contact details into **PH**.
 Format:
 <br>`checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`
 
-Example 1 (Add guest):
-// TODO pictures do not show the accurate state of the app (readers want to see the real thing)
-<br>![AddDiagram](images/AddDiagram.png)
-
-* `list` command lists all contact details of people in the address book.
-* `checkin n/Bing Cheng pn/T0134568D p/99999999 r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
+Example:
+![addGuest.png](images/addGuest.png)
+* `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
   list.
 
   
@@ -199,8 +192,7 @@ Example:
 
 ### Deleting a guest's details: `deleteguest`
 
-//TODO is this an archived guest?
-Deletes an existing **guest**'s contact details from **PH**.
+Deletes an existing **guest**'s contact details from **PH**. Guests deleted can be checked in or in the archive.
 
 Format:
 <br>`deleteguest pn/<PASSPORT_NUMBER>`
