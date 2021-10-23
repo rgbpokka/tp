@@ -238,6 +238,8 @@ which allows you to edit the file manually without even booting up **PH**.
 Here’s a snippet of the editable text file in JSON that is found at:
 `[JAR file location]/data/addressbook.json`
 
+<img src="https://github.com/bingcheng45/tp/blob/playground/docs/images/JsonSnippet.png" width="100" height="100">
+
 ![JsonSnippet](images/JsonSnippet.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
