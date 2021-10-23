@@ -91,8 +91,12 @@ public class EditVendorDescriptorBuilder {
     /**
      * Sets the {@code Cost} of the {@code EditVendorDescriptor} that we are building.
      */
-    public EditVendorDescriptorBuilder withCost(Double cost) {
-        descriptor.setCost(new Cost(cost));
+    public EditVendorDescriptorBuilder withCost(String cost) {
+        try {
+            descriptor.setCost(new Cost(Double.parseDouble(cost)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return this;
     }
 

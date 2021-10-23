@@ -88,7 +88,7 @@ public class ModelManager implements Model {
         userPrefs.setGuestBookFilePath(guestBookFilePath);
     }
 
-    //=========== Guest Manager ================================================================================
+    //=========== Guest Book ================================================================================
 
     @Override
     public void setGuestBook(ReadOnlyGuestBook guestBook) {
@@ -128,7 +128,7 @@ public class ModelManager implements Model {
         guestBook.setGuest(target, editedGuest);
     }
 
-    //=========== Vendor Manager ================================================================================
+    //=========== Vendor Book ================================================================================
     @Override
     public boolean hasVendor(Vendor vendor) {
         requireNonNull(vendor);

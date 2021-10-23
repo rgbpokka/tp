@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.vendor.VendorId;
 
 public class VendorIdTest {
 
@@ -15,9 +14,9 @@ public class VendorIdTest {
     }
 
     @Test
-    public void constructor_invalidStaffId_throwsIllegalArgumentException() {
-        String invalidStaffId = "";
-        assertThrows(IllegalArgumentException.class, () -> new VendorId(invalidStaffId));
+    public void constructor_invalidVendorId_throwsIllegalArgumentException() {
+        String invalidVendorId = "";
+        assertThrows(IllegalArgumentException.class, () -> new VendorId(invalidVendorId));
     }
 
     @Test

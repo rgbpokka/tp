@@ -127,8 +127,12 @@ public class VendorBuilder {
     /**
      * Sets the {@code Cost} of the {@code Vendor} that we are building.
      */
-    public VendorBuilder withCost(Double cost) {
-        this.cost = new Cost(cost);
+    public VendorBuilder withCost(String cost) {
+        try {
+            this.cost = new Cost(Double.parseDouble(cost));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return this;
     }
 

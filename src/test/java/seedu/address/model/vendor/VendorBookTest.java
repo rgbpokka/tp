@@ -3,8 +3,6 @@ package seedu.address.model.vendor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
-import seedu.address.model.guest.GuestBookTest;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.uniquelist.exceptions.DuplicateItemException;
 import seedu.address.testutil.vendor.VendorBuilder;
 
@@ -16,8 +14,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_ELLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SENIOR_STAFF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HIGH_RATINGS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.vendor.TypicalVendors.DANIEL_VENDOR;
 import static seedu.address.testutil.vendor.TypicalVendors.getTypicalVendorBook;
@@ -47,7 +44,7 @@ public class VendorBookTest {
     public void resetData_withDuplicateVendors_throwsDuplicateItemException() {
         // Two vendors with the same identity fields
         Vendor editedDaniel =
-                new VendorBuilder(DANIEL_VENDOR).withTags(VALID_TAG_SENIOR_STAFF).build();
+                new VendorBuilder(DANIEL_VENDOR).withTags(VALID_TAG_HIGH_RATINGS).build();
         List<Vendor> newVendors = Arrays.asList(DANIEL_VENDOR, editedDaniel);
         VendorBookStub newData = new VendorBookStub(newVendors);
 
@@ -74,7 +71,7 @@ public class VendorBookTest {
     public void hasVendor_vendorWithSameIdentityFieldsInVendorBook_returnsTrue() {
         vendorBook.addVendor(DANIEL_VENDOR);
         Vendor editedDaniel =
-                new VendorBuilder(DANIEL_VENDOR).withTags(VALID_TAG_SENIOR_STAFF)
+                new VendorBuilder(DANIEL_VENDOR).withTags(VALID_TAG_HIGH_RATINGS)
                         .build();
         assertTrue(vendorBook.hasVendor(editedDaniel));
     }

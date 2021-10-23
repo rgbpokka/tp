@@ -45,7 +45,7 @@ public class JsonGuestBookStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readGuestBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readGuestBook("notJsonFormatGuestBook.json"));
     }
 
     @Test

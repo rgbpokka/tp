@@ -5,7 +5,6 @@ import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class OperatingHours {
@@ -50,7 +49,6 @@ public class OperatingHours {
      * Returns true if a given string are valid operating hours.
      */
     public static boolean isValidOperatingHours(String test) {
-        System.out.println(test);
         return test.matches(VALIDATION_REGEX);
     }
 

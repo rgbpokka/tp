@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showGuestAtPassportNumber;
 import static seedu.address.testutil.guest.TypicalGuests.DANIEL_STAFF;
 import static seedu.address.testutil.guest.TypicalGuests.ELLE_STAFF;
 import static seedu.address.testutil.guest.TypicalGuests.getTypicalAddressBook;
@@ -94,7 +94,7 @@ public class EditCommandStaffTest {
     @Test
     public void execute_filteredList_success() {
         // Hard-coded to show first Staff in TypicalGuests list
-        showPersonAtIndex(model, Index.fromZeroBased(3));
+        showGuestAtPassportNumber(model, Index.fromZeroBased(3));
 
         Staff personInFilteredList = DANIEL_STAFF;
         Person editedStaff = new VendorBuilder(personInFilteredList)
@@ -125,7 +125,7 @@ public class EditCommandStaffTest {
     @Test
     public void execute_duplicateStaffFilteredList_failure() {
         // Hard-coded to show first Staff in TypicalGuests list
-        showPersonAtIndex(model, Index.fromZeroBased(3));
+        showGuestAtPassportNumber(model, Index.fromZeroBased(3));
 
         Staff personInList = ELLE_STAFF;
         EditCommand editCommand = new EditCommand(DANIEL_STAFF.getStaffId(),
