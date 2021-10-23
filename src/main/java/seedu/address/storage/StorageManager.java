@@ -7,25 +7,30 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.ReadOnlyGuestBook;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
+import seedu.address.storage.guest.GuestBookStorage;
+import seedu.address.storage.vendor.VendorBookStorage;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of PH data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private VendorBookStorage vendorBookStorage;
+    private GuestBookStorage guestBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(GuestBookStorage guestBookStorage, VendorBookStorage vendorBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.guestBookStorage = guestBookStorage;
+        this.vendorBookStorage = vendorBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -47,33 +52,62 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ GuestBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getGuestBookFilePath() {
+        return guestBookStorage.getGuestBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyGuestBook> readGuestBook() throws DataConversionException, IOException {
+        return readGuestBook(guestBookStorage.getGuestBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyGuestBook> readGuestBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return guestBookStorage.readGuestBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveGuestBook(ReadOnlyGuestBook guestManager) throws IOException {
+        saveGuestBook(guestManager, guestBookStorage.getGuestBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveGuestBook(ReadOnlyGuestBook guestManager, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        guestBookStorage.saveGuestBook(guestManager, filePath);
+    }
+
+    // ================ VendorBook methods ==============================
+
+    @Override
+    public Path getVendorBookFilePath() {
+        return vendorBookStorage.getVendorBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyVendorBook> readVendorBook() throws DataConversionException, IOException {
+        return readVendorBook(vendorBookStorage.getVendorBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyVendorBook> readVendorBook(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return vendorBookStorage.readVendorBook(filePath);
+    }
+
+    @Override
+    public void saveVendorBook(ReadOnlyVendorBook vendorManager) throws IOException {
+        saveVendorBook(vendorManager, vendorBookStorage.getVendorBookFilePath());
+    }
+
+    @Override
+    public void saveVendorBook(ReadOnlyVendorBook vendorManager, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        vendorBookStorage.saveVendorBook(vendorManager, filePath);
     }
 
 }

@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
-import seedu.address.testutil.EditGuestDescriptorBuilder;
+import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
 
 public class EditGuestDescriptorTest {
 

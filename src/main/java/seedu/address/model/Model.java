@@ -1,12 +1,17 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.ReadOnlyGuestBook;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
+import seedu.address.model.vendor.Vendor;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.vendor.VendorId;
 
 /**
  * The API of the Model component.
@@ -15,8 +20,8 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
+    Predicate<Guest> PREDICATE_SHOW_ALL_GUESTS = unused -> true;
+    Predicate<Vendor> PREDICATE_SHOW_ALL_VENDORS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -39,102 +44,118 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' guest manager file path.
      */
-    Path getAddressBookFilePath();
+    Path getGuestBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' guest manager file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setGuestBookFilePath(Path guestManagerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces pocket hotel data with the data in {@code guestBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setGuestBook(ReadOnlyGuestBook guestBook);
 
     /**
-     * Returns the AddressBook
+     * Returns the GuestBook
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyGuestBook getGuestBook();
+    
+    // ==================== Guest operations =====================    
+    /**
+     * Returns true if a guest with the same identity as {@code guest} exists in the address book.
+     */
+    boolean hasGuest(Guest guest);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Deletes the given guest.
+     * The guest must exist in the address book.
      */
-    boolean hasPerson(Person person);
+    void deleteGuest(Guest target);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Adds the given guest.
+     * {@code guest} must not already exist in the address book.
      */
-    void deletePerson(Person target);
+    void addGuest(Guest guest);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Gets guest given the passport number
      */
-    void addPerson(Person person);
+    Optional<Guest> getGuest(PassportNumber passportNumber);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given guest {@code target} with {@code editedGuest}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The guest identity of {@code editedGuest} must not be the same as another existing guest in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setGuest(Guest target, Guest editedGuest);
 
     /**
-     * Returns true if a tag with the same identity as {@code tag} exists in the address book.
+     * Returns an unmodifiable view of the filtered guest list
      */
-    boolean hasTag(Tag tag);
+    ObservableList<Guest> getFilteredGuestList();
 
     /**
-     * Deletes the given tag.
-     * The tag must exist in the address book.
-     */
-    void deleteTag(Tag target);
-
-    /**
-     * Adds the given tag.
-     * {@code tag} must not already exist in the address book.
-     */
-    void addTag(Tag tag);
-
-    /**
-     * Gets the given tag inside the address book.
-     *
-     * @param tag
-     */
-    Tag getTag(Tag tag);
-
-    /**
-     * Replaces the given tag {@code target} with {@code editedTag}.
-     * {@code target} must exist in the address book.
-     * The tag identity of {@code editedTag} must not be the same as another existing tag in the address book.
-     */
-    void setTag(Tag target, Tag editedTag);
-
-    /**
-     * Returns an unmodifiable view of the filtered person list
-     */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Returns an unmodifiable view of the filtered tag list
-     */
-    ObservableList<Tag> getFilteredTagList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered guest list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredGuestList(Predicate<Guest> predicate);
+ 
+    // ==================== Vendor operations =====================
+    /**
+     * Returns true if a tag with the same identity as {@code vendor} exists in the address book.
+     */
+    boolean hasVendor(Vendor vendor);
 
     /**
-     * Updates the filter of the filtered tag list to filter by the given {@code predicate}.
+     * Deletes the given vendor.
+     * The vendor must exist in the address book.
+     */
+    void deleteVendor(Vendor target);
+
+    /**
+     * Adds the given vendor.
+     * {@code vendor} must not already exist in the address book.
+     */
+    void addVendor(Vendor vendor);
+
+    /**
+     * Replaces the given vendor {@code target} with {@code editedVendor}.
+     * {@code target} must exist in the address book.
+     * The vendor identity of {@code editedVendor} must not be the same as another existing vendor in the address book.
+     */
+    void setVendor(Vendor target, Vendor editedVendor);
+
+    /**
+     * Gets vendor given the vendor id 
+     */
+    Optional<Vendor> getVendor(VendorId vendorId);
+
+    /**
+     * Returns an unmodifiable view of the filtered vendor list
+     */
+    ObservableList<Vendor> getFilteredVendorList();
+
+    /**
+     * Updates the filter of the filtered vendor list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredTagList(Predicate<Tag> predicate);
+    void updateFilteredVendorList(Predicate<Vendor> predicate);
 
+    /**
+     * Replaces pocket hotel data with the data in {@code vendorManager}.
+     */
+    void setVendorBook(ReadOnlyVendorBook vendorManager);
+
+    /**
+     * Returns the VendorBook
+     */
+    ReadOnlyVendorBook getVendorBook();
+
+    Path getVendorBookFilePath();
 }

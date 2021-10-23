@@ -11,9 +11,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_THIRD_PERSON;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_THIRD_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FOURTH_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_SECOND_PERSON;
@@ -25,14 +25,12 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.Guest;
-import seedu.address.model.person.IdentifierContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Staff;
-import seedu.address.testutil.EditGuestDescriptorBuilder;
-import seedu.address.testutil.EditStaffDescriptorBuilder;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.IdentifierContainsKeywordsPredicate;
+import seedu.address.model.vendor.Vendor;
+import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
+import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -74,8 +72,8 @@ public class CommandTestUtil {
     public static final String PASSPORT_NUMBER_DESC_CARL = " " + PREFIX_PASSPORT_NUMBER + VALID_PASSPORT_NUMBER_CARL;
     public static final String TAG_DESC_CARL = " " + PREFIX_TAG + VALID_TAG_CARL;
 
-    // Staff
-    public static final String VALID_STAFF_TAG = "Staff";
+    //Vendor 
+    public static final String VALID_STAFF_TAG = "Vendor";
     public static final String VALID_NAME_DANIEL = "Daniel Meier";
     public static final String VALID_EMAIL_DANIEL = "cornelia@example.com";
     public static final String VALID_TAG_DANIEL = "COUNTER STAFF";
@@ -116,7 +114,7 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_GEORGE = "George Best";
     public static final String VALID_EMAIL_GEORGE = "george@example.com";
-    public static final String VALID_TAG_GEORGE = "Head of Staff";
+    public static final String VALID_TAG_GEORGE = "Head of Vendor";
     public static final String VALID_ADDRESS_GEORGE = "4th street";
     public static final String VALID_PHONE_GEORGE = "9482442";
     public static final String VALID_STAFF_ID_GEORGE = STAFF_ID_FOURTH_PERSON.toString();
@@ -132,8 +130,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_VIP = " " + PREFIX_TAG + VALID_TAG_VIP;
     public static final String TAG_DESC_DELUXE_ROOM = " " + PREFIX_TAG + VALID_TAG_DELUXE_ROOM;
 
-    // Staff Tags
-    public static final String VALID_TAG_SENIOR_STAFF = "Senior Staff";
+    // Vendor Tags
+    public static final String VALID_TAG_SENIOR_STAFF = "Senior Vendor";
     public static final String VALID_TAG_CHEF = "Chef";
     public static final String TAG_DESC_SENIOR_STAFF = " " + PREFIX_TAG + VALID_TAG_SENIOR_STAFF;
     public static final String TAG_DESC_CHEF = " " + PREFIX_TAG + VALID_TAG_CHEF;
@@ -175,7 +173,7 @@ public class CommandTestUtil {
                 .withPassportNumber(VALID_PASSPORT_NUMBER_BENSON)
                 .build();
 
-        DESC_DANIEL = new EditStaffDescriptorBuilder()
+        DESC_DANIEL = new EditVendorDescriptorBuilder()
                 .withName(VALID_NAME_DANIEL)
                 .withEmail(VALID_EMAIL_DANIEL)
                 .withTags(VALID_TAG_DANIEL)
@@ -184,7 +182,7 @@ public class CommandTestUtil {
                 .withStaffId(VALID_STAFF_ID_DANIEL)
                 .build();
 
-        DESC_ELLE = new EditStaffDescriptorBuilder()
+        DESC_ELLE = new EditVendorDescriptorBuilder()
                 .withName(VALID_NAME_ELLE)
                 .withEmail(VALID_EMAIL_ELLE)
                 .withTags(VALID_TAG_SENIOR_STAFF)
@@ -251,7 +249,7 @@ public class CommandTestUtil {
             Guest guest = (Guest) person;
             uniqueIdentifier = guest.getPassportNumber().value;
         } else {
-            Staff staff = (Staff) person;
+            Vendor staff = (Vendor) person;
             uniqueIdentifier = staff.getStaffId().value;
         }
 

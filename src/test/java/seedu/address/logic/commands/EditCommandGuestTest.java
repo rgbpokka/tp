@@ -10,25 +10,24 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
-import static seedu.address.testutil.TypicalPersons.ALICE_GUEST;
-import static seedu.address.testutil.TypicalPersons.BENSON_GUEST;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
+import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
+import static seedu.address.testutil.guest.TypicalGuests.BENSON_GUEST;
+import static seedu.address.testutil.guest.TypicalGuests.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.commands.guest.ClearGuestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Guest;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditGuestDescriptorBuilder;
-import seedu.address.testutil.GuestBuilder;
+import seedu.address.model.guest.Guest;
+import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
+import seedu.address.testutil.guest.GuestBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -168,7 +167,7 @@ public class EditCommandGuestTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearGuestCommand()));
 
         // different passport number -> returns false
         assertFalse(standardCommand.equals(new EditCommand(PASSPORT_NUMBER_SECOND_PERSON, DESC_ALICE)));

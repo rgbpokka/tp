@@ -45,7 +45,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
@@ -53,17 +53,16 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
 import seedu.address.logic.commands.EditCommand.EditStaffDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PassportNumber;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.RoomNumber;
-import seedu.address.model.person.StaffId;
-import seedu.address.model.person.UniqueIdentifier;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.guest.RoomNumber;
+import seedu.address.model.vendor.VendorId;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditGuestDescriptorBuilder;
-import seedu.address.testutil.EditStaffDescriptorBuilder;
+import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
+import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -90,7 +89,7 @@ public class EditCommandParserTest {
     public void parse_validStaffIdArgs_returnsEditCommand() {
         // why did this make a difference?
         EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptor();
-        editStaffDescriptor.setStaffId(new StaffId("123"));
+        editStaffDescriptor.setStaffId(new VendorId("123"));
         assertParseSuccess(parser,
                 EditCommand.COMMAND_WORD
                         + " "
@@ -106,7 +105,7 @@ public class EditCommandParserTest {
                 + PREFIX_STAFF_ID
                 + STAFF_ID_FIRST_PERSON;
 
-        assertParseFailure(parser, "edit sid/", StaffId.MESSAGE_CONSTRAINTS); // invalid staff id
+        assertParseFailure(parser, "edit sid/", VendorId.MESSAGE_CONSTRAINTS); // invalid staff id
         assertParseFailure(parser, partialUserInput + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, partialUserInput + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, partialUserInput + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
@@ -184,7 +183,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecifiedForStaff_success() {
-        UniqueIdentifier targetIdentifier = new StaffId(VALID_STAFF_ID_DANIEL);
+        UniqueIdentifier targetIdentifier = new VendorId(VALID_STAFF_ID_DANIEL);
         String userInput = EditCommand.COMMAND_WORD
                 + STAFF_ID_DESC_DANIEL
                 + PHONE_DESC_DANIEL
@@ -194,7 +193,7 @@ public class EditCommandParserTest {
                 + NAME_DESC_DANIEL
                 + TAG_DESC_SENIOR_STAFF;
 
-        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder()
+        EditStaffDescriptor descriptor = new EditVendorDescriptorBuilder()
                 .withStaffId(VALID_STAFF_ID_DANIEL)
                 .withName(VALID_NAME_DANIEL)
                 .withPhone(VALID_PHONE_DANIEL)
@@ -232,12 +231,12 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecifiedForStaff_success() {
-        UniqueIdentifier targetIdentifier = new StaffId(VALID_STAFF_ID_DANIEL);
+        UniqueIdentifier targetIdentifier = new VendorId(VALID_STAFF_ID_DANIEL);
         String userInput = EditCommand.COMMAND_WORD
                 + STAFF_ID_DESC_DANIEL
                 + ADDRESS_DESC_DANIEL;
 
-        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder()
+        EditStaffDescriptor descriptor = new EditVendorDescriptorBuilder()
                 .withStaffId(VALID_STAFF_ID_DANIEL)
                 .withAddress(VALID_ADDRESS_DANIEL)
                 .build();
@@ -265,13 +264,13 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFieldsForStaff_acceptsLast() {
-        UniqueIdentifier targetIdentifier = new StaffId(VALID_STAFF_ID_DANIEL);
+        UniqueIdentifier targetIdentifier = new VendorId(VALID_STAFF_ID_DANIEL);
         String userInput = EditCommand.COMMAND_WORD
                 + STAFF_ID_DESC_DANIEL + PHONE_DESC_DANIEL + ADDRESS_DESC_DANIEL + EMAIL_DESC_DANIEL
                 + TAG_DESC_SENIOR_STAFF + PHONE_DESC_ELLE + ADDRESS_DESC_ELLE + EMAIL_DESC_ELLE + TAG_DESC_SENIOR_STAFF
                 + PHONE_DESC_DANIEL + ADDRESS_DESC_DANIEL + EMAIL_DESC_DANIEL + TAG_DESC_CHEF;
 
-        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL)
+        EditStaffDescriptor descriptor = new EditVendorDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL)
                 .withPhone(VALID_PHONE_DANIEL).withEmail(VALID_EMAIL_DANIEL).withAddress(VALID_ADDRESS_DANIEL)
                 .withTags(VALID_TAG_SENIOR_STAFF, VALID_TAG_CHEF).build();
         EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
@@ -309,9 +308,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValueForStaff_success() {
         // no other valid values specified
-        UniqueIdentifier targetIdentifier = new StaffId(VALID_STAFF_ID_DANIEL);
+        UniqueIdentifier targetIdentifier = new VendorId(VALID_STAFF_ID_DANIEL);
         String userInput = EditCommand.COMMAND_WORD + STAFF_ID_DESC_DANIEL + INVALID_PHONE_DESC + PHONE_DESC_DANIEL;
-        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder()
+        EditStaffDescriptor descriptor = new EditVendorDescriptorBuilder()
                 .withStaffId(VALID_STAFF_ID_DANIEL)
                 .withPhone(VALID_PHONE_DANIEL)
                 .build();
@@ -321,7 +320,7 @@ public class EditCommandParserTest {
         // other valid values specified
         userInput = EditCommand.COMMAND_WORD + STAFF_ID_DESC_DANIEL + EMAIL_DESC_DANIEL + INVALID_PHONE_DESC
                 + ADDRESS_DESC_DANIEL + PHONE_DESC_DANIEL;
-        descriptor = new EditStaffDescriptorBuilder()
+        descriptor = new EditVendorDescriptorBuilder()
                 .withStaffId(VALID_STAFF_ID_DANIEL)
                 .withPhone(VALID_PHONE_DANIEL)
                 .withEmail(VALID_EMAIL_DANIEL)
@@ -348,11 +347,11 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTagsForStaff_success() {
-        UniqueIdentifier targetIdentifier = new StaffId(VALID_STAFF_ID_DANIEL);
+        UniqueIdentifier targetIdentifier = new VendorId(VALID_STAFF_ID_DANIEL);
         String userInput = EditCommand.COMMAND_WORD + STAFF_ID_DESC_DANIEL + TAG_EMPTY;
 
         EditStaffDescriptor descriptor =
-                new EditStaffDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL).withTags().build();
+                new EditVendorDescriptorBuilder().withStaffId(VALID_STAFF_ID_DANIEL).withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
