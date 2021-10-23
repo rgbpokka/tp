@@ -3,11 +3,10 @@ package seedu.address.model.guest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SENIOR_STAFF;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.guest.TypicalGuests.DANIEL_STAFF;
-import static seedu.address.testutil.guest.TypicalGuests.getTypicalAddressBook;
+import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
+import static seedu.address.testutil.guest.TypicalGuests.getTypicalGuestBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,91 +18,84 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.uniquelist.exceptions.DuplicateItemException;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.vendor.VendorBuilder;
+import seedu.address.testutil.guest.GuestBuilder;
 
 public class GuestBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final GuestBook guestBook = new GuestBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), guestBook.getGuestList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> guestBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyGuestBook_replacesData() {
+        GuestBook newData = getTypicalGuestBook();
+        guestBook.resetData(newData);
+        assertEquals(newData, guestBook);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedDaniel =
-                new VendorBuilder(DANIEL_STAFF).withAddress(VALID_ADDRESS_ELLE).withTags(VALID_TAG_SENIOR_STAFF)
+    public void resetData_withDuplicateGuests_throwsDuplicateItemException() {
+        // Two guests with the same identity fields
+        Guest editedAlice =
+                new GuestBuilder(ALICE_GUEST).withTags(VALID_TAG_SENIOR_STAFF)
                         .build();
-        List<Person> newPersons = Arrays.asList(DANIEL_STAFF, editedDaniel);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Guest> newGuests = Arrays.asList(ALICE_GUEST, editedAlice);
+        GuestBookStub newData = new GuestBookStub(newGuests);
 
-        assertThrows(DuplicateItemException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateItemException.class, () -> guestBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasGuest_nullGuest_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> guestBook.hasGuest(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(DANIEL_STAFF));
+    public void hasGuest_guestNotInGuestBook_returnsFalse() {
+        assertFalse(guestBook.hasGuest(ALICE_GUEST));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(DANIEL_STAFF);
-        assertTrue(addressBook.hasPerson(DANIEL_STAFF));
+    public void hasGuest_guestInGuestBook_returnsTrue() {
+        guestBook.addGuest(ALICE_GUEST);
+        assertTrue(guestBook.hasGuest(ALICE_GUEST));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(DANIEL_STAFF);
-        Person editedAlice =
-                new VendorBuilder(DANIEL_STAFF).withAddress(VALID_ADDRESS_ELLE).withTags(VALID_TAG_SENIOR_STAFF)
+    public void hasGuest_guestWithSameIdentityFieldsInGuestBook_returnsTrue() {
+        guestBook.addGuest(ALICE_GUEST);
+        Guest editedAlice =
+                new GuestBuilder(ALICE_GUEST).withTags(VALID_TAG_SENIOR_STAFF)
                         .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(guestBook.hasGuest(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getGuestList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> guestBook.getGuestList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyGuestBook whose guest list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Tag> tags = FXCollections.observableArrayList();
+    private static class GuestBookStub implements ReadOnlyGuestBook {
+        private final ObservableList<Guest> guests = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        GuestBookStub(Collection<Guest> guests) {
+            this.guests.setAll(guests);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
-        }
-
-        @Override
-        public ObservableList<Tag> getTagList() {
-            return tags;
+        public ObservableList<Guest> getGuestList() {
+            return guests;
         }
     }
 

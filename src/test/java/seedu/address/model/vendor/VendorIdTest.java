@@ -21,22 +21,22 @@ public class VendorIdTest {
     }
 
     @Test
-    public void isValidStaffId() {
+    public void isValidVendorId() {
         // null staff id
-        assertThrows(NullPointerException.class, () -> VendorId.isValidStaffId(null));
+        assertThrows(NullPointerException.class, () -> VendorId.isValidVendorId(null));
 
         // invalid staff id
-        assertFalse(VendorId.isValidStaffId("")); // empty string
-        assertFalse(VendorId.isValidStaffId("^")); // only non-alphanumeric characters
-        assertFalse(VendorId.isValidStaffId("peter*")); // contains non-alphanumeric characters
-        assertFalse(VendorId.isValidStaffId("  ")); // spaces only
+        assertFalse(VendorId.isValidVendorId("")); // empty string
+        assertFalse(VendorId.isValidVendorId("^")); // only non-alphanumeric characters
+        assertFalse(VendorId.isValidVendorId("peter*")); // contains non-alphanumeric characters
+        assertFalse(VendorId.isValidVendorId("  ")); // spaces only
 
         // valid staff id
-        assertTrue(VendorId.isValidStaffId("peter jack")); // alphabets only
-        assertTrue(VendorId.isValidStaffId("12345")); // numbers only
-        assertTrue(VendorId.isValidStaffId("peter the 2nd")); // alphanumeric characters
-        assertTrue(VendorId.isValidStaffId("Capital Tan")); // with capital letters
-        assertTrue(VendorId.isValidStaffId("David Roger Jackson Ray Jr 2nd")); // long staff id
+        assertTrue(VendorId.isValidVendorId("peter jack")); // alphabets only
+        assertTrue(VendorId.isValidVendorId("12345")); // numbers only
+        assertTrue(VendorId.isValidVendorId("peter the 2nd")); // alphanumeric characters
+        assertTrue(VendorId.isValidVendorId("Capital Tan")); // with capital letters
+        assertTrue(VendorId.isValidVendorId("David Roger Jackson Ray Jr 2nd")); // long staff id
 
     }
 

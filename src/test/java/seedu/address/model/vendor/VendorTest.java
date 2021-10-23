@@ -9,8 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFF_ID_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SENIOR_STAFF;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.guest.TypicalGuests.DANIEL_STAFF;
-import static seedu.address.testutil.guest.TypicalGuests.FIONA_STAFF;
+import static seedu.address.testutil.vendor.TypicalVendors.FIONA_VENDOR;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,20 +19,20 @@ public class VendorTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new VendorBuilder().build();
+        Vendor person = new VendorBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameVendor() {
         // same object -> returns true
-        assertTrue(FIONA_STAFF.isSamePerson(FIONA_STAFF));
+        assertTrue(FIONA_VENDOR.isSameVendor(FIONA_VENDOR));
 
         // null -> returns false
-        assertFalse(FIONA_STAFF.isSamePerson(null));
+        assertFalse(FIONA_VENDOR.isSameVendor(null));
 
         // same SID, all other attributes different -> returns true
-        Person editedFiona = new VendorBuilder(FIONA_STAFF)
+        Vendor editedFiona = new VendorBuilder(FIONA_VENDOR)
                 .withName(VALID_NAME_DANIEL)
                 .withPhone(VALID_PHONE_DANIEL)
                 .withEmail(VALID_EMAIL_DANIEL)
@@ -41,54 +40,54 @@ public class VendorTest {
                 .withTags(VALID_TAG_SENIOR_STAFF)
                 .build();
 
-        assertTrue(FIONA_STAFF.isSamePerson(editedFiona));
+        assertTrue(FIONA_VENDOR.isSameVendor(editedFiona));
 
         // different SID, all other attributes same -> returns false
-        editedFiona = new VendorBuilder(FIONA_STAFF).withStaffId(VALID_STAFF_ID_DANIEL).build();
-        assertFalse(FIONA_STAFF.isSamePerson(editedFiona));
+        editedFiona = new VendorBuilder(FIONA_VENDOR).withStaffId(VALID_STAFF_ID_DANIEL).build();
+        assertFalse(FIONA_VENDOR.isSameVendor(editedFiona));
 
         // SID has trailing spaces, all other attributes same -> returns false
         String idWithTrailingSpaces = VALID_STAFF_ID_DANIEL + "  ";
-        Person editedDaniel = new VendorBuilder(DANIEL_STAFF).withStaffId(idWithTrailingSpaces).build();
-        assertFalse(DANIEL_STAFF.isSamePerson(editedDaniel));
+        Vendor editedDaniel = new VendorBuilder(DANIEL_STAFF).withStaffId(idWithTrailingSpaces).build();
+        assertFalse(DANIEL_STAFF.isSameVendor(editedDaniel));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new VendorBuilder(FIONA_STAFF).build();
-        assertTrue(FIONA_STAFF.equals(aliceCopy));
+        Vendor aliceCopy = new VendorBuilder(FIONA_VENDOR).build();
+        assertTrue(FIONA_VENDOR.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(FIONA_STAFF.equals(FIONA_STAFF));
+        assertTrue(FIONA_VENDOR.equals(FIONA_VENDOR));
 
         // null -> returns false
-        assertFalse(FIONA_STAFF.equals(null));
+        assertFalse(FIONA_VENDOR.equals(null));
 
         // different type -> returns false
-        assertFalse(FIONA_STAFF.equals(5));
+        assertFalse(FIONA_VENDOR.equals(5));
 
         // different person -> returns false
-        assertFalse(FIONA_STAFF.equals(DANIEL_STAFF));
+        assertFalse(FIONA_VENDOR.equals(DANIEL_STAFF));
 
         // different name -> returns false
-        Person editedFiona = new VendorBuilder(FIONA_STAFF).withStaffId(VALID_STAFF_ID_DANIEL).build();
-        assertFalse(FIONA_STAFF.equals(editedFiona));
+        Vendor editedFiona = new VendorBuilder(FIONA_VENDOR).withStaffId(VALID_STAFF_ID_DANIEL).build();
+        assertFalse(FIONA_VENDOR.equals(editedFiona));
 
         // different phone -> returns false
-        editedFiona = new VendorBuilder(FIONA_STAFF).withPhone(VALID_PHONE_DANIEL).build();
-        assertFalse(FIONA_STAFF.equals(editedFiona));
+        editedFiona = new VendorBuilder(FIONA_VENDOR).withPhone(VALID_PHONE_DANIEL).build();
+        assertFalse(FIONA_VENDOR.equals(editedFiona));
 
         // different email -> returns false
-        editedFiona = new VendorBuilder(FIONA_STAFF).withEmail(VALID_EMAIL_DANIEL).build();
-        assertFalse(FIONA_STAFF.equals(editedFiona));
+        editedFiona = new VendorBuilder(FIONA_VENDOR).withEmail(VALID_EMAIL_DANIEL).build();
+        assertFalse(FIONA_VENDOR.equals(editedFiona));
 
         // different address -> returns false
-        editedFiona = new VendorBuilder(FIONA_STAFF).withAddress(VALID_ADDRESS_DANIEL).build();
-        assertFalse(FIONA_STAFF.equals(editedFiona));
+        editedFiona = new VendorBuilder(FIONA_VENDOR).withAddress(VALID_ADDRESS_DANIEL).build();
+        assertFalse(FIONA_VENDOR.equals(editedFiona));
 
         // different tags -> returns false
-        editedFiona = new VendorBuilder(FIONA_STAFF).withTags(VALID_TAG_SENIOR_STAFF).build();
-        assertFalse(FIONA_STAFF.equals(editedFiona));
+        editedFiona = new VendorBuilder(FIONA_VENDOR).withTags(VALID_TAG_SENIOR_STAFF).build();
+        assertFalse(FIONA_VENDOR.equals(editedFiona));
     }
 }
