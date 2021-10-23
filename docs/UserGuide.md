@@ -246,9 +246,9 @@ Editing the json file directly should only be done by a user experienced with .j
 
 [Back to Table of Contents](#table-of-contents)
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files `[coming in v1.3B]`
 
-_Details coming soon ..._
+The archived guests upon checkout would have the room number and services field emptied in the Json file.
 
 --------------------------------------------------------------------------------------------------------------------
 
