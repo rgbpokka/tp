@@ -246,9 +246,10 @@ Editing the json file directly should only be done by a user experienced with .j
 
 [Back to Table of Contents](#table-of-contents)
 
-### Archiving data files `[coming in v1.3B]`
+### Guest in archive data format
 
-The archived guests upon checkout would have the room number and services field emptied in the Json file.
+The archived guests would have the room number and services field emptied in the Json file as shown in the image above.
+<br> Archived guest are also not shown in the UI.
 
 --------------------------------------------------------------------------------------------------------------------
 
