@@ -387,6 +387,7 @@ The archived guests would have the room number and services field emptied in the
 
 
 ### Guest Command Summary
+
 Action | Format, Examples
 -------|------------------
 **checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
@@ -400,6 +401,7 @@ Action | Format, Examples
 **chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
 
 ### Vendor Command Summary
+
 Action | Format, Examples
 -------|------------------
 **addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
@@ -408,7 +410,7 @@ Action | Format, Examples
 **clearvendor** | `clearvendor`
 **listvendor** | `listvendor`
 **filtervendor** | `filtervendor vid/<VENDOR_ID> <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filtervendor sn/Food t/satay`
-**help** | `Help`
+**help** | `help`
 **exit** | `exit`
 
 [Back to Table of Contents](#table-of-contents)
