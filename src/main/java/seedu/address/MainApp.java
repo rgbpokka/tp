@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.model.util.SampleDataUtil;
@@ -81,7 +82,8 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         ReadOnlyGuestBook guestManager = initGuestBook(storage);
         ReadOnlyVendorBook vendorManager = initVendorBook(storage);
-        return new ModelManager(guestManager, vendorManager, userPrefs);
+        ReadOnlyGuestBook archive = initArchive(storage);
+        return new ModelManager(guestManager, vendorManager, userPrefs, archive);
     }
 
     /**
@@ -106,6 +108,12 @@ public class MainApp extends Application {
         }
 
         return initialData;
+    }
+
+    // **** TO-DO ****
+    private ReadOnlyGuestBook initArchive(Storage storage) {
+        // todo
+        return new Archive();
     }
 
     /**

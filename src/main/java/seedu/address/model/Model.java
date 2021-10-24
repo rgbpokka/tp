@@ -1,11 +1,15 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.model.vendor.ReadOnlyVendorBook;
@@ -104,7 +108,23 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredGuestList(Predicate<Guest> predicate);
- 
+
+    // =========== Archive operations ================================================================================
+
+    void setArchive(Archive archive);
+
+    Archive getArchive();
+
+    boolean hasArchivedGuest(Guest guest);
+
+    void deleteArchivedGuest(Guest target);
+
+    void addArchivedGuest(Guest guest) ;
+
+    Optional<Guest> getArchivedGuest(PassportNumber passportNumber);
+
+    void setArchivedGuest(Guest target, Guest editedGuest);
+
     // ==================== Vendor operations =====================
     /**
      * Returns true if a tag with the same identity as {@code vendor} exists in the address book.
