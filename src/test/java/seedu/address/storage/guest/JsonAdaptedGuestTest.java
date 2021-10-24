@@ -38,16 +38,9 @@ class JsonAdaptedGuestTest {
                     Collectors.toList());
 
     @Test
-<<<<<<< HEAD:src/test/java/seedu/address/storage/JsonAdaptedGuestTest.java
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        assert(BENSON_GUEST != null);
-        JsonAdaptedGuest person = new JsonAdaptedGuest(BENSON_GUEST);
-        assertEquals(BENSON_GUEST, person.toModelType());
-=======
     public void toModelType_validGuestDetails_returnsGuest() throws Exception {
         JsonAdaptedGuest guest = new JsonAdaptedGuest(BENSON_GUEST);
         assertEquals(BENSON_GUEST, guest.toModelType());
->>>>>>> 276a498c15d4c88b416d77bb1e28e82000004b8c:src/test/java/seedu/address/storage/guest/JsonAdaptedGuestTest.java
     }
 
     @Test
