@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
 import java.util.Set;
 
 import seedu.address.logic.commands.guest.CheckInCommand;
+import seedu.address.logic.commands.vendor.AddVendorCommand;
 import seedu.address.logic.commands.vendor.EditVendorCommand.EditVendorDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.Vendor;
@@ -26,13 +27,13 @@ public class VendorUtil {
      * Returns an add command string for adding the {@code vendor}.
      */
     public static String getAddCommand(Vendor vendor) {
-        return CheckInCommand.COMMAND_WORD + " " + getStaffDetails(vendor);
+        return AddVendorCommand.COMMAND_WORD + " " + getVendorDetails(vendor);
     }
 
     /**
      * Returns the part of command string for the given {@code vendor}'s details.
      */
-    public static String getStaffDetails(Vendor vendor) {
+    public static String getVendorDetails(Vendor vendor) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + vendor.getName().fullName + " ");
         sb.append(PREFIX_EMAIL + vendor.getEmail().value + " ");
