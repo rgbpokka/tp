@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.ReadOnlyGuestBook;
@@ -29,6 +30,7 @@ public class ModelManager implements Model {
 
     private final GuestBook guestBook;
     private final VendorBook vendorBook;
+    private final Archive archive;
     private final UserPrefs userPrefs;
     private final FilteredList<Guest> filteredGuests;
     private final FilteredList<Vendor> filteredVendors;
@@ -36,7 +38,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given guestBook, vendorBook and userPrefs.
      */
-    public ModelManager(ReadOnlyGuestBook guestBook, ReadOnlyVendorBook vendorBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyGuestBook guestBook, ReadOnlyVendorBook vendorBook, ReadOnlyUserPrefs userPrefs, ReadOnlyGuestBook archive) {
         super();
         requireAllNonNull(guestBook, vendorBook, userPrefs);
 
@@ -45,12 +47,13 @@ public class ModelManager implements Model {
         this.guestBook = new GuestBook(guestBook);
         this.vendorBook = new VendorBook(vendorBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.archive = new Archive(archive);
         filteredGuests = new FilteredList<>(this.guestBook.getGuestList());
         filteredVendors = new FilteredList<>(this.vendorBook.getVendorList());
     }
 
     public ModelManager() {
-        this(new GuestBook(), new VendorBook(), new UserPrefs());
+        this(new GuestBook(), new VendorBook(), new UserPrefs(), new Archive());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -126,6 +129,46 @@ public class ModelManager implements Model {
     public void setGuest(Guest target, Guest editedGuest) {
         requireAllNonNull(target, editedGuest);
         guestBook.setGuest(target, editedGuest);
+    }
+
+    //=========== Archive ================================================================================
+
+    @Override
+    public void setArchive(Archive archive) {
+        this.archive.resetData(archive);
+    }
+
+    @Override
+    public Archive getArchive() {
+        return archive;
+    }
+
+    @Override
+    public boolean hasArchivedGuest(Guest guest) {
+        requireNonNull(guest);
+        return archive.hasGuest(guest);
+    }
+
+    @Override
+    public void deleteArchivedGuest(Guest target) {
+        archive.removeGuest(target);
+    }
+
+    @Override
+    public void addArchivedGuest(Guest guest) {
+        archive.addGuest(guest);
+//        updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
+    }
+
+    @Override
+    public Optional<Guest> getArchivedGuest(PassportNumber passportNumber) {
+        return archive.getGuest(passportNumber);
+    }
+
+    @Override
+    public void setArchivedGuest(Guest target, Guest editedGuest) {
+        requireAllNonNull(target, editedGuest);
+        archive.setGuest(target, editedGuest);
     }
 
     //=========== Vendor Book ================================================================================
