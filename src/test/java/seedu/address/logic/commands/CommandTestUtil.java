@@ -17,10 +17,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_THIRD_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.VENDOR_ID_FIRST_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.VENDOR_ID_FOURTH_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.VENDOR_ID_SECOND_PERSON;
-import static seedu.address.testutil.TypicalStaffIds.VENDOR_ID_THIRD_PERSON;
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_FIRST_PERSON;
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_FOURTH_PERSON;
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_SECOND_PERSON;
@@ -29,6 +25,7 @@ import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_THIRD_PER
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -37,7 +34,9 @@ import seedu.address.logic.commands.vendor.EditVendorCommand.EditVendorDescripto
 import seedu.address.model.Model;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.GuestBook;
+import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorId;
 import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
 import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
 
@@ -286,17 +285,39 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the guest at the given {@code PassportNumber} in the
      * {@code model}'s guest book.
      */
-    public static void showGuestAtPassportNumber(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredGuestList().size());
+    public static void showGuestAtPassportNumber(Model model, PassportNumber targetPassportNumber) {
 
-        Guest guest = model.getFilteredGuestList().get(targetIndex.getZeroBased());
+        Optional<Guest> guest = model.getGuest(targetPassportNumber);
+        
+        assert(guest.isPresent());
+        
         String uniqueIdentifier;
 
-        uniqueIdentifier = guest.getPassportNumber().value;
+        uniqueIdentifier = guest.get().getPassportNumber().value;
         
         model.updateFilteredGuestList(new IdentifierContainsKeywordsPredicate(Arrays.asList(uniqueIdentifier)));
 
         assertEquals(1, model.getFilteredGuestList().size());
     }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the vendor at the given {@code VendorId} in the
+     * {@code model}'s vendor book.
+     */
+    public static void showVendorAtVendorId(Model model, VendorId targetVendorId) {
+
+        Optional<Vendor> vendor = model.getVendor(targetVendorId);
+
+        assert(vendor.isPresent());
+
+        String uniqueIdentifier;
+
+        uniqueIdentifier = vendor.get().getVendorId().value;
+
+        model.updateFilteredGuestList(new IdentifierContainsKeywordsPredicate(Arrays.asList(uniqueIdentifier)));
+
+        assertEquals(1, model.getFilteredGuestList().size());
+    } 
+    
 
 }

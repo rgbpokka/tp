@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.guest;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
-import static seedu.address.testutil.guest.TypicalGuests.getTypicalAddressBook;
+import static seedu.address.testutil.guest.TypicalGuests.getTypicalGuestBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,50 +16,50 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.guest.Guest;
+import seedu.address.model.vendor.VendorBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteGuestCommand}.
  */
-public class DeleteCommandGuestTest {
+public class DeleteGuestCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGuestBook(), new VendorBook(), new UserPrefs());
 
     @Test
     public void execute_validPassportNumber_success() {
-        Guest guestToDelete = (Guest) model.getFilteredPersonList()
+        Guest guestToDelete = model.getFilteredGuestList()
                 .stream()
-                .filter(g -> g instanceof Guest
-                        && ((Guest) g).getPassportNumber().equals(PASSPORT_NUMBER_FIRST_PERSON))
+                .filter(g -> g.getPassportNumber().equals(PASSPORT_NUMBER_FIRST_PERSON))
                 .findAny()
                 .orElse(null);
-        DeleteCommand deleteCommand = new DeleteCommand(PASSPORT_NUMBER_FIRST_PERSON);
+        DeleteGuestCommand deleteGuestCommand = new DeleteGuestCommand(PASSPORT_NUMBER_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, guestToDelete);
+        String expectedMessage = String.format(DeleteGuestCommand.MESSAGE_DELETE_SUCCESSFUL, guestToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(guestToDelete);
+        ModelManager expectedModel = new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs());
+        expectedModel.deleteGuest(guestToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteGuestCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidPassportNumber_throwsCommandException() {
-        DeleteCommand deleteCommand = new DeleteCommand(PASSPORT_NUMBER_UNUSED);
+        DeleteGuestCommand deleteGuestCommand = new DeleteGuestCommand(PASSPORT_NUMBER_UNUSED);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_UNIQUE_IDENTIFIER);
+        assertCommandFailure(deleteGuestCommand, model, Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(PASSPORT_NUMBER_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(PASSPORT_NUMBER_SECOND_PERSON);
+        DeleteGuestCommand deleteFirstCommand = new DeleteGuestCommand(PASSPORT_NUMBER_FIRST_PERSON);
+        DeleteGuestCommand deleteSecondCommand = new DeleteGuestCommand(PASSPORT_NUMBER_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(PASSPORT_NUMBER_FIRST_PERSON);
+        DeleteGuestCommand deleteFirstCommandCopy = new DeleteGuestCommand(PASSPORT_NUMBER_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -75,9 +75,9 @@ public class DeleteCommandGuestTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoGuest(Model model) {
+        model.updateFilteredGuestList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredGuestList().isEmpty());
     }
 }

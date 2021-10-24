@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.guest;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BENSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditGuestDescriptor;
+import seedu.address.logic.commands.guest.EditGuestCommand.EditGuestDescriptor;
 import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
 
 public class EditGuestDescriptorTest {
@@ -36,24 +36,24 @@ public class EditGuestDescriptorTest {
         assertFalse(DESC_ALICE.equals(DESC_BENSON));
 
         // different name -> returns false
-        EditGuestDescriptor editedAmy = new EditGuestDescriptorBuilder(DESC_ALICE).withName(VALID_NAME_BENSON).build();
-        assertFalse(DESC_ALICE.equals(editedAmy));
+        EditGuestDescriptor editedAlice = new EditGuestDescriptorBuilder(DESC_ALICE).withName(VALID_NAME_BENSON).build();
+        assertFalse(DESC_ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAmy = new EditGuestDescriptorBuilder(DESC_ALICE).withEmail(VALID_EMAIL_BENSON).build();
-        assertFalse(DESC_ALICE.equals(editedAmy));
+        editedAlice = new EditGuestDescriptorBuilder(DESC_ALICE).withEmail(VALID_EMAIL_BENSON).build();
+        assertFalse(DESC_ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAmy = new EditGuestDescriptorBuilder(DESC_ALICE).withTags(VALID_TAG_BENSON).build();
-        assertFalse(DESC_ALICE.equals(editedAmy));
+        editedAlice = new EditGuestDescriptorBuilder(DESC_ALICE).withTags(VALID_TAG_BENSON).build();
+        assertFalse(DESC_ALICE.equals(editedAlice));
 
         // different passport number -> returns false
-        editedAmy = new EditGuestDescriptorBuilder(DESC_ALICE).withPassportNumber(VALID_PASSPORT_NUMBER_BENSON).build();
-        assertFalse(DESC_ALICE.equals(editedAmy));
+        editedAlice = new EditGuestDescriptorBuilder(DESC_ALICE).withPassportNumber(VALID_PASSPORT_NUMBER_BENSON).build();
+        assertFalse(DESC_ALICE.equals(editedAlice));
 
         // different room number -> returns false
-        editedAmy = new EditGuestDescriptorBuilder(DESC_ALICE).withRoomNumber(VALID_ROOM_NUMBER_BENSON).build();
-        assertFalse(DESC_ALICE.equals(editedAmy));
+        editedAlice = new EditGuestDescriptorBuilder(DESC_ALICE).withRoomNumber(VALID_ROOM_NUMBER_BENSON).build();
+        assertFalse(DESC_ALICE.equals(editedAlice));
     }
 }
 
