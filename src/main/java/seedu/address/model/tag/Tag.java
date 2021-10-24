@@ -1,24 +1,25 @@
 package seedu.address.model.tag;
 
+import seedu.address.model.Taggable;
+import seedu.address.model.uniquelist.UniqueListItem;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.model.person.Person;
-
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class Tag extends UniqueListItem {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "^[\\w\\-\\s]+$";
 
     public final String tagName;
-    private List<Person> taggedPeople;
+    private List<Taggable> taggedPeople;
 
     /**
      * Constructs a {@code Tag}.
@@ -30,6 +31,10 @@ public class Tag {
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
         this.taggedPeople = new ArrayList<>();
+    }
+    
+    public String getTagName() {
+        return tagName;
     }
 
     /**
@@ -51,11 +56,11 @@ public class Tag {
         return tagName.hashCode();
     }
 
-    public void addPerson(Person person) {
+    public void addPerson(Taggable person) {
         taggedPeople.add(person);
     }
 
-    public void removePerson(Person person) {
+    public void removePerson(Taggable person) {
         taggedPeople.remove(person);
     }
 
@@ -70,4 +75,17 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    @Override
+    public boolean isSame(UniqueListItem otherItem) {
+        if (otherItem == this) {
+            return true;
+        }
+
+        if (otherItem instanceof Tag) {
+            Tag otherTag = (Tag) otherItem;
+            return otherTag.getTagName().equals(getTagName());
+        }
+
+        return false;
+    }
 }

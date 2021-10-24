@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.guest.TypicalGuests.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStaffIds.STAFF_ID_UNUSED;
@@ -15,7 +15,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Staff;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

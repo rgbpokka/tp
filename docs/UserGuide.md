@@ -34,8 +34,8 @@ fully to integrate it within your hotel management system.
 4. To start the application, you may either:
     1. Double-click the `PH.jar` file to boot up the app.
     2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
-       The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
+The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
 ![Ui](images/Ui.png)
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
 5. Type any command in the command box (Denoted by "Enter command here" text) and press Enter to execute it. e.g. typing `help` and pressing Enter will
@@ -46,6 +46,7 @@ fully to integrate it within your hotel management system.
       named `John Doe` to the Address Book.
 
     * **`deleteguest`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
+
 
     * **`clearguest`** : Deletes all guests from guest list.
 
@@ -115,7 +116,7 @@ To navigate between the guest and vendor list, click the button on the **GUI** t
 
 **:information_source: Notes about the command format:**<br>
 * Regardless of the list currently being viewed, you are able to execute any command. e.g While viewing the guest list,
-  you are able to add a vendor. Toggle back to the vendor list to see the reflected changes.
+you are able to add a vendor. Toggle back to the vendor list to see the reflected changes.
 </div>
 
 # Commands
@@ -130,13 +131,11 @@ Format:
 <br>`checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`
 
 Example:
-
 ![addGuest.png](images/addGuest.png)
-
 * `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
   list.
 
-
+  
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
 * `EMAIL`: A valid email address should be used.
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
@@ -187,9 +186,9 @@ Example:
 
 * `editguest pn/X12345678A r/123` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the
   room number field with the new room number provided.
-
+ 
 * `editguest pn/X87654321A r/124 e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites the
-  room number field with the new room number provided, and overwrites the old email field with the new email provided.
+    room number field with the new room number provided, and overwrites the old email field with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -297,7 +296,7 @@ Format:
 
 Example:
 <br>`edit vid/123 p/99999999 e/j@mailer.com` locates the vendor, Wang's Satay, with `VENDOR_ID` 123 and overwrites the phone number
-field with the new phone number provided, and the email field with the new email provided.
+  field with the new phone number provided, and the email field with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -372,7 +371,7 @@ Here’s a snippet of the editable text file in JSON that is found at:
 Editing the json file directly should only be done by a user experienced with .json format files.
 </div>
 
-<img src="https://raw.githubusercontent.com/AY2122S1-CS2103T-W12-3/tp/master/docs/images/JsonSnippet.png" width="300">
+<img src="images/JsonSnippet.png" width="300">
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -401,15 +400,30 @@ Action | Format, Examples
 
 ## Vendor Command Summary
 
+
+### Guest Command Summary
 Action | Format, Examples
--------|------------------
+--------|------------------
+**checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
+**checkin(returning guest)** | `checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `checkin pn/T0134568D r/101`
+**checkout** | `checkout pn/<PASSPORT_NUMBER>`<br>Example: `checkout pn/T0134568D`
+**editguest** | `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit pn/X12345678A p/99999999`
+**deleteguest** | `deleteguest pn/<PASSPORT_NUMBER>`<br>Example: `deleteguest pn/T0134568D`
+**clearguest** | `clearguest`
+**listguest** | `listguest`
+**filterguest** | `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filterguest n/Bing t/VIP`
+**chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
+
+### Vendor Command Summary
+Action | Format, Examples
+--------|------------------
 **addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
 **editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit vid/111 sn/Laundry`
 **deletevendor** | `deletevendor vid/<VENDOR_ID>`<br>Example: `deletevendor vid/112`
 **clearvendor** | `clearvendor`
 **listvendor** | `listvendor`
 **filtervendor** | `filtervendor vid/<VENDOR_ID> <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filtervendor sn/Food t/satay`
-**help** | `help`
+**help** | `Help`
 **exit** | `exit`
 
 [Back to Table of Contents](#table-of-contents)
