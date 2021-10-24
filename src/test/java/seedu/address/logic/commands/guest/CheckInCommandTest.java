@@ -1,0 +1,116 @@
+package seedu.address.logic.commands.guest;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.guest.GuestBook;
+import seedu.address.model.guest.ReadOnlyGuestBook;
+import seedu.address.testutil.ModelStub;
+import seedu.address.testutil.guest.GuestBuilder;
+
+public class CheckInCommandTest {
+
+    @Test
+    public void constructor_nullGuest_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new CheckInCommand(null));
+    }
+
+
+    @Test
+    public void execute_guestAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
+        Guest validGuest = new GuestBuilder().build();
+
+        CommandResult commandResult = new CheckInCommand(validGuest).execute(modelStub);
+
+        assertEquals(String.format(CheckInCommand.MESSAGE_SUCCESS, validGuest), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validGuest), modelStub.guestsAdded);
+    }
+
+    @Test
+    public void execute_duplicateGuest_throwsCommandException() {
+        Guest validGuest = new GuestBuilder().build();
+        CheckInCommand checkInCommand = new CheckInCommand(validGuest);
+        ModelStub modelStub = new ModelStubWithGuest(validGuest);
+
+        assertThrows(CommandException.class, CheckInCommand.MESSAGE_DUPLICATE_GUEST, () -> checkInCommand.execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        Guest alice = new GuestBuilder().withName("Alice").build();
+        Guest bob = new GuestBuilder().withName("Bob").build();
+        CheckInCommand addAliceCommand = new CheckInCommand(alice);
+        CheckInCommand addBobCommand = new CheckInCommand(bob);
+
+        // same object -> returns true
+        assertTrue(addAliceCommand.equals(addAliceCommand));
+
+        // same values -> returns true
+        CheckInCommand addAliceCommandCopy = new CheckInCommand(alice);
+        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addAliceCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addAliceCommand.equals(null));
+
+        // different guest -> returns false
+        assertFalse(addAliceCommand.equals(addBobCommand));
+    }
+
+    /**
+     * A Model stub that contains a single guest.
+     */
+    private class ModelStubWithGuest extends ModelStub {
+        private final Guest guest;
+
+        ModelStubWithGuest(Guest guest) {
+            requireNonNull(guest);
+            this.guest = guest;
+        }
+
+        @Override
+        public boolean hasGuest(Guest guest) {
+            requireNonNull(guest);
+            return this.guest.isSame(guest);
+        }
+    }
+
+    /**
+     * A Model stub that always accept the guest being added.
+     */
+    private class ModelStubAcceptingGuestAdded extends ModelStub {
+        final ArrayList<Guest> guestsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasGuest(Guest guest) {
+            requireNonNull(guest);
+            return guestsAdded.stream().anyMatch(guest::isSame);
+        }
+
+        @Override
+        public void addGuest(Guest guest) {
+            requireNonNull(guest);
+            guestsAdded.add(guest);
+        }
+
+        @Override
+        public ReadOnlyGuestBook getGuestBook() {
+            return new GuestBook();
+        }
+    }
+
+}
