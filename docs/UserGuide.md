@@ -34,6 +34,7 @@ fully to integrate it within your hotel management system.
 4. To start the application, you may either:
     1. Double-click the `PH.jar` file to boot up the app.
     2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
+
 The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
 ![Ui](images/Ui.png)
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
@@ -45,6 +46,7 @@ The **GUI** similar to the below should appear in a few seconds. Note how the ap
       named `John Doe` to the Address Book.
 
     * **`deleteguest`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
+
 
     * **`clearguest`** : Deletes all guests from guest list.
 
@@ -184,7 +186,7 @@ Example:
 
 * `editguest pn/X12345678A r/123` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the
   room number field with the new room number provided.
-  
+ 
 * `editguest pn/X87654321A r/124 e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites the
     room number field with the new room number provided, and overwrites the old email field with the new email provided.
 
@@ -380,7 +382,23 @@ The archived guests would have the room number and services field emptied in the
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Command Summary**
+# **Command Summary**
+
+## Guest Command Summary
+
+Action | Format, Examples 
+-------|------------------|
+**checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
+**checkin(returning guest)** | `checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `checkin pn/T0134568D r/101`
+**checkout** | `checkout pn/<PASSPORT_NUMBER>`<br>Example: `checkout pn/T0134568D`
+**editguest** | `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit pn/X12345678A p/99999999`
+**deleteguest** | `deleteguest pn/<PASSPORT_NUMBER>`<br>Example: `deleteguest pn/T0134568D`
+**clearguest** | `clearguest`
+**listguest** | `listguest`
+**filterguest** | `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filterguest n/Bing t/VIP`
+**chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
+
+## Vendor Command Summary
 
 
 ### Guest Command Summary
@@ -399,7 +417,7 @@ Action | Format, Examples
 ### Vendor Command Summary
 Action | Format, Examples
 --------|------------------
-**addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000` 
+**addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
 **editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit vid/111 sn/Laundry`
 **deletevendor** | `deletevendor vid/<VENDOR_ID>`<br>Example: `deletevendor vid/112`
 **clearvendor** | `clearvendor`
@@ -440,13 +458,13 @@ Parameter | Prefix | Constraints, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Glossary**
+# **Glossary**
 
 * **PH**: Acronym for Pocket Hotel
 * **CLI**: Command line interface
 * **GUI**: Graphical user interface
 * **Guest**: A guest at the hotel
-* **Vendor**: An external entity that a hotel uses for services 
+* **Vendor**: An external entity that a hotel uses for services
 * **Unique Identifier**: An attribute that uniquely identifies a contact in the address book.
 * **Archived Guests**: Guests that are not checked into the hotel and are not displayed, but whose details are stored in **PH**.
 * **Unarchived guests**: Guests who are currently checked into **PH** and can be viewed in the list.
@@ -455,7 +473,7 @@ Parameter | Prefix | Constraints, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **FAQ**
+# **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app on your other computer and run it. Overwrite the empty .json file that is created with your old
@@ -467,5 +485,4 @@ Parameter | Prefix | Constraints, Examples
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
 
