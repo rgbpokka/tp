@@ -47,7 +47,6 @@ public class CheckOutCommand extends Command {
 
         model.deleteGuest(guestToCheckOut); // removes the guest from the guest book
         model.addArchivedGuest(guestToCheckOut); // adds the guest to the archive
-
         return new CommandResult(String.format(MESSAGE_CHECKOUT_SUCCESSFUL, guestToCheckOut));
     }
 

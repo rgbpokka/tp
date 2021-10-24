@@ -31,14 +31,14 @@ public class CheckInCommandIntegrationTest {
         Guest validGuest = new GuestBuilder().build();
         Model expectedModel = new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs());
         expectedModel.addGuest(validGuest);
-        assertCommandSuccess(new CheckInCommand(validGuest), model,
-                String.format(CheckInCommand.MESSAGE_SUCCESS, validGuest), expectedModel);
+        assertCommandSuccess(new CheckInNewGuestCommand(validGuest), model,
+                String.format(CheckInNewGuestCommand.MESSAGE_SUCCESS, validGuest), expectedModel);
     }
 
     @Test
     public void execute_duplicateGuest_throwsCommandException() {
         Guest personInList = model.getGuestBook().getGuestList().get(0);
-        assertCommandFailure(new CheckInCommand(personInList), model, CheckInCommand.MESSAGE_DUPLICATE_GUEST);
+        assertCommandFailure(new CheckInNewGuestCommand(personInList), model, CheckInNewGuestCommand.MESSAGE_DUPLICATE_GUEST);
     }
 
 }

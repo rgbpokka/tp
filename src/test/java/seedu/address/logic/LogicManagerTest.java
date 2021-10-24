@@ -21,7 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.guest.CheckInCommand;
+import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.guest.ListGuestCommand;
@@ -97,7 +97,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand =
-                CheckInCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + NAME_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
+                CheckInNewGuestCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + NAME_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                         + EMAIL_DESC_ALICE + TAG_DESC_ALICE;
         Guest expectedGuest = new GuestBuilder(ALICE_GUEST).build();
         ModelManager expectedModel = new ModelManager();
