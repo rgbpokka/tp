@@ -5,11 +5,10 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 
-import java.util.List;
+import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 
@@ -18,7 +17,7 @@ public class DeleteGuestCommand extends Command {
     public static final String COMMAND_WORD = "deleteguest";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the guest by the passport number in the displayed guest list.\n"
+            + ": Delete the guest by the passport number from the list of checked in guests or the archive.\n"
             + "Parameters: Passport Number\n"
             + "Example: " + COMMAND_WORD + " pn/A021231B";
 
@@ -27,23 +26,48 @@ public class DeleteGuestCommand extends Command {
     private final PassportNumber passportNumber;
 
     public DeleteGuestCommand(PassportNumber passportNumber) {
+        assert passportNumber != null;
         this.passportNumber = passportNumber;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Guest> lastShownList = model.getFilteredGuestList();
 
-        Guest guestToDelete =
-                lastShownList.stream().filter(p -> p.getPassportNumber().equals(passportNumber)).findAny().orElse(null);
+        Optional<Guest> guestToBeDeletedFromCheckInList = getGuestFromCheckInList(model);
+        Optional<Guest> guestToBeDeletedFromArchive = getGuestFromArchive(model);
 
-        if (guestToDelete == null) {
+        if (guestToBeDeletedFromArchive.isEmpty() && guestToBeDeletedFromCheckInList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER);
         }
 
-        model.deleteGuest(guestToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_SUCCESSFUL, guestToDelete));
+        // Guest should not be found in both archive and checkin
+        assert (guestToBeDeletedFromCheckInList.isPresent() && guestToBeDeletedFromArchive.isPresent()) == false;
+
+        Guest guestToBeDeleted = guestToBeDeletedFromCheckInList.isEmpty()
+                ? guestToBeDeletedFromArchive.get()
+                : guestToBeDeletedFromCheckInList.get();
+
+        return deleteGuest(model, guestToBeDeleted);
+    }
+
+    private Optional<Guest> getGuestFromCheckInList(Model model) {
+        Optional<Guest> guestToBeDeleted = model.getGuest(this.passportNumber);
+
+        return guestToBeDeleted;
+    }
+
+    private Optional<Guest> getGuestFromArchive(Model model) {
+        Optional<Guest> guestToBeDeleted = model.getArchivedGuest(this.passportNumber);
+
+        return guestToBeDeleted;
+    }
+
+    private CommandResult deleteGuest(Model model, Guest guest) throws CommandException {
+        assert guest != null;
+
+        model.deleteGuest(guest);
+        return new CommandResult(String.format(MESSAGE_DELETE_SUCCESSFUL, guest));
     }
 
     @Override
