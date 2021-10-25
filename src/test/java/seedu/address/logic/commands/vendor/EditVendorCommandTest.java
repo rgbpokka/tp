@@ -25,6 +25,7 @@ import seedu.address.logic.commands.guest.ClearGuestCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorBook;
@@ -37,7 +38,7 @@ import seedu.address.testutil.vendor.VendorBuilder;
  */
 public class EditVendorCommandTest {
 
-    private Model model = new ModelManager(new GuestBook(), getTypicalVendorBook(), new UserPrefs());
+    private Model model = new ModelManager(new GuestBook(), getTypicalVendorBook(), new UserPrefs(), new Archive());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -48,7 +49,7 @@ public class EditVendorCommandTest {
 
         String expectedMessage = String.format(EditVendorCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
 
-        Model expectedModel = new ModelManager(new GuestBook(), new VendorBook(model.getVendorBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new GuestBook(), new VendorBook(model.getVendorBook()), new UserPrefs(), new Archive());
         expectedModel.setVendor(vendor, editedVendor);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -73,7 +74,7 @@ public class EditVendorCommandTest {
 
         String expectedMessage = String.format(EditVendorCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
 
-        Model expectedModel = new ModelManager(new GuestBook(), new VendorBook(model.getVendorBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new GuestBook(), new VendorBook(model.getVendorBook()), new UserPrefs(), new Archive());
         expectedModel.setVendor(vendor, editedVendor);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -88,7 +89,7 @@ public class EditVendorCommandTest {
         EditVendorCommand editCommand = new EditVendorCommand(targetVendorId, editVendorDescriptor);
 
         String expectedMessage = String.format(EditVendorCommand.MESSAGE_EDIT_VENDOR_SUCCESS, DANIEL_VENDOR);
-        Model expectedModel = new ModelManager(new GuestBook(), new VendorBook(model.getVendorBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new GuestBook(), new VendorBook(model.getVendorBook()), new UserPrefs(), new Archive());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -109,7 +110,7 @@ public class EditVendorCommandTest {
 
         String expectedMessage = String.format(EditVendorCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
 
-        Model expectedModel = new ModelManager(new GuestBook(), new VendorBook(model.getVendorBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new GuestBook(), new VendorBook(model.getVendorBook()), new UserPrefs(), new Archive());
         expectedModel.setVendor(vendorInFilteredList, editedVendor);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

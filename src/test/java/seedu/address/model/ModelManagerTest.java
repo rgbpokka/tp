@@ -7,6 +7,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
 import static seedu.address.testutil.guest.TypicalGuests.BENSON_GUEST;
+import static seedu.address.testutil.guest.TypicalGuests.CARL_GUEST;
+import static seedu.address.testutil.guest.TypicalGuests.JEONGYEON_GUEST;
+import static seedu.address.testutil.vendor.TypicalVendors.DANIEL_VENDOR;
+import static seedu.address.testutil.vendor.TypicalVendors.ELLE_VENDOR;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,9 +19,12 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.vendor.VendorBook;
+import seedu.address.testutil.guest.ArchiveBuilder;
 import seedu.address.testutil.guest.GuestBookBuilder;
+import seedu.address.testutil.vendor.VendorBookBuilder;
 
 public class ModelManagerTest {
 
@@ -99,12 +106,15 @@ public class ModelManagerTest {
     public void equals() {
         GuestBook guestBook = new GuestBookBuilder().withGuest(ALICE_GUEST).withGuest(BENSON_GUEST).build();
         GuestBook differentGuestBook = new GuestBook();
-        VendorBook vendorBook = new VendorBook();
+        VendorBook vendorBook = new VendorBookBuilder().withVendor(DANIEL_VENDOR).withVendor(ELLE_VENDOR).build();
+        VendorBook differentVendorBook = new VendorBook();
         UserPrefs userPrefs = new UserPrefs();
+        Archive archive = new ArchiveBuilder().withArchivedGuest(CARL_GUEST).withArchivedGuest(JEONGYEON_GUEST).build();
+        Archive differentArchive = new Archive();
 
         // same values -> returns true
-        modelManager = new ModelManager(guestBook, vendorBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(guestBook, vendorBook, userPrefs);
+        modelManager = new ModelManager(guestBook, vendorBook, userPrefs, archive);
+        ModelManager modelManagerCopy = new ModelManager(guestBook, vendorBook, userPrefs, archive);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -117,12 +127,15 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different guestBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentGuestBook, vendorBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentGuestBook, vendorBook, userPrefs, archive)));
+
+        // different vendorBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(guestBook, differentVendorBook, userPrefs, archive)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE_GUEST.getPassportNumber().value.split("\\s+");
         modelManager.updateFilteredGuestList(new IdentifierContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(guestBook, vendorBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(guestBook, vendorBook, userPrefs, archive)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
@@ -130,6 +143,9 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setGuestBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(guestBook, vendorBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(guestBook, vendorBook, differentUserPrefs, archive)));
+
+        // different archive -> returns false
+        assertFalse(modelManager.equals(new ModelManager(guestBook, vendorBook, userPrefs, differentArchive)));
     }
 }
