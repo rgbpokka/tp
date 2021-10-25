@@ -29,6 +29,7 @@ import seedu.address.model.commonattributes.Name;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.vendor.Phone;
 import seedu.address.model.guest.RoomNumber;
+import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
 import seedu.address.model.tag.Tag;
 
@@ -118,8 +119,9 @@ public class EditGuestCommand extends Command {
         RoomNumber updatedRoomNumber = editGuestDescriptor.getRoomNumber().orElse(guestToEdit.getRoomNumber());
         PassportNumber updatedPassportNumber =
                 editGuestDescriptor.getPassportNumber().orElse(guestToEdit.getPassportNumber());
+        List<Vendor> vendorsHired = guestToEdit.getVendorsHired();
 
-        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber);
+        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber, vendorsHired);
     }
 
     @Override

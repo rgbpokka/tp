@@ -134,7 +134,9 @@ public class Guest extends UniqueListItem implements Taggable {
                 .append("; RoomNumber: ")
                 .append(getRoomNumber())
                 .append("; PassportNumber: ")
-                .append(getPassportNumber());
+                .append(getPassportNumber())
+                .append("; VendorsHired: ")
+                .append(getVendorsHired());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
