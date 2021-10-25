@@ -44,11 +44,9 @@ public class DeleteGuestCommand extends Command {
         // Guest should not be found in both archive and checkin
         assert (guestToBeDeletedFromCheckInList.isPresent() && guestToBeDeletedFromArchive.isPresent()) == false;
 
-        Guest guestToBeDeleted = guestToBeDeletedFromCheckInList.isEmpty()
-                ? guestToBeDeletedFromArchive.get()
-                : guestToBeDeletedFromCheckInList.get();
 
-        return deleteGuest(model, guestToBeDeleted);
+
+        return deleteGuest(model, guestToBeDeletedFromArchive, guestToBeDeletedFromCheckInList);
     }
 
     private Optional<Guest> getGuestFromCheckInList(Model model) {
@@ -63,11 +61,18 @@ public class DeleteGuestCommand extends Command {
         return guestToBeDeleted;
     }
 
-    private CommandResult deleteGuest(Model model, Guest guest) throws CommandException {
-        assert guest != null;
+    private CommandResult deleteGuest(Model model, Optional<Guest> archiveGuest, Optional<Guest> checkedInGuest) throws CommandException {
+        assert archiveGuest != null || checkedInGuest != null;
 
-        model.deleteGuest(guest);
-        return new CommandResult(String.format(MESSAGE_DELETE_SUCCESSFUL, guest));
+        if (archiveGuest.isPresent()) {
+            Guest guest = archiveGuest.get();
+            model.deleteArchivedGuest(guest);
+            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESSFUL, guest));
+        } else {
+            Guest guest = checkedInGuest.get();
+            model.deleteGuest(guest);
+            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESSFUL, guest));
+        }
     }
 
     @Override
