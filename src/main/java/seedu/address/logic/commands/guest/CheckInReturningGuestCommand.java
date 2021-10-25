@@ -50,7 +50,6 @@ public class CheckInReturningGuestCommand extends Command {
         Guest returningGuest = new Guest(archivedGuest.getName(), archivedGuest.getEmail(),
                 archivedGuest.getTags(), toCheckIn.getRoomNumber(), archivedGuest.getPassportNumber());
         model.addGuest(returningGuest);
-        System.out.println(returningGuest);
         model.deleteArchivedGuest(archivedGuest);
         return new CommandResult(String.format(MESSAGE_SUCCESS_RETURNING_GUEST, returningGuest));
     }
