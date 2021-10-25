@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.vendor.VendorBook;
 
 /**
@@ -23,8 +24,8 @@ public class ListGuestCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalGuestBook(), new VendorBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs());
+        model = new ModelManager(getTypicalGuestBook(), new VendorBook(), new UserPrefs(), new Archive());
+        expectedModel = new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs(), new Archive());
     }
 
     @Test

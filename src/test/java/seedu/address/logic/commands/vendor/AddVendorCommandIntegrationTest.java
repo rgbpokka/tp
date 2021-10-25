@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.testutil.vendor.VendorBuilder;
@@ -22,13 +23,13 @@ public class AddVendorCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(new GuestBook(), getTypicalVendorBook(), new UserPrefs());
+        model = new ModelManager(new GuestBook(), getTypicalVendorBook(), new UserPrefs(), new Archive());
     }
 
     @Test
     public void execute_newVendor_success() {
         Vendor validVendor = new VendorBuilder().build();
-        Model expectedModel = new ModelManager(new GuestBook(), model.getVendorBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new GuestBook(), model.getVendorBook(), new UserPrefs(), new Archive());
         expectedModel.addVendor(validVendor);
         assertCommandSuccess(new AddVendorCommand(validVendor), model,
                 String.format(AddVendorCommand.MESSAGE_SUCCESS, validVendor), expectedModel);
