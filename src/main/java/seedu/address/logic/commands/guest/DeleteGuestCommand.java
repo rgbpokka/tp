@@ -1,5 +1,9 @@
 package seedu.address.logic.commands.guest;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -7,10 +11,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
-
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
 
 public class DeleteGuestCommand extends Command {
 
@@ -25,6 +25,11 @@ public class DeleteGuestCommand extends Command {
 
     private final PassportNumber passportNumber;
 
+    /**
+     * Constructs DeleteGuestCommand.
+     *
+     * @param passportNumber Passport number for guest to be deleted.
+     */
     public DeleteGuestCommand(PassportNumber passportNumber) {
         assert passportNumber != null;
         this.passportNumber = passportNumber;
@@ -50,29 +55,26 @@ public class DeleteGuestCommand extends Command {
     }
 
     private Optional<Guest> getGuestFromCheckInList(Model model) {
-        Optional<Guest> guestToBeDeleted = model.getGuest(this.passportNumber);
-
-        return guestToBeDeleted;
+        return model.getGuest(this.passportNumber);
     }
 
     private Optional<Guest> getGuestFromArchive(Model model) {
-        Optional<Guest> guestToBeDeleted = model.getArchivedGuest(this.passportNumber);
-
-        return guestToBeDeleted;
+        return model.getArchivedGuest(this.passportNumber);
     }
 
-    private CommandResult deleteGuest(Model model, Optional<Guest> archiveGuest, Optional<Guest> checkedInGuest) throws CommandException {
+    private CommandResult deleteGuest(Model model, Optional<Guest> archiveGuest,
+                                      Optional<Guest> checkedInGuest) throws CommandException {
         assert archiveGuest != null || checkedInGuest != null;
 
+        Guest guest;
         if (archiveGuest.isPresent()) {
-            Guest guest = archiveGuest.get();
+            guest = archiveGuest.get();
             model.deleteArchivedGuest(guest);
-            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESSFUL, guest));
         } else {
-            Guest guest = checkedInGuest.get();
+            guest = checkedInGuest.get();
             model.deleteGuest(guest);
-            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESSFUL, guest));
         }
+        return new CommandResult(String.format(MESSAGE_DELETE_SUCCESSFUL, guest));
     }
 
     @Override
@@ -81,5 +83,4 @@ public class DeleteGuestCommand extends Command {
                 || (other instanceof DeleteGuestCommand // instanceof handles nulls
                 && passportNumber.equals(((DeleteGuestCommand) other).passportNumber)); // state check
     }
-    
 }

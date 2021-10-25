@@ -1,5 +1,9 @@
 package seedu.address.logic.commands.vendor;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -7,11 +11,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
 
 public class DeleteVendorCommand extends Command {
 
@@ -26,6 +25,11 @@ public class DeleteVendorCommand extends Command {
 
     private final VendorId vendorId;
 
+    /**
+     * Constructs DeleteVendorCommand.
+     *
+     * @param vendorId Vendor ID for vendor to be deleted.
+     */
     public DeleteVendorCommand(VendorId vendorId) {
         this.vendorId = vendorId;
     }
@@ -36,7 +40,7 @@ public class DeleteVendorCommand extends Command {
 
         Optional<Vendor> vendorToBeDeleted = model.getVendor(this.vendorId);
 
-        if (vendorToBeDeleted.isEmpty() == true) {
+        if (vendorToBeDeleted.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_VENDORID);
         }
 
@@ -50,5 +54,4 @@ public class DeleteVendorCommand extends Command {
                 || (other instanceof DeleteVendorCommand // instanceof handles nulls
                 && vendorId.equals(((DeleteVendorCommand) other).vendorId)); // state check
     }
-    
 }
