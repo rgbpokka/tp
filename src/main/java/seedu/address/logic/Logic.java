@@ -26,6 +26,7 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+
     /**
      * Returns the GuestBook.
      *
@@ -37,6 +38,13 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of guests 
      */
     ObservableList<Guest> getFilteredGuestList();
+
+    /**
+     * Returns the Archive.
+     *
+     * @see seedu.address.model.Model#getArchive()
+     */
+    ReadOnlyGuestBook getArchive();
 
     /**
      * Returns the VendorBook.
@@ -58,7 +66,12 @@ public interface Logic {
     /**
      * Returns the user prefs' vendor book file path.
      */
-    Path getVendorBookFilePath(); 
+    Path getVendorBookFilePath();
+
+    /**
+     * Returns the user prefs' archive file path.
+     */
+    Path getArchiveFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

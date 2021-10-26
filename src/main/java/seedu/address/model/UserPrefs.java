@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path guestBookFilePath = Paths.get("data" , "guests.json");
     private Path vendorBookFilePath = Paths.get("data", "vendors.json");
+    private Path archiveFilePath = Paths.get("data", "archive.json");
     
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -38,6 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setGuestBookFilePath(newUserPrefs.getGuestBookFilePath());
         setVendorBookFilePath(newUserPrefs.getVendorBookFilePath());
+        setArchiveFilePath(newUserPrefs.getArchiveFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -67,6 +69,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.vendorBookFilePath= vendorBookFilePath;
     }
 
+    public Path getArchiveFilePath() {
+        return archiveFilePath;
+    }
+
+    public void setArchiveFilePath(Path archiveFilePath) {
+        requireNonNull(archiveFilePath);
+        this.archiveFilePath= archiveFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -80,8 +91,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && guestBookFilePath.equals(o.guestBookFilePath)
-                && vendorBookFilePath.equals(o.vendorBookFilePath);
+                && vendorBookFilePath.equals(o.vendorBookFilePath)
+                && archiveFilePath.equals(o.archiveFilePath);
     }
+
+    // are there issues with the implementation of the methods below??
 
     @Override
     public int hashCode() {

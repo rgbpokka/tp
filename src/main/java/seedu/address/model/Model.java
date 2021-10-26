@@ -125,6 +125,8 @@ public interface Model {
 
     void setArchivedGuest(Guest target, Guest editedGuest);
 
+    Path getArchiveFilePath();
+
     // ==================== Vendor operations =====================
     /**
      * Returns true if a tag with the same identity as {@code vendor} exists in the address book.

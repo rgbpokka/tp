@@ -129,6 +129,15 @@ public class UniqueList<T extends UniqueListItem> implements Iterable<T> {
     }
 
     /**
+     * Method for debugging
+     */
+    public void printItemsInList() {
+        for (T item: internalList) {
+            System.out.println(item.toString());
+        }
+    }
+
+    /**
      * Returns true if {@code persons} contains only unique persons.
      */
     private boolean itemsAreUnique(List<T> items) {

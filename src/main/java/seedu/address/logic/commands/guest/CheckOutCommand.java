@@ -45,6 +45,8 @@ public class CheckOutCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER);
         }
 
+        // generate invoice
+        guestToCheckOut.clearChargeables();
         model.deleteGuest(guestToCheckOut); // removes the guest from the guest book
         model.addArchivedGuest(guestToCheckOut); // adds the guest to the archive
 

@@ -94,6 +94,13 @@ public class Guest extends UniqueListItem implements Taggable {
         }
     }
 
+    /**
+     *  Is there a better way to implement this?
+     */
+    public void clearChargeables() {
+        this.chargeablesUsed = new ArrayList<>();
+    }
+
     @Override
     public boolean isSame(UniqueListItem otherItem) {
         if (otherItem == this) {
