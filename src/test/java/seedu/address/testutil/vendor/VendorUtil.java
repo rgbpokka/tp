@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.guest.CheckInCommand;
 import seedu.address.logic.commands.vendor.AddVendorCommand;
 import seedu.address.logic.commands.vendor.EditVendorCommand.EditVendorDescriptor;
 import seedu.address.model.tag.Tag;

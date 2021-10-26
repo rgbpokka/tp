@@ -7,7 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.guest.ChargeGuestCommand;
-import seedu.address.logic.commands.guest.CheckInCommand;
+import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
+import seedu.address.logic.commands.guest.CheckInReturningGuestCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -63,8 +64,11 @@ public class PocketHotelParser {
 
         switch (commandWord) {
 
-        case CheckInCommand.COMMAND_WORD:
-            return new CheckInCommandParser().parse(arguments);
+        case CheckInNewGuestCommand.COMMAND_WORD:
+            return new CheckInNewGuestCommandParser().parse(arguments);
+
+        case CheckInReturningGuestCommand.COMMAND_WORD:
+            return new CheckInReturningGuestCommandParser().parse(arguments);
 
         case CheckOutCommand.COMMAND_WORD:
             return new CheckOutCommandParser().parse(arguments);

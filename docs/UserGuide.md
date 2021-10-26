@@ -136,16 +136,17 @@ Example:
 
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
 * `EMAIL`: A valid email address should be used.
-* `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
+* `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>
 * `TAG`: An optional field, more than one can be included in the command.
 
-### Checking in a returning guest: `checkin`
+### Checking in a returning guest: `returncheckin`
 Checks in a returning **guest** into **PH**, by retrieving their details from the archive.
 
 Format:
-<br>`checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`
+<br>`returncheckin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`
 
-* `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
+* `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
+* `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>
 
 ### Checking out a guest: `checkout`
 Checks out a **guest** by archiving their details and generate an invoice of all the services used by the guest.
@@ -177,7 +178,7 @@ Format:
 
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
 * `EMAIL`: A valid email address should be used.
-* `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
+* `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>
 * `TAG`: An optional field, more than one can be included in the command.
 
 Example:

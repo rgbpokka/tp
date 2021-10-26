@@ -15,7 +15,7 @@ import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_FIRST_PER
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.guest.CheckInCommand;
+import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
 import seedu.address.logic.commands.guest.ClearGuestCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -46,8 +46,8 @@ public class PocketHotelParserTest {
     @Test
     public void parseCommand_checkInGuest() throws Exception {
         Guest guest = new GuestBuilder().build();
-        CheckInCommand command = (CheckInCommand) parser.parseCommand(GuestUtil.getAddCommand(guest));
-        assertEquals(new CheckInCommand(guest), command);
+        CheckInNewGuestCommand command = (CheckInNewGuestCommand) parser.parseCommand(GuestUtil.getAddCommand(guest));
+        assertEquals(new CheckInNewGuestCommand(guest), command);
     }
     
     @Test

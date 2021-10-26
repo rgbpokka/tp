@@ -31,7 +31,7 @@ import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.guest.CheckInCommand;
+import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.RoomNumber;
@@ -42,7 +42,7 @@ import seedu.address.testutil.guest.GuestBuilder;
 
 public class CheckInCommandParserTest {
 
-    private CheckInCommandParser parser = new CheckInCommandParser();
+    private CheckInNewGuestCommandParser parser = new CheckInNewGuestCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -53,27 +53,27 @@ public class CheckInCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_ALICE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                         + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_ALICE,
-                new CheckInCommand(expectedGuest));
+                new CheckInNewGuestCommand(expectedGuest));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_BENSON + NAME_DESC_ALICE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                         + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_ALICE,
-                new CheckInCommand(expectedGuest));
+                new CheckInNewGuestCommand(expectedGuest));
 
         // multiple room numbers - last room number accepted
         assertParseSuccess(parser, NAME_DESC_ALICE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_BENSON + ROOM_NUMBER_DESC_ALICE
                         + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_ALICE,
-                new CheckInCommand(expectedGuest));
+                new CheckInNewGuestCommand(expectedGuest));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_ALICE + EMAIL_DESC_BENSON + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                         + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_ALICE,
-                new CheckInCommand(expectedGuest));
+                new CheckInNewGuestCommand(expectedGuest));
 
         // multiple passport numbers - last passport number accepted
         assertParseSuccess(parser, NAME_DESC_ALICE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                         + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_BENSON + PASSPORT_NUMBER_DESC_ALICE,
-                new CheckInCommand(expectedGuest));
+                new CheckInNewGuestCommand(expectedGuest));
 
         // multiple tags - all accepted
         Guest expectedGuestMultipleTags =
@@ -81,7 +81,7 @@ public class CheckInCommandParserTest {
 
         assertParseSuccess(parser, NAME_DESC_ALICE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                         + TAG_DESC_VIP + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_ALICE,
-                new CheckInCommand(expectedGuestMultipleTags));
+                new CheckInNewGuestCommand(expectedGuestMultipleTags));
 
     }
 
@@ -92,12 +92,12 @@ public class CheckInCommandParserTest {
         Guest expectedGuest = new GuestBuilder(ALICE_GUEST).withTags(VALID_TAG_DELUXE_ROOM).build();
         assertParseSuccess(parser, NAME_DESC_ALICE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                         + PASSPORT_NUMBER_DESC_ALICE,
-                new CheckInCommand(expectedGuest));
+                new CheckInNewGuestCommand(expectedGuest));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckInCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckInNewGuestCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_ALICE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
@@ -151,6 +151,6 @@ public class CheckInCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_ELLE + EMAIL_DESC_ALICE
                         + ROOM_NUMBER_DESC_ALICE + TAG_DESC_VIP + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_ALICE,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckInCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckInNewGuestCommand.MESSAGE_USAGE));
     }
 }

@@ -23,7 +23,7 @@ public class CheckInCommandTest {
 
     @Test
     public void constructor_nullGuest_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CheckInCommand(null));
+        assertThrows(NullPointerException.class, () -> new CheckInNewGuestCommand(null));
     }
 
 
@@ -32,33 +32,33 @@ public class CheckInCommandTest {
         ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
         Guest validGuest = new GuestBuilder().build();
 
-        CommandResult commandResult = new CheckInCommand(validGuest).execute(modelStub);
+        CommandResult commandResult = new CheckInNewGuestCommand(validGuest).execute(modelStub);
 
-        assertEquals(String.format(CheckInCommand.MESSAGE_SUCCESS, validGuest), commandResult.getFeedbackToUser());
+        assertEquals(String.format(CheckInNewGuestCommand.MESSAGE_SUCCESS, validGuest), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validGuest), modelStub.guestsAdded);
     }
 
     @Test
     public void execute_duplicateGuest_throwsCommandException() {
         Guest validGuest = new GuestBuilder().build();
-        CheckInCommand checkInCommand = new CheckInCommand(validGuest);
+        CheckInNewGuestCommand checkInCommand = new CheckInNewGuestCommand(validGuest);
         ModelStub modelStub = new ModelStubWithGuest(validGuest);
 
-        assertThrows(CommandException.class, CheckInCommand.MESSAGE_DUPLICATE_GUEST, () -> checkInCommand.execute(modelStub));
+        assertThrows(CommandException.class, CheckInNewGuestCommand.MESSAGE_DUPLICATE_GUEST, () -> checkInCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Guest alice = new GuestBuilder().withName("Alice").build();
         Guest bob = new GuestBuilder().withName("Bob").build();
-        CheckInCommand addAliceCommand = new CheckInCommand(alice);
-        CheckInCommand addBobCommand = new CheckInCommand(bob);
+        CheckInNewGuestCommand addAliceCommand = new CheckInNewGuestCommand(alice);
+        CheckInNewGuestCommand addBobCommand = new CheckInNewGuestCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        CheckInCommand addAliceCommandCopy = new CheckInCommand(alice);
+        CheckInNewGuestCommand addAliceCommandCopy = new CheckInNewGuestCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
