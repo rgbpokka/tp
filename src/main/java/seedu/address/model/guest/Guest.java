@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.Chargeable.Chargeable;
+import seedu.address.model.Chargeable.Quantity;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.Taggable;
@@ -81,8 +82,16 @@ public class Guest extends UniqueListItem implements Taggable {
     }
     
     public void charge(Vendor vendor) {
-        Chargeable newCharge = new Chargeable(vendor.getName(), vendor.getServiceName(), vendor.getCost());
-        this.chargeablesUsed.add(newCharge);
+        Chargeable newCharge = new Chargeable(vendor.getName(), vendor.getServiceName(), vendor.getCost(), new Quantity(1));
+        if (getChargableUsed().contains(newCharge)) {
+            for (Chargeable currCharge : getChargableUsed()) {
+                if (currCharge.equals(newCharge)) {
+                    currCharge.incrementQuantity();
+                }
+            }
+        } else {
+            this.chargeablesUsed.add(newCharge);
+        }
     }
 
     @Override

@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Chargeable.Chargeable;
+import seedu.address.model.Chargeable.Quantity;
 import seedu.address.model.commonattributes.Name;
-import seedu.address.model.vendor.*;
+import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.ServiceName;
 
 /**
- * Jackson-friendly version of {@link Vendor}.
+ * Jackson-friendly version of {@link Chargeable}.
  */
 public class JsonAdaptedChargable {
 
@@ -17,26 +19,30 @@ public class JsonAdaptedChargable {
     private final String name;
     private final String serviceName;
     private final Double cost;
+    private final Integer quantity;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedChargeable} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedChargable(@JsonProperty("name") String name,
                              @JsonProperty("serviceName") String serviceName,
-                             @JsonProperty("cost") Double cost) {
+                             @JsonProperty("cost") Double cost,
+                             @JsonProperty("quantity") Integer quantity) {
         this.name = name;
         this.serviceName = serviceName;
         this.cost = cost;
+        this.quantity = quantity;
     }
 
     /**
-     * Converts a given {@code Vendor} into this class for Jackson use.
+     * Converts a given {@code Chargeable} into this class for Jackson use.
      */
     public JsonAdaptedChargable(Chargeable source) {
         name = source.getName().fullName;
         serviceName = source.getServiceName().serviceName;
         cost = source.getCost().value;
+        quantity = source.getQuantity().value;
     }
 
     public String getName() {
@@ -71,8 +77,14 @@ public class JsonAdaptedChargable {
 
         final ServiceName modelServiceName = new ServiceName(serviceName);
 
+        if (!Quantity.isValidQuantity(quantity)) {
+            throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
+        }
 
-        return new Chargeable(modelName, modelServiceName, modelCost);
+        final Quantity modelQuantity = new Quantity(quantity);
+
+
+        return new Chargeable(modelName, modelServiceName, modelCost, modelQuantity);
     }
 
 }

@@ -1,25 +1,27 @@
 package seedu.address.model.Chargeable;
 
 import seedu.address.model.commonattributes.Name;
-import seedu.address.model.uniquelist.UniqueListItem;
-import seedu.address.model.vendor.*;
+import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.ServiceName;
 
 import java.util.Objects;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 
-public class Chargeable extends UniqueListItem {
+public class Chargeable {
 
     private final Name name;
     private final ServiceName serviceName;
     private final Cost cost;
+    private Quantity quantity;
 
-    public Chargeable(Name name, ServiceName serviceName, Cost cost) {
+    public Chargeable(Name name, ServiceName serviceName, Cost cost, Quantity quantity) {
         requireAllNonNull(name, serviceName, cost);
         this.name = name;
         this.serviceName = serviceName;
         this.cost = cost;
+        this.quantity = quantity;
     }
 
     public Name getName() {
@@ -34,26 +36,17 @@ public class Chargeable extends UniqueListItem {
         return cost;
     }
 
-    /**
-     * Returns true if both Chargable have the same service name and cost.
-     */
-    @Override
-    public boolean isSame(UniqueListItem otherItem) {
-        if (otherItem == this) {
-            return true;
-        }
+    public Quantity getQuantity() {
+        return quantity;
+    }
 
-        if (otherItem instanceof Chargeable) {
-            Chargeable otherChargeable = (Chargeable) otherItem;
-            return otherChargeable.getServiceName().equals(getServiceName()) && otherChargeable.getCost() == getCost();
-        }
-
-        return false;
+    public void incrementQuantity() {
+        quantity = new Quantity(quantity.value + 1);
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both Chargeable have the same identity and data fields.
+     * This defines a stronger notion of equality between two Chargeables.
      */
     @Override
     public boolean equals(Object other) {
@@ -79,11 +72,14 @@ public class Chargeable extends UniqueListItem {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("Company Name: ")
+                .append(getName())
+                .append("; Service provided: ")
+                .append(getServiceName())
                 .append("; Cost: ")
                 .append(getCost())
-                .append("; Service provided: ")
-                .append(getServiceName());
+                .append("; Quantity: ")
+                .append(getQuantity());
 
         return builder.toString();
     }
