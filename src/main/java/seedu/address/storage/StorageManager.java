@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.model.vendor.ReadOnlyVendorBook;
+import seedu.address.storage.archive.ArchiveStorage;
 import seedu.address.storage.guest.GuestBookStorage;
 import seedu.address.storage.vendor.VendorBookStorage;
 
@@ -20,18 +21,20 @@ import seedu.address.storage.vendor.VendorBookStorage;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private VendorBookStorage vendorBookStorage;
     private GuestBookStorage guestBookStorage;
+    private VendorBookStorage vendorBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ArchiveStorage archiveStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(GuestBookStorage guestBookStorage, VendorBookStorage vendorBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(GuestBookStorage guestBookStorage, VendorBookStorage vendorBookStorage, UserPrefsStorage userPrefsStorage, ArchiveStorage archiveStorage) {
         super();
         this.guestBookStorage = guestBookStorage;
         this.vendorBookStorage = vendorBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.archiveStorage = archiveStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -79,6 +82,35 @@ public class StorageManager implements Storage {
     public void saveGuestBook(ReadOnlyGuestBook guestManager, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         guestBookStorage.saveGuestBook(guestManager, filePath);
+    }
+
+    // ================ ArchiveStorage methods ==============================
+
+    @Override
+    public Path getArchiveFilePath() {
+        return archiveStorage.getArchiveFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyGuestBook> readArchive() throws DataConversionException, IOException {
+        return readArchive(archiveStorage.getArchiveFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyGuestBook> readArchive(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return archiveStorage.readArchive(filePath);
+    }
+
+    @Override
+    public void saveArchive(ReadOnlyGuestBook guestManager) throws IOException {
+        saveArchive(guestManager, archiveStorage.getArchiveFilePath());
+    }
+
+    @Override
+    public void saveArchive(ReadOnlyGuestBook guestManager, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        archiveStorage.saveArchive(guestManager, filePath);
     }
 
     // ================ VendorBook methods ==============================
