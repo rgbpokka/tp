@@ -95,6 +95,18 @@ public class JsonAdaptedVendor {
         return tagged;
     }
 
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public Double getCost() {
+        return cost;
+    }
+
+    public String getOperatingHours() {
+        return operatingHours;
+    }
+
     /**
      * Converts this Jackson-friendly adapted vendor object into the model's {@code Vendor} object.
      *
@@ -150,18 +162,27 @@ public class JsonAdaptedVendor {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        if (getCost() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cost.class.getSimpleName()));
+        }
         if (!Cost.isValidCost(cost)) {
             throw new IllegalValueException(Cost.MESSAGE_CONSTRAINTS);
         }
 
         final Cost modelCost = new Cost(cost);
 
+        if (getServiceName() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ServiceName.class.getSimpleName()));
+        }
         if (!ServiceName.isValidServiceName(serviceName)) {
             throw new IllegalValueException(ServiceName.MESSAGE_CONSTRAINTS);
         }
 
         final ServiceName modelServiceName = new ServiceName(serviceName);
 
+        if (getOperatingHours() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, OperatingHours.class.getSimpleName()));
+        }
         if (!OperatingHours.isValidOperatingHours(operatingHours)) {
             throw new IllegalValueException(OperatingHours.MESSAGE_CONSTRAINTS);
         }

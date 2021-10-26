@@ -10,5 +10,4 @@ public class UniqueGuestList extends UniqueList<Guest> {
         return super.asModifiableObservableList().stream().filter(
                 guest -> guest.getPassportNumber().equals(passportNumber)).findFirst();
     }
-
 }

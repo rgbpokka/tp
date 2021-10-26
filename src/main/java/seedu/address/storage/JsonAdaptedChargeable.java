@@ -49,6 +49,18 @@ public class JsonAdaptedChargeable {
         return name;
     }
 
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public Double getCost() {
+        return cost;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
     /**
      * Converts this Jackson-friendly adapted vendor object into the model's {@code Vendor} object.
      *
@@ -65,18 +77,25 @@ public class JsonAdaptedChargeable {
         }
         final Name modelName = new Name(getName());
 
+        if (getCost() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cost.class.getSimpleName()));
+        }
         if (!Cost.isValidCost(cost)) {
             throw new IllegalValueException(Cost.MESSAGE_CONSTRAINTS);
         }
-
         final Cost modelCost = new Cost(cost);
 
+        if (getServiceName() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ServiceName.class.getSimpleName()));
+        }
         if (!ServiceName.isValidServiceName(serviceName)) {
             throw new IllegalValueException(ServiceName.MESSAGE_CONSTRAINTS);
         }
-
         final ServiceName modelServiceName = new ServiceName(serviceName);
 
+        if (getQuantity() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
+        }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
