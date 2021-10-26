@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.GuestBook;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -22,8 +23,8 @@ public class ListVendorCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(new GuestBook(), getTypicalVendorBook(), new UserPrefs());
-        expectedModel = new ModelManager(new GuestBook(), model.getVendorBook(), new UserPrefs());
+        model = new ModelManager(new GuestBook(), getTypicalVendorBook(), new UserPrefs(), new Archive());
+        expectedModel = new ModelManager(new GuestBook(), model.getVendorBook(), new UserPrefs(), new Archive());
     }
 
     @Test

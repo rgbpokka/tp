@@ -20,7 +20,7 @@ fully to integrate it within your hotel management system.
 ## **Table of Contents**
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,8 +35,6 @@ fully to integrate it within your hotel management system.
     1. Double-click the `PH.jar` file to boot up the app.
     2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
 
-The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
-![Ui](images/Ui.png)
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
 5. Type any command in the command box (Denoted by "Enter command here" text) and press Enter to execute it. e.g. typing `help` and pressing Enter will
    open the help window. Click the tab for the list that you would like to view e.g click vendor to view vendors in stored in **PH**<br>
@@ -116,7 +114,7 @@ To navigate between the guest and vendor list, click the button on the **GUI** t
 
 **:information_source: Notes about the command format:**<br>
 * Regardless of the list currently being viewed, you are able to execute any command. e.g While viewing the guest list,
-you are able to add a vendor. Toggle back to the vendor list to see the reflected changes.
+  you are able to add a vendor. Toggle back to the vendor list to see the reflected changes.
 </div>
 
 # Commands
@@ -135,7 +133,7 @@ Example:
 * `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
   list.
 
-  
+
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
 * `EMAIL`: A valid email address should be used.
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>
@@ -187,9 +185,9 @@ Example:
 
 * `editguest pn/X12345678A r/123` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the
   room number field with the new room number provided.
- 
+
 * `editguest pn/X87654321A r/124 e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites the
-    room number field with the new room number provided, and overwrites the old email field with the new email provided.
+  room number field with the new room number provided, and overwrites the old email field with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -297,7 +295,7 @@ Format:
 
 Example:
 <br>`edit vid/123 p/99999999 e/j@mailer.com` locates the vendor, Wang's Satay, with `VENDOR_ID` 123 and overwrites the phone number
-  field with the new phone number provided, and the email field with the new email provided.
+field with the new phone number provided, and the email field with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 

@@ -10,15 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Chargeable.Chargeable;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.RoomNumber;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.vendor.Vendor;
+import seedu.address.storage.JsonAdaptedChargeable;
 import seedu.address.storage.JsonAdaptedTag;
-import seedu.address.storage.vendor.JsonAdaptedVendor;
 
 /**
  * Jackson-friendly version of {@link Guest}.
@@ -32,7 +32,7 @@ class JsonAdaptedGuest {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String roomNumber;
     private final String passportNumber;
-    private final List<JsonAdaptedVendor> vendorsHired = new ArrayList<>();
+    private final List<JsonAdaptedChargeable> chargeablesUsed = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedGuest} with the given person details.
@@ -43,7 +43,7 @@ class JsonAdaptedGuest {
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                             @JsonProperty("roomNumber") String roomNumber,
                             @JsonProperty("passportNumber") String passportNumber,
-                            @JsonProperty("vendorsHired") List<JsonAdaptedVendor> vendorsHired) {
+                            @JsonProperty("chargeablesUsed") List<JsonAdaptedChargeable> chargeablesUsed) {
         this.name = name;
         this.email = email;
         if (tagged != null) {
@@ -51,8 +51,8 @@ class JsonAdaptedGuest {
         }
         this.roomNumber = roomNumber;
         this.passportNumber = passportNumber;
-        if (vendorsHired != null) {
-            this.vendorsHired.addAll(vendorsHired);
+        if (chargeablesUsed != null) {
+            this.chargeablesUsed.addAll(chargeablesUsed);
         }
     }
 
@@ -67,8 +67,8 @@ class JsonAdaptedGuest {
                 .collect(Collectors.toList()));
         roomNumber = source.getRoomNumber().value;
         passportNumber = source.getPassportNumber().value;
-        vendorsHired.addAll(source.getVendorsHired().stream()
-                .map(JsonAdaptedVendor::new)
+        chargeablesUsed.addAll(source.getChargeableUsed().stream()
+                .map(JsonAdaptedChargeable::new)
                 .collect(Collectors.toList()));
     }
 
@@ -84,8 +84,8 @@ class JsonAdaptedGuest {
         return tagged;
     }
     
-    public List<JsonAdaptedVendor> getVendors() {
-        return vendorsHired;
+    public List<JsonAdaptedChargeable> getChargeablesUsed() {
+        return chargeablesUsed;
     }
 
     /**
@@ -100,9 +100,9 @@ class JsonAdaptedGuest {
             personTags.add(tag.toModelType());
         }
         
-        final List<Vendor> modelVendors = new ArrayList<>();
-        for (JsonAdaptedVendor vendor : getVendors()) {
-            modelVendors.add(vendor.toModelType());
+        final List<Chargeable> modelChargeableUsed = new ArrayList<>();
+        for (JsonAdaptedChargeable chargeable : getChargeablesUsed()) {
+            modelChargeableUsed.add(chargeable.toModelType());
         }
 
         if (getName() == null) {
@@ -141,7 +141,7 @@ class JsonAdaptedGuest {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         
-        return new Guest(modelName, modelEmail, modelTags, modelRoomNumber, modelPassportNumber, modelVendors);
+        return new Guest(modelName, modelEmail, modelTags, modelRoomNumber, modelPassportNumber, modelChargeableUsed);
     }
 
 }

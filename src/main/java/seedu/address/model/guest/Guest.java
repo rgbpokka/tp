@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.Chargeable.Chargeable;
+import seedu.address.model.Chargeable.Quantity;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.Taggable;
@@ -20,7 +22,7 @@ public class Guest extends UniqueListItem implements Taggable {
     private final Email email;
     private final RoomNumber roomNumber;
     private final PassportNumber passportNumber;
-    private List<Vendor> vendorsHired;
+    private List<Chargeable> chargeablesUsed;
     private Set<Tag> tags = new HashSet<>();
 
     /**
@@ -38,17 +40,17 @@ public class Guest extends UniqueListItem implements Taggable {
         this.tags.addAll(tags);
         this.roomNumber = roomNumber;
         this.passportNumber = passportNumber;
-        this.vendorsHired = new ArrayList<>();
+        this.chargeablesUsed = new ArrayList<>();
     }
 
     public Guest(Name name, Email email, Set<Tag> tags, RoomNumber roomNumber, PassportNumber passportNumber, 
-                 List<Vendor> vendorsHired) {
+                 List<Chargeable> chargeablesUsed) {
         this.name = name;
         this.email = email;
         this.tags.addAll(tags);
         this.roomNumber = roomNumber;
         this.passportNumber = passportNumber;
-        this.vendorsHired = vendorsHired;
+        this.chargeablesUsed = chargeablesUsed;
     }
 
     public Name getName() {
@@ -75,12 +77,28 @@ public class Guest extends UniqueListItem implements Taggable {
         return passportNumber;
     }
 
-    public List<Vendor> getVendorsHired() {
-        return vendorsHired;
+    public List<Chargeable> getChargeableUsed() {
+        return chargeablesUsed;
     }
     
     public void charge(Vendor vendor) {
-        this.vendorsHired.add(vendor);
+        Chargeable newCharge = new Chargeable(vendor.getName(), vendor.getServiceName(), vendor.getCost(), new Quantity(1));
+        if (getChargeableUsed().contains(newCharge)) {
+            for (Chargeable currCharge : getChargeableUsed()) {
+                if (currCharge.equals(newCharge)) {
+                    currCharge.incrementQuantity();
+                }
+            }
+        } else {
+            this.chargeablesUsed.add(newCharge);
+        }
+    }
+
+    /**
+     *  Is there a better way to implement this?
+     */
+    public void clearChargeables() {
+        this.chargeablesUsed = new ArrayList<>();
     }
 
     @Override
@@ -117,12 +135,12 @@ public class Guest extends UniqueListItem implements Taggable {
                 && otherGuest.getEmail().equals(getEmail())
                 && otherGuest.getPassportNumber().equals(getPassportNumber())
                 && otherGuest.getTags().equals(getTags())
-                && otherGuest.getVendorsHired().equals(getVendorsHired());
+                && otherGuest.getChargeableUsed().equals(getChargeableUsed());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, roomNumber, passportNumber, tags, vendorsHired);
+        return Objects.hash(name, email, roomNumber, passportNumber, tags, chargeablesUsed);
     }
 
     @Override
@@ -134,7 +152,9 @@ public class Guest extends UniqueListItem implements Taggable {
                 .append("; RoomNumber: ")
                 .append(getRoomNumber())
                 .append("; PassportNumber: ")
-                .append(getPassportNumber());
+                .append(getPassportNumber())
+                .append("; ChargablesUsed: ")
+                .append(getChargeableUsed());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

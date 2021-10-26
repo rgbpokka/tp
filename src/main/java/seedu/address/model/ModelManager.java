@@ -171,6 +171,11 @@ public class ModelManager implements Model {
         archive.setGuest(target, editedGuest);
     }
 
+    @Override
+    public Path getArchiveFilePath() {
+        return userPrefs.getArchiveFilePath();
+    }
+
     //=========== Vendor Book ================================================================================
     @Override
     public boolean hasVendor(Vendor vendor) {

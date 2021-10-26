@@ -50,6 +50,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveGuestBook(model.getGuestBook());
             storage.saveVendorBook(model.getVendorBook());
+            storage.saveArchive(model.getArchive());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -85,6 +86,16 @@ public class LogicManager implements Logic {
     @Override
     public Path getGuestBookFilePath() {
         return model.getGuestBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyGuestBook getArchive() {
+        return model.getArchive();
+    }
+
+    @Override
+    public Path getArchiveFilePath() {
+        return model.getArchiveFilePath();
     }
 
     @Override

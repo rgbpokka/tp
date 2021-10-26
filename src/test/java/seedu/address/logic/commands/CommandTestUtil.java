@@ -35,8 +35,10 @@ import seedu.address.model.Model;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.PassportNumberContainsKeywordsPredicate;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
+import seedu.address.model.vendor.VendorIdContainsKeywordsPredicate;
 import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
 import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
 
@@ -290,12 +292,10 @@ public class CommandTestUtil {
         Optional<Guest> guest = model.getGuest(targetPassportNumber);
         
         assert(guest.isPresent());
-        
-        String uniqueIdentifier;
 
-        uniqueIdentifier = guest.get().getPassportNumber().value;
+        String passportNumber = guest.get().getPassportNumber().value;
         
-        model.updateFilteredGuestList(new IdentifierContainsKeywordsPredicate(Arrays.asList(uniqueIdentifier)));
+        model.updateFilteredGuestList(new PassportNumberContainsKeywordsPredicate(Arrays.asList(passportNumber)));
 
         assertEquals(1, model.getFilteredGuestList().size());
     }
@@ -310,13 +310,11 @@ public class CommandTestUtil {
 
         assert(vendor.isPresent());
 
-        String uniqueIdentifier;
+        String vendorId = vendor.get().getVendorId().value;
 
-        uniqueIdentifier = vendor.get().getVendorId().value;
+        model.updateFilteredVendorList(new VendorIdContainsKeywordsPredicate(Arrays.asList(vendorId)));
 
-        model.updateFilteredGuestList(new IdentifierContainsKeywordsPredicate(Arrays.asList(uniqueIdentifier)));
-
-        assertEquals(1, model.getFilteredGuestList().size());
+        assertEquals(1, model.getFilteredVendorList().size());
     } 
     
 

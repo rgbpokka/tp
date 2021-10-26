@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.vendor.VendorBook;
 import seedu.address.testutil.guest.GuestBuilder;
@@ -23,13 +24,13 @@ public class CheckInCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalGuestBook(), new VendorBook(), new UserPrefs());
+        model = new ModelManager(getTypicalGuestBook(), new VendorBook(), new UserPrefs(), new Archive());
     }
 
     @Test
     public void execute_newGuest_success() {
         Guest validGuest = new GuestBuilder().build();
-        Model expectedModel = new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs(), new Archive());
         expectedModel.addGuest(validGuest);
         assertCommandSuccess(new CheckInNewGuestCommand(validGuest), model,
                 String.format(CheckInNewGuestCommand.MESSAGE_SUCCESS, validGuest), expectedModel);
