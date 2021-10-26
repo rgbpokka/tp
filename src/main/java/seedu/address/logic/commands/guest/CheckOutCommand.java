@@ -7,10 +7,12 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.guest.Archive;
+import seedu.address.logic.Invoice.Invoice;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -46,6 +48,12 @@ public class CheckOutCommand extends Command {
         }
 
         // generate invoice
+        try {
+            Invoice.generateInvoicePdf(guestToCheckOut);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         guestToCheckOut.clearChargeables();
         model.deleteGuest(guestToCheckOut); // removes the guest from the guest book
         model.addArchivedGuest(guestToCheckOut); // adds the guest to the archive
