@@ -11,10 +11,13 @@ import static seedu.address.testutil.vendor.TypicalVendors.getTypicalVendorBook;
 
 import org.junit.jupiter.api.Test;
 
+import com.sun.javafx.scene.shape.ArcHelper;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.vendor.Vendor;
 
@@ -24,7 +27,7 @@ import seedu.address.model.vendor.Vendor;
  */
 public class DeleteVendorCommandTest {
 
-    private Model model = new ModelManager(new GuestBook(), getTypicalVendorBook(), new UserPrefs());
+    private Model model = new ModelManager(new GuestBook(), getTypicalVendorBook(), new UserPrefs(), new Archive());
 
     @Test
     public void execute_validVendorId_success() {
@@ -37,7 +40,7 @@ public class DeleteVendorCommandTest {
 
         String expectedMessage = String.format(DeleteVendorCommand.MESSAGE_DELETE_SUCCESSFUL, vendorToDelete);
 
-        ModelManager expectedModel = new ModelManager(new GuestBook(), model.getVendorBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(new GuestBook(), model.getVendorBook(), new UserPrefs(), new Archive());
         expectedModel.deleteVendor(vendorToDelete);
 
         assertCommandSuccess(deleteVendorCommand, model, expectedMessage, expectedModel);

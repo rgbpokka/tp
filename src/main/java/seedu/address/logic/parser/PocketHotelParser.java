@@ -15,11 +15,13 @@ import seedu.address.logic.commands.guest.CheckOutCommand;
 import seedu.address.logic.commands.guest.ClearGuestCommand;
 import seedu.address.logic.commands.guest.DeleteGuestCommand;
 import seedu.address.logic.commands.guest.EditGuestCommand;
+import seedu.address.logic.commands.guest.FilterGuestCommand;
 import seedu.address.logic.commands.guest.ListGuestCommand;
 import seedu.address.logic.commands.vendor.AddVendorCommand;
 import seedu.address.logic.commands.vendor.ClearVendorCommand;
 import seedu.address.logic.commands.vendor.DeleteVendorCommand;
 import seedu.address.logic.commands.vendor.EditVendorCommand;
+import seedu.address.logic.commands.vendor.FilterVendorCommand;
 import seedu.address.logic.commands.vendor.ListVendorCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.guest.ChargeGuestCommandParser;
@@ -27,9 +29,11 @@ import seedu.address.logic.parser.guest.CheckInCommandParser;
 import seedu.address.logic.parser.guest.CheckOutCommandParser;
 import seedu.address.logic.parser.guest.DeleteGuestCommandParser;
 import seedu.address.logic.parser.guest.EditGuestCommandParser;
+import seedu.address.logic.parser.guest.FilterGuestCommandParser;
 import seedu.address.logic.parser.vendor.AddVendorCommandParser;
 import seedu.address.logic.parser.vendor.DeleteVendorCommandParser;
 import seedu.address.logic.parser.vendor.EditVendorCommandParser;
+import seedu.address.logic.parser.vendor.FilterVendorCommandParser;
 
 /**
  * Parses user input.
@@ -77,8 +81,8 @@ public class PocketHotelParser {
         case DeleteGuestCommand.COMMAND_WORD:
             return new DeleteGuestCommandParser().parse(arguments);
         
-//        case FilterGuestCommand.COMMAND_WORD:
-//            return new FilterGuestCommandParser().parse(arguments);
+        case FilterGuestCommand.COMMAND_WORD:
+            return new FilterGuestCommandParser().parse(arguments);
         
         case ChargeGuestCommand.COMMAND_WORD:
             return new ChargeGuestCommandParser().parse(arguments);
@@ -98,8 +102,8 @@ public class PocketHotelParser {
         case ListVendorCommand.COMMAND_WORD:
             return new ListVendorCommand();
 
-//        case FilterVendorCommand.COMMAND_WORD:
-//            return new FilterVendorCommandParser().parse(arguments);
+        case FilterVendorCommand.COMMAND_WORD:
+            return new FilterVendorCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

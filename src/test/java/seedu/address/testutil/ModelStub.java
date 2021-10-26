@@ -1,9 +1,13 @@
 package seedu.address.testutil;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.ReadOnlyGuestBook;
@@ -94,6 +98,41 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredGuestList(Predicate<Guest> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setArchive(Archive archive) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Archive getArchive() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasArchivedGuest(Guest guest) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteArchivedGuest(Guest target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addArchivedGuest(Guest guest) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Optional<Guest> getArchivedGuest(PassportNumber passportNumber) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setArchivedGuest(Guest target, Guest editedGuest) {
         throw new AssertionError("This method should not be called.");
     }
 
