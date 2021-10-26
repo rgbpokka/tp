@@ -20,17 +20,13 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Chargeable.Chargeable;
 import seedu.address.model.Model;
-import seedu.address.model.guest.Archive;
-import seedu.address.model.vendor.Address;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.guest.PassportNumber;
-import seedu.address.model.vendor.Phone;
 import seedu.address.model.guest.RoomNumber;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.VendorId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -119,9 +115,9 @@ public class EditGuestCommand extends Command {
         RoomNumber updatedRoomNumber = editGuestDescriptor.getRoomNumber().orElse(guestToEdit.getRoomNumber());
         PassportNumber updatedPassportNumber =
                 editGuestDescriptor.getPassportNumber().orElse(guestToEdit.getPassportNumber());
-        List<Vendor> vendorsHired = guestToEdit.getVendorsHired();
+        List<Chargeable> chargablesUsed = guestToEdit.getChargableUsed();
 
-        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber, vendorsHired);
+        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber, chargablesUsed);
     }
 
     @Override
