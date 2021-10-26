@@ -70,6 +70,7 @@ class JsonAdaptedGuestTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedGuest person = new JsonAdaptedGuest(null, VALID_EMAIL, VALID_TAGS,
                 VALID_ROOMNUMBER, VALID_PASSPORTNUMBER);
+        assert(person != null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
