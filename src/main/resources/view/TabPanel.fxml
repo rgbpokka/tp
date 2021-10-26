@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="tabPanel" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="tabPanel" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <Button fx:id="guests" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClickGuestTab" style="-fx-border-radius: 5 5 0 0; -fx-border-color: #666666; -fx-border-width: 2 2 0 2;" text="Guests" VBox.vgrow="NEVER">
         <padding>
             <Insets top="2.0" />

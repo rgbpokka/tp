@@ -3,14 +3,9 @@ package seedu.address.logic.commands.guest;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Chargeable.Chargeable;
 import seedu.address.model.Model;
-import seedu.address.model.commonattributes.Name;
-import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
-import seedu.address.model.vendor.Cost;
-import seedu.address.model.vendor.ServiceName;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
 
@@ -33,13 +28,13 @@ public class ChargeGuestCommand extends Command {
             + PREFIX_PASSPORT_NUMBER + "SD1208921"
             + PREFIX_VENDOR_ID + "123";
 
-    public static final String MESSAGE_SUCCESS = "Service has been billed to Guest: %1$s";
+    public static final String MESSAGE_SUCCESS = "Service from: %1$s \nhas been billed to Guest: %2$s";
     public static final String MESSAGE_NONEXISTENT_VENDOR = "Vendor with this vendorId does not exist";
     public static final String MESSAGE_NONEXISTENT_GUEST = "Guest with this passport number does not exist";
 
     private final PassportNumber passportNumber;
     private final VendorId vendorId;
-    
+
     /**
      * Creates an ChargeGuestCommand to charge the specified {@code Guest}
      */
@@ -54,11 +49,11 @@ public class ChargeGuestCommand extends Command {
         requireNonNull(model);
 
         Optional<Guest> guestInTransaction = model.getGuest(passportNumber);
-        
+
         if (guestInTransaction.isEmpty()) {
             throw new CommandException(MESSAGE_NONEXISTENT_GUEST);
         }
-        
+
         Optional<Vendor> vendorInTransaction = model.getVendor(vendorId);
 
         if (vendorInTransaction.isEmpty()) {
@@ -66,8 +61,8 @@ public class ChargeGuestCommand extends Command {
         }
 
         guestInTransaction.get().charge(vendorInTransaction.get());
-        
-        return new CommandResult(String.format(MESSAGE_SUCCESS, guestInTransaction.get()));
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, vendorInTransaction.get(), guestInTransaction.get()));
     }
 
     @Override
@@ -77,5 +72,5 @@ public class ChargeGuestCommand extends Command {
                 && passportNumber.equals(((ChargeGuestCommand) other).passportNumber)
                 && vendorId.equals(((ChargeGuestCommand) other).vendorId));
     }
-    
+
 }

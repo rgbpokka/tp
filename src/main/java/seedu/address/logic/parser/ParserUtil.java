@@ -1,31 +1,30 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.RoomNumber;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.OperatingHours;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.ServiceName;
+import seedu.address.model.vendor.VendorId;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.vendor.Address;
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
-import seedu.address.model.guest.PassportNumber;
-import seedu.address.model.vendor.Cost;
-import seedu.address.model.vendor.OperatingHours;
-import seedu.address.model.vendor.Phone;
-import seedu.address.model.guest.RoomNumber;
-import seedu.address.model.vendor.ServiceName;
-import seedu.address.model.vendor.VendorId;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
