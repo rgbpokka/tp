@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.Invoice;
 
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.events.Event;
