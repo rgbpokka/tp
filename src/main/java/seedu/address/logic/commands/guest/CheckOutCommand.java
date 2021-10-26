@@ -1,19 +1,18 @@
 package seedu.address.logic.commands.guest;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.Invoice.Invoice;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.logic.Invoice.Invoice;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 
-
 import java.io.IOException;
 import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -27,7 +26,7 @@ public class CheckOutCommand extends Command {
             + "Parameters: Passport Number\n"
             + "Example: " + COMMAND_WORD + " pn/A021231B";
 
-    public static final String MESSAGE_CHECKOUT_SUCCESSFUL = "Checked out Guest: %1$s";
+    public static final String MESSAGE_CHECKOUT_SUCCESSFUL = "Checked out Guest: %1$s\nInvoice has been generated!";
 
     private final PassportNumber passportNumber;
 
