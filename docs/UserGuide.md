@@ -32,10 +32,10 @@ fully to integrate it within your hotel management system.
 3. Copy the file to the folder you want to use as the _home folder_ for **PH**.
 
 4. To start the application, you may either:
-    1. Double-click the `PH.jar` file to boot up the app.
-    2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
-       The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
-       
+  1. Double-click the `PH.jar` file to boot up the app.
+  2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
+     The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
+
 ![Ui](images/Ui.png)
 
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
@@ -390,7 +390,7 @@ The archived guests would have the room number and services field emptied in the
 
 ## Guest Command Summary
 
-Action | Format, Examples 
+Action | Format, Examples
 -------|------------------|
 **checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
 **checkin(returning guest)** | `checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `checkin pn/T0134568D r/101`
@@ -475,6 +475,7 @@ Parameter | Prefix | Constraints, Examples
 
 [Back to Table of Contents](#table-of-contents)
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 # **FAQ**
@@ -483,10 +484,11 @@ Parameter | Prefix | Constraints, Examples
 **A**: Install the app on your other computer and run it. Overwrite the empty .json file that is created with your old
 .json file in your old computer.<br>
 
+
 **Q**: How do I know if Java 11 is installed correctly on my computer?<br>
 **A**: Open up your terminal and run `java --version`. The output should be java 11, if installed correctly.<br>
+
 
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
