@@ -32,11 +32,6 @@ fully to integrate it within your hotel management system.
 3. Copy the file to the folder you want to use as the _home folder_ for **PH**.
 
 4. To start the application, you may either:
-<<<<<<< HEAD
-    1. Double-click the `PH.jar` file to boot up the app.
-    2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
-
-=======
   1. Double-click the `PH.jar` file to boot up the app.
   2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
      The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.

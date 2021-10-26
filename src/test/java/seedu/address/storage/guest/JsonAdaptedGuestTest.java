@@ -1,16 +1,6 @@
 package seedu.address.storage.guest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.guest.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.guest.TypicalGuests.BENSON_GUEST;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
@@ -18,6 +8,15 @@ import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.RoomNumber;
 import seedu.address.storage.JsonAdaptedChargeable;
 import seedu.address.storage.JsonAdaptedTag;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.guest.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.guest.TypicalGuests.BENSON_GUEST;
 
 class JsonAdaptedGuestTest {
     private static final String INVALID_PASSPORT_NUMBER = "@@@@@";
@@ -71,14 +70,8 @@ class JsonAdaptedGuestTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-<<<<<<< HEAD:src/test/java/seedu/address/storage/guest/JsonAdaptedGuestTest.java
         JsonAdaptedGuest guest = new JsonAdaptedGuest(null, VALID_EMAIL, VALID_TAGS,
                 VALID_ROOM_NUMBER, VALID_PASSPORT_NUMBER, VALID_CHARGEABLE_USED);
-=======
-        JsonAdaptedGuest person = new JsonAdaptedGuest(null, VALID_EMAIL, VALID_TAGS,
-                VALID_ROOMNUMBER, VALID_PASSPORTNUMBER);
-        assert(person != null);
->>>>>>> master:src/test/java/seedu/address/storage/JsonAdaptedGuestTest.java
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }
