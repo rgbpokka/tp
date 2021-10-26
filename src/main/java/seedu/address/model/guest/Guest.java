@@ -77,14 +77,14 @@ public class Guest extends UniqueListItem implements Taggable {
         return passportNumber;
     }
 
-    public List<Chargeable> getChargableUsed() {
+    public List<Chargeable> getChargeableUsed() {
         return chargeablesUsed;
     }
     
     public void charge(Vendor vendor) {
         Chargeable newCharge = new Chargeable(vendor.getName(), vendor.getServiceName(), vendor.getCost(), new Quantity(1));
-        if (getChargableUsed().contains(newCharge)) {
-            for (Chargeable currCharge : getChargableUsed()) {
+        if (getChargeableUsed().contains(newCharge)) {
+            for (Chargeable currCharge : getChargeableUsed()) {
                 if (currCharge.equals(newCharge)) {
                     currCharge.incrementQuantity();
                 }
@@ -128,7 +128,7 @@ public class Guest extends UniqueListItem implements Taggable {
                 && otherGuest.getEmail().equals(getEmail())
                 && otherGuest.getPassportNumber().equals(getPassportNumber())
                 && otherGuest.getTags().equals(getTags())
-                && otherGuest.getChargableUsed().equals(getChargableUsed());
+                && otherGuest.getChargeableUsed().equals(getChargeableUsed());
     }
 
     @Override
@@ -147,7 +147,7 @@ public class Guest extends UniqueListItem implements Taggable {
                 .append("; PassportNumber: ")
                 .append(getPassportNumber())
                 .append("; ChargablesUsed: ")
-                .append(getChargableUsed());
+                .append(getChargeableUsed());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

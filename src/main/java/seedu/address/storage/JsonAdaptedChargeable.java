@@ -12,7 +12,7 @@ import seedu.address.model.vendor.ServiceName;
 /**
  * Jackson-friendly version of {@link Chargeable}.
  */
-public class JsonAdaptedChargable {
+public class JsonAdaptedChargeable {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Chargable's %s field is missing!";
 
@@ -25,10 +25,10 @@ public class JsonAdaptedChargable {
      * Constructs a {@code JsonAdaptedChargeable} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedChargable(@JsonProperty("name") String name,
-                             @JsonProperty("serviceName") String serviceName,
-                             @JsonProperty("cost") Double cost,
-                             @JsonProperty("quantity") Integer quantity) {
+    public JsonAdaptedChargeable(@JsonProperty("name") String name,
+                                 @JsonProperty("serviceName") String serviceName,
+                                 @JsonProperty("cost") Double cost,
+                                 @JsonProperty("quantity") Integer quantity) {
         this.name = name;
         this.serviceName = serviceName;
         this.cost = cost;
@@ -38,7 +38,7 @@ public class JsonAdaptedChargable {
     /**
      * Converts a given {@code Chargeable} into this class for Jackson use.
      */
-    public JsonAdaptedChargable(Chargeable source) {
+    public JsonAdaptedChargeable(Chargeable source) {
         name = source.getName().fullName;
         serviceName = source.getServiceName().serviceName;
         cost = source.getCost().value;
