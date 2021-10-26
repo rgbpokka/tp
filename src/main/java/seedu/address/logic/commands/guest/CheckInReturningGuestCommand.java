@@ -28,7 +28,7 @@ public class CheckInReturningGuestCommand extends Command {
     public static final String MESSAGE_SUCCESS_RETURNING_GUEST = "Returning guest checked in: %1$s";
     public static final String MESSAGE_NONEXISTENT_GUEST = "This guest does not belong in our archive.";
 
-    private final Guest toCheckIn;
+    private Guest toCheckIn;
 
     /**
      * Creates an CheckInReturningGuestCommand to add the specified {@code Guest}
@@ -49,6 +49,7 @@ public class CheckInReturningGuestCommand extends Command {
         Guest archivedGuest = model.getArchivedGuest(toCheckIn.getPassportNumber()).get();
         Guest returningGuest = new Guest(archivedGuest.getName(), archivedGuest.getEmail(),
                 archivedGuest.getTags(), toCheckIn.getRoomNumber(), archivedGuest.getPassportNumber());
+        this.toCheckIn = returningGuest;
         model.addGuest(returningGuest);
         model.deleteArchivedGuest(archivedGuest);
         return new CommandResult(String.format(MESSAGE_SUCCESS_RETURNING_GUEST, returningGuest));
