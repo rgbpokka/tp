@@ -3,6 +3,7 @@ package seedu.address;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
@@ -29,6 +30,8 @@ import seedu.address.storage.Storage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.archive.ArchiveStorage;
+import seedu.address.storage.archive.JsonArchiveStorage;
 import seedu.address.storage.guest.GuestBookStorage;
 import seedu.address.storage.guest.JsonGuestBookStorage;
 import seedu.address.storage.vendor.JsonVendorBookStorage;
@@ -63,7 +66,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         GuestBookStorage guestBookStorage = new JsonGuestBookStorage(userPrefs.getGuestBookFilePath());
         VendorBookStorage vendorBookStorage = new JsonVendorBookStorage(userPrefs.getVendorBookFilePath());
-        storage = new StorageManager(guestBookStorage, vendorBookStorage, userPrefsStorage);
+        ArchiveStorage archiveStorage = new JsonArchiveStorage(userPrefs.getArchiveFilePath());
+        storage = new StorageManager(guestBookStorage, vendorBookStorage, userPrefsStorage, archiveStorage);
 
         initLogging(config);
 
@@ -112,8 +116,18 @@ public class MainApp extends Application {
 
     // **** TO-DO ****
     private ReadOnlyGuestBook initArchive(Storage storage) {
-        // todo
-        return new Archive();
+        ReadOnlyGuestBook initialData = new Archive();
+        try {
+            Optional<ReadOnlyGuestBook> guestBookOptional = storage.readArchive();
+
+            initialData = guestBookOptional.orElseGet(SampleDataUtil::getSampleArchive);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty archive");
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty archive");
+        }
+
+        return initialData;
     }
 
     /**

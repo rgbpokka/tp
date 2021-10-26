@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.commonattributes.Email;
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.guest.GuestBook;
@@ -72,6 +73,10 @@ public class SampleDataUtil {
             sampleVendorBook.addVendor(sampleVendor);
         }
         return sampleVendorBook;
+    }
+
+    public static ReadOnlyGuestBook getSampleArchive() {
+        return new Archive();
     }
 
     /**
