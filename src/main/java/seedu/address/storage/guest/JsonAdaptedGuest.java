@@ -17,7 +17,7 @@ import seedu.address.model.commonattributes.Name;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.RoomNumber;
 import seedu.address.model.tag.Tag;
-import seedu.address.storage.JsonAdaptedChargable;
+import seedu.address.storage.JsonAdaptedChargeable;
 import seedu.address.storage.JsonAdaptedTag;
 
 /**
@@ -32,7 +32,7 @@ class JsonAdaptedGuest {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String roomNumber;
     private final String passportNumber;
-    private final List<JsonAdaptedChargable> chargeablesUsed = new ArrayList<>();
+    private final List<JsonAdaptedChargeable> chargeablesUsed = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedGuest} with the given person details.
@@ -43,7 +43,7 @@ class JsonAdaptedGuest {
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                             @JsonProperty("roomNumber") String roomNumber,
                             @JsonProperty("passportNumber") String passportNumber,
-                            @JsonProperty("chargeablesUsed") List<JsonAdaptedChargable> chargeablesUsed) {
+                            @JsonProperty("chargeablesUsed") List<JsonAdaptedChargeable> chargeablesUsed) {
         this.name = name;
         this.email = email;
         if (tagged != null) {
@@ -67,8 +67,8 @@ class JsonAdaptedGuest {
                 .collect(Collectors.toList()));
         roomNumber = source.getRoomNumber().value;
         passportNumber = source.getPassportNumber().value;
-        chargeablesUsed.addAll(source.getChargableUsed().stream()
-                .map(JsonAdaptedChargable::new)
+        chargeablesUsed.addAll(source.getChargeableUsed().stream()
+                .map(JsonAdaptedChargeable::new)
                 .collect(Collectors.toList()));
     }
 
@@ -84,7 +84,7 @@ class JsonAdaptedGuest {
         return tagged;
     }
     
-    public List<JsonAdaptedChargable> getChargeablesUsed() {
+    public List<JsonAdaptedChargeable> getChargeablesUsed() {
         return chargeablesUsed;
     }
 
@@ -101,8 +101,8 @@ class JsonAdaptedGuest {
         }
         
         final List<Chargeable> modelChargeableUsed = new ArrayList<>();
-        for (JsonAdaptedChargable chargable : getChargeablesUsed()) {
-            modelChargeableUsed.add(chargable.toModelType());
+        for (JsonAdaptedChargeable chargeable : getChargeablesUsed()) {
+            modelChargeableUsed.add(chargeable.toModelType());
         }
 
         if (getName() == null) {

@@ -115,9 +115,9 @@ public class EditGuestCommand extends Command {
         RoomNumber updatedRoomNumber = editGuestDescriptor.getRoomNumber().orElse(guestToEdit.getRoomNumber());
         PassportNumber updatedPassportNumber =
                 editGuestDescriptor.getPassportNumber().orElse(guestToEdit.getPassportNumber());
-        List<Chargeable> chargablesUsed = guestToEdit.getChargableUsed();
+        List<Chargeable> chargeablesUsed = guestToEdit.getChargeableUsed();
 
-        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber, chargablesUsed);
+        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber, chargeablesUsed);
     }
 
     @Override

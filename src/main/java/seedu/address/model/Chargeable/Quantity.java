@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a cost in the vendor book.
+ * Represents a quantity for the service
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(Integer)}
  */
 public class Quantity {
