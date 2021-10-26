@@ -1,5 +1,29 @@
 package seedu.address.logic;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
+import seedu.address.logic.commands.guest.ListGuestCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.guest.ReadOnlyGuestBook;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.archive.JsonArchiveStorage;
+import seedu.address.storage.guest.JsonGuestBookStorage;
+import seedu.address.storage.vendor.JsonVendorBookStorage;
+import seedu.address.testutil.guest.GuestBuilder;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VENDORID;
@@ -10,33 +34,9 @@ import static seedu.address.logic.commands.CommandTestUtil.PASSPORT_NUMBER_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ALICE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
 import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_UNUSED;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.guest.ListGuestCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.guest.Guest;
-import seedu.address.model.guest.ReadOnlyGuestBook;
-import seedu.address.model.vendor.ReadOnlyVendorBook;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.guest.JsonGuestBookStorage;
-import seedu.address.storage.vendor.JsonVendorBookStorage;
-import seedu.address.testutil.guest.GuestBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -52,8 +52,10 @@ public class LogicManagerTest {
         JsonGuestBookStorage guestBookStorage =
                 new JsonGuestBookStorage(temporaryFolder.resolve("guests.json"));
         JsonVendorBookStorage vendorBookStorage = new JsonVendorBookStorage(temporaryFolder.resolve("vendors.json"));
+        JsonArchiveStorage archiveStorage = new JsonArchiveStorage(temporaryFolder.resolve("archive.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(guestBookStorage, vendorBookStorage, userPrefsStorage);
+        StorageManager storage =
+                new StorageManager(guestBookStorage, vendorBookStorage, userPrefsStorage, archiveStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -90,14 +92,17 @@ public class LogicManagerTest {
                 new JsonGuestBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionGuestBook.json"));
         JsonVendorBookStorage vendorBookStorage =
                 new JsonVendorBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionVendorBook.json"));
+        JsonArchiveStorage archiveStorage =
+                new JsonArchiveIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionArchive.json")); 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(guestBookStorage, vendorBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(guestBookStorage, vendorBookStorage, userPrefsStorage, archiveStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addCommand =
-                CheckInNewGuestCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + NAME_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
+                CheckInNewGuestCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + NAME_DESC_ALICE +
+                        ROOM_NUMBER_DESC_ALICE
                         + EMAIL_DESC_ALICE + TAG_DESC_ALICE;
         Guest expectedGuest = new GuestBuilder(ALICE_GUEST).build();
         ModelManager expectedModel = new ModelManager();
@@ -151,7 +156,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getGuestBook(), model.getVendorBook(), new UserPrefs(), model.getArchive());
+        Model expectedModel =
+                new ModelManager(model.getGuestBook(), model.getVendorBook(), new UserPrefs(), model.getArchive());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -196,6 +202,20 @@ public class LogicManagerTest {
             throw DUMMY_IO_EXCEPTION;
         }
     }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonArchiveIoExceptionThrowingStub extends JsonArchiveStorage {
+        private JsonArchiveIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveArchive(ReadOnlyGuestBook archive, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    } 
 
 
 }

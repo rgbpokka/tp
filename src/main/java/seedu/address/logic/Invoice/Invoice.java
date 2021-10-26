@@ -105,7 +105,7 @@ public class Invoice {
         // Iterate through processed vendors and add to table
         int itemCount = 2;
         double totalCost = HotelCost;
-        for (Chargeable charge : g.getChargableUsed()) {
+        for (Chargeable charge : g.getChargeableUsed()) {
             addCellToTable(String.valueOf(itemCount), table, FONT);
             addCellToTable(charge.getName().toString(), table, FONT);
             addCellToTable(charge.getServiceName().toString(), table, FONT);

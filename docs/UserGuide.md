@@ -32,10 +32,13 @@ fully to integrate it within your hotel management system.
 3. Copy the file to the folder you want to use as the _home folder_ for **PH**.
 
 4. To start the application, you may either:
-    1. Double-click the `PH.jar` file to boot up the app.
-    2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
+  1. Double-click the `PH.jar` file to boot up the app.
+  2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
+     The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
+![Ui](images/Ui.png)
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
+
 5. Type any command in the command box (Denoted by "Enter command here" text) and press Enter to execute it. e.g. typing `help` and pressing Enter will
    open the help window. Click the tab for the list that you would like to view e.g click vendor to view vendors in stored in **PH**<br>
    Some example commands you can try:
@@ -139,6 +142,8 @@ Example:
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>
 * `TAG`: An optional field, more than one can be included in the command.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Checking in a returning guest: `returncheckin`
 Checks in a returning **guest** into **PH**, by retrieving their details from the archive.
 
@@ -147,6 +152,8 @@ Format:
 
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Checking out a guest: `checkout`
 Checks out a **guest** by archiving their details and generate an invoice of all the services used by the guest.
@@ -158,11 +165,14 @@ Example:
 
 * `editguest pn/X12345678A` checks out the guest Bing Cheng, whose passport number is X12345678A.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Editing fields of a guest : `editguest`
 
 Edit a **guest**' contact details. Only edits the fields that have been passed in as parameters.
 
 Format:
+
 `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 
 <div markdown="block" class="alert alert-info">
@@ -253,6 +263,7 @@ Example:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
 * Using the filter command a second time, would clear the filters previously applied.
+
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -385,7 +396,7 @@ The archived guests would have the room number and services field emptied in the
 
 ## Guest Command Summary
 
-Action | Format, Examples 
+Action | Format, Examples
 -------|------------------|
 **checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
 **checkin(returning guest)** | `checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `checkin pn/T0134568D r/101`
@@ -470,6 +481,7 @@ Parameter | Prefix | Constraints, Examples
 
 [Back to Table of Contents](#table-of-contents)
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 # **FAQ**
@@ -478,10 +490,11 @@ Parameter | Prefix | Constraints, Examples
 **A**: Install the app on your other computer and run it. Overwrite the empty .json file that is created with your old
 .json file in your old computer.<br>
 
+
 **Q**: How do I know if Java 11 is installed correctly on my computer?<br>
 **A**: Open up your terminal and run `java --version`. The output should be java 11, if installed correctly.<br>
+
 
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
