@@ -18,9 +18,6 @@ import java.io.IOException;
 
 public class Invoice {
     public static final String DEST = "./hello_world.pdf";
-    public static final String DATA = "./myFile0.csv";
-    public static final String DATA2 = "./guestInvoice.csv";
-
 
     private static final PdfFont FONT = Invoice.createStandardFont();
     private static final PdfFont FONT_BOLD = Invoice.createStandardBoldFont();
@@ -94,7 +91,7 @@ public class Invoice {
 
         int HotelCost = 100;
 
-        // charge base price
+        // Charge base price
         addCellToTable("1", table, FONT);
         addCellToTable("Hotel", table, FONT);
         addCellToTable("Hotel Stay", table, FONT);
@@ -107,7 +104,7 @@ public class Invoice {
         double totalCost = HotelCost;
         for (Chargeable charge : g.getChargeableUsed()) {
             addCellToTable(String.valueOf(itemCount), table, FONT);
-            addCellToTable(charge.getName().toString(), table, FONT);
+            addCellToTable(charge.getName().toString() + " [" + charge.getVendorId().toString() + "]", table, FONT);
             addCellToTable(charge.getServiceName().toString(), table, FONT);
             addCellToTable(charge.getCost().toString(), table, FONT);
             addCellToTable(charge.getQuantity().toString(), table, FONT);
