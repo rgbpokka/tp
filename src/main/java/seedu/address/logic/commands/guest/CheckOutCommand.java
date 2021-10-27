@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.guest;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.Invoice.Invoice;
+import seedu.address.logic.invoice.Invoice;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
