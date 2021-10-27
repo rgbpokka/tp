@@ -67,12 +67,15 @@ public class Invoice {
 
         // Add guest details
         Paragraph guestDetails = new Paragraph("Bill to: " + g.getName() + "\nRoom Number: " + g.getRoomNumber());
-        guestDetails.setTextAlignment(TextAlignment.CENTER);
+        guestDetails.setTextAlignment(TextAlignment.CENTER).setFont(FONT_BOLD);
         document.add(guestDetails);
 
         // Generate invoice table
         document.add(createInvoiceTable(g));
 
+        Paragraph thankYouParagraph = new Paragraph("THANK YOU FOR YOUR VISIT!");
+        thankYouParagraph.setTextAlignment(TextAlignment.CENTER).setFont(FONT_BOLD);
+        document.add(thankYouParagraph);
 
         //Close document
         document.close();
