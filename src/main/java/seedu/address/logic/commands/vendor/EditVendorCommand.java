@@ -189,10 +189,12 @@ public class EditVendorCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Returns true if at least one field is edited. Vendor ID has been left out. The explanation is similar to that
+         * in EditGuestCommand.
+         *
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, vendorId, cost, serviceName,
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, cost, serviceName,
                     operatingHours);
         }
 
@@ -304,6 +306,5 @@ public class EditVendorCommand extends Command {
                     && getOperatingHours().equals(e.getOperatingHours());
         }
     }
-
 
 }

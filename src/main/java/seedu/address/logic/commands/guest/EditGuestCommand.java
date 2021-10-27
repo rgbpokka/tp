@@ -148,6 +148,7 @@ public class EditGuestCommand extends Command {
         private Set<Tag> tags;
         private PassportNumber passportNumber;
         private RoomNumber roomNumber;
+        private List<Chargeable> chargeablesUsed;
 
         public EditGuestDescriptor() {
         }
@@ -163,13 +164,19 @@ public class EditGuestCommand extends Command {
             setTags(toCopy.tags);
             setPassportNumber(toCopy.passportNumber);
             setRoomNumber(toCopy.roomNumber);
+            setChargeablesUsed(toCopy.chargeablesUsed);
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Returns true if at least one field is edited. Passport number has been left out as its purpose is to
+         * identify the guest. If included in the implementation, a command such as:
+         *
+         * editguest pn/A1234567 would edit the guest successfully, even though it should be throwing an exception
+         * stating that at least one field should be specified for editing. See (@code EditGuestCommandParser::parse}
+         * for more details.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, tags, roomNumber, passportNumber);
+            return CollectionUtil.isAnyNonNull(name, email, tags, roomNumber, chargeablesUsed);
         }
 
         public void setName(Name name) {
@@ -202,6 +209,14 @@ public class EditGuestCommand extends Command {
 
         public Optional<RoomNumber> getRoomNumber() {
             return Optional.ofNullable(roomNumber);
+        }
+
+        public void setChargeablesUsed(List<Chargeable> chargeablesUsed) {
+            this.chargeablesUsed = chargeablesUsed;
+        }
+
+        public Optional<List<Chargeable>> getChargeablesUsed() {
+            return Optional.ofNullable(chargeablesUsed);
         }
 
         /**
@@ -240,7 +255,8 @@ public class EditGuestCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getTags().equals(e.getTags())
                     && getPassportNumber().equals(e.getPassportNumber())
-                    && getRoomNumber().equals(e.getRoomNumber());
+                    && getRoomNumber().equals(e.getRoomNumber())
+                    && getChargeablesUsed().equals(e.getChargeablesUsed());
         }
     }
 
