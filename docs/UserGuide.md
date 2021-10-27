@@ -183,7 +183,6 @@ Parameters:
 * `TAG`: Blank inputs are not allowed. An optional field, more than one can be included in each command.
 
 Example:
-
 * `editguest pn/X12345678A r/123` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the
   room number field with the new room number provided. All his other fields (**NAME**, **EMAIL**, **PASSPORT_NUMBER**, **TAG**)
   will remain unchanged.
@@ -196,10 +195,9 @@ Example:
 
 * Existing field values will be overwritten by the newly provided field values.
 
-* You can edit more than one field at a time (See example below).
+* You need to specify at least one field to edit.
 
-* Note that when editing a guest, it is important that there is no pre-existing
-  guest with that passport number already.
+* You can edit more than one field at a time (See example above).
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -322,6 +320,17 @@ Example:
 <br>`editvendor vid/123 p/99999999 e/j@mailer.com` locates the vendor, Wang's Satay, with `VENDOR_ID` 123 and overwrites the phone number
 field with the new phone number provided, and the email field with the new email provided. All other fields of the vendor
 (**VENDOR_ID**, **NAME**, **ADDRESS**, **SERVICE_NAME**, **SERVICE_COST**, **OPERATING_HOURS**, **TAG**) remain unchanged.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes:**<br>
+
+* Existing field values will be overwritten by the newly provided field values.
+
+* You need to specify at least one field to edit.
+
+* You can edit more than one field at a time (See example above).
+
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
