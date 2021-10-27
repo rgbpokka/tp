@@ -1,4 +1,8 @@
-package seedu.address.logic.Invoice;
+package seedu.address.logic.invoice;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.events.PdfDocumentEvent;
@@ -11,12 +15,11 @@ import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+
+import com.itextpdf.layout.property.HorizontalAlignment;
+import com.itextpdf.layout.property.TextAlignment;
 import seedu.address.model.Chargeable.Chargeable;
 import seedu.address.model.guest.Guest;
-
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Invoice {
     public static final String BASE_PATH = "./";
@@ -50,7 +53,7 @@ public class Invoice {
      * Invoice includes a flat fee for the hotel stay and the sum of all chargeable services that they have consumed.
      *
      * @param g Guest to be charged
-     * @throws IOException
+     * @throws IOException If invalid file path or fail to add rows to table.
      */
     public static void generateInvoicePdf(Guest g) throws IOException {
         String dest = BASE_PATH + generateFileName(g);
@@ -63,7 +66,8 @@ public class Invoice {
         pdf.addEventHandler(PdfDocumentEvent.END_PAGE, new InvoiceNewPageHandler());
 
         // Add guest details
-        Paragraph guestDetails = new Paragraph("Bill to: " + g.getName() + " Room Number: " + g.getRoomNumber());
+        Paragraph guestDetails = new Paragraph("Bill to: " + g.getName() + "\nRoom Number: " + g.getRoomNumber());
+        guestDetails.setTextAlignment(TextAlignment.CENTER);
         document.add(guestDetails);
 
         // Generate invoice table
@@ -76,63 +80,66 @@ public class Invoice {
 
     // Adapted solution from https://www.javatpoint.com/java-get-current-date
     private static String generateFileName(Guest g) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
         LocalDateTime now = LocalDateTime.now();
 
-        return g.getName().toString() + " " + now + ".pdf";
+        return g.getPassportNumber().toString() + " " + now.format(dtf) + ".pdf";
     }
 
-    private static Table createInvoiceTable(Guest g) throws IOException {
+    private static Table createInvoiceTable(Guest g) {
         Table table = new Table(new float[]{1, 4, 2, 1, 3, 3});
+        table.setHorizontalAlignment(HorizontalAlignment.CENTER);
 
-        final String[] HEADER_TEXT = new String[] {"Item num", "Vendor Name", "Service", "Cost", "Quantity", "Line Cost"};
+        final String[] HEADER_TEXT = new String[]{"ITEM NUM", "VENDOR NAME",
+            "SERVICE", "COST", "QUANTITY", "LINE COST"};
 
         // Ensures that header tally up with fields required
         assert HEADER_TEXT.length == 6;
 
         // Add header rows
         for (String header : HEADER_TEXT) {
-                table.addHeaderCell(
-                        new Cell().add(
-                                new Paragraph(header).setFont(FONT)));
+            table.addHeaderCell(
+                    new Cell().add(
+                            new Paragraph(header).setFont(FONT_BOLD)));
         }
 
 
-        int HotelCost = 100;
+        int hotelCost = 100;
 
         // Charge base price
-        addCellToTable("1", table, FONT);
-        addCellToTable("Hotel", table, FONT);
-        addCellToTable("Hotel Stay", table, FONT);
-        addCellToTable(String.valueOf(HotelCost), table, FONT);
-        addCellToTable("1", table, FONT);
-        addCellToTable(String.valueOf(HotelCost), table, FONT);
+        addCellToTable("1", table);
+        addCellToTable("Hotel", table);
+        addCellToTable("Hotel Stay", table);
+        addCellToTable(String.valueOf(hotelCost), table);
+        addCellToTable("1", table);
+        addCellToTable(String.valueOf(hotelCost), table);
 
         // Iterate through processed vendors and add to table
         int itemCount = 2;
-        double totalCost = HotelCost;
+        double totalCost = hotelCost;
         for (Chargeable charge : g.getChargeableUsed()) {
-            addCellToTable(String.valueOf(itemCount), table, FONT);
-            addCellToTable(charge.getName().toString() + " [" + charge.getVendorId().toString() + "]", table, FONT);
-            addCellToTable(charge.getServiceName().toString(), table, FONT);
-            addCellToTable(charge.getCost().toString(), table, FONT);
-            addCellToTable(charge.getQuantity().toString(), table, FONT);
+            addCellToTable(String.valueOf(itemCount), table);
+            addCellToTable(charge.getName().toString() + " [" + charge.getVendorId().toString() + "]", table);
+            addCellToTable(charge.getServiceName().toString(), table);
+            addCellToTable(charge.getCost().toString(), table);
+            addCellToTable(charge.getQuantity().toString(), table);
 
-            double lineCost = Double.valueOf(charge.getCost().toString()) * Double.valueOf(charge.getQuantity().toString());
-            addCellToTable(String.valueOf(lineCost), table, FONT);
+            double lineCost = Double.parseDouble(charge.getCost().toString())
+                    * Double.parseDouble(charge.getQuantity().toString());
+            addCellToTable(String.valueOf(lineCost), table);
 
             totalCost += lineCost;
             itemCount++;
         }
 
         // Add total cost row
-        addCostRowToTable(table, String.valueOf(totalCost), FONT);
+        addCostRowToTable(table, String.valueOf(totalCost));
 
         return table;
     }
 
-    private static void addCellToTable(String text, Table table, PdfFont font) {
-        Paragraph paragraph = new Paragraph(text).setFont(font);
+    private static void addCellToTable(String text, Table table) {
+        Paragraph paragraph = new Paragraph(text).setFont(FONT);
         Cell cell = new Cell();
         cell.add(paragraph);
         table.addCell(paragraph);
@@ -144,22 +151,19 @@ public class Invoice {
      * Solution adapted from Samuel Huylebroeck
      * https://stackoverflow.com/questions/41607891/itext-7-borderless-table-no-border.
      *
-     * @param table Table to add total cost row.
+     * @param table     Table to add total cost row.
      * @param totalCost Total cost.
-     * @param font Font for text.
      */
-    private static void addCostRowToTable(Table table, String totalCost, PdfFont font) {
+    private static void addCostRowToTable(Table table, String totalCost) {
         for (int i = 0; i < NUM_HEADERS; i++) {
-           if (i != NUM_HEADERS - 1) {
-                Cell cell = new Cell();
-                cell.add(new Paragraph("").setFont(font));
+            Cell cell = new Cell();
+            if (i != NUM_HEADERS - 1) {
+                cell.add(new Paragraph("").setFont(FONT_BOLD));
                 cell.setBorder(Border.NO_BORDER);
-                table.addCell(cell);
             } else {
-                   Cell cell = new Cell();
-                   cell.add(new Paragraph(totalCost).setFont(font));
-                   table.addCell(cell);
-           }
+                cell.add(new Paragraph(totalCost).setFont(FONT_BOLD));
+            }
+            table.addCell(cell);
         }
     }
 }
