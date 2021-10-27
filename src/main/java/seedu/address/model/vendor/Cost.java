@@ -13,6 +13,9 @@ public class Cost {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Cost should be in dollars and cents (e.g. 25.30) and must be a positive cost greater than 0";
+
+    public static final String MESSAGE_FILTER_CONSTRAINTS =
+            "Invalid syntax to filter cost. Examples of valid syntax: c/<20, c/>10, c/8"; 
     
     public static final String INVALID_DOUBLE = 
             "Cost should be a valid double.";

@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
@@ -11,7 +8,6 @@ import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.ReadOnlyGuestBook;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
@@ -133,6 +129,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setArchivedGuest(Guest target, Guest editedGuest) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Path getArchiveFilePath() {
         throw new AssertionError("This method should not be called.");
     }
 

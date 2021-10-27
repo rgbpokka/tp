@@ -1,12 +1,10 @@
 package seedu.address.model.vendor;
 
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
 import seedu.address.model.tag.Tag;
 
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
@@ -19,23 +17,23 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class VendorPredicate implements Predicate<Vendor> {
 
     private final Optional<VendorId> vendorIdOptional;
-    private final Optional<Phone> phoneOptional;
-    private final Optional<Name> nameOptional;
-    private final Optional<Email> emailOptional;
+    private final Optional<String> phoneOptional;
+    private final Optional<String> nameOptional;
+    private final Optional<String> emailOptional;
     private final Optional<Set<Tag>> tagsOptional;
-    private final Optional<Address> addressOptional;
+    private final Optional<String> addressOptional;
     private final Optional<ServiceName> serviceNameOptional;
-    private final Optional<Cost> costOptional;
+    private final Optional<String> costOptional;
     private final Optional<OperatingHours> operatingHoursOptional;
 
     public VendorPredicate(Optional<VendorId> vendorIdOptional,
-                           Optional<Phone> phoneOptional,
-                           Optional<Name> nameOptional,
-                           Optional<Email> emailOptional,
+                           Optional<String> phoneOptional,
+                           Optional<String> nameOptional,
+                           Optional<String> emailOptional,
                            Optional<Set<Tag>> tagsOptional,
-                           Optional<Address> addressOptional,
+                           Optional<String> addressOptional,
                            Optional<ServiceName> serviceNameOptional,
-                           Optional<Cost> costOptional,
+                           Optional<String> costOptional,
                            Optional<OperatingHours> operatingHoursOptional) {
         requireAllNonNull(vendorIdOptional, phoneOptional, nameOptional, emailOptional, tagsOptional, addressOptional,
                 serviceNameOptional, costOptional, operatingHoursOptional);
@@ -71,28 +69,34 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForName(Vendor vendor) {
         if (nameOptional.isPresent()) {
-            return nameOptional.get().equals(vendor.getName());
+            String nameTested = nameOptional.get().toLowerCase();
+            String guestName = vendor.getName().toString().toLowerCase();
+            return guestName.contains(nameTested);
         }
         return true;
     }
 
     private boolean testForEmail(Vendor vendor) {
         if (emailOptional.isPresent()) {
-            return emailOptional.get().equals(vendor.getEmail());
+            String emailTested = emailOptional.get().toLowerCase();
+            String guestEmail = vendor.getEmail().toString().toLowerCase();
+            return guestEmail.contains(emailTested);
         }
         return true;
     }
 
     private boolean testForPhone(Vendor vendor) {
         if (phoneOptional.isPresent()) {
-            return phoneOptional.get().equals(vendor.getPhone());
+            return vendor.getPhone().value.indexOf(phoneOptional.get()) == 0;
         }
         return true;
     }
 
     private boolean testForAddress(Vendor vendor) {
         if (addressOptional.isPresent()) {
-            return addressOptional.get().equals(vendor.getAddress());
+            String addressTested = addressOptional.get().toLowerCase();
+            String vendorAddress = vendor.getAddress().toString().toLowerCase();
+            return vendorAddress.contains(addressTested);
         }
         return true;
     }
@@ -106,7 +110,14 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForCost(Vendor vendor) {
         if (costOptional.isPresent()) {
-            return costOptional.get().equals(vendor.getCost());
+            if (costOptional.get().contains("<")) {
+                return (vendor.getCost().value < Double.parseDouble(costOptional.get().replace("<", "")));
+            }
+
+            if (costOptional.get().contains(">")) {
+                return (vendor.getCost().value > Double.parseDouble(costOptional.get().replace(">", "")));
+            }
+            return Double.parseDouble(costOptional.get()) == vendor.getCost().value;
         }
         return true;
     }

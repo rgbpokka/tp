@@ -1,20 +1,20 @@
 package seedu.address.model.guest;
 
+import seedu.address.model.Chargeable.Chargeable;
+import seedu.address.model.Chargeable.Quantity;
+import seedu.address.model.Taggable;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.uniquelist.UniqueListItem;
+import seedu.address.model.vendor.Vendor;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-
-import seedu.address.model.Chargeable.Chargeable;
-import seedu.address.model.Chargeable.Quantity;
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
-import seedu.address.model.Taggable;
-import seedu.address.model.uniquelist.UniqueListItem;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.vendor.Vendor;
 
 public class Guest extends UniqueListItem implements Taggable {
 
@@ -152,9 +152,7 @@ public class Guest extends UniqueListItem implements Taggable {
                 .append("; RoomNumber: ")
                 .append(getRoomNumber())
                 .append("; PassportNumber: ")
-                .append(getPassportNumber())
-                .append("; ChargablesUsed: ")
-                .append(getChargeableUsed());
+                .append(getPassportNumber());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

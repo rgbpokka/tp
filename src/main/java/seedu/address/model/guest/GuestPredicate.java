@@ -1,12 +1,10 @@
 package seedu.address.model.guest;
 
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
 import seedu.address.model.tag.Tag;
 
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
@@ -19,15 +17,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class GuestPredicate implements Predicate<Guest> {
 
     private final Optional<PassportNumber> passportNumberOptional;
-    private final Optional<RoomNumber> roomNumberOptional;
-    private final Optional<Name> nameOptional;
-    private final Optional<Email> emailOptional;
+    private final Optional<String> roomNumberOptional;
+    private final Optional<String> nameOptional;
+    private final Optional<String> emailOptional;
     private final Optional<Set<Tag>> tagsOptional;
 
     public GuestPredicate(Optional<PassportNumber> passportNumberOptional,
-                          Optional<RoomNumber> roomNumberOptional,
-                          Optional<Name> nameOptional,
-                          Optional<Email> emailOptional,
+                          Optional<String> roomNumberOptional,
+                          Optional<String> nameOptional,
+                          Optional<String> emailOptional,
                           Optional<Set<Tag>> tagsOptional) {
         requireAllNonNull(passportNumberOptional, roomNumberOptional, nameOptional, emailOptional, tagsOptional);
         if (tagsOptional.isPresent()) {
@@ -57,21 +55,25 @@ public class GuestPredicate implements Predicate<Guest> {
 
     private boolean testForName(Guest guest) {
         if (nameOptional.isPresent()) {
-            return nameOptional.get().equals(guest.getName());
+            String nameTested = nameOptional.get().toLowerCase();
+            String guestName = guest.getName().toString().toLowerCase();
+            return guestName.contains(nameTested);
         }
         return true;
     }
 
     private boolean testForEmail(Guest guest) {
         if (emailOptional.isPresent()) {
-            return emailOptional.get().equals(guest.getEmail());
+            String emailTested = emailOptional.get().toLowerCase();
+            String guestEmail = guest.getEmail().toString().toLowerCase();
+            return guestEmail.contains(emailTested);
         }
         return true;
     }
 
     private boolean testForRoomNumber(Guest guest) {
         if (roomNumberOptional.isPresent()) {
-            return roomNumberOptional.get().equals(guest.getRoomNumber());
+            return guest.getRoomNumber().value.indexOf(roomNumberOptional.get()) == 0;
         }
         return true;
     }

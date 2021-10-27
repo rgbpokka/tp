@@ -1,17 +1,11 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import seedu.address.logic.commands.guest.ChargeGuestCommand;
-import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
-import seedu.address.logic.commands.guest.CheckInReturningGuestCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.guest.ChargeGuestCommand;
+import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
+import seedu.address.logic.commands.guest.CheckInReturningGuestCommand;
 import seedu.address.logic.commands.guest.CheckOutCommand;
 import seedu.address.logic.commands.guest.ClearGuestCommand;
 import seedu.address.logic.commands.guest.DeleteGuestCommand;
@@ -36,6 +30,12 @@ import seedu.address.logic.parser.vendor.AddVendorCommandParser;
 import seedu.address.logic.parser.vendor.DeleteVendorCommandParser;
 import seedu.address.logic.parser.vendor.EditVendorCommandParser;
 import seedu.address.logic.parser.vendor.FilterVendorCommandParser;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.

@@ -1,22 +1,5 @@
 package seedu.address.logic.parser.vendor;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.vendor.FilterVendorCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -24,21 +7,37 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Cost;
 import seedu.address.model.vendor.OperatingHours;
-import seedu.address.model.vendor.Phone;
 import seedu.address.model.vendor.ServiceName;
 import seedu.address.model.vendor.VendorId;
 import seedu.address.model.vendor.VendorPredicate;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
 
 /**
  * Parses input arguments and creates a new FilterVendorCommand object
  */
 public class FilterVendorCommandParser implements Parser<FilterVendorCommand> {
+
+    private static final String VALIDATION_COST_REGEX = "^[<,>]{0,1}[0-9]+(.[0-9]+)?$";
+    
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterVendorCommand
@@ -62,13 +61,9 @@ public class FilterVendorCommandParser implements Parser<FilterVendorCommand> {
         }
 
         try {
-            Optional<String> name = argMultimap.getValue(PREFIX_NAME);
-            Optional<Name> nameOptional =
-                    name.isEmpty() ? Optional.empty() : Optional.of(ParserUtil.parseName(name.get()));
+            Optional<String> nameOptional = argMultimap.getValue(PREFIX_NAME);
 
-            Optional<String> email = argMultimap.getValue(PREFIX_EMAIL);
-            Optional<Email> emailOptional =
-                    email.isEmpty() ? Optional.empty() : Optional.of(ParserUtil.parseEmail(email.get()));
+            Optional<String> emailOptional = argMultimap.getValue(PREFIX_EMAIL);
 
             Optional<String> vendorId = argMultimap.getValue(PREFIX_VENDOR_ID);
             Optional<VendorId> vendorIdOptional =
@@ -76,13 +71,9 @@ public class FilterVendorCommandParser implements Parser<FilterVendorCommand> {
                             ? Optional.empty()
                             : Optional.of(ParserUtil.parseVendorId(vendorId.get()));
 
-            Optional<String> phone = argMultimap.getValue(PREFIX_PHONE);
-            Optional<Phone> phoneOptional =
-                    phone.isEmpty() ? Optional.empty() : Optional.of(ParserUtil.parsePhone(phone.get()));
+            Optional<String> phoneOptional = argMultimap.getValue(PREFIX_PHONE);
 
-            Optional<String> address = argMultimap.getValue(PREFIX_ADDRESS);
-            Optional<Address> addressOptional =
-                    address.isEmpty() ? Optional.empty() : Optional.of(ParserUtil.parseAddress(address.get()));
+            Optional<String> addressOptional = argMultimap.getValue(PREFIX_ADDRESS);
 
             Optional<String> serviceName = argMultimap.getValue(PREFIX_SERVICE_NAME);
             Optional<ServiceName> serviceNameOptional =
@@ -90,10 +81,11 @@ public class FilterVendorCommandParser implements Parser<FilterVendorCommand> {
                             ? Optional.empty()
                             : Optional.of(ParserUtil.parseServiceName(serviceName.get()));
 
-            Optional<String> cost = argMultimap.getValue(PREFIX_COST);
-            Optional<Cost> costOptional =
-                    cost.isEmpty() ? Optional.empty() : Optional.of(ParserUtil.parseCost(cost.get()));
-
+            Optional<String> costOptional = argMultimap.getValue(PREFIX_COST);
+            if (!costOptional.get().matches(VALIDATION_COST_REGEX)) {
+                throw new ParseException(Cost.MESSAGE_FILTER_CONSTRAINTS);
+            }
+            
             Optional<String> operatingHours = argMultimap.getValue(PREFIX_OPERATING_HOURS);
             Optional<OperatingHours> operatingHoursOptional =
                     operatingHours.isEmpty()
