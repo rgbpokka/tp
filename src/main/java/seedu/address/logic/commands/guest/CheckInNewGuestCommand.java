@@ -39,6 +39,7 @@ public class CheckInNewGuestCommand extends Command {
     public static final String MESSAGE_DUPLICATE_GUEST = "This guest is already checked in.";
     public static final String MESSAGE_GUEST_IN_ARCHIVE = "This is a returning guest! Use the command " +
             "'returncheckin' instead!";
+    public static final String MESSAGE_DUPLICATE_ROOM = "This room number is already in use.";
 
     private final Guest toCheckIn;
 
@@ -60,6 +61,14 @@ public class CheckInNewGuestCommand extends Command {
 
         if (model.getArchivedGuest(toCheckIn.getPassportNumber()).isPresent()) {
             throw new CommandException(MESSAGE_GUEST_IN_ARCHIVE);
+        }
+
+        if (model.getFilteredGuestList()
+                .stream()
+                .filter(v -> v.getRoomNumber().equals(toCheckIn.getRoomNumber()))
+                .findAny()
+                .orElse(null) != null) {
+            throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
 
         model.addGuest(toCheckIn);

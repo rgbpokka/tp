@@ -27,6 +27,7 @@ public class CheckInReturningGuestCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_RETURNING_GUEST = "Returning guest checked in: %1$s";
     public static final String MESSAGE_NONEXISTENT_GUEST = "This guest does not belong in our archive.";
+    public static final String MESSAGE_DUPLICATE_ROOM = "This room number is already in use.";
 
     private Guest toCheckIn;
 
@@ -44,6 +45,14 @@ public class CheckInReturningGuestCommand extends Command {
 
         if (model.getArchivedGuest(toCheckIn.getPassportNumber()).isEmpty()) {
             throw new CommandException(MESSAGE_NONEXISTENT_GUEST);
+        }
+
+        if (model.getFilteredGuestList()
+                .stream()
+                .filter(v -> v.getRoomNumber().equals(toCheckIn.getRoomNumber()))
+                .findAny()
+                .orElse(null) != null) {
+            throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
 
         Guest archivedGuest = model.getArchivedGuest(toCheckIn.getPassportNumber()).get();
