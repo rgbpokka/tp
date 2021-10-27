@@ -1,13 +1,9 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.Taggable;
 import seedu.address.model.uniquelist.UniqueListItem;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents a Tag in the address book.
@@ -19,7 +15,6 @@ public class Tag extends UniqueListItem {
     public static final String VALIDATION_REGEX = "^[\\w\\-\\s]+$";
 
     public final String tagName;
-    private List<Taggable> taggedPeople;
 
     /**
      * Constructs a {@code Tag}.
@@ -30,7 +25,6 @@ public class Tag extends UniqueListItem {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
-        this.taggedPeople = new ArrayList<>();
     }
     
     public String getTagName() {
@@ -54,18 +48,6 @@ public class Tag extends UniqueListItem {
     @Override
     public int hashCode() {
         return tagName.hashCode();
-    }
-
-    public void addPerson(Taggable person) {
-        taggedPeople.add(person);
-    }
-
-    public void removePerson(Taggable person) {
-        taggedPeople.remove(person);
-    }
-
-    public boolean noTaggedPerson() {
-        return taggedPeople.isEmpty();
     }
 
     /**
