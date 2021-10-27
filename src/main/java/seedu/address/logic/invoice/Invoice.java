@@ -15,9 +15,9 @@ import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
+
 import seedu.address.model.Chargeable.Chargeable;
 import seedu.address.model.guest.Guest;
 
@@ -27,24 +27,49 @@ public class Invoice {
     private static final PdfFont FONT_BOLD = Invoice.createStandardBoldFont();
     private static final int NUM_HEADERS = 6;
 
-    // Solution adapted from
-    // https://stackoverflow.com/questions/1866770/
-    // how-to-handle-a-static-final-field-initializer-that-throws-checked-exception
+    /**
+     * Returns font used in the invoice.
+     *
+     * Method that throws checked exceptions cannot be initalised as a constant therefore this method catches the
+     * error as it guarantees that the font exists in the itext7 library
+     * Solution adapted from
+     * https://stackoverflow.com/questions/1866770/
+     * how-to-handle-a-static-final-field-initializer-that-throws-checked-exception
+     *
+     *
+     * @return PdfFont Times Roman font
+     */
     private static PdfFont createStandardFont() {
         try {
             return PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN);
         } catch (IOException e) {
-            // TODO better way of catching exception
-            return null;
+            // If the font is not loaded properly the itext7 library may have changed the StandardFonts.TIMES_ROMAN
+            // Therefore this code should be fixed.
+            assert false;
+            throw new RuntimeException("Font for PDF generation cannot be found!");
         }
     }
 
-    // todo better way of catching exception
+    /**
+     * Returns bold font used in the invoice.
+     *
+     * Method that throws checked exceptions cannot be initalised as a constant therefore this method catches the
+     * error as it guarantees that the font exists in the itext7 library
+     * Solution adapted from
+     * https://stackoverflow.com/questions/1866770/
+     * how-to-handle-a-static-final-field-initializer-that-throws-checked-exception
+     *
+     *
+     * @return PdfFont Times Roman Bold font
+     */
     private static PdfFont createStandardBoldFont() {
         try {
             return PdfFontFactory.createFont(StandardFonts.TIMES_BOLD);
         } catch (IOException e) {
-            return null;
+            // If the font is not loaded properly the itext7 library may have changed the StandardFonts.TIMES_BOLD
+            // Therefore this code should be fixed.
+            assert false;
+            throw new RuntimeException("Font for PDF generation cannot be found!");
         }
     }
 
@@ -107,19 +132,19 @@ public class Invoice {
         }
 
 
-        int hotelCost = 100;
+        final int HOTEL_COST = 100;
 
-        // Charge base price
+        // Add base price row
         addCellToTable("1", table);
         addCellToTable("Hotel", table);
         addCellToTable("Hotel Stay", table);
-        addCellToTable(String.valueOf(hotelCost), table);
+        addCellToTable(String.valueOf(HOTEL_COST), table);
         addCellToTable("1", table);
-        addCellToTable(String.valueOf(hotelCost), table);
+        addCellToTable(String.valueOf(HOTEL_COST), table);
 
         // Iterate through processed vendors and add to table
         int itemCount = 2;
-        double totalCost = hotelCost;
+        double totalCost = HOTEL_COST;
         for (Chargeable charge : g.getChargeableUsed()) {
             addCellToTable(String.valueOf(itemCount), table);
             addCellToTable(charge.getName().toString() + " [" + charge.getVendorId().toString() + "]", table);
