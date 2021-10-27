@@ -15,10 +15,11 @@ import seedu.address.model.Chargeable.Chargeable;
 import seedu.address.model.guest.Guest;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Invoice {
-    public static final String DEST = "./hello_world.pdf";
-
+    public static final String BASE_PATH = "./";
     private static final PdfFont FONT = Invoice.createStandardFont();
     private static final PdfFont FONT_BOLD = Invoice.createStandardBoldFont();
     private static final int NUM_HEADERS = 6;
@@ -52,7 +53,7 @@ public class Invoice {
      * @throws IOException
      */
     public static void generateInvoicePdf(Guest g) throws IOException {
-        String dest = DEST;
+        String dest = BASE_PATH + generateFileName(g);
         // Initialize document
         PdfWriter writer = new PdfWriter(dest);
         PdfDocument pdf = new PdfDocument(writer);
@@ -71,6 +72,14 @@ public class Invoice {
 
         //Close document
         document.close();
+    }
+
+    // Adapted solution from https://www.javatpoint.com/java-get-current-date
+    private static String generateFileName(Guest g) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        return g.getName().toString() + " " + now + ".pdf";
     }
 
     private static Table createInvoiceTable(Guest g) throws IOException {
