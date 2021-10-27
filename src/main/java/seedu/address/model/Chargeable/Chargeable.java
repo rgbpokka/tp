@@ -3,6 +3,7 @@ package seedu.address.model.Chargeable;
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.vendor.Cost;
 import seedu.address.model.vendor.ServiceName;
+import seedu.address.model.vendor.VendorId;
 
 import java.util.Objects;
 
@@ -11,17 +12,23 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Chargeable {
 
+    private final VendorId vendorId;
     private final Name name;
     private final ServiceName serviceName;
     private final Cost cost;
     private Quantity quantity;
 
-    public Chargeable(Name name, ServiceName serviceName, Cost cost, Quantity quantity) {
+    public Chargeable(VendorId vendorId, Name name, ServiceName serviceName, Cost cost, Quantity quantity) {
         requireAllNonNull(name, serviceName, cost);
+        this.vendorId = vendorId;
         this.name = name;
         this.serviceName = serviceName;
         this.cost = cost;
         this.quantity = quantity;
+    }
+
+    public VendorId getVendorId() {
+        return vendorId;
     }
 
     public Name getName() {
@@ -61,18 +68,21 @@ public class Chargeable {
         Chargeable otherChargeable = (Chargeable) other;
         return otherChargeable.getName().equals(getName())
                 && otherChargeable.getServiceName().equals(getServiceName())
-                && otherChargeable.getCost().equals(getCost());
+                && otherChargeable.getCost().equals(getCost())
+                && otherChargeable.getVendorId().equals(getVendorId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, serviceName, cost);
+        return Objects.hash(name, serviceName, cost, vendorId);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Company Name: ")
+        builder.append("Vendor Id: ")
+                .append(getVendorId())
+                .append("Company Name: ")
                 .append(getName())
                 .append("; Service provided: ")
                 .append(getServiceName())
