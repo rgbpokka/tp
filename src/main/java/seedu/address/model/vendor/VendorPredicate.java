@@ -2,7 +2,13 @@ package seedu.address.model.vendor;
 
 import seedu.address.model.tag.Tag;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -24,7 +30,7 @@ public class VendorPredicate implements Predicate<Vendor> {
     private final Optional<String> addressOptional;
     private final Optional<ServiceName> serviceNameOptional;
     private final Optional<String> costOptional;
-    private final Optional<OperatingHours> operatingHoursOptional;
+    private final Optional<String> operatingHoursOptional;
 
     public VendorPredicate(Optional<VendorId> vendorIdOptional,
                            Optional<String> phoneOptional,
@@ -34,7 +40,7 @@ public class VendorPredicate implements Predicate<Vendor> {
                            Optional<String> addressOptional,
                            Optional<ServiceName> serviceNameOptional,
                            Optional<String> costOptional,
-                           Optional<OperatingHours> operatingHoursOptional) {
+                           Optional<String> operatingHoursOptional) {
         requireAllNonNull(vendorIdOptional, phoneOptional, nameOptional, emailOptional, tagsOptional, addressOptional,
                 serviceNameOptional, costOptional, operatingHoursOptional);
         if (tagsOptional.isPresent()) {
@@ -69,7 +75,7 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForName(Vendor vendor) {
         if (nameOptional.isPresent()) {
-            String nameTested = nameOptional.get().toLowerCase();
+            String nameTested = nameOptional.get().toLowerCase().trim();
             String guestName = vendor.getName().toString().toLowerCase();
             return guestName.contains(nameTested);
         }
@@ -78,7 +84,7 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForEmail(Vendor vendor) {
         if (emailOptional.isPresent()) {
-            String emailTested = emailOptional.get().toLowerCase();
+            String emailTested = emailOptional.get().toLowerCase().trim();
             String guestEmail = vendor.getEmail().toString().toLowerCase();
             return guestEmail.contains(emailTested);
         }
@@ -94,7 +100,7 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForAddress(Vendor vendor) {
         if (addressOptional.isPresent()) {
-            String addressTested = addressOptional.get().toLowerCase();
+            String addressTested = addressOptional.get().toLowerCase().trim();
             String vendorAddress = vendor.getAddress().toString().toLowerCase();
             return vendorAddress.contains(addressTested);
         }
@@ -111,11 +117,11 @@ public class VendorPredicate implements Predicate<Vendor> {
     private boolean testForCost(Vendor vendor) {
         if (costOptional.isPresent()) {
             if (costOptional.get().contains("<")) {
-                return (vendor.getCost().value < Double.parseDouble(costOptional.get().replace("<", "")));
+                return (vendor.getCost().value < Double.parseDouble(costOptional.get().replace("<", "").trim()));
             }
 
             if (costOptional.get().contains(">")) {
-                return (vendor.getCost().value > Double.parseDouble(costOptional.get().replace(">", "")));
+                return (vendor.getCost().value > Double.parseDouble(costOptional.get().replace(">", "").trim()));
             }
             return Double.parseDouble(costOptional.get()) == vendor.getCost().value;
         }
@@ -124,9 +130,128 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForOperatingHours(Vendor vendor) {
         if (operatingHoursOptional.isPresent()) {
-            return operatingHoursOptional.get().equals(vendor.getOperatingHours());
+            LocalTime vendorStartTime = vendor.getOperatingHours().getStartTime();
+            LocalTime vendorEndTime = vendor.getOperatingHours().getEndTime();
+            List<DayOfWeek> vendorDays = vendor.getOperatingHours().getRecurringDays();
+
+            if (operatingHoursOptional.get().trim().contains("-")) {
+                OperatingHours testOperatingHours = parseOperatingHours(operatingHoursOptional.get());
+                boolean dayTest = isSubset(testOperatingHours.getRecurringDays(),
+                        vendorDays);
+                boolean timeTest =
+                        isBeforeOrEquals(testOperatingHours.getStartTime(), vendorStartTime) &&
+                                isAfterOrEquals(testOperatingHours.getEndTime(), vendorStartTime);
+                boolean timeTest2 =
+                        isBeforeOrEquals(testOperatingHours.getStartTime(), vendorEndTime) &&
+                                isAfterOrEquals(testOperatingHours.getStartTime(),
+                                        vendorStartTime);
+                return dayTest && (timeTest || timeTest2);
+            }
+
+            if (operatingHoursOptional.get().trim().contains(" ")) {
+                String trimmedOperatingHours = operatingHoursOptional.get().trim();
+
+                String[] args = trimmedOperatingHours.split("\\s+");
+                List<DayOfWeek> days = parseDaysOfWeek(args[0]);
+                LocalTime startTime = parseStartTime(args[1]);
+
+                boolean dayTest = isSubset(days,
+                        vendorDays);
+                return dayTest && inBetween(startTime, vendor);
+            }
+            
+            if (operatingHoursOptional.get().trim().equals("now")) {
+                DayOfWeek day = LocalDate.now().getDayOfWeek();
+                LocalTime time = LocalTime.now();
+                return inBetween(time, vendor) && vendorDays.contains(day);
+            }
+
+            return isSubset(parseDaysOfWeek(operatingHoursOptional.get()),
+                    vendorDays);
         }
         return true;
+    }
+    
+    private static boolean inBetween(LocalTime time, Vendor vendor) {
+        LocalTime vendorStartTime = vendor.getOperatingHours().getStartTime();
+        LocalTime vendorEndTime = vendor.getOperatingHours().getEndTime(); 
+        
+        boolean timeTest = time.isBefore(vendorEndTime) &&
+                time.isAfter(vendorStartTime);
+        boolean timeTest2 = time.equals(vendorStartTime) ||
+                time.equals(vendorEndTime); 
+        
+        return timeTest || timeTest2;
+    }
+
+    private static boolean isBeforeOrEquals(LocalTime time1, LocalTime time2) {
+        return time1.isBefore(time2) || time1.equals(time2);
+    }
+
+    private static boolean isAfterOrEquals(LocalTime time1, LocalTime time2) {
+        return time1.isAfter(time2) || time1.equals(time2);
+    }
+
+    private boolean isSubset(List<DayOfWeek> list1, List<DayOfWeek> list2) {
+        int i = 0;
+        int j = 0;
+        for (i = 0; i < list1.size(); i++) {
+            for (j = 0; j < list2.size(); j++) {
+                if (list1.get(i).equals(list2.get(j))) {
+                    break;
+                }
+            }
+            if (j == list2.size()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static OperatingHours parseOperatingHours(String operatingHours) {
+        String trimmedOperatingHours = operatingHours.trim();
+        String[] args = trimmedOperatingHours.split("\\s+");
+        String days = args[0];
+        LocalTime startTime = parseStartTime(args[1].split("-")[0]);
+        LocalTime endTime = parseEndTime(args[1].split("-")[1]);
+        List<DayOfWeek> operatingDays = parseDaysOfWeek(days);
+
+        return new OperatingHours(startTime, endTime, operatingDays, trimmedOperatingHours);
+    }
+
+    private static LocalTime parseStartTime(String startTimeString) {
+        Integer startTimeHour = Integer.parseInt(startTimeString.substring(0, 2));
+        Integer startTimeMinutes = Integer.parseInt(startTimeString.substring(2));
+
+        return LocalTime.of(startTimeHour, startTimeMinutes);
+    }
+
+    private static LocalTime parseEndTime(String endTimeString) {
+        Integer endTimeHour = Integer.parseInt(endTimeString.substring(0, 2));
+        Integer endTimeMinutes = Integer.parseInt(endTimeString.substring(2));
+
+        return LocalTime.of(endTimeHour, endTimeMinutes);
+    }
+
+    private static List<DayOfWeek> parseDaysOfWeek(String daysofWeek) {
+        String trimmedDaysOfWeek = daysofWeek.trim();
+
+        List<DayOfWeek> operatingDays = new ArrayList<>();
+
+        for (int i = 0; i < trimmedDaysOfWeek.length(); i++) {
+            DayOfWeek day = DayOfWeek.of(Character.getNumericValue(trimmedDaysOfWeek.charAt(i)));
+            if (!operatingDays.contains(day)) {
+                operatingDays.add(day);
+            }
+        }
+
+        operatingDays.sort(new Comparator<DayOfWeek>() {
+            public int compare(DayOfWeek d1, DayOfWeek d2) {
+                return d1.compareTo(d2);
+            }
+        });
+
+        return operatingDays;
     }
 
     private boolean testForTags(Vendor vendor) {

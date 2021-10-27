@@ -13,7 +13,10 @@ public class OperatingHours {
             "Operating Hours must only have valid days of the week (1 - 7), and the end time and " +
                     "start must be between 0000 and 2359, and start time less than end time.";
 
-    public static final String VALIDATION_REGEX = "[1-7]{1,7}[\\s][0-2][0-9][0-5][0-9][-][0-2][0-9][0-5][0-9]";
+    public static final String MESSAGE_FILTER_CONSTRAINTS =
+            "Invalid syntax. Valid examples: oh/1234, oh/123 1000, oh/135 1000-1600, oh/now";
+
+    public static final String VALIDATION_REGEX = "^[1-7]+[\\s][0-2][0-9][0-5][0-9][-][0-2][0-9][0-5][0-9]$";
 
     public final LocalTime startTime;
     public final LocalTime endTime;
@@ -63,7 +66,7 @@ public class OperatingHours {
     public List<DayOfWeek> getRecurringDays() {
         return recurringDays;
     }
-    
+
     public String getOperatingHoursStringRep() {
         return operatingHoursStringRep;
     }
