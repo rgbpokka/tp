@@ -2,7 +2,6 @@ package seedu.address.model.guest;
 
 import seedu.address.model.Chargeable.Chargeable;
 import seedu.address.model.Chargeable.Quantity;
-import seedu.address.model.Taggable;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.tag.Tag;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class Guest extends UniqueListItem implements Taggable {
+public class Guest extends UniqueListItem {
 
     private final Name name;
     private final Email email;

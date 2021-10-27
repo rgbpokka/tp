@@ -1,6 +1,5 @@
 package seedu.address.model.vendor;
 
-import seedu.address.model.Taggable;
 import seedu.address.model.uniquelist.UniqueListItem;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
@@ -13,7 +12,7 @@ import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-public class Vendor extends UniqueListItem implements Taggable {
+public class Vendor extends UniqueListItem {
 
     private final VendorId vendorId;
     private final Name name;
