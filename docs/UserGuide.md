@@ -152,22 +152,44 @@ Format:
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
 
 ### Checking out a guest: `checkout`
-Checks out a **guest** by archiving their details and generate an invoice of all the services used by the guest.
+Checks out a **guest** by archiving their details and generating an invoice of all the services used by the guest.
 
 Format:
 <br>`checkout pn/<PASSPORT_NUMBER>`
 
+Parameters:
+
+* `PASSPORT_NUMBER`: Blank inputs are not allowed. Should only contain alphanumeric characters.
+
 Example:
 
-* `editguest pn/X12345678A` checks out the guest Bing Cheng, whose passport number is X12345678A.
+* `checkout pn/X12345678A` checks out the guest Bing Cheng, whose passport number is X12345678A.
 
 ### Editing fields of a guest : `editguest`
 
-Edit a **guest**' contact details. Only edits the fields that have been passed in as parameters.
+Edits a **guest**'s contact details. Only edits the fields that have been passed in as parameters (See example for further 
+elaboration).
 
 Format:
 
 `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
+
+Parameters:
+
+* `PASSPORT_NUMBER`: Blank inputs are not allowed. Should only contain alphanumeric characters.
+* `NAME`: Blank inputs are not allowed.
+* `EMAIL`:  Blanks inputs are not allowed. A valid email address should be used.
+* `ROOM_NUMBER`: Blank inputs are not allowed. Only numbers greater than 0 are valid. 
+* `TAG`: Blank inputs are not allowed. An optional field, more than one can be included in each command.
+
+Example:
+
+* `editguest pn/X12345678A r/123` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the
+  room number field with the new room number provided. All his other fields (**NAME**, **EMAIL**, **PASSPORT_NUMBER**, **TAG**)
+  will remain unchanged.
+
+* `editguest pn/X87654321A t/VIP t/LoyalGuest e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites his existing tags with the new tags provided, 
+  and overwrites the old email field with the new email provided. All his other fields (**NAME**, **PASSPORT_NUMBER**, **ROOM_NUMBER**) will remain unchanged.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes:**<br>
@@ -176,22 +198,9 @@ Format:
 
 * You can edit more than one field at a time (See example below).
 
-* Note that when changing a guest, it is important that there is no pre-existing
+* Note that when editing a guest, it is important that there is no pre-existing
   guest with that passport number already.
 </div>
-
-* `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
-* `EMAIL`: A valid email address should be used.
-* `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
-* `TAG`: An optional field, more than one can be included in the command.
-
-Example:
-
-* `editguest pn/X12345678A r/123` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the
-  room number field with the new room number provided.
-
-* `editguest pn/X87654321A r/124 e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites the
-  room number field with the new room number provided, and overwrites the old email field with the new email provided.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -293,14 +302,26 @@ Format:
 
 ### Editing fields of a vendor : `editvendor`
 
-Edit a **vendors**' contact details. Only edits the fields that have been passed in as parameters.
+Edit a **vendors**' contact details. Only edits the fields that have been passed in as parameters. (See example for further elaboration).
 
 Format:
 <br>`editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 
+Parameters:
+* VENDOR_ID: Blank inputs are not allowed. Should only contain alphanumeric characters.
+* NAME: Blank inputs are not allowed. Should only contain alphabetical characters.
+* EMAIL: Blanks inputs are not allowed. A valid email address should be used.
+* PHONE_NUMBER: Blank inputs are not allowed. At least 3 digits long, should only contain numbers.
+* ADDRESS: Blank inputs are not allowed.
+* SERVICE_NAME: Blank inputs are not allowed. Alphabetical characters and spaces are allowed.
+* SERVICE_COST: Blank inputs are not allowed. Number greater than 0, will be rounded to 2 decimal places.
+* OPERATING_HOURS: Blank inputs are not allowed. Duplicates are allowed. <br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
+* TAG: Blank inputs are not allowed. An optional field, more than one can be included in each command.
+
 Example:
-<br>`edit vid/123 p/99999999 e/j@mailer.com` locates the vendor, Wang's Satay, with `VENDOR_ID` 123 and overwrites the phone number
-field with the new phone number provided, and the email field with the new email provided.
+<br>`editvendor vid/123 p/99999999 e/j@mailer.com` locates the vendor, Wang's Satay, with `VENDOR_ID` 123 and overwrites the phone number
+field with the new phone number provided, and the email field with the new email provided. All other fields of the vendor
+(**VENDOR_ID**, **NAME**, **ADDRESS**, **SERVICE_NAME**, **SERVICE_COST**, **OPERATING_HOURS**, **TAG**) remain unchanged.
 
 [Back to Table of Contents](#table-of-contents)
 
