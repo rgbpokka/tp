@@ -82,7 +82,7 @@ public class Guest extends UniqueListItem implements Taggable {
     }
     
     public void charge(Vendor vendor) {
-        Chargeable newCharge = new Chargeable(vendor.getName(), vendor.getServiceName(), vendor.getCost(), new Quantity(1));
+        Chargeable newCharge = new Chargeable(vendor.getVendorId(), vendor.getName(), vendor.getServiceName(), vendor.getCost(), new Quantity(1));
         if (getChargeableUsed().contains(newCharge)) {
             for (Chargeable currCharge : getChargeableUsed()) {
                 if (currCharge.equals(newCharge)) {
