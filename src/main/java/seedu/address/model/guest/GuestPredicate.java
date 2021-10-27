@@ -55,7 +55,7 @@ public class GuestPredicate implements Predicate<Guest> {
 
     private boolean testForName(Guest guest) {
         if (nameOptional.isPresent()) {
-            String nameTested = nameOptional.get().toLowerCase();
+            String nameTested = nameOptional.get().toLowerCase().trim();
             String guestName = guest.getName().toString().toLowerCase();
             return guestName.contains(nameTested);
         }
@@ -64,7 +64,7 @@ public class GuestPredicate implements Predicate<Guest> {
 
     private boolean testForEmail(Guest guest) {
         if (emailOptional.isPresent()) {
-            String emailTested = emailOptional.get().toLowerCase();
+            String emailTested = emailOptional.get().toLowerCase().trim();
             String guestEmail = guest.getEmail().toString().toLowerCase();
             return guestEmail.contains(emailTested);
         }

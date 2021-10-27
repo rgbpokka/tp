@@ -36,8 +36,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
  */
 public class FilterVendorCommandParser implements Parser<FilterVendorCommand> {
 
+    private static final String VALIDATION_OPERATING_HOURS_REGEX =
+            "^[1-7]+([\\s][0-2][0-9][0-5][0-9])?([-][0-2][0-9][0-5][0-9])?$";
+
     private static final String VALIDATION_COST_REGEX = "^[<,>]{0,1}[0-9]+(.[0-9]+)?$";
-    
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterVendorCommand
@@ -82,15 +84,16 @@ public class FilterVendorCommandParser implements Parser<FilterVendorCommand> {
                             : Optional.of(ParserUtil.parseServiceName(serviceName.get()));
 
             Optional<String> costOptional = argMultimap.getValue(PREFIX_COST);
-            if (!costOptional.get().matches(VALIDATION_COST_REGEX)) {
+            if (costOptional.isPresent() && !costOptional.get().matches(VALIDATION_COST_REGEX)) {
                 throw new ParseException(Cost.MESSAGE_FILTER_CONSTRAINTS);
             }
-            
-            Optional<String> operatingHours = argMultimap.getValue(PREFIX_OPERATING_HOURS);
-            Optional<OperatingHours> operatingHoursOptional =
-                    operatingHours.isEmpty()
-                            ? Optional.empty()
-                            : Optional.of(ParserUtil.parseOperatingHours(operatingHours.get()));
+
+            Optional<String> operatingHoursOptional = argMultimap.getValue(PREFIX_OPERATING_HOURS);
+            if (operatingHoursOptional.isPresent() &&
+                    (!operatingHoursOptional.get().matches(VALIDATION_OPERATING_HOURS_REGEX) &&
+                            !operatingHoursOptional.get().trim().equals("now"))) {
+                throw new ParseException(OperatingHours.MESSAGE_FILTER_CONSTRAINTS);
+            }
 
             List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
             Optional<Set<Tag>> tagsOptional =
