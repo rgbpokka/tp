@@ -148,7 +148,6 @@ public class EditGuestCommand extends Command {
         private Set<Tag> tags;
         private PassportNumber passportNumber;
         private RoomNumber roomNumber;
-        private List<Chargeable> chargeablesUsed;
 
         public EditGuestDescriptor() {
         }
@@ -164,7 +163,6 @@ public class EditGuestCommand extends Command {
             setTags(toCopy.tags);
             setPassportNumber(toCopy.passportNumber);
             setRoomNumber(toCopy.roomNumber);
-            setChargeablesUsed(toCopy.chargeablesUsed);
         }
 
         /**
@@ -176,7 +174,7 @@ public class EditGuestCommand extends Command {
          * for more details.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, tags, roomNumber, chargeablesUsed);
+            return CollectionUtil.isAnyNonNull(name, email, tags, roomNumber);
         }
 
         public void setName(Name name) {
@@ -209,14 +207,6 @@ public class EditGuestCommand extends Command {
 
         public Optional<RoomNumber> getRoomNumber() {
             return Optional.ofNullable(roomNumber);
-        }
-
-        public void setChargeablesUsed(List<Chargeable> chargeablesUsed) {
-            this.chargeablesUsed = chargeablesUsed;
-        }
-
-        public Optional<List<Chargeable>> getChargeablesUsed() {
-            return Optional.ofNullable(chargeablesUsed);
         }
 
         /**
@@ -255,8 +245,7 @@ public class EditGuestCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getTags().equals(e.getTags())
                     && getPassportNumber().equals(e.getPassportNumber())
-                    && getRoomNumber().equals(e.getRoomNumber())
-                    && getChargeablesUsed().equals(e.getChargeablesUsed());
+                    && getRoomNumber().equals(e.getRoomNumber());
         }
     }
 
