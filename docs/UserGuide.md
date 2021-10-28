@@ -155,10 +155,8 @@ Upon checking out a guest, a PDF invoice will be generated in the directory that
 `GUEST_NAME YYYY-MM-DD HH-MM-SS.pdf`, where the `YYYY-MM-DD HH-MM-SS` denotes the current year, month, data, hours, minutes and seconds, at the time the invoice was generated.
 
 The invoice contains information such as the cost of the hotel stay (This is a fixed price in the current version) and any services
-that has been used during the guests stay (See [chargeguest](#Charge-a-guest-for-a-service:-chargeguest))
+that has been used during the guests stay (See [chargeguest](#charge-a-guest-for-a-service-chargeguest))
                                                         
-                                                            Charge a guest for a service: `chargeguest`
-//TODO fix anchor
 ![](images/SampleInvoice.png)
 
 <div markdown="block" class="alert alert-info">
