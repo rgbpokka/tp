@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.vendor.Vendor;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,11 +33,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    private TagListPanel tagListPanel;
+    private GuestListPanel guestListPanel;
+    private VendorListPanel vendorListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private StatisticsWindow statisticsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -44,16 +45,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane tagListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane tabPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -71,7 +72,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        statisticsWindow = new StatisticsWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -117,20 +117,40 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        guestListPanel = new GuestListPanel(logic.getFilteredGuestList());
 
-        tagListPanel = new TagListPanel(logic.getFilteredTagList());
-        tagListPanelPlaceholder.getChildren().add(tagListPanel.getRoot());
+        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
+
+        toggleTab(GuestListPanel.TAB_NAME);
+        tabPanelPlaceholder.getChildren().add(new TabPanel(this::toggleTab).getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getGuestBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private void toggleTab(String tabName) {
+        listPanelPlaceholder.getChildren().clear();
+        statusbarPlaceholder.getChildren().clear();
+
+        switch (tabName) {
+        case GuestListPanel.TAB_NAME:
+            listPanelPlaceholder.getChildren().add(guestListPanel.getRoot());
+            statusbarPlaceholder.getChildren().add(new StatusBarFooter(logic.getGuestBookFilePath()).getRoot());
+            break;
+        case VendorListPanel.TAB_NAME:
+            listPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
+            statusbarPlaceholder.getChildren().add(new StatusBarFooter(logic.getVendorBookFilePath()).getRoot());
+            break;
+        default:
+            throw new AssertionError("No such tab name " + tabName);
+        }
+
     }
 
     /**
@@ -170,21 +190,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        statisticsWindow.hide();
         primaryStage.hide();
-    }
-
-    @FXML
-    private void handleStatistics() {
-        if (!statisticsWindow.isShowing()) {
-            statisticsWindow.show();
-        } else {
-            statisticsWindow.focus();
-        }
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
@@ -197,7 +203,13 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            
+            Optional<String> tabNameToToggleTo = commandResult.getTabNameToToggleTo();
+            
+            if (tabNameToToggleTo.isPresent()) {
+                toggleTab(tabNameToToggleTo.get());
+            }
+            
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
