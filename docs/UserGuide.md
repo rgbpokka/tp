@@ -56,7 +56,7 @@ you are able to use this guide as we intended and become a master in using our a
 
     * **`addvendor`**`vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`** : Adds a vendor
         named `Wang's Satay` to the address book.
-
+        
     * **`exit`** : Exits the app.
 
 You may refer to the [features](#features) below for details of each command and to get familiarized with the syntax of
@@ -188,7 +188,6 @@ Parameters:
 
 Example:
 ![addGuest.png](images/addGuest.png)
-
 * `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
   list.
 
@@ -205,7 +204,6 @@ Parameters:
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.
 
 [Back to Table of Contents](#table-of-contents)
-
 
 #### Checking out a guest: `checkout`
 Checks out a **guest** by archiving their details and generating an invoice of all the services used by the guest.
@@ -568,7 +566,7 @@ Here’s a snippet of the editable text file in JSON that is found at:
 Editing the json file directly should only be done by a user experienced with .json format files.
 </div>
 
-<img src="https://raw.githubusercontent.com/AY2122S1-CS2103T-W12-3/tp/master/docs/images/JsonSnippet.png" width="300">
+<img src="images/JsonSnippet.png" width="300">
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -596,7 +594,7 @@ Action | Format, Examples
 
 ## Vendor Command Summary
 Action | Format, Examples
--------|------------------
+--------|------------------
 **addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
 **editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit vid/111 sn/Laundry`
 **deletevendor** | `deletevendor vid/<VENDOR_ID>`<br>Example: `deletevendor vid/112`

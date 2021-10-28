@@ -352,6 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PH` and the **Actor** is the `user`, unless specified otherwise)
 
+
 #### UC1: Clearing all details from the app
 
 **MSS**
@@ -374,6 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+
 #### UC2: Saving data
 
 **MSS**
@@ -395,6 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a2. **PH** informs the user that saving the new contact list was unsuccessful.
 
       Use case ends.
+    
 
 #### UC3: Searching for a guest
 
@@ -417,6 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. **PH** shows message indicating no such guest exists in the list.
 
       Use case ends.
+    
 
 #### UC4: Searching for a staff
 
@@ -471,6 +475,7 @@ Same as UC3 except that guest is replaced with staff.
     * 1c1. **PH** shows message indicating no such field exists.
 
       Use case ends.
+    
 
 #### UC6: Editing fields of staff
 
@@ -506,6 +511,7 @@ Same as UC5 except that guest is replaced with staff.
     * 1c1. **PH** shows message indicating only alphanumeric characters are to be used for names.
 
       Use case ends.
+    
 
 #### UC8: Adding staff
 
@@ -536,6 +542,7 @@ Same as UC9 except that guest is replaced with staff.
 
 *{More to be added}*
 
+
 ### Non-Functional Requirements
 
 1. Should work on any **Mainstream OS** as long as it has Java `11` or above installed.
@@ -545,6 +552,7 @@ Same as UC9 except that guest is replaced with staff.
 4. **PH** should retain all functionalities even without a connection to the internet.
 5. **PH** is meant to be used by single user at any given time.
    *{More to be added}*
+   
 
 ### Glossary
 
@@ -565,6 +573,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+
 ### Launch and shutdown
 
 1. Initial launch
@@ -583,6 +592,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -600,6 +610,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
 
 ### Saving data
 
