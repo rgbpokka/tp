@@ -17,14 +17,14 @@ fully to integrate it within your hotel management system.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Table of Contents**
+# **Table of Contents**
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Quick start**
+# **Quick start**
 1. Ensure you have Java `11` or above installed in your Computer ([Instructions on how to check Java version](#faq)).
 
 2. Download the latest `PH.jar` from [here](https://github.com/AY2122S1-CS2103T-W12-3/tp/releases).
@@ -60,7 +60,7 @@ the commands.
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **Features**
+# **Features**
 
 **PH**’s features revolve around managing your guests and vendors. For each command, a short description of its use is
 given which is then followed by the format and a short example to help ensure that you have executed the command
@@ -101,7 +101,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Contacts in Pocket Hotel
+## Contacts in Pocket Hotel
 There are 2 types of contacts in **PH**, guests and vendors. Guests represent guests of the hotel, and vendors represent external companies employed by a hotel for services hotel. Guest are identified by their `PASSPORT_NUMBER`
 and Vendors are identified by their `VENDOR_ID`. These fields are their unique identifier, and no two contacts can have the same unique identifier.
 
@@ -109,7 +109,7 @@ It is possible for guests and vendors to have the same unique identifier for exa
 
 Guests and vendors have different parameters, which can be found in the [parameter constraints table](#parameter-constraints-summary) or in the command instructions.
 
-### Navigating between guest and vendor list
+## Navigating between guest and vendor list
 To navigate between the guest and vendor list, click the button on the **GUI** to view the different lists
 
 <div markdown="block" class="alert alert-info">
@@ -119,11 +119,11 @@ To navigate between the guest and vendor list, click the button on the **GUI** t
   you are able to add a vendor. Toggle back to the vendor list to see the reflected changes.
 </div>
 
-# Commands
+## Commands
 
-## Manage Guests
+### Manage Guests
 
-### Checking in a new guest: `checkin`
+#### Checking in a new guest: `checkin`
 
 Checks in a new **guest** by adding their contact details into **PH**.
 
@@ -145,7 +145,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Checking in a returning guest: `checkin`
+#### Checking in a returning guest: `checkin`
 Checks in a returning **guest** into **PH**, by retrieving their details from the archive.
 
 Format:
@@ -156,7 +156,7 @@ Format:
 [Back to Table of Contents](#table-of-contents)
 
 
-### Checking out a guest: `checkout`
+#### Checking out a guest: `checkout`
 Checks out a **guest** by archiving their details and generating an invoice of all the services used by the guest.
 
 Format:
@@ -172,7 +172,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Editing fields of a guest : `editguest`
+#### Editing fields of a guest : `editguest`
 
 Edits a **guest**'s contact details. Only edits the fields that have been passed in as parameters (See example for further 
 elaboration).
@@ -209,7 +209,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting a guest's details: `deleteguest`
+#### Deleting a guest's details: `deleteguest`
 
 Deletes an existing **guest**'s contact details from **PH**. Guests deleted can be checked in or in the archive.
 
@@ -221,7 +221,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Clear all checked in guests : `clearguest`
+#### Clear all checked in guests : `clearguest`
 
 Deletes all guests that are currently checked in.
 
@@ -239,7 +239,7 @@ Only use this command if you really need to wipe all current guest data.
 
 [Back to Table of Contents](#table-of-contents)
 
-### Show all guests: `listguest`
+#### Show all guests: `listguest`
 
 Shows all the guests checked into the hotel. Useful command to use after `filterguest`, 
 it essentially removes any filter that was previously applied to the guest list. 
@@ -255,7 +255,7 @@ Format:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Charge a guest for a service: `chargeguest`
+#### Charge a guest for a service: `chargeguest`
 
 Charges a guest for a service offered by a vendor, and adds it to the invoice that will be generated upon checkout.
 
@@ -274,7 +274,7 @@ provided by the vendor with the vendor id of `001`.
 
 [Back to Table of Contents](#table-of-contents)
 
-### Filter guest list: `filterguest`
+#### Filter guest list: `filterguest`
 
 Displays only the guests that meet your requirements, as specified by what you wrote in your filter. This helps you 
 easily find and search through smaller and more manageable lists, instead of scrolling through the entire guest list.
@@ -318,9 +318,9 @@ Example:<br>
 
 [Back to Table of Contents](#table-of-contents)
 
-## Manage Vendors
+### Manage Vendors
 
-### Adding a vendor: `addvendor`
+#### Adding a vendor: `addvendor`
 
 Adds a vendors details to **PH**
 
@@ -347,7 +347,7 @@ Format:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Editing fields of a vendor : `editvendor`
+#### Editing fields of a vendor : `editvendor`
 
 Edit a **vendors**' contact details. Only edits the fields that have been passed in as parameters. (See example for further elaboration).
 
@@ -383,7 +383,7 @@ field with the new phone number provided, and the email field with the new email
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting a vendor's details: `deletevendor`
+#### Deleting a vendor's details: `deletevendor`
 
 Deletes a vendors contact details from **PH**.
 
@@ -395,7 +395,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Clear vendor list : `clearvendor`
+#### Clear vendor list : `clearvendor`
 
 Deletes all vendors that are currently in the system.
 
@@ -409,7 +409,7 @@ Only use this command if you really need to wipe all current vendors data.
 
 [Back to Table of Contents](#table-of-contents)
 
-### Show all guests: `listvendor`
+#### Show all vendors: `listvendor`
 
 Shows all the vendors added by you that offers services to your hotel. Useful command to use after `filtervendor`,
 it essentially removes any filter that was previously applied to the vendor list.
@@ -425,7 +425,7 @@ Format:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Filter vendor list: `filtervendor`
+#### Filter vendor list: `filtervendor`
 
 Displays only the vendors that meet your requirements, as specified by what you wrote in your filter. This helps you
 easily find and search through smaller and more manageable lists, instead of scrolling through the entire vendor list.
@@ -481,9 +481,9 @@ than 10 and have `OPERATING_HOURS` where they are currently operating now will b
 
 [Back to Table of Contents](#table-of-contents)
 
-## Utility Commands
+### Utility Commands
 
-### Viewing help: `help`
+#### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -491,7 +491,7 @@ Format: `help`
 
 [Back to Table of Contents](#table-of-contents)
 
-### Exiting the program: `exit`
+#### Exiting the program: `exit`
 
 Exits the program.
 
@@ -499,14 +499,14 @@ Format: `exit`
 
 [Back to Table of Contents](#table-of-contents)
 
-## Saving your Data
+### Saving your Data
 
 Your data is saved automatically to the hard disk after every command you enter. The file is saved in `.json` format,
 which allows you to edit the file manually without even booting up **PH**.
 
 [Back to Table of Contents](#table-of-contents)
 
-### Editing your data directly
+#### Editing your data directly
 
 Here’s a snippet of the editable text file in JSON that is found at:
 `[JAR file location]/data/addressbook.json`
@@ -519,7 +519,7 @@ Editing the json file directly should only be done by a user experienced with .j
 
 [Back to Table of Contents](#table-of-contents)
 
-### Guest in archive data format
+#### Guest in archive data format
 
 The archived guests would have the room number and services field emptied in the Json file as shown in the image above.
 <br> Archived guest are also not shown in the UI.
@@ -532,22 +532,6 @@ The archived guests would have the room number and services field emptied in the
 
 Action | Format, Examples
 -------|------------------|
-**checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
-**checkin(returning guest)** | `checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `checkin pn/T0134568D r/101`
-**checkout** | `checkout pn/<PASSPORT_NUMBER>`<br>Example: `checkout pn/T0134568D`
-**editguest** | `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit pn/X12345678A p/99999999`
-**deleteguest** | `deleteguest pn/<PASSPORT_NUMBER>`<br>Example: `deleteguest pn/T0134568D`
-**clearguest** | `clearguest`
-**listguest** | `listguest`
-**filterguest** | `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filterguest n/Bing t/VIP`
-**chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
-
-## Vendor Command Summary
-
-
-### Guest Command Summary
-Action | Format, Examples
---------|------------------
 **checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
 **checkin(returning guest)** | `checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `checkin pn/T0134568D r/101`
 **checkout** | `checkout pn/<PASSPORT_NUMBER>`<br>Example: `checkout pn/T0134568D`
