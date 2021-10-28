@@ -559,11 +559,12 @@ which allows you to edit the file manually without even booting up **PH**.
 
 #### Editing your data directly
 
-Here’s a snippet of the editable text file in JSON that is found at:
-`[JAR file location]/data/addressbook.json`
+The Json files storing guest and vendor data are found at:
+`[JAR file location]/data/guest.json` & `[JAR file location]/data/vendor.json`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Editing the json file directly should only be done by a user experienced with .json format files.
+Editing the json file directly should only be done by a user experienced with .json format files. 
+As failure to follow the correct formatting would result in a corrupted file and would be replace with an empty file.
 </div>
 
 <img src="images/JsonSnippet.png" width="300">
@@ -572,8 +573,15 @@ Editing the json file directly should only be done by a user experienced with .j
 
 #### Guest in archive data format
 
-The archived guests would have the room number and services field emptied in the Json file as shown in the image above.
-<br> Archived guest are also not shown in the UI.
+The Json files storing archive guest data are found at:
+`[JAR file location]/data/archive.json`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+* The archived guests would have the room number and services field emptied in the Json file.
+<br>Archived guest are also not shown in the UI.
+</div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
