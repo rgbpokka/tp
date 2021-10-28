@@ -11,7 +11,7 @@ frequently interact with guests.
 **PH** provides a centralized location to store, organize and manage information linked to your guests and vendors employed by the hotel. **PH**
 streamlines your workflow and is optimized for use via the _Command Line Interface_ (**CLI**), whilst still embodying
 the benefits of a _Graphical User Interface_ (**GUI**). This means that faster typists would have the benefit of carrying out actions faster using our
-_Command Line Interface_(CLI) than through the _Graphical User Interface_ (GUI) using actions such as mouse clicks.
+_Command Line Interface_(**CLI**) than through the _Graphical User Interface_ (**GUI**) using actions such as mouse clicks.
 This user guide serves as an entry point for users to get oriented with how **PH** operates and how you may utilize it
 fully to integrate it within your hotel management system.
 
