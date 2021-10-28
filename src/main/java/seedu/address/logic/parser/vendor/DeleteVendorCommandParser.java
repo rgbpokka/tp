@@ -25,8 +25,7 @@ public class DeleteVendorCommandParser implements Parser<DeleteVendorCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_VENDOR_ID);
 
-        if (!argMultimap.getValue(PREFIX_VENDOR_ID).isPresent()
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getValue(PREFIX_VENDOR_ID).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVendorCommand.MESSAGE_USAGE));
         }
 
