@@ -512,7 +512,8 @@ The Json files storing guest and vendor data are found at:
 `[JAR file location]/data/guest.json` & `[JAR file location]/data/vendor.json`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Editing the json file directly should only be done by a user experienced with .json format files.
+Editing the json file directly should only be done by a user experienced with .json format files. 
+As failure to follow the correct formatting would result in a corrupted file and would be replace with an empty file.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
