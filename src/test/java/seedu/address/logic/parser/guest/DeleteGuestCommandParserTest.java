@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,24 +23,16 @@ public class DeleteGuestCommandParserTest {
 
     @Test
     public void parse_validPassportNumberArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "deleteguest pn/12332131D", new DeleteGuestCommand(PASSPORT_NUMBER_FIRST_PERSON));
-    }
+        assertParseSuccess(parser, "deleteguest pn/" + PASSPORT_NUMBER_FIRST_PERSON,
+                new DeleteGuestCommand(PASSPORT_NUMBER_FIRST_PERSON));
 
-    @Test
-    public void parse_invalidPassportNumberArgs_throwsParseException() {
-        assertParseFailure(parser, "deleteguest pn/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGuestCommand.MESSAGE_USAGE));
+        assertParseSuccess(parser, "deleteguest pn/" + PASSPORT_NUMBER_SECOND_PERSON,
+                new DeleteGuestCommand(PASSPORT_NUMBER_SECOND_PERSON));
     }
 
     @Test
     public void parse_invalidDeleteCommand_throwsParseException() {
-        assertParseFailure(parser, "deleteguest",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGuestCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_multipleUniqueIdentifiers_throwsParseException() {
-        assertParseFailure(parser, "deleteguest pn/456212312D pn/123312221E",
+        assertParseFailure(parser, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGuestCommand.MESSAGE_USAGE));
     }
 }
