@@ -174,17 +174,16 @@ public class CommandTestUtil {
     public static final String TAG_DESC_CHEAP = " " + PREFIX_TAG + VALID_TAG_CHEAP;
 
     // Invalid fields
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME; // names cannot be empty
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_VENDOR_ID_DESC = " " + PREFIX_VENDOR_ID + "1#2"; //'#' not allowed in staff id
-    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + "-1";
-    //' room numbers must be a number greater than 0.
-    public static final String INVALID_PASSPORT_NUMBER_DESC = " " + PREFIX_PASSPORT_NUMBER + "@3333";
-    // passport numbers should be alphanumeric
-    public static final String INVALID_COST_DESC = " " + PREFIX_COST + "ab"; // 'ab' not allowed in cost
+    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + "-1"; // room numbers must be a number greater than 0.
+    public static final String INVALID_PASSPORT_NUMBER_DESC = " " + PREFIX_PASSPORT_NUMBER + "@3333"; // passport numbers should be alphanumeric
+    public static final String INVALID_COST_DESC_NOT_DOUBLE = " " + PREFIX_COST + "ab"; // 'ab' not allowed in cost
+    public static final String INVALID_COST_DESC_NOT_POSITIVE = " " + PREFIX_COST + "0.0"; // 'ab' not allowed in cost
     // '8' not allowed in operating hours days
     public static final String INVALID_OPERATING_HOURS_DESC = " " + PREFIX_OPERATING_HOURS + "12348 1000-1300";
     // '!' not allowed in service names

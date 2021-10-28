@@ -88,7 +88,12 @@ public class EditGuestCommand extends Command {
                 .orElse(null);
 
         if (guestToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER);
+            Optional<Guest> guestToLocate = model.getArchivedGuest(passportNumber);
+            if (guestToLocate.isPresent()) {
+                throw new CommandException(Messages.MESSAGE_GUEST_IS_IN_ARCHIVE);
+            } else {
+                throw new CommandException(Messages.MESSAGE_GUEST_DOES_NOT_EXIST);
+            }
         }
 
         Guest editedGuest = createEditedGuest(guestToEdit, editGuestDescriptor);

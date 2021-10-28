@@ -294,8 +294,7 @@ public class EditVendorCommand extends Command {
             // state check
             EditVendorDescriptor e = (EditVendorDescriptor) other;
 
-            return super.equals(e)
-                    && getAddress().equals(e.getAddress())
+            return getAddress().equals(e.getAddress())
                     && getPhone().equals(e.getPhone())
                     && getVendorId().equals(e.getVendorId())
                     && getCost().equals(e.getCost())

@@ -43,13 +43,6 @@ public class EditVendorCommandParser implements Parser<EditVendorCommand> {
 
         VendorId vendorId;
 
-        try {
-            vendorId = ParserUtil.parseVendorId(argMultimap.getValue(PREFIX_VENDOR_ID).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditVendorCommand.MESSAGE_USAGE),
-                    pe);
-        }
-
         EditVendorDescriptor editVendorDescriptor = new EditVendorDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -63,9 +56,12 @@ public class EditVendorCommandParser implements Parser<EditVendorCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editVendorDescriptor::setTags);
 
         if (argMultimap.getValue(PREFIX_VENDOR_ID).isPresent()) {
-            editVendorDescriptor.setVendorId(
-                    ParserUtil.parseVendorId(argMultimap.getValue(PREFIX_VENDOR_ID).get()));
+            vendorId = ParserUtil.parseVendorId(argMultimap.getValue(PREFIX_VENDOR_ID).get());
+            editVendorDescriptor.setVendorId(vendorId);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditVendorCommand.MESSAGE_USAGE));
         }
+
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editVendorDescriptor.setAddress(
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
