@@ -18,7 +18,6 @@ fully to integrate it within your hotel management system.
 --------------------------------------------------------------------------------------------------------------------
 
 # **Table of Contents**
-
 * Table of Contents
 {:toc}
 
@@ -32,25 +31,28 @@ fully to integrate it within your hotel management system.
 3. Copy the file to the folder you want to use as the _home folder_ for **PH**.
 
 4. To start the application, you may either:
-  1. Double-click the `PH.jar` file to boot up the app.
-  2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
-     The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
+   1. Double-click the `PH.jar` file to boot up the app.
+   2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
+      The **GUI** similar to the picture below, should appear in a few seconds. Note how the app contains some sample data.
+// TODO change statement 4.2 Shell terminal
+
+// TODO resize photo
 
 ![Ui](images/Ui.png)
 
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
+// todo remove "enter command here" text
 5. Type any command in the command box (Denoted by "Enter command here" text) and press Enter to execute it. e.g. typing `help` and pressing Enter will
    open the help window. Click the tab for the list that you would like to view e.g click vendor to view vendors in stored in **PH**<br>
    Some example commands you can try:
 
     * **`checkin`**`n/John Doe pn/X12345678F r/123 e/johnd@example.com t/Senior Citizen` : Adds a guest
-      named `John Doe` to the Address Book.
+      named `John Doe` to the address book.
 
     * **`deleteguest`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
 
-    * **`clearguest`** : Deletes all guests from guest list.
-
-    * **`addvendor`**
+    * **`addvendor`**`vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`** : Adds a vendor
+        named `Wang's Satay` to the address book.
 
     * **`exit`** : Exits the app.
 
@@ -59,6 +61,9 @@ the commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
+# **How to use this guide**
+
+// Todo
 
 # **Features**
 
@@ -69,7 +74,7 @@ correctly.
 A quick overview of all the commands can be found in the [command summary](#command-summary).
 
 Certain commands require parameters, which may have constraints. A quick overview of all the underlying
-constraints can be found in the [parameter constraints.](#parameter-constraints-summary)
+constraints can be found in the [parameter constraints.](#parameter-constraints-section)
 
 <div markdown="block" class="alert alert-info">
 
@@ -94,7 +99,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 * All fields cannot be empty
-* The tag field is optional and can be omitted entirely
+* The tag field is optional and can be omitted entirely (You can learn more about tags [here](#Tags).)
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -102,15 +107,19 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Contacts in Pocket Hotel
-There are 2 types of contacts in **PH**, guests and vendors. Guests represent guests of the hotel, and vendors represent external companies employed by a hotel for services hotel. Guest are identified by their `PASSPORT_NUMBER`
+There are 2 types of contacts in **PH**, guests and vendors. Guests represent guests of the hotel, and vendors represent external companies employed by a hotel for services. Guest are identified by their `PASSPORT_NUMBER`
 and Vendors are identified by their `VENDOR_ID`. These fields are their unique identifier, and no two contacts can have the same unique identifier.
 
 It is possible for guests and vendors to have the same unique identifier for example, `VENDOR_ID` of a vendor is 111 and `PASSPORT_NUMBER` for a guest is 111, as they represent 2 different entities.
 
-Guests and vendors have different parameters, which can be found in the [parameter constraints table](#parameter-constraints-summary) or in the command instructions.
+Guests and vendors have different parameters, which can be found in the [parameter constraints table](#parameter-constraints-section) or in the command instructions.
 
 ## Navigating between guest and vendor list
-To navigate between the guest and vendor list, click the button on the **GUI** to view the different lists
+You have 2 options to navigate between the guest and vendor list.
+
+Either
+1. Click the button on the **GUI** to view the different lists e.g To view the guest list click on the guest button.
+2. Use the `listguest` or `listvendor` command to view the respective lists.
 
 <div markdown="block" class="alert alert-info">
 
@@ -118,6 +127,17 @@ To navigate between the guest and vendor list, click the button on the **GUI** t
 * Regardless of the list currently being viewed, you are able to execute any command. e.g While viewing the guest list,
   you are able to add a vendor. Toggle back to the vendor list to see the reflected changes.
 </div>
+
+## Tagging a guest
+// TODO
+
+## Archiving guest information
+// TODO
+
+## Invoice Generation
+// TODO
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Commands
 
@@ -130,28 +150,33 @@ Checks in a new **guest** by adding their contact details into **PH**.
 Format:
 <br>`checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`
 
-Example:
+Parameters:
+* `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
+* `EMAIL`: A valid email address should be used.
+* `ROOM_NUMBER`: Only numbers greater than 0 are valid.
+* `TAG`: An optional field, more than one can be included in the command.
 
+Example:
+// TODO make smaller
 ![addGuest.png](images/addGuest.png)
 
 * `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
   list.
 
 
-* `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
-* `EMAIL`: A valid email address should be used.
-* `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
-* `TAG`: An optional field, more than one can be included in the command.
+
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Checking in a returning guest: `checkin`
+#### Checking in a returning guest: `returncheckin`
 Checks in a returning **guest** into **PH**, by retrieving their details from the archive.
 
 Format:
-<br>`checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`
+<br>`returncheckin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`
 
-* `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
+Parameters:
+* `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
+* `ROOM_NUMBER`: Only numbers greater than 0 are valid.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -163,8 +188,7 @@ Format:
 <br>`checkout pn/<PASSPORT_NUMBER>`
 
 Parameters:
-
-* `PASSPORT_NUMBER`: Blank inputs are not allowed. Should only contain alphanumeric characters.
+* `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
 
 Example:
 
@@ -183,11 +207,11 @@ Format:
 
 Parameters:
 
-* `PASSPORT_NUMBER`: Blank inputs are not allowed. Should only contain alphanumeric characters.
-* `NAME`: Blank inputs are not allowed.
-* `EMAIL`:  Blanks inputs are not allowed. A valid email address should be used.
-* `ROOM_NUMBER`: Blank inputs are not allowed. Only numbers greater than 0 are valid. 
-* `TAG`: Blank inputs are not allowed. An optional field, more than one can be included in each command.
+* `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
+* `NAME`: No constraints on name used.
+* `EMAIL`: A valid email address should be used.
+* `ROOM_NUMBER`: Only numbers greater than 0 are valid. 
+* `TAG`: An optional field, more than one can be included in each command.
 
 Example:
 * `editguest pn/X12345678A r/123` locates the guest Bing Cheng, by his passport number X12345678A and overwrites the
@@ -233,8 +257,8 @@ Format:
 * **Archived guests** are not deleted.
 </div>    
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-`clearguest` command would remove all guest and this action is irreversible. 
-Only use this command if you really need to wipe all current guest data.
+The `clearguest` command would remove all guest and this action is irreversible. 
+Only use this command if you really need to wipe all guest data.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -268,7 +292,7 @@ Parameters:
   * The `VENDOR_ID` must be from one of the existing vendors in the **PH**
 
 Example:
-
+// TODO add picture
 * `chargeguest pn/T0134568D vid/001` , Charge the guest with passport number `T0134568D` with the service 
 provided by the vendor with the vendor id of `001`.
 
@@ -309,6 +333,7 @@ Parameters:
     * Note that guest with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
 
 Example:<br>
+// TODO add picture
 `filterguest n/boon r/2`, guests with a `NAME` that contains boon and have a `ROOM_NUMBER` starting with 2, will be filtered from **PH**.
 
 <div markdown="block" class="alert alert-info">
@@ -327,16 +352,7 @@ Adds a vendors details to **PH**
 Format:
 <br>`addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`
 
-Example:
-<br>`addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note on OPERATING_HOUR format:**<br>
-Format:
-<br>`DAYS STARTTIME-ENDTIME`
-<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
-</div>
-
+Parameters:
 * VENDOR_ID: Should only contain alphanumeric characters
 * NAME: Should only contain alphabetical characters
 * EMAIL: A valid email address should be used.
@@ -344,6 +360,17 @@ Format:
 * SERVICE_NAME: Alphabetical characters and spaces are allowed.
 * SERVICE_COST: Number greater than 0, will be rounded to 2 decimal places.
 * TAG: An optional field, more than one can be included in each command.
+
+Example:
+<br>`addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
+// TODO add picture
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note on OPERATING_HOUR format:**<br>
+Format:
+<br>`DAYS STARTTIME-ENDTIME`
+<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -355,15 +382,15 @@ Format:
 <br>`editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 
 Parameters:
-* VENDOR_ID: Blank inputs are not allowed. Should only contain alphanumeric characters.
-* NAME: Blank inputs are not allowed. Should only contain alphabetical characters.
+* VENDOR_ID: Should only contain alphanumeric characters.
+* NAME: Should only contain alphabetical characters.
 * EMAIL: Blanks inputs are not allowed. A valid email address should be used.
-* PHONE_NUMBER: Blank inputs are not allowed. At least 3 digits long, should only contain numbers.
+* PHONE_NUMBER: At least 3 digits long, should only contain numbers.
 * ADDRESS: Blank inputs are not allowed.
-* SERVICE_NAME: Blank inputs are not allowed. Alphabetical characters and spaces are allowed.
-* SERVICE_COST: Blank inputs are not allowed. Number greater than 0, will be rounded to 2 decimal places.
-* OPERATING_HOURS: Blank inputs are not allowed. Duplicates are allowed. <br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
-* TAG: Blank inputs are not allowed. An optional field, more than one can be included in each command.
+* SERVICE_NAME: Alphabetical characters and spaces are allowed.
+* SERVICE_COST: Number greater than 0, will be rounded to 2 decimal places.
+* OPERATING_HOURS: Duplicates are allowed. <br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
+* TAG: An optional field, more than one can be included in each command.
 
 Example:
 <br>`editvendor vid/123 p/99999999 e/j@mailer.com` locates the vendor, Wang's Satay, with `VENDOR_ID` 123 and overwrites the phone number
@@ -403,8 +430,8 @@ Format:
 <br>`clearvendor`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-`clearguest` command would remove all vendors and this action is irreversible. 
-Only use this command if you really need to wipe all current vendors data.
+The `clearvendor` command would remove all vendors and this action is irreversible. 
+Only use this command if you really need to wipe all vendor data.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -471,6 +498,7 @@ Parameters:
     * Note that vendors with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
     
 Example:<br>
+// TODO add picture
 `filtervendor sn/Food c/>10 oh/now`, vendors with the `SERVICE_NAME` food and provide the service at a `COST` greater 
 than 10 and have `OPERATING_HOURS` where they are currently operating now will be filtered from **PH**
 
@@ -529,11 +557,10 @@ The archived guests would have the room number and services field emptied in the
 # **Command Summary**
 
 ## Guest Command Summary
-
 Action | Format, Examples
--------|------------------|
-**checkin(new guest)** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
-**checkin(returning guest)** | `checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `checkin pn/T0134568D r/101`
+-------|------------------
+**checkin** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
+**returncheckin** | `returncheckin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `returncheckin pn/T0134568D r/101`
 **checkout** | `checkout pn/<PASSPORT_NUMBER>`<br>Example: `checkout pn/T0134568D`
 **editguest** | `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit pn/X12345678A p/99999999`
 **deleteguest** | `deleteguest pn/<PASSPORT_NUMBER>`<br>Example: `deleteguest pn/T0134568D`
@@ -542,7 +569,7 @@ Action | Format, Examples
 **filterguest** | `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filterguest n/Bing t/VIP`
 **chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
 
-### Vendor Command Summary
+## Vendor Command Summary
 Action | Format, Examples
 -------|------------------
 **addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
@@ -551,6 +578,10 @@ Action | Format, Examples
 **clearvendor** | `clearvendor`
 **listvendor** | `listvendor`
 **filtervendor** | `filtervendor vid/<VENDOR_ID> <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filtervendor sn/Food t/satay`
+
+## Utility Command Summary
+Action | Format, Examples
+-------|------------------
 **help** | `help`
 **exit** | `exit`
 
@@ -558,6 +589,7 @@ Action | Format, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 # **Parameter Constraints Section**
+
 ## **Guest Parameter Constraints Summary**
 
 Parameter | Prefix | Constraints, Examples
@@ -616,3 +648,7 @@ Parameter | Prefix | Constraints, Examples
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+# **Note on manual testing**
+
+// TODO
