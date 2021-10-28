@@ -11,7 +11,7 @@ frequently interact with guests.
 **PH** provides a centralized location to store, organize and manage information linked to your guests and vendors employed by the hotel. **PH**
 streamlines your workflow and is optimized for use via the _Command Line Interface_ (**CLI**), whilst still embodying
 the benefits of a _Graphical User Interface_ (**GUI**). This means that faster typists would have the benefit of carrying out actions faster using our
-_Command Line Interface_(CLI) than through the _Graphical User Interface_ (GUI) using actions such as mouse clicks.
+_Command Line Interface_(**CLI**) than through the _Graphical User Interface_ (**GUI**) using actions such as mouse clicks.
 This user guide serves as an entry point for users to get oriented with how **PH** operates and how you may utilize it
 fully to integrate it within your hotel management system.
 
@@ -155,10 +155,8 @@ Upon checking out a guest, a PDF invoice will be generated in the directory that
 `GUEST_NAME YYYY-MM-DD HH-MM-SS.pdf`, where the `YYYY-MM-DD HH-MM-SS` denotes the current year, month, data, hours, minutes and seconds, at the time the invoice was generated.
 
 The invoice contains information such as the cost of the hotel stay (This is a fixed price in the current version) and any services
-that has been used during the guests stay (See [chargeguest](#Charge-a-guest-for-a-service:-chargeguest))
+that has been used during the guests stay (See [chargeguest](#charge-a-guest-for-a-service-chargeguest))
                                                         
-                                                            Charge a guest for a service: `chargeguest`
-//TODO fix anchor
 ![](images/SampleInvoice.png)
 
 <div markdown="block" class="alert alert-info">
