@@ -10,10 +10,13 @@ frequently interact with guests.
 
 **PH** provides a centralized location to store, organize and manage information linked to your guests and vendors employed by the hotel. **PH**
 streamlines your workflow and is optimized for use via the _Command Line Interface_ (**CLI**), whilst still embodying
-the benefits of a _Graphical User Interface_ (**GUI**).
-
+the benefits of a _Graphical User Interface_ (**GUI**). This means that faster typists would have the benefit of carrying out actions faster using our
+_Command Line Interface_(CLI) than through the _Graphical User Interface_ (GUI) using actions such as mouse clicks.
 This user guide serves as an entry point for users to get oriented with how **PH** operates and how you may utilize it
 fully to integrate it within your hotel management system.
+
+Do not worry if this is your first time using a _CLI_ application, jump to our [Using this Guide](#Using-this-Guide) section to learn more about how
+you are able to use this guide as we intended and become a master in using our application!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -33,16 +36,16 @@ fully to integrate it within your hotel management system.
 4. To start the application, you may either:
    1. Double-click the `PH.jar` file to boot up the app.
    2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
+   (You may follow these guides for [Mac](https://www.macworld.com/article/221277/command-line-navigating-files-folders-mac-terminal.html) or [Windows](https://www.howtogeek.com/659411/how-to-change-directories-in-command-prompt-on-windows-10/))
       The **GUI** similar to the picture below, should appear in a few seconds. Note how the app contains some sample data.
-// TODO change statement 4.2 Shell terminal
 
-// TODO resize photo
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+* For Mac users, method 2 is the recommended way to open your files to ensure that you are able to see the save data for _PH_
+</div>
 
-![Ui](images/Ui.png)
-
+![](images/UIHighlightingCommandBox.png)
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
-// todo remove "enter command here" text
-5. Type any command in the command box (Denoted by "Enter command here" text) and press Enter to execute it. e.g. typing `help` and pressing Enter will
+5. Type any command in the command box (Highlighted in red above) and press Enter to execute it. e.g. typing `help` and pressing Enter will
    open the help window. Click the tab for the list that you would like to view e.g click vendor to view vendors in stored in **PH**<br>
    Some example commands you can try:
 
@@ -60,10 +63,6 @@ You may refer to the [features](#features) below for details of each command and
 the commands.
 
 --------------------------------------------------------------------------------------------------------------------
-
-# **How to use this guide**
-
-// Todo
 
 # **Features**
 
@@ -119,6 +118,7 @@ You have 2 options to navigate between the guest and vendor list.
 
 Either
 1. Click the button on the **GUI** to view the different lists e.g To view the guest list click on the guest button.
+![UIHighightingGuestAndVendorListButton](images/UIHighightingGuestAndVendorListButton.png)
 2. Use the `listguest` or `listvendor` command to view the respective lists.
 
 <div markdown="block" class="alert alert-info">
@@ -128,14 +128,44 @@ Either
   you are able to add a vendor. Toggle back to the vendor list to see the reflected changes.
 </div>
 
-## Tagging a guest
-// TODO
+## Tagging a guest or vendor
+We have implemented a tagging system that allows you to attach labels to guests or vendors. You are able to see the
+tags attached to every guest or vendor, and the `filterguest` and `filtervendor` commands allows you to filter your lists
+by fields or even tags! These tags can be used in any way you like. One idea is to
+note down important details about guest such as adding a "vegetarian" tag to guests who are vegetarian or have other dietary
+restrictions.
+
+Every vendor and guest can have more than one tag attached to them, so you are free to integrate your existing system of organising guests or vendors
+right into _PH_!
 
 ## Archiving guest information
-// TODO
+Upon checking out a guest, their contact is removed from the list, BUT their information is not deleted. It is instead moved
+to an archive where the information is stored. This allows you to use the `returncheckin` command to check in the guest on their
+subsequent visits and saves you the time of entering all their information again.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes:**<br>
+
+* When a guest is in the archive, the `clearguest` and `deleteguest` commands are able to delete this guest.
+* You are not able to edit a guest in the archive.
+</div>
 
 ## Invoice Generation
-// TODO
+Upon checking out a guest, a PDF invoice will be generated in the directory that the `PH.jar` is found in. The invoice will be named in the format
+`GUEST_NAME YYYY-MM-DD HH-MM-SS.pdf`, where the `YYYY-MM-DD HH-MM-SS` denotes the current year, month, data, hours, minutes and seconds, at the time the invoice was generated.
+
+The invoice contains information such as the cost of the hotel stay (This is a fixed price in the current version) and any services
+that has been used during the guests stay (See [chargeguest](#Charge-a-guest-for-a-service:-chargeguest))
+                                                        
+                                                            Charge a guest for a service: `chargeguest`
+//TODO fix anchor
+![](images/SampleInvoice.png)
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes:**<br>
+
+* This time is based of the clock on your computer.
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -157,14 +187,10 @@ Parameters:
 * `TAG`: An optional field, more than one can be included in the command.
 
 Example:
-// TODO make smaller
 ![addGuest.png](images/addGuest.png)
 
 * `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
   list.
-
-
-
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -196,7 +222,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Editing fields of a guest : `editguest`
+#### Editing fields of a guest: `editguest`
 
 Edits a **guest**'s contact details. Only edits the fields that have been passed in as parameters (See example for further 
 elaboration).
@@ -245,7 +271,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Clear all checked in guests : `clearguest`
+#### Clear all checked in guests: `clearguest`
 
 Deletes all guests that are currently checked in.
 
@@ -292,7 +318,6 @@ Parameters:
   * The `VENDOR_ID` must be from one of the existing vendors in the **PH**
 
 Example:
-// TODO add picture
 * `chargeguest pn/T0134568D vid/001` , Charge the guest with passport number `T0134568D` with the service 
 provided by the vendor with the vendor id of `001`.
 
@@ -333,7 +358,8 @@ Parameters:
     * Note that guest with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
 
 Example:<br>
-// TODO add picture
+![FilterAlexExample](images/FilterGuestAlex.png)
+`filterguest n/alex`, guests with a `NAME` that contains Alex, will be filtered from **PH**.
 `filterguest n/boon r/2`, guests with a `NAME` that contains boon and have a `ROOM_NUMBER` starting with 2, will be filtered from **PH**.
 
 <div markdown="block" class="alert alert-info">
@@ -363,7 +389,6 @@ Parameters:
 
 Example:
 <br>`addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
-// TODO add picture
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note on OPERATING_HOUR format:**<br>
@@ -374,7 +399,7 @@ Format:
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Editing fields of a vendor : `editvendor`
+#### Editing fields of a vendor: `editvendor`
 
 Edit a **vendors**' contact details. Only edits the fields that have been passed in as parameters. (See example for further elaboration).
 
@@ -498,7 +523,7 @@ Parameters:
     * Note that vendors with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
     
 Example:<br>
-// TODO add picture
+![FilterOperatingFoodExample](images/FilterOperatingFoodVendor.png)
 `filtervendor sn/Food c/>10 oh/now`, vendors with the `SERVICE_NAME` food and provide the service at a `COST` greater 
 than 10 and have `OPERATING_HOURS` where they are currently operating now will be filtered from **PH**
 
@@ -648,7 +673,3 @@ Parameter | Prefix | Constraints, Examples
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
-# **Note on manual testing**
-
-// TODO
