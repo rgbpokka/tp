@@ -224,6 +224,10 @@ Format:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
 * **Archived guests** are not deleted.
+</div>    
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+`clearguest` command would remove all guest and this action is irreversible. 
+Only use this command if you really need to wipe all current guest data.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -244,10 +248,20 @@ Format:
 
 ### Charge a guest for a service: `chargeguest`
 
-Charges a guest for a service offered by a vendor, and adds it to the invoice that will be generated upon checkout
+Charges a guest for a service offered by a vendor, and adds it to the invoice that will be generated upon checkout.
 
-Format:
+Format:    
 <br>`chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`
+
+Parameters:
+* `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
+* `VENDOR_ID`: Should only contain alphanumeric characters.
+  * The `VENDOR_ID` must be from one of the existing vendors in the **PH**
+
+Example:
+
+* `chargeguest pn/T0134568D vid/001` , Charge the guest with passport number `T0134568D` with the service 
+provided by the vendor with the vendor id of `001`.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -347,10 +361,16 @@ Example:
 [Back to Table of Contents](#table-of-contents)
 
 ### Clear vendor list : `clearvendor`
-Deletes all vendors
+
+Deletes all vendors that are currently in the system.
 
 Format:
 <br>`clearvendor`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+`clearguest` command would remove all vendors and this action is irreversible. 
+Only use this command if you really need to wipe all current vendors data.
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
