@@ -143,6 +143,8 @@ Example:
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
 * `TAG`: An optional field, more than one can be included in the command.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Checking in a returning guest: `checkin`
 Checks in a returning **guest** into **PH**, by retrieving their details from the archive.
 
@@ -150,6 +152,9 @@ Format:
 <br>`checkin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`
 
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.<br>Example
+
+[Back to Table of Contents](#table-of-contents)
+
 
 ### Checking out a guest: `checkout`
 Checks out a **guest** by archiving their details and generating an invoice of all the services used by the guest.
@@ -164,6 +169,8 @@ Parameters:
 Example:
 
 * `checkout pn/X12345678A` checks out the guest Bing Cheng, whose passport number is X12345678A.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Editing fields of a guest : `editguest`
 
@@ -230,14 +237,16 @@ Format:
 
 ### Show all guests: `listguest`
 
-Removes any filters and shows all guests checked into hotel.
+Shows all the guests checked into the hotel. Useful command to use after `filterguest`, 
+it essentially removes any filter that was previously applied to the guest list. 
 
 Format:
 <br>`listguest`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes:**<br>
-* Contacts are not arranged in any particular order
+* Guests are not arranged in any particular order<br>
+* Running the command when you are on the vendor list, will switch to the guest list for you.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -253,18 +262,44 @@ Format:
 
 ### Filter guest list: `filterguest`
 
-Applies a filter to the guests who are checked in and displays them in the guest list.
+Displays only the guests that meet your requirements, as specified by what you wrote in your filter. This helps you 
+easily find and search through smaller and more manageable lists, instead of scrolling through the entire guest list.
 
 Format:
 `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`
 
-Example:
-`filterguest n/boon`, guests with name, "boon ", will be filtered from **PH**.
+Parameters:
+* `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
+  * The passport number specified by you must match the guest passport's number exactly to be filtered. Passport numbers are case-sensitive.
+  * E.g. a guest with a `PASSPORT_NUMBER` of `SE1239182` will not be shown in your **GUI** if you run the command `filterguest pn/SE123`
+* `NAME`: Should only contain alphabetical characters
+  * The name specified by you simply needs to match the guest's name partially to be filtered. Names are case-insensitive.
+  * E.g. a guest with a `NAME` of `Jeremy Tan` will be shown in the **GUI** if you run the command `filterguest n/jeremy` or `filterguest n/remy`
+    * However, running the command `filterguest n/tan jeremy` will not filter the guest.
+* `EMAIL`: A valid email address should be used.
+  * The email specified by you simply needs to match the guest's email partially to be filtered. Emails are case-insensitive.
+  * E.g. a guest with a `EMAIL` of `jeremytan@example.com` will be shown in the **GUI** if you run the command `filterguest e/tan`
+* `ROOM_NUMBER`: Only numbers greater than 0 are valid.
+  * The room number specified by you needs to match with the guest's room number partially to be filtered, however the order is important, unlike `EMAIL` and `NAME`.
+  * E.g. a guest with a `ROOM_NUMBER` of `201` will be shown in the **GUI** if you run the command `filterguest r/2`
+    * However, the guest will not be filtered if you run the command `filterguest r/1`. The reason for this is that hotels 
+    generally have room numbers with its starting number as the floor level. Such as all hotel rooms on level 1, will 
+    have their room number starting with 1. 
+    * We felt that this would provide you a more useful filter, as running `filterguest r/2` would filter all the guest 
+    with their room number starting with a 2, and in essence you would be filtering all the guests that are residing in 
+    the second floor of your hotel. This would mean guests with `ROOM_NUMBER` that do not start with `2` but may have `2` 
+    in their `ROOM_NUMBER` are not filtered. An example being `102`.
+* `TAG`: An optional field, more than one can be included in the command. Tags are case-insensitive.
+  * The tags specified by you need to match the guest's tags exactly to be filtered. 
+  * E.g. guests with a `TAG` of `VIP` and guests with a `TAG` of `Deluxe` will be filtered if you run the command `filterguest t/vip t/deluxe`
+    * Note that guest with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
+
+Example:<br>
+`filterguest n/boon r/2`, guests with a `NAME` that contains boon and have a `ROOM_NUMBER` starting with 2, will be filtered from **PH**.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
-* Using the filter command a second time, would clear the filters previously applied.
-
+* Running the `filterguest` command always applies the filter to all your guests in **PH** and not to an already filtered guest list. 
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -354,19 +389,74 @@ Format:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Filter vendor list: `filtervendor`
+### Show all guests: `listvendor`
 
-Applies a filter to all the vendors and displays them in the vendor list.
+Shows all the vendors added by you that offers services to your hotel. Useful command to use after `filtervendor`,
+it essentially removes any filter that was previously applied to the vendor list.
 
 Format:
-`filtervendor <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`
+<br>`listvendor`
 
-Example:
-`filtervendor sn/Food`, vendors with the `SERVICE_NAME` food will be filtered from **PH**
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes:**<br>
+* Vendors are not arranged in any particular order<br>
+* Running the command when you are on the guest list, will switch to the vendor list for you.
+</div>
+
+[Back to Table of Contents](#table-of-contents)
+
+### Filter vendor list: `filtervendor`
+
+Displays only the vendors that meet your requirements, as specified by what you wrote in your filter. This helps you
+easily find and search through smaller and more manageable lists, instead of scrolling through the entire vendor list.
+
+Format: `filtervendor <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`
+
+Parameters:
+* `VENDOR_ID`: Should only contain alphanumeric characters
+  * The vendor id specified by you must match the vendor's vendor id exactly to be filtered. Vendor id's are case-sensitive.
+  * E.g. a vendor with a `VENDOR_ID` of `001` will not be shown in your **GUI** if you run the command `filtervendor vid/1`
+* `NAME`: Should only contain alphabetical characters
+  * The name specified by you simply needs to match the vendor's name partially to be filtered. Names are case-insensitive.
+  * E.g. a vendor with a `NAME` of `Jeremy's Massage Parlour` will be shown in the **GUI** if you run the command `filtervendor n/jeremy` or `filtervendor n/remy`
+    * However, running the command `filtervendor n/parlour massage` will not filter the vendor.
+* `EMAIL`: A valid email address should be used.
+  * The email specified by you simply needs to match the vendor's email partially to be filtered. Emails are case-insensitive.
+  * E.g. a vendor with a `EMAIL` of `jmassage@example.com` will be shown in the **GUI** if you run the command `filtervendor e/massage`
+* `ADDRESS`: Blank inputs are not allowed.
+  * The address specified by you simply needs to match the vendor's address partially to be filtered. Addresses are case-insensitive.
+  * E.g. a vendor with a `ADDRESS` of `123 Clementi Rd` will be shown in the **GUI** if you run the command `filtervendor a/clementi`
+* `PHONE_NUMBER`: At least 3 digits long, should only contain numbers.
+  * The phone number specified by you needs to match with the vendor's phone number partially to be filtered, however the order is important, unlike `EMAIL` and `NAME`.
+  * E.g. a vendor with a `PHONE_NUMBER` of `93810282` will be shown in the **GUI** if you run the command `filtervendor r/938`
+    * However, the vendor will not be filtered if you run the command `filtervendor r/8102`.
+    * The phone number that you enter into the command will only filter the vendors with phone numbers that start with what you specified in the filter.
+* `SERVICE_NAME`: Alphabetical characters and spaces are allowed.
+  * The service name specified by you needs to match the vendor's service name exactly to be filtered. Service names are case-insensitive.
+  * E.g. vendors with a `SERVICE_NAME` of `Massage` will be shown in the **GUI** if you run the command `filtervendor sn/massage`
+    * However, the vendor will not be filtered if you run the command `filtervendor sn/mass`
+* `SERVICE_COST`: Number greater than 0.
+  * You may filter vendors by the exact cost or a range (using "<" or ">").
+  * E.g. vendors with a `SERVICE_COST` greater than 10 will be shown in the **GUI** if you run the command `filtervendor c/>10`
+  * E.g. vendors with a `SERVICE_COST` of exactly 10 will be shown in the **GUI** if you run the command `filtervendor c/10`
+* `OPERATING_HOURS`: Specified in this format `DAYS STARTTIME-ENDTIME`, Timings are in 24 hr format and days are represented using numbers, where 1 represents a Monday, and a 7 represents a Sunday.
+  * You may filter vendors that operate on certain days, certain days and a specified time, certain days and a specified time period, and those that are currently operating.
+  * E.g. vendors with `OPERATING_HOURS` on Monday and Wednesday will be shown in the **GUI** if you run the command `filtervendor oh/13`
+  * E.g. vendors with `OPERATING_HOURS` on Monday and operate on 0800 will be shown in the **GUI** if you run the command `filtervendor oh/1 0800`
+  * E.g. vendors with `OPERATING_HOURS` on Tuesday and operate **anywhere** between 0800 and 1300 will be shown in the **GUI** if you run the command `filtervendor oh/2 0800-1300`
+  * E.g. vendors with `OPERATING_HOURS` that are currently operating will be shown in the **GUI** if you run the command `filtervendor oh/now`
+* `TAG`: An optional field, more than one can be included in the command. Tags are case-insensitive
+  * The tags specified by you need to match the vendor's tags exactly to be filtered. 
+  * E.g. vendors with a `TAG` of `Cheap` and vendors with a `TAG` of `Good Rating` will be filtered if you run the command `filtervendor t/cheap t/good rating`
+    * Note that vendors with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
+    
+Example:<br>
+`filtervendor sn/Food c/>10 oh/now`, vendors with the `SERVICE_NAME` food and provide the service at a `COST` greater 
+than 10 and have `OPERATING_HOURS` where they are currently operating now will be filtered from **PH**
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
-* Using the filter command a second time, would clear the filters previously applied.
+* Running the `filtervendor` command always applies the filter to all your vendors in **PH** and not to an already filtered vendor list. 
 </div>
 
 [Back to Table of Contents](#table-of-contents)
