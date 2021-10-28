@@ -32,9 +32,9 @@ fully to integrate it within your hotel management system.
 3. Copy the file to the folder you want to use as the _home folder_ for **PH**.
 
 4. To start the application, you may either:
-1. Double-click the `PH.jar` file to boot up the app.
-2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
-   The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
+  1. Double-click the `PH.jar` file to boot up the app.
+  2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
+     The **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 ![Ui](images/Ui.png)
 
@@ -167,7 +167,7 @@ Example:
 
 ### Editing fields of a guest : `editguest`
 
-Edits a **guest**'s contact details. Only edits the fields that have been passed in as parameters (See example for further
+Edits a **guest**'s contact details. Only edits the fields that have been passed in as parameters (See example for further 
 elaboration).
 
 Format:
@@ -179,7 +179,7 @@ Parameters:
 * `PASSPORT_NUMBER`: Blank inputs are not allowed. Should only contain alphanumeric characters.
 * `NAME`: Blank inputs are not allowed.
 * `EMAIL`:  Blanks inputs are not allowed. A valid email address should be used.
-* `ROOM_NUMBER`: Blank inputs are not allowed. Only numbers greater than 0 are valid.
+* `ROOM_NUMBER`: Blank inputs are not allowed. Only numbers greater than 0 are valid. 
 * `TAG`: Blank inputs are not allowed. An optional field, more than one can be included in each command.
 
 Example:
@@ -187,7 +187,7 @@ Example:
   room number field with the new room number provided. All his other fields (**NAME**, **EMAIL**, **PASSPORT_NUMBER**, **TAG**)
   will remain unchanged.
 
-* `editguest pn/X87654321A t/VIP t/LoyalGuest e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites his existing tags with the new tags provided,
+* `editguest pn/X87654321A t/VIP t/LoyalGuest e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites his existing tags with the new tags provided, 
   and overwrites the old email field with the new email provided. All his other fields (**NAME**, **PASSPORT_NUMBER**, **ROOM_NUMBER**) will remain unchanged.
 
 <div markdown="block" class="alert alert-info">
