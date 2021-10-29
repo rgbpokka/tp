@@ -592,6 +592,53 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Editing a guest
+
+1. Editing a guest while all guests are being shown
+
+    1. Prerequisites: List all guests using the 'listguest' command. Alternatively, click on the "Guests" tab to view the list of guests.
+
+    1. Test case: `editguest pn/EC4744643 n/Alexander Yeoh`<br>
+       Expected:  The guest card of the guest identified by passport number EC4744643 should be updated to reflect the new name, "Alexander Yeoh".
+       The result display shows the details of the guest that has just been edited.
+
+    1. Test case: `editguest pn/`<br>
+       Expected:  No guest is edited. Error details shown in the result display.
+
+    1. Other incorrect editguest commands to try: `editguest pn/EC4744643`, `editguest n/Bernice Yu`.<br>
+       Expected: Similar to previous.
+
+### Checking out a guest
+
+1. Checking out a guest while all guests are being shown
+
+    1. Prerequisites: List all guests using the 'listguest' command. Alternatively, click on the "Guests" tab to view the list of guests.
+
+    1. Test case: `checkout pn/EC4744643`<br>
+       Expected:  The guest card of the guest identified by passport number EC4744643 should no longer be visible in the guests list.
+       The result display shows the details of the guest that has just been checked out. An invoice is generated for the guest as well.
+
+    1. Test case: `checkout pn/`<br>
+       Expected:  No guest is checked out. Error details shown in the result display.
+
+    1. Other incorrect editguest commands to try: `checkout pn/A123`, `editguest pn/@@@@@`.
+       Expected: Similar to previous.
+
+### Editing a vendor
+
+1. Editing a vendor while all vendors are being shown
+
+    1. Prerequisites: List all vendors using the 'listvendor' command. Alternatively, click on the "Vendors" tab to view the list of vendors.
+
+    1. Test case: `editvendor vid/001 n/Jeremy Western Delivery`<br>
+       Expected:  The vendor card of the vendor identified by vendor id 001 should be updated to reflect the new name, "Jeremy Western Delivery".
+       The result display shows the details of the vendor that has just been edited.
+
+    1. Test case: `editvendor vid/`<br>
+       Expected:  No vendor is edited. Error details shown in the result display.
+
+    1. Other incorrect editvendor commands to try: `editvendor vid/001`, `editvendor n/Bing Massage Parlour`.<br>
+       Expected: Similar to previous.
 
 ### Deleting a person
 
@@ -619,7 +666,7 @@ testers are expected to do more *exploratory* testing.
    i. Test case: go to `data\addressbook.json` and corrupt the file. On bootup of the program, there should be a
    notification in the command box saying
    "File corrupted! Restored a new file." and the program will delete and load a fresh new file.
-    
-    ii. Rename `data\addressbook.json` to something else like `data\addressbook.json` would cause the addressbook
-    to be not found and load the sample contacts into the addressbook.
+
+   ii. Rename `data\addressbook.json` to something else like `data\addressbook.json` would cause the addressbook
+   to be not found and load the sample contacts into the addressbook.
 2. _{ more test cases …​ }_
