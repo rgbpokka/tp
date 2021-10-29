@@ -54,7 +54,7 @@ you are able to use this guide as we intended and become a master in using our a
 
     * **`deleteguest`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
 
-    * **`addvendor`**`vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`** : Adds a vendor
+    * **`addvendor`**`vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000` : Adds a vendor
         named `Wang's Satay` to the address book.
         
     * **`exit`** : Exits the app.
