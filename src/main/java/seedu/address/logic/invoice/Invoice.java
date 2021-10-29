@@ -160,6 +160,9 @@ public class Invoice {
             itemCount++;
         }
 
+        // Round off total cost to 2 d.p
+        totalCost = (float) Math.round(totalCost * 100) / 100;
+
         // Add total cost row
         addCostRowToTable(table, String.valueOf(totalCost));
 
