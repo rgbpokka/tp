@@ -586,6 +586,7 @@ The Json files storing archive guest data are found at:
 # **Command Summary**
 
 ## Guest Command Summary
+
 Action | Format, Examples
 -------|------------------
 **checkin** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
@@ -599,8 +600,9 @@ Action | Format, Examples
 **chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
 
 ## Vendor Command Summary
+
 Action | Format, Examples
---------|------------------
+-------|------------------
 **addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
 **editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit vid/111 sn/Laundry`
 **deletevendor** | `deletevendor vid/<VENDOR_ID>`<br>Example: `deletevendor vid/112`
@@ -609,6 +611,7 @@ Action | Format, Examples
 **filtervendor** | `filtervendor vid/<VENDOR_ID> <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filtervendor sn/Food t/satay`
 
 ## Utility Command Summary
+
 Action | Format, Examples
 -------|------------------
 **help** | `help`
