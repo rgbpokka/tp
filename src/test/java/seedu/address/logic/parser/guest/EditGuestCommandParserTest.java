@@ -22,6 +22,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_ALI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DELUXE_ROOM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -50,13 +51,13 @@ public class EditGuestCommandParserTest {
     @Test
     public void parse_validPassportNumberArgs_returnsEditCommand() {
         EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
-        editGuestDescriptor.setPassportNumber(new PassportNumber("E0123122G"));
+        editGuestDescriptor.setPassportNumber(new PassportNumber(VALID_PASSPORT_NUMBER_ALICE));
+        editGuestDescriptor.setRoomNumber(new RoomNumber(VALID_ROOM_NUMBER_ALICE));
         assertParseSuccess(parser,
                 EditGuestCommand.COMMAND_WORD
-                        + " "
-                        + PREFIX_PASSPORT_NUMBER
-                        + PASSPORT_NUMBER_FIRST_PERSON,
-                new EditGuestCommand(PASSPORT_NUMBER_FIRST_PERSON, editGuestDescriptor));
+                        + PASSPORT_NUMBER_DESC_ALICE
+                        + ROOM_NUMBER_DESC_ALICE,
+                new EditGuestCommand(new PassportNumber(VALID_PASSPORT_NUMBER_ALICE), editGuestDescriptor));
     }
 
     @Test
@@ -66,7 +67,7 @@ public class EditGuestCommandParserTest {
                 + PREFIX_PASSPORT_NUMBER
                 + PASSPORT_NUMBER_FIRST_PERSON;
 
-        assertParseFailure(parser, "edit pn/", PassportNumber.MESSAGE_CONSTRAINTS); // invalid passport number
+        assertParseFailure(parser, "editguest pn/ n/zulu", PassportNumber.MESSAGE_CONSTRAINTS); // invalid passport number
         assertParseFailure(parser, partialUserInput + INVALID_PASSPORT_NUMBER_DESC,
                 PassportNumber.MESSAGE_CONSTRAINTS); // invalid room number
         assertParseFailure(parser, partialUserInput + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
@@ -82,16 +83,16 @@ public class EditGuestCommandParserTest {
         // valid room number followed by invalid room number. The test case for invalid room number followed
         // by valid room number
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, partialUserInput + VALID_ROOM_NUMBER_ALICE + INVALID_ROOM_NUMBER_DESC,
+        assertParseFailure(parser, partialUserInput + ROOM_NUMBER_DESC_ALICE + INVALID_ROOM_NUMBER_DESC,
                 RoomNumber.MESSAGE_CONSTRAINTS);
 
 
-        assertParseFailure(parser, partialUserInput + VALID_TAG_VIP + VALID_TAG_DELUXE_ROOM
+        assertParseFailure(parser, partialUserInput + TAG_DESC_VIP + TAG_DESC_DELUXE_ROOM
                         + TAG_EMPTY,
                 Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, partialUserInput + VALID_TAG_VIP + TAG_EMPTY + VALID_TAG_DELUXE_ROOM,
+        assertParseFailure(parser, partialUserInput + TAG_DESC_VIP + TAG_EMPTY + TAG_DESC_DELUXE_ROOM,
                 Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, partialUserInput + TAG_EMPTY + VALID_TAG_VIP + VALID_TAG_DELUXE_ROOM,
+        assertParseFailure(parser, partialUserInput + TAG_EMPTY + TAG_DESC_VIP + TAG_DESC_DELUXE_ROOM,
                 Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured

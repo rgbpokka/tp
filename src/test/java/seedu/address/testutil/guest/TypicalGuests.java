@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.GuestBook;
 
@@ -59,6 +60,12 @@ public class TypicalGuests {
             .withPassportNumber(PASSPORT_NUMBER_FOURTH_PERSON_NOT_ADDED.toString())
             .build();
 
+    public static final Guest BOB_ARCHIVED_GUEST = new GuestBuilder()
+            .withName("Bob")
+            .withEmail("bob@example.com")
+            .withRoomNumber("22113")
+            .withPassportNumber("X9995552")
+            .build();
 
     private TypicalGuests() {
     } // prevents instantiation
@@ -72,6 +79,15 @@ public class TypicalGuests {
             guestBook.addGuest(guest);
         }
         return guestBook;
+    }
+
+    /**
+     * Returns an {@code Archive} with all the archived guests.
+     */
+    public static Archive getTypicalArchive() {
+        Archive archive = new Archive();
+        archive.addGuest(BOB_ARCHIVED_GUEST);
+        return archive;
     }
 
     public static List<Guest> getTypicalGuests() {

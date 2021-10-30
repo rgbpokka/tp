@@ -267,7 +267,8 @@ public class ModelManager implements Model {
                 && vendorBook.equals(other.vendorBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredGuests.equals(other.filteredGuests)
-                && filteredVendors.equals(other.filteredVendors);
+                && filteredVendors.equals(other.filteredVendors)
+                && archive.equals(other.archive);
     }
 
 }

@@ -26,8 +26,7 @@ public class CheckOutCommandParser implements Parser<CheckOutCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PASSPORT_NUMBER);
 
-        if (!argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isPresent()
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckOutCommand.MESSAGE_USAGE));
         }
         
