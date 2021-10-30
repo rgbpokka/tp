@@ -26,10 +26,6 @@ public class Tag extends UniqueListItem {
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
-    
-    public String getTagName() {
-        return tagName;
-    }
 
     /**
      * Returns true if a given string is a valid tag name.
@@ -65,7 +61,7 @@ public class Tag extends UniqueListItem {
 
         if (otherItem instanceof Tag) {
             Tag otherTag = (Tag) otherItem;
-            return otherTag.getTagName().equals(getTagName());
+            return otherTag.tagName.equals(tagName);
         }
 
         return false;

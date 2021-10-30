@@ -5,6 +5,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.VendorBook;
+import seedu.address.testutil.vendor.VendorBuilder;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -71,14 +72,14 @@ public class JsonVendorBookStorageTest {
         assertEquals(original, new VendorBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addVendor(DANIEL_VENDOR);
+        original.addVendor(new VendorBuilder(DANIEL_VENDOR).withVendorId("1231801").build());
         original.removeVendor(DANIEL_VENDOR);
         jsonVendorBookStorage.saveVendorBook(original, filePath);
         readBack = jsonVendorBookStorage.readVendorBook(filePath).get();
         assertEquals(original, new VendorBook(readBack));
 
         // Save and read without specifying file path
-        original.addVendor(DANIEL_VENDOR);
+        original.addVendor(new VendorBuilder(DANIEL_VENDOR).withVendorId("12801").build());
         jsonVendorBookStorage.saveVendorBook(original); // file path not specified
         readBack = jsonVendorBookStorage.readVendorBook().get(); // file path not specified
         assertEquals(original, new VendorBook(readBack));

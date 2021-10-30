@@ -1,6 +1,18 @@
 package seedu.address.testutil.vendor;
 
-import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_DEFAULT;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.OperatingHours;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.ServiceName;
+import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorId;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -9,19 +21,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.vendor.Address;
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
-import seedu.address.model.vendor.Cost;
-import seedu.address.model.vendor.OperatingHours;
-import seedu.address.model.vendor.Phone;
-import seedu.address.model.vendor.ServiceName;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.VendorId;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_DEFAULT;
 
 public class VendorBuilder {
 

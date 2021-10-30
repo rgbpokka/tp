@@ -20,7 +20,7 @@ import static seedu.address.testutil.guest.TypicalGuests.BENSON_GUEST;
 
 class JsonAdaptedGuestTest {
     private static final String INVALID_PASSPORT_NUMBER = "@@@@@";
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "   ";
     private static final String INVALID_ROOM_NUMBER = "@@@@@@";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";

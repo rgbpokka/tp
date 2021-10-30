@@ -35,9 +35,6 @@ public class ServiceNameTest {
         // valid serviceName 
         assertTrue(ServiceName.isValidServiceName("Massage")); 
         assertTrue(ServiceName.isValidServiceName("Dry Cleaning"));
-        assertTrue(ServiceName.isValidServiceName("   Dry Cleaning")); // leading space
-        assertTrue(ServiceName.isValidServiceName("Dry Cleaning   ")); // trailing space
-        
     }
     
 }

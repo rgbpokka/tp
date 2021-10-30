@@ -1,32 +1,30 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.RoomNumber;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.ServiceName;
+import seedu.address.model.vendor.VendorId;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.guest.PassportNumber;
-import seedu.address.model.guest.RoomNumber;
-import seedu.address.model.vendor.Address;
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
-import seedu.address.model.vendor.Cost;
-import seedu.address.model.vendor.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.vendor.ServiceName;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.VendorId;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.testutil.Assert.assertThrows;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "   ";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
@@ -305,9 +303,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseVendorId_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parseVendorId_validValueWithoutWhitespace_returnsVendorId() throws Exception {
         VendorId expectedVendorId = new VendorId(VALID_VENDOR_ID);
-        assertEquals(expectedVendorId, ParserUtil.parseEmail(VALID_VENDOR_ID));
+        assertEquals(expectedVendorId, ParserUtil.parseVendorId(VALID_VENDOR_ID));
     }
 
     @Test

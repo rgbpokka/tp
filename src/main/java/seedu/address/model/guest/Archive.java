@@ -7,8 +7,6 @@ import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
 public class Archive implements ReadOnlyGuestBook {
 
     private final UniqueGuestList archivedGuests;
@@ -65,7 +63,6 @@ public class Archive implements ReadOnlyGuestBook {
      */
     public void addGuest(Guest p) {
         archivedGuests.add(p);
-        archivedGuests.printItemsInList();
     }
 
     /**

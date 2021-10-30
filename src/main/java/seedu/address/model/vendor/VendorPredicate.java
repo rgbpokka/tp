@@ -130,20 +130,20 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForOperatingHours(Vendor vendor) {
         if (operatingHoursOptional.isPresent()) {
-            LocalTime vendorStartTime = vendor.getOperatingHours().getStartTime();
-            LocalTime vendorEndTime = vendor.getOperatingHours().getEndTime();
-            List<DayOfWeek> vendorDays = vendor.getOperatingHours().getRecurringDays();
+            LocalTime vendorStartTime = vendor.getOperatingHours().startTime;
+            LocalTime vendorEndTime = vendor.getOperatingHours().endTime;
+            List<DayOfWeek> vendorDays = vendor.getOperatingHours().recurringDays;
 
             if (operatingHoursOptional.get().trim().contains("-")) {
                 OperatingHours testOperatingHours = parseOperatingHours(operatingHoursOptional.get());
-                boolean dayTest = isSubset(testOperatingHours.getRecurringDays(),
+                boolean dayTest = isSubset(testOperatingHours.recurringDays,
                         vendorDays);
                 boolean timeTest =
-                        isBeforeOrEquals(testOperatingHours.getStartTime(), vendorStartTime) &&
-                                isAfterOrEquals(testOperatingHours.getEndTime(), vendorStartTime);
+                        isBeforeOrEquals(testOperatingHours.startTime, vendorStartTime) &&
+                                isAfterOrEquals(testOperatingHours.endTime, vendorStartTime);
                 boolean timeTest2 =
-                        isBeforeOrEquals(testOperatingHours.getStartTime(), vendorEndTime) &&
-                                isAfterOrEquals(testOperatingHours.getStartTime(),
+                        isBeforeOrEquals(testOperatingHours.startTime, vendorEndTime) &&
+                                isAfterOrEquals(testOperatingHours.startTime,
                                         vendorStartTime);
                 return dayTest && (timeTest || timeTest2);
             }
@@ -173,8 +173,8 @@ public class VendorPredicate implements Predicate<Vendor> {
     }
     
     private static boolean inBetween(LocalTime time, Vendor vendor) {
-        LocalTime vendorStartTime = vendor.getOperatingHours().getStartTime();
-        LocalTime vendorEndTime = vendor.getOperatingHours().getEndTime(); 
+        LocalTime vendorStartTime = vendor.getOperatingHours().startTime;
+        LocalTime vendorEndTime = vendor.getOperatingHours().endTime; 
         
         boolean timeTest = time.isBefore(vendorEndTime) &&
                 time.isAfter(vendorStartTime);

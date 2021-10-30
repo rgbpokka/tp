@@ -115,11 +115,11 @@ public class ParserUtil {
      */
     public static VendorId parseVendorId(String vendorId) throws ParseException {
         requireNonNull(vendorId);
-        String trimmedStaffId = vendorId.trim();
-        if (!VendorId.isValidVendorId(trimmedStaffId)) {
+        String trimmedVendorId = vendorId.trim();
+        if (!VendorId.isValidVendorId(trimmedVendorId)) {
             throw new ParseException(VendorId.MESSAGE_CONSTRAINTS);
         }
-        return new VendorId(vendorId);
+        return new VendorId(trimmedVendorId);
     }
 
     /**
@@ -134,7 +134,7 @@ public class ParserUtil {
         if (!RoomNumber.isValidRoomNumber(trimmedRoomNumber)) {
             throw new ParseException(RoomNumber.MESSAGE_CONSTRAINTS);
         }
-        return new RoomNumber(roomNumber);
+        return new RoomNumber(trimmedRoomNumber);
     }
 
     /**
@@ -149,7 +149,7 @@ public class ParserUtil {
         if (!PassportNumber.isValidPassportNumber(trimmedPassportNumber)) {
             throw new ParseException(PassportNumber.MESSAGE_CONSTRAINTS);
         }
-        return new PassportNumber(passportNumber);
+        return new PassportNumber(trimmedPassportNumber);
     }
 
     /**

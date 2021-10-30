@@ -22,7 +22,7 @@ import static seedu.address.logic.commands.CommandTestUtil.COST_DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_COST_DESC_NOT_DOUBLE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COST_DESC_NOT_POSITIVE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_OPERATING_HOURS_DESC;
@@ -41,6 +41,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.SERVICE_NAME_DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.SERVICE_NAME_DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CHEAP;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HIGH_RATINGS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COST_ELLE;
@@ -67,7 +68,7 @@ public class AddVendorCommandParserTest {
     public void parse_allFieldsPresent_success() {
 
         Vendor expectedVendor =
-                new VendorBuilder(DANIEL_VENDOR).withTags(VALID_TAG_HIGH_RATINGS, VALID_TAG_CHEAP).build();
+                new VendorBuilder(DANIEL_VENDOR).withTags(VALID_TAG_HIGH_RATINGS).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL
@@ -129,7 +130,7 @@ public class AddVendorCommandParserTest {
                 VALID_TAG_DANIEL, VALID_TAG_CHEAP).build();
 
         assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL + ADDRESS_DESC_DANIEL
-                        + TAG_DESC_CHEAP + TAG_DESC_HIGH_RATINGS + VENDOR_ID_DESC_DANIEL + COST_DESC_DANIEL +
+                        + TAG_DESC_HIGH_RATINGS + TAG_DESC_CHEAP + TAG_DESC_DANIEL + VENDOR_ID_DESC_DANIEL + COST_DESC_DANIEL +
                         OPERATING_HOURS_DESC_DANIEL + SERVICE_NAME_DESC_DANIEL,
                 new AddVendorCommand(expectedVendorMultipleTags));
 
@@ -138,8 +139,7 @@ public class AddVendorCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-
-        Vendor expectedVendor = new VendorBuilder(DANIEL_VENDOR).withTags(VALID_TAG_CHEAP).build();
+        Vendor expectedVendor = new VendorBuilder(DANIEL_VENDOR).withTags().build();
         assertParseSuccess(parser, NAME_DESC_DANIEL + PHONE_DESC_DANIEL + EMAIL_DESC_DANIEL
                         + ADDRESS_DESC_DANIEL + VENDOR_ID_DESC_DANIEL + COST_DESC_DANIEL +
                         OPERATING_HOURS_DESC_DANIEL + SERVICE_NAME_DESC_DANIEL,
@@ -231,7 +231,7 @@ public class AddVendorCommandParserTest {
 
         // invalid cost 
         assertParseFailure(parser, NAME_DESC_ELLE + PHONE_DESC_ELLE + EMAIL_DESC_ELLE + ADDRESS_DESC_ELLE
-                + TAG_DESC_CHEAP + TAG_DESC_HIGH_RATINGS + VENDOR_ID_DESC_ELLE + INVALID_COST_DESC_NOT_DOUBLE +
+                + TAG_DESC_CHEAP + TAG_DESC_HIGH_RATINGS + VENDOR_ID_DESC_ELLE + INVALID_COST_DESC_NOT_POSITIVE +
                 OPERATING_HOURS_DESC_ELLE + SERVICE_NAME_DESC_ELLE, Cost.MESSAGE_CONSTRAINTS);
 
         // invalid service name 
@@ -255,5 +255,5 @@ public class AddVendorCommandParserTest {
                         OPERATING_HOURS_DESC_ELLE + SERVICE_NAME_DESC_ELLE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVendorCommand.MESSAGE_USAGE));
     }
-    
+
 }
