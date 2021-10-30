@@ -5,7 +5,7 @@
       "name": "Alice Pauline",
       "email": "alice@example.com",
       "tagged": [
-        "VIP"
+        "Vip"
       ],
       "roomNumber": "20202",
       "passportNumber": "E0123122G",
@@ -15,7 +15,7 @@
       "name": "Benson Meier",
       "email": "benson@example.com",
       "tagged": [
-        "Normal Room"
+        "Normal room"
       ],
       "roomNumber": "20201",
       "passportNumber": "T12312311A",
@@ -25,7 +25,7 @@
       "name": "Carl Kurz",
       "email": "carl@example.com",
       "tagged": [
-        "Deluxe Suite"
+        "Deluxe suite"
       ],
       "roomNumber": "12321",
       "passportNumber": "M123123124D",

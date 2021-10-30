@@ -1,7 +1,25 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.guest.EditGuestCommand.EditGuestDescriptor;
+import seedu.address.logic.commands.vendor.EditVendorCommand.EditVendorDescriptor;
+import seedu.address.model.Model;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.guest.GuestBook;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.PassportNumberContainsKeywordsPredicate;
+import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorId;
+import seedu.address.model.vendor.VendorIdContainsKeywordsPredicate;
+import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
+import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -22,26 +40,6 @@ import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_FOURTH_PE
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_SECOND_PERSON;
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_THIRD_PERSON;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.guest.EditGuestCommand.EditGuestDescriptor;
-import seedu.address.logic.commands.vendor.EditVendorCommand.EditVendorDescriptor;
-import seedu.address.model.Model;
-import seedu.address.model.guest.Guest;
-import seedu.address.model.guest.GuestBook;
-import seedu.address.model.guest.PassportNumber;
-import seedu.address.model.guest.PassportNumberContainsKeywordsPredicate;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.VendorId;
-import seedu.address.model.vendor.VendorIdContainsKeywordsPredicate;
-import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
-import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
-
 /**
  * Contains helper methods for testing commands.
  */
@@ -50,7 +48,7 @@ public class CommandTestUtil {
     // Guests
     public static final String VALID_NAME_ALICE = "Alice Pauline";
     public static final String VALID_EMAIL_ALICE = "alice@example.com";
-    public static final String VALID_TAG_ALICE = "VIP";
+    public static final String VALID_TAG_ALICE = "Vip";
     public static final String VALID_ROOM_NUMBER_ALICE = "20202";
     public static final String VALID_PASSPORT_NUMBER_ALICE = PASSPORT_NUMBER_FIRST_PERSON.toString();
     public static final String NAME_DESC_ALICE = " " + PREFIX_NAME + VALID_NAME_ALICE;
@@ -61,7 +59,7 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_BENSON = "Benson Meier";
     public static final String VALID_EMAIL_BENSON = "benson@example.com";
-    public static final String VALID_TAG_BENSON = "Normal Room";
+    public static final String VALID_TAG_BENSON = "Normal room";
     public static final String VALID_ROOM_NUMBER_BENSON = "20201";
     public static final String VALID_PASSPORT_NUMBER_BENSON = PASSPORT_NUMBER_SECOND_PERSON.toString();
     public static final String NAME_DESC_BENSON = " " + PREFIX_NAME + VALID_NAME_BENSON;
@@ -73,7 +71,7 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_CARL = "Carl Kurz";
     public static final String VALID_EMAIL_CARL = "carl@example.com";
-    public static final String VALID_TAG_CARL = "Deluxe Suite";
+    public static final String VALID_TAG_CARL = "Deluxe suite";
     public static final String VALID_ROOM_NUMBER_CARL = "12321";
     public static final String VALID_PASSPORT_NUMBER_CARL = PASSPORT_NUMBER_THIRD_PERSON.toString();
     public static final String NAME_DESC_CARL = " " + PREFIX_NAME + VALID_NAME_CARL;
@@ -85,7 +83,7 @@ public class CommandTestUtil {
     // Vendors
     public static final String VALID_NAME_DANIEL = "Daniel Meier";
     public static final String VALID_EMAIL_DANIEL = "cornelia@example.com";
-    public static final String VALID_TAG_DANIEL = "Foot Massage";
+    public static final String VALID_TAG_DANIEL = "Foot massage";
     public static final String VALID_ADDRESS_DANIEL = "10th street";
     public static final String VALID_PHONE_DANIEL = "87652533";
     public static final String VALID_VENDOR_ID_DANIEL = VENDOR_ID_FIRST_PERSON.toString();
@@ -144,7 +142,7 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_GEORGE = "George Best";
     public static final String VALID_EMAIL_GEORGE = "george@example.com";
-    public static final String VALID_TAG_GEORGE = "Happy Hour";
+    public static final String VALID_TAG_GEORGE = "Happy hour";
     public static final String VALID_ADDRESS_GEORGE = "4th street";
     public static final String VALID_PHONE_GEORGE = "9482442";
     public static final String VALID_VENDOR_ID_GEORGE = VENDOR_ID_FOURTH_PERSON.toString();
@@ -162,13 +160,13 @@ public class CommandTestUtil {
             " " + PREFIX_OPERATING_HOURS + VALID_OPERATING_HOURS_DANIEL;
 
     // Guest Tags
-    public static final String VALID_TAG_VIP = "VIP";
-    public static final String VALID_TAG_DELUXE_ROOM = "Deluxe Room";
+    public static final String VALID_TAG_VIP = "Vip";
+    public static final String VALID_TAG_DELUXE_ROOM = "Deluxe room";
     public static final String TAG_DESC_VIP = " " + PREFIX_TAG + VALID_TAG_VIP;
     public static final String TAG_DESC_DELUXE_ROOM = " " + PREFIX_TAG + VALID_TAG_DELUXE_ROOM;
 
     // Vendor Tags
-    public static final String VALID_TAG_HIGH_RATINGS = "High Ratings";
+    public static final String VALID_TAG_HIGH_RATINGS = "High ratings";
     public static final String VALID_TAG_CHEAP = "Cheap";
     public static final String TAG_DESC_HIGH_RATINGS = " " + PREFIX_TAG + VALID_TAG_HIGH_RATINGS;
     public static final String TAG_DESC_CHEAP = " " + PREFIX_TAG + VALID_TAG_CHEAP;

@@ -10,8 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.Cost;
 import seedu.address.model.vendor.OperatingHours;
-import seedu.address.model.vendor.ServiceName;
-import seedu.address.model.vendor.VendorId;
 import seedu.address.model.vendor.VendorPredicate;
 
 import java.util.List;
@@ -67,21 +65,13 @@ public class FilterVendorCommandParser implements Parser<FilterVendorCommand> {
 
             Optional<String> emailOptional = argMultimap.getValue(PREFIX_EMAIL);
 
-            Optional<String> vendorId = argMultimap.getValue(PREFIX_VENDOR_ID);
-            Optional<VendorId> vendorIdOptional =
-                    vendorId.isEmpty()
-                            ? Optional.empty()
-                            : Optional.of(ParserUtil.parseVendorId(vendorId.get()));
+            Optional<String> vendorIdOptional = argMultimap.getValue(PREFIX_VENDOR_ID);
 
             Optional<String> phoneOptional = argMultimap.getValue(PREFIX_PHONE);
 
             Optional<String> addressOptional = argMultimap.getValue(PREFIX_ADDRESS);
 
-            Optional<String> serviceName = argMultimap.getValue(PREFIX_SERVICE_NAME);
-            Optional<ServiceName> serviceNameOptional =
-                    serviceName.isEmpty()
-                            ? Optional.empty()
-                            : Optional.of(ParserUtil.parseServiceName(serviceName.get()));
+            Optional<String> serviceNameOptional = argMultimap.getValue(PREFIX_SERVICE_NAME);
 
             Optional<String> costOptional = argMultimap.getValue(PREFIX_COST);
             if (costOptional.isPresent() && !costOptional.get().matches(VALIDATION_COST_REGEX)) {

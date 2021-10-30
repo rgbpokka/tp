@@ -1,5 +1,6 @@
 package seedu.address.model.vendor;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 import java.time.DayOfWeek;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -22,23 +24,23 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class VendorPredicate implements Predicate<Vendor> {
 
-    private final Optional<VendorId> vendorIdOptional;
+    private final Optional<String> vendorIdOptional;
     private final Optional<String> phoneOptional;
     private final Optional<String> nameOptional;
     private final Optional<String> emailOptional;
     private final Optional<Set<Tag>> tagsOptional;
     private final Optional<String> addressOptional;
-    private final Optional<ServiceName> serviceNameOptional;
+    private final Optional<String> serviceNameOptional;
     private final Optional<String> costOptional;
     private final Optional<String> operatingHoursOptional;
 
-    public VendorPredicate(Optional<VendorId> vendorIdOptional,
+    public VendorPredicate(Optional<String> vendorIdOptional,
                            Optional<String> phoneOptional,
                            Optional<String> nameOptional,
                            Optional<String> emailOptional,
                            Optional<Set<Tag>> tagsOptional,
                            Optional<String> addressOptional,
-                           Optional<ServiceName> serviceNameOptional,
+                           Optional<String> serviceNameOptional,
                            Optional<String> costOptional,
                            Optional<String> operatingHoursOptional) {
         requireAllNonNull(vendorIdOptional, phoneOptional, nameOptional, emailOptional, tagsOptional, addressOptional,
@@ -68,7 +70,7 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForVendorId(Vendor vendor) {
         if (vendorIdOptional.isPresent()) {
-            return vendorIdOptional.get().equals(vendor.getVendorId());
+            return vendorIdOptional.get().trim().toLowerCase().equals(vendor.getVendorId().value.toLowerCase());
         }
         return true;
     }
@@ -93,7 +95,7 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForPhone(Vendor vendor) {
         if (phoneOptional.isPresent()) {
-            return vendor.getPhone().value.indexOf(phoneOptional.get()) == 0;
+            return vendor.getPhone().value.indexOf(phoneOptional.get().trim()) == 0;
         }
         return true;
     }
@@ -109,7 +111,8 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForServiceName(Vendor vendor) {
         if (serviceNameOptional.isPresent()) {
-            return serviceNameOptional.get().equals(vendor.getServiceName());
+            return serviceNameOptional.get().trim().toLowerCase().equals(
+                    vendor.getServiceName().serviceName.toLowerCase());
         }
         return true;
     }
@@ -159,7 +162,7 @@ public class VendorPredicate implements Predicate<Vendor> {
                         vendorDays);
                 return dayTest && inBetween(startTime, vendor);
             }
-            
+
             if (operatingHoursOptional.get().trim().equals("now")) {
                 DayOfWeek day = LocalDate.now().getDayOfWeek();
                 LocalTime time = LocalTime.now();
@@ -171,16 +174,16 @@ public class VendorPredicate implements Predicate<Vendor> {
         }
         return true;
     }
-    
+
     private static boolean inBetween(LocalTime time, Vendor vendor) {
         LocalTime vendorStartTime = vendor.getOperatingHours().startTime;
-        LocalTime vendorEndTime = vendor.getOperatingHours().endTime; 
-        
+        LocalTime vendorEndTime = vendor.getOperatingHours().endTime;
+
         boolean timeTest = time.isBefore(vendorEndTime) &&
                 time.isAfter(vendorStartTime);
         boolean timeTest2 = time.equals(vendorStartTime) ||
-                time.equals(vendorEndTime); 
-        
+                time.equals(vendorEndTime);
+
         return timeTest || timeTest2;
     }
 
@@ -256,8 +259,10 @@ public class VendorPredicate implements Predicate<Vendor> {
 
     private boolean testForTags(Vendor vendor) {
         if (tagsOptional.isPresent()) {
+            List<String> vendorTagStrings =
+                    vendor.getTags().stream().map(tag -> tag.tagName).collect(Collectors.toList());
             return tagsOptional.get().stream()
-                    .anyMatch(tag -> vendor.getTags().contains(tag));
+                    .anyMatch(tag -> vendorTagStrings.contains(StringUtil.capitalizeFirstLetter(tag.tagName.trim())));
         }
         return true;
     }

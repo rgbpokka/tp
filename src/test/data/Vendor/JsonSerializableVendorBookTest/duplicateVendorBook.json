@@ -2,7 +2,7 @@
   "vendors" : [ {
     "name" : "Vendor1",
     "email" : "vendor1@example.com",
-    "tagged" : [ "Non-Halal", "Chinese" ],
+    "tagged" : [ "Non halal", "Chinese" ],
     "address" : "12 Clementi Rd, 231123",
     "vendorId" : "1",
     "phone" : "80180880",
@@ -12,7 +12,7 @@
   }, {
     "name" : "Vendor2",
     "email" : "vendor2@example.com",
-    "tagged" : [ "Foot Massage", "Body Massage" ],
+    "tagged" : [ "Foot massage", "Body massage" ],
     "address" : "75 Clementi Rd, 211823",
     "vendorId" : "1",
     "phone" : "67381280",

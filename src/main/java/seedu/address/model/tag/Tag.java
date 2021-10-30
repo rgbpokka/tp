@@ -12,7 +12,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Tag extends UniqueListItem {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "^[\\w\\-\\s]+$";
+    public static final String VALIDATION_REGEX = "^[\\w\\s]+$";
 
     public final String tagName;
 
