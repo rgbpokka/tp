@@ -1,10 +1,10 @@
 package seedu.address.model.vendor;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class ServiceNameTest {
 
@@ -21,23 +21,20 @@ public class ServiceNameTest {
 
     @Test
     public void isValidServiceName() {
-        // null serviceName 
+        // null serviceName
         assertThrows(NullPointerException.class, () -> ServiceName.isValidServiceName(null));
 
-        // blank serviceName 
+        // blank serviceName
         assertFalse(ServiceName.isValidServiceName("")); // empty string
         assertFalse(ServiceName.isValidServiceName(" ")); // spaces only
 
         // invalid parts
-        assertFalse(ServiceName.isValidServiceName("123")); // cannot contain numbers 
-        assertFalse(ServiceName.isValidServiceName("!*")); // cannot contain special characters 
+        assertFalse(ServiceName.isValidServiceName("123")); // cannot contain numbers
+        assertFalse(ServiceName.isValidServiceName("!*")); // cannot contain special characters
 
-        // valid serviceName 
-        assertTrue(ServiceName.isValidServiceName("Massage")); 
+        // valid serviceName
+        assertTrue(ServiceName.isValidServiceName("Massage"));
         assertTrue(ServiceName.isValidServiceName("Dry Cleaning"));
-        assertTrue(ServiceName.isValidServiceName("   Dry Cleaning")); // leading space
-        assertTrue(ServiceName.isValidServiceName("Dry Cleaning   ")); // trailing space
-        
     }
-    
+
 }

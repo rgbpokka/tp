@@ -55,22 +55,6 @@ public class OperatingHours {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public List<DayOfWeek> getRecurringDays() {
-        return recurringDays;
-    }
-
-    public String getOperatingHoursStringRep() {
-        return operatingHoursStringRep;
-    }
-
     @Override
     public String toString() {
         StringBuilder resultString = new StringBuilder("Every ");

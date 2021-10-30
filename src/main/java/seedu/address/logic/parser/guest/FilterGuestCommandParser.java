@@ -8,7 +8,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.guest.GuestPredicate;
-import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.tag.Tag;
 
 import java.util.List;
@@ -53,11 +52,7 @@ public class FilterGuestCommandParser implements Parser<FilterGuestCommand> {
 
             Optional<String> emailOptional = argMultimap.getValue(PREFIX_EMAIL);
 
-            Optional<String> passportNumber = argMultimap.getValue(PREFIX_PASSPORT_NUMBER);
-            Optional<PassportNumber> passportNumberOptional =
-                    passportNumber.isEmpty()
-                            ? Optional.empty()
-                            : Optional.of(ParserUtil.parsePassportNumber(passportNumber.get()));
+            Optional<String> passportNumberOptional = argMultimap.getValue(PREFIX_PASSPORT_NUMBER);
 
             Optional<String> roomNumberOptional = argMultimap.getValue(PREFIX_ROOM_NUMBER);
 

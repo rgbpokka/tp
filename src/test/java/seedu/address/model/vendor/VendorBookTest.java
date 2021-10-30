@@ -1,16 +1,5 @@
 package seedu.address.model.vendor;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.uniquelist.exceptions.DuplicateItemException;
-import seedu.address.testutil.vendor.VendorBuilder;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -18,6 +7,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HIGH_RATING
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.vendor.TypicalVendors.DANIEL_VENDOR;
 import static seedu.address.testutil.vendor.TypicalVendors.getTypicalVendorBook;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.uniquelist.exceptions.DuplicateItemException;
+import seedu.address.testutil.vendor.VendorBuilder;
 
 public class VendorBookTest {
 
@@ -97,5 +98,5 @@ public class VendorBookTest {
         }
 
     }
-    
+
 }

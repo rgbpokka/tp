@@ -1,11 +1,14 @@
 package seedu.address.model.guest;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -16,13 +19,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class GuestPredicate implements Predicate<Guest> {
 
-    private final Optional<PassportNumber> passportNumberOptional;
+    private final Optional<String> passportNumberOptional;
     private final Optional<String> roomNumberOptional;
     private final Optional<String> nameOptional;
     private final Optional<String> emailOptional;
     private final Optional<Set<Tag>> tagsOptional;
 
-    public GuestPredicate(Optional<PassportNumber> passportNumberOptional,
+    public GuestPredicate(Optional<String> passportNumberOptional,
                           Optional<String> roomNumberOptional,
                           Optional<String> nameOptional,
                           Optional<String> emailOptional,
@@ -48,7 +51,7 @@ public class GuestPredicate implements Predicate<Guest> {
 
     private boolean testForPassportNumber(Guest guest) {
         if (passportNumberOptional.isPresent()) {
-            return passportNumberOptional.get().equals(guest.getPassportNumber());
+            return passportNumberOptional.get().trim().toUpperCase().equals(guest.getPassportNumber().value);
         }
         return true;
     }
@@ -73,15 +76,17 @@ public class GuestPredicate implements Predicate<Guest> {
 
     private boolean testForRoomNumber(Guest guest) {
         if (roomNumberOptional.isPresent()) {
-            return guest.getRoomNumber().value.indexOf(roomNumberOptional.get()) == 0;
+            return guest.getRoomNumber().value.indexOf(roomNumberOptional.get().trim()) == 0;
         }
         return true;
     }
 
     private boolean testForTags(Guest guest) {
         if (tagsOptional.isPresent()) {
+            List<String> guestTagStrings =
+                    guest.getTags().stream().map(tag -> tag.tagName).collect(Collectors.toList());
             return tagsOptional.get().stream()
-                    .anyMatch(tag -> guest.getTags().contains(tag));
+                    .anyMatch(tag -> guestTagStrings.contains(StringUtil.capitalizeFirstLetter(tag.tagName.trim())));
         }
         return true;
     }

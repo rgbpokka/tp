@@ -13,20 +13,19 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.guest.PassportNumber;
-import seedu.address.model.guest.RoomNumber;
-import seedu.address.model.vendor.Address;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.RoomNumber;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Cost;
 import seedu.address.model.vendor.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.ServiceName;
-import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "   ";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
@@ -42,8 +41,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "Friend";
+    private static final String VALID_TAG_2 = "Neighbour";
     private static final String VALID_ROOM_NUMBER = "123";
     private static final String VALID_PASSPORT_NUMBER = "1231231D";
     private static final String VALID_COST = "10.00";
@@ -60,8 +59,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, (
+        ) -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -266,7 +265,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseCost_validValueWithWhitespace_returnsTrimmedCost() throws Exception {
-        String costWithWhiteSpace = WHITESPACE + VALID_COST+ WHITESPACE;
+        String costWithWhiteSpace = WHITESPACE + VALID_COST + WHITESPACE;
         Cost expectedCost = new Cost(Double.parseDouble(VALID_COST));
         assertEquals(expectedCost, ParserUtil.parseCost(costWithWhiteSpace));
     }
@@ -305,9 +304,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseVendorId_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parseVendorId_validValueWithoutWhitespace_returnsVendorId() throws Exception {
         VendorId expectedVendorId = new VendorId(VALID_VENDOR_ID);
-        assertEquals(expectedVendorId, ParserUtil.parseEmail(VALID_VENDOR_ID));
+        assertEquals(expectedVendorId, ParserUtil.parseVendorId(VALID_VENDOR_ID));
     }
 
     @Test
@@ -316,5 +315,5 @@ public class ParserUtilTest {
         VendorId expectedVendorId = new VendorId(VALID_VENDOR_ID);
         assertEquals(expectedVendorId, ParserUtil.parseVendorId(vendorIdWithWhiteSpace));
     }
-    
+
 }

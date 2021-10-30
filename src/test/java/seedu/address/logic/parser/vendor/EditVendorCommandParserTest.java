@@ -1,21 +1,5 @@
 package seedu.address.logic.parser.vendor;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.commands.guest.EditGuestCommand;
-import seedu.address.logic.commands.vendor.EditVendorCommand;
-import seedu.address.logic.commands.vendor.EditVendorCommand.EditVendorDescriptor;
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.vendor.Address;
-import seedu.address.model.vendor.Cost;
-import seedu.address.model.vendor.OperatingHours;
-import seedu.address.model.vendor.Phone;
-import seedu.address.model.vendor.ServiceName;
-import seedu.address.model.vendor.VendorId;
-import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_ELLE;
@@ -56,6 +40,22 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_FIRST_PERSON;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.guest.EditGuestCommand;
+import seedu.address.logic.commands.vendor.EditVendorCommand;
+import seedu.address.logic.commands.vendor.EditVendorCommand.EditVendorDescriptor;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.OperatingHours;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.ServiceName;
+import seedu.address.model.vendor.VendorId;
+import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
+
 public class EditVendorCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
@@ -91,10 +91,12 @@ public class EditVendorCommandParserTest {
         assertParseFailure(parser, partialUserInput + INVALID_ADDRESS_DESC,
                 Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, partialUserInput + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-        assertParseFailure(parser, partialUserInput + INVALID_COST_DESC_NOT_DOUBLE, Cost.INVALID_DOUBLE); // invalid cost (cost provided is not a double)
-        assertParseFailure(parser, partialUserInput + INVALID_COST_DESC_NOT_POSITIVE, Cost.MESSAGE_CONSTRAINTS); // invalid cost (cost provided is not a double greater than 0.0)
+        assertParseFailure(parser, partialUserInput + INVALID_COST_DESC_NOT_DOUBLE,
+                Cost.INVALID_DOUBLE); // invalid cost (cost provided is not a double)
+        assertParseFailure(parser, partialUserInput + INVALID_COST_DESC_NOT_POSITIVE,
+                Cost.MESSAGE_CONSTRAINTS); // invalid cost (cost provided is not a double greater than 0.0)
         assertParseFailure(parser, partialUserInput + INVALID_SERVICE_NAME_DESC,
-                ServiceName.MESSAGE_CONSTRAINTS); // invalid service name 
+                ServiceName.MESSAGE_CONSTRAINTS); // invalid service name
         assertParseFailure(parser, partialUserInput + INVALID_OPERATING_HOURS_DESC,
                 OperatingHours.MESSAGE_CONSTRAINTS); // invalid operating hours
 
@@ -135,7 +137,7 @@ public class EditVendorCommandParserTest {
                 + COST_DESC_DANIEL
                 + OPERATING_HOURS_DESC_DANIEL
                 + SERVICE_NAME_DESC_DANIEL;
-        
+
 
         EditVendorDescriptor descriptor = new EditVendorDescriptorBuilder()
                 .withVendorId(VALID_VENDOR_ID_DANIEL)

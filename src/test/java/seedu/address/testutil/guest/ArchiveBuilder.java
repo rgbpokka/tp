@@ -2,12 +2,11 @@ package seedu.address.testutil.guest;
 
 import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.Guest;
-import seedu.address.model.guest.GuestBook;
 
 /**
  * A utility class to help with building Archive objects.
  * Example usage: <br>
- *     {@code Archive archive = new ArchiveBuilder().withArchivedGuest(JOHN_DOE).build();}
+ * {@code Archive archive = new ArchiveBuilder().withArchivedGuest(JOHN_DOE).build();}
  */
 public class ArchiveBuilder {
 

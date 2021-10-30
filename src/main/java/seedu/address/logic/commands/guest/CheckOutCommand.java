@@ -50,7 +50,6 @@ public class CheckOutCommand extends Command {
         try {
             Invoice.generateInvoicePdf(guestToCheckOut);
         } catch (IOException e) {
-            e.printStackTrace();
         }
 
         guestToCheckOut.clearChargeables();

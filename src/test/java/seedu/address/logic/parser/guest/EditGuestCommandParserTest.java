@@ -22,7 +22,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_ALI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DELUXE_ROOM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -67,7 +66,8 @@ public class EditGuestCommandParserTest {
                 + PREFIX_PASSPORT_NUMBER
                 + PASSPORT_NUMBER_FIRST_PERSON;
 
-        assertParseFailure(parser, "editguest pn/ n/zulu", PassportNumber.MESSAGE_CONSTRAINTS); // invalid passport number
+        assertParseFailure(parser, "editguest pn/ n/zulu",
+                PassportNumber.MESSAGE_CONSTRAINTS); // invalid passport number
         assertParseFailure(parser, partialUserInput + INVALID_PASSPORT_NUMBER_DESC,
                 PassportNumber.MESSAGE_CONSTRAINTS); // invalid room number
         assertParseFailure(parser, partialUserInput + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name

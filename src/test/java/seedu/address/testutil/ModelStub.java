@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
@@ -11,10 +15,6 @@ import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
-
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 /**
  * A default model stub that have all of the methods failing.

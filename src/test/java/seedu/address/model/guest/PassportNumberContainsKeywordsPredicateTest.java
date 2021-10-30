@@ -63,7 +63,8 @@ public class PassportNumberContainsKeywordsPredicateTest {
         // Zero keywords
         PassportNumberContainsKeywordsPredicate predicate =
                 new PassportNumberContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new GuestBuilder().withPassportNumber(PASSPORT_NUMBER_FIRST_PERSON.toString()).build()));
+        assertFalse(
+                predicate.test(new GuestBuilder().withPassportNumber(PASSPORT_NUMBER_FIRST_PERSON.toString()).build()));
 
         predicate = new PassportNumberContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(
@@ -71,7 +72,8 @@ public class PassportNumberContainsKeywordsPredicateTest {
 
         // Non-matching keyword
         predicate = new PassportNumberContainsKeywordsPredicate(Arrays.asList(PASSPORT_NUMBER_FIRST_PERSON.toString()));
-        assertFalse(predicate.test(new GuestBuilder().withPassportNumber(PASSPORT_NUMBER_SECOND_PERSON.toString()).build()));
+        assertFalse(predicate.test(
+                new GuestBuilder().withPassportNumber(PASSPORT_NUMBER_SECOND_PERSON.toString()).build()));
 
         predicate = new PassportNumberContainsKeywordsPredicate(
                 Collections.singletonList(PASSPORT_NUMBER_FIRST_PERSON.toString()));

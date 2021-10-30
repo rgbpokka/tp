@@ -1,20 +1,22 @@
 package seedu.address.storage.vendor;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.vendor.ReadOnlyVendorBook;
-import seedu.address.model.vendor.VendorBook;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.vendor.TypicalVendors.DANIEL_VENDOR;
 import static seedu.address.testutil.vendor.TypicalVendors.getTypicalVendorBook;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
+import seedu.address.model.vendor.VendorBook;
+import seedu.address.testutil.vendor.VendorBuilder;
 
 public class JsonVendorBookStorageTest {
 
@@ -71,14 +73,14 @@ public class JsonVendorBookStorageTest {
         assertEquals(original, new VendorBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addVendor(DANIEL_VENDOR);
+        original.addVendor(new VendorBuilder(DANIEL_VENDOR).withVendorId("1231801").build());
         original.removeVendor(DANIEL_VENDOR);
         jsonVendorBookStorage.saveVendorBook(original, filePath);
         readBack = jsonVendorBookStorage.readVendorBook(filePath).get();
         assertEquals(original, new VendorBook(readBack));
 
         // Save and read without specifying file path
-        original.addVendor(DANIEL_VENDOR);
+        original.addVendor(new VendorBuilder(DANIEL_VENDOR).withVendorId("12801").build());
         jsonVendorBookStorage.saveVendorBook(original); // file path not specified
         readBack = jsonVendorBookStorage.readVendorBook().get(); // file path not specified
         assertEquals(original, new VendorBook(readBack));
@@ -105,6 +107,6 @@ public class JsonVendorBookStorageTest {
     public void saveVendorBook_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveVendorBook(new VendorBook(), null));
     }
-    
-    
+
+
 }

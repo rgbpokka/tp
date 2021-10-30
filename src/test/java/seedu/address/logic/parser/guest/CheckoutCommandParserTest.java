@@ -8,7 +8,6 @@ import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBE
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.guest.CheckOutCommand;
-import seedu.address.logic.commands.guest.DeleteGuestCommand;
 import seedu.address.model.guest.PassportNumber;
 
 public class CheckoutCommandParserTest {
@@ -31,6 +30,5 @@ public class CheckoutCommandParserTest {
         assertParseFailure(parser, "checkout",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckOutCommand.MESSAGE_USAGE));
     }
-
 
 }

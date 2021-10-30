@@ -12,13 +12,12 @@ import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBE
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_DEFAULT;
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_FIRST_PERSON;
 
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
-import seedu.address.logic.commands.guest.ClearGuestCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
+import seedu.address.logic.commands.guest.ClearGuestCommand;
 import seedu.address.logic.commands.guest.DeleteGuestCommand;
 import seedu.address.logic.commands.guest.EditGuestCommand;
 import seedu.address.logic.commands.guest.EditGuestCommand.EditGuestDescriptor;
@@ -33,9 +32,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
-import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
 import seedu.address.testutil.guest.GuestBuilder;
 import seedu.address.testutil.guest.GuestUtil;
+import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
 import seedu.address.testutil.vendor.VendorBuilder;
 import seedu.address.testutil.vendor.VendorUtil;
 
@@ -49,15 +48,15 @@ public class PocketHotelParserTest {
         CheckInNewGuestCommand command = (CheckInNewGuestCommand) parser.parseCommand(GuestUtil.getAddCommand(guest));
         assertEquals(new CheckInNewGuestCommand(guest), command);
     }
-    
+
     @Test
     public void parseCommand_checkOutGuest() throws Exception {
-        
+
     }
-    
+
     @Test
     public void parseCommand_chargeGuest() throws Exception {
-        
+
     }
 
     @Test
@@ -121,8 +120,8 @@ public class PocketHotelParserTest {
     @Test
     public void parseCommand_filterVendor() throws Exception {
         Vendor vendor = new VendorBuilder().build();
-    } 
-    
+    }
+
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
@@ -145,12 +144,12 @@ public class PocketHotelParserTest {
     public void parseCommand_listVendor() throws Exception {
         assertTrue(parser.parseCommand(ListVendorCommand.COMMAND_WORD) instanceof ListVendorCommand);
         assertTrue(parser.parseCommand(ListVendorCommand.COMMAND_WORD + " 3") instanceof ListVendorCommand);
-    } 
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), (
+        ) -> parser.parseCommand(""));
     }
 
     @Test

@@ -1,6 +1,16 @@
 package seedu.address.storage.guest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.guest.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.guest.TypicalGuests.BENSON_GUEST;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
@@ -9,18 +19,9 @@ import seedu.address.model.guest.RoomNumber;
 import seedu.address.storage.JsonAdaptedChargeable;
 import seedu.address.storage.JsonAdaptedTag;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.guest.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.guest.TypicalGuests.BENSON_GUEST;
-
 class JsonAdaptedGuestTest {
     private static final String INVALID_PASSPORT_NUMBER = "@@@@@";
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "   ";
     private static final String INVALID_ROOM_NUMBER = "@@@@@@";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
@@ -54,7 +55,8 @@ class JsonAdaptedGuestTest {
     @Test
     public void toModelType_nullPassportNumber_throwsIllegalValueException() {
         JsonAdaptedGuest guest =
-                new JsonAdaptedGuest(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ROOM_NUMBER, null, VALID_CHARGEABLE_USED);
+                new JsonAdaptedGuest(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ROOM_NUMBER, null,
+                        VALID_CHARGEABLE_USED);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, PassportNumber.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }

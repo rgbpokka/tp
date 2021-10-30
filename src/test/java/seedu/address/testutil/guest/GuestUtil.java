@@ -35,7 +35,7 @@ public class GuestUtil {
         sb.append(PREFIX_ROOM_NUMBER + guest.getRoomNumber().value + " ");
         sb.append(PREFIX_PASSPORT_NUMBER + guest.getPassportNumber().value + " ");
         guest.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
@@ -48,9 +48,9 @@ public class GuestUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getPassportNumber().ifPresent(
-                passportNumber -> sb.append(PREFIX_PASSPORT_NUMBER).append(passportNumber.value).append(" "));
+            passportNumber -> sb.append(PREFIX_PASSPORT_NUMBER).append(passportNumber.value).append(" "));
         descriptor.getRoomNumber().ifPresent(
-                roomNumber -> sb.append(PREFIX_ROOM_NUMBER).append(roomNumber.value).append(" "));
+            roomNumber -> sb.append(PREFIX_ROOM_NUMBER).append(roomNumber.value).append(" "));
 
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

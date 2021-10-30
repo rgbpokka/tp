@@ -12,17 +12,19 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.vendor.Address;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.OperatingHours;
 import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.ServiceName;
 import seedu.address.model.vendor.VendorId;
 import seedu.address.storage.JsonAdaptedTag;
 
-
 class JsonAdaptedVendorTest {
     private static final String INVALID_VID = "asdas @";
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "   ";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
@@ -62,7 +64,7 @@ class JsonAdaptedVendorTest {
     public void toModelType_nullVid_throwsIllegalValueException() {
         JsonAdaptedVendor vendor =
                 new JsonAdaptedVendor(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ADDRESS, null, VALID_PHONE,
-                        VALID_SERVICE_NAME, VALID_COST, VALID_OPERATING_HOURS);        
+                        VALID_SERVICE_NAME, VALID_COST, VALID_OPERATING_HOURS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, VendorId.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
     }
@@ -144,7 +146,7 @@ class JsonAdaptedVendorTest {
         JsonAdaptedVendor vendor =
                 new JsonAdaptedVendor(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ADDRESS, VALID_VID, VALID_PHONE,
                         VALID_SERVICE_NAME, INVALID_COST, VALID_OPERATING_HOURS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Cost.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
     }
 
@@ -153,7 +155,7 @@ class JsonAdaptedVendorTest {
         JsonAdaptedVendor vendor =
                 new JsonAdaptedVendor(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ADDRESS, VALID_VID, VALID_PHONE,
                         VALID_SERVICE_NAME, null, VALID_OPERATING_HOURS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Cost.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
     }
 
@@ -162,7 +164,7 @@ class JsonAdaptedVendorTest {
         JsonAdaptedVendor vendor =
                 new JsonAdaptedVendor(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ADDRESS, VALID_VID, VALID_PHONE,
                         INVALID_SERVICE_NAME, VALID_COST, VALID_OPERATING_HOURS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        String expectedMessage = ServiceName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
     }
 
@@ -171,7 +173,7 @@ class JsonAdaptedVendorTest {
         JsonAdaptedVendor vendor =
                 new JsonAdaptedVendor(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ADDRESS, VALID_VID, VALID_PHONE,
                         null, VALID_COST, VALID_OPERATING_HOURS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ServiceName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
     }
 
@@ -180,7 +182,7 @@ class JsonAdaptedVendorTest {
         JsonAdaptedVendor vendor =
                 new JsonAdaptedVendor(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ADDRESS, VALID_VID, VALID_PHONE,
                         VALID_SERVICE_NAME, VALID_COST, INVALID_OPERATING_HOURS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        String expectedMessage = OperatingHours.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
     }
 
@@ -189,10 +191,10 @@ class JsonAdaptedVendorTest {
         JsonAdaptedVendor vendor =
                 new JsonAdaptedVendor(VALID_NAME, VALID_EMAIL, VALID_TAGS, VALID_ADDRESS, VALID_VID, VALID_PHONE,
                         VALID_SERVICE_NAME, VALID_COST, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, OperatingHours.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
     }
-    
+
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
@@ -203,7 +205,6 @@ class JsonAdaptedVendorTest {
                         VALID_SERVICE_NAME, VALID_COST, VALID_OPERATING_HOURS);
         assertThrows(IllegalValueException.class, vendor::toModelType);
     }
-    
-    
-    
+
+
 }

@@ -12,7 +12,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Tag extends UniqueListItem {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "^[\\w\\-\\s]+$";
+    public static final String VALIDATION_REGEX = "^[\\w\\s]+$";
 
     public final String tagName;
 
@@ -25,10 +25,6 @@ public class Tag extends UniqueListItem {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
-    }
-    
-    public String getTagName() {
-        return tagName;
     }
 
     /**
@@ -65,7 +61,7 @@ public class Tag extends UniqueListItem {
 
         if (otherItem instanceof Tag) {
             Tag otherTag = (Tag) otherItem;
-            return otherTag.getTagName().equals(getTagName());
+            return otherTag.tagName.equals(tagName);
         }
 
         return false;
