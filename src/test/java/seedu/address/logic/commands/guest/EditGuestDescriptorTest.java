@@ -36,7 +36,8 @@ public class EditGuestDescriptorTest {
         assertFalse(DESC_ALICE.equals(DESC_BENSON));
 
         // different name -> returns false
-        EditGuestDescriptor editedAlice = new EditGuestDescriptorBuilder(DESC_ALICE).withName(VALID_NAME_BENSON).build();
+        EditGuestDescriptor editedAlice =
+                new EditGuestDescriptorBuilder(DESC_ALICE).withName(VALID_NAME_BENSON).build();
         assertFalse(DESC_ALICE.equals(editedAlice));
 
         // different email -> returns false
@@ -48,7 +49,8 @@ public class EditGuestDescriptorTest {
         assertFalse(DESC_ALICE.equals(editedAlice));
 
         // different passport number -> returns false
-        editedAlice = new EditGuestDescriptorBuilder(DESC_ALICE).withPassportNumber(VALID_PASSPORT_NUMBER_BENSON).build();
+        editedAlice =
+                new EditGuestDescriptorBuilder(DESC_ALICE).withPassportNumber(VALID_PASSPORT_NUMBER_BENSON).build();
         assertFalse(DESC_ALICE.equals(editedAlice));
 
         // different room number -> returns false

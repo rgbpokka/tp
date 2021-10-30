@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.guest.TypicalGuests.getTypicalGuestBook;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
-import static seedu.address.testutil.guest.TypicalGuests.getTypicalGuestBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,8 @@ public class DeleteGuestCommandTest {
 
         String expectedMessage = String.format(DeleteGuestCommand.MESSAGE_DELETE_SUCCESSFUL, guestToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs(), new Archive());
+        ModelManager expectedModel =
+                new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs(), new Archive());
         expectedModel.deleteGuest(guestToDelete);
 
         assertCommandSuccess(deleteGuestCommand, model, expectedMessage, expectedModel);

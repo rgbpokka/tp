@@ -39,7 +39,8 @@ public class CheckInCommandIntegrationTest {
     @Test
     public void execute_duplicateGuest_throwsCommandException() {
         Guest personInList = model.getGuestBook().getGuestList().get(0);
-        assertCommandFailure(new CheckInNewGuestCommand(personInList), model, CheckInNewGuestCommand.MESSAGE_DUPLICATE_GUEST);
+        assertCommandFailure(new CheckInNewGuestCommand(personInList), model,
+                CheckInNewGuestCommand.MESSAGE_DUPLICATE_GUEST);
     }
 
 }

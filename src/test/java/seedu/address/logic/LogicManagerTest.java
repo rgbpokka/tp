@@ -1,8 +1,26 @@
 package seedu.address.logic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VENDORID;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.PASSPORT_NUMBER_DESC_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ALICE;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
+import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
+import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_UNUSED;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
@@ -21,22 +39,6 @@ import seedu.address.storage.guest.JsonGuestBookStorage;
 import seedu.address.storage.vendor.JsonVendorBookStorage;
 import seedu.address.testutil.guest.GuestBuilder;
 
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VENDORID;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.PASSPORT_NUMBER_DESC_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ALICE;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
-import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
-import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_UNUSED;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -93,17 +95,17 @@ public class LogicManagerTest {
         JsonVendorBookStorage vendorBookStorage =
                 new JsonVendorBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionVendorBook.json"));
         JsonArchiveStorage archiveStorage =
-                new JsonArchiveIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionArchive.json")); 
+                new JsonArchiveIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionArchive.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(guestBookStorage, vendorBookStorage, userPrefsStorage, archiveStorage);
+        StorageManager storage =
+                new StorageManager(guestBookStorage, vendorBookStorage, userPrefsStorage, archiveStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addCommand =
-                CheckInNewGuestCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + NAME_DESC_ALICE +
-                        ROOM_NUMBER_DESC_ALICE
-                        + EMAIL_DESC_ALICE + TAG_DESC_ALICE;
+                CheckInNewGuestCommand.COMMAND_WORD + PASSPORT_NUMBER_DESC_ALICE + NAME_DESC_ALICE
+                        + ROOM_NUMBER_DESC_ALICE + EMAIL_DESC_ALICE + TAG_DESC_ALICE;
         Guest expectedGuest = new GuestBuilder(ALICE_GUEST).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGuest(expectedGuest);
@@ -215,7 +217,7 @@ public class LogicManagerTest {
         public void saveArchive(ReadOnlyGuestBook archive, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
-    } 
+    }
 
 
 }

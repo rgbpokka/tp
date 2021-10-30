@@ -1,10 +1,10 @@
 package seedu.address.model.commonattributes;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class NameTest {
 
@@ -36,6 +36,6 @@ public class NameTest {
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
         assertTrue(Name.isValidName("^")); // only non-alphanumeric characters
         assertTrue(Name.isValidName("peter*")); // contains non-alphanumeric characters
-        
+
     }
 }

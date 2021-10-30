@@ -1,14 +1,15 @@
 package seedu.address.model.guest;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.guest.GuestBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.guest.GuestBuilder;
 
 public class GuestPredicateTest {
 
@@ -76,7 +77,7 @@ public class GuestPredicateTest {
         assertFalse(predicate.test(
                 new GuestBuilder().withPassportNumber("312D").build()));
 
-        // Keywords match name, email and other respective fields, but does not match passport number 
+        // Keywords match name, email and other respective fields, but does not match passport number
         predicate = new GuestPredicate(
                 Optional.of("12312D"), Optional.of("123"), Optional.of("Alice"),
                 Optional.of("alice@email.com"), Optional.of(Set.of(new Tag("VIP"))));
@@ -142,7 +143,7 @@ public class GuestPredicateTest {
 
         assertFalse(predicate.test(new GuestBuilder().withName("Bing Cheng").build()));
 
-        // Keywords match passport number, email and other respective fields, but does not match name 
+        // Keywords match passport number, email and other respective fields, but does not match name
         predicate = new GuestPredicate(
                 Optional.of("12312D"), Optional.of("123"), Optional.of("Alice"),
                 Optional.of("alice@email.com"), Optional.of(Set.of(new Tag("VIP"))));
@@ -192,7 +193,7 @@ public class GuestPredicateTest {
         assertFalse(predicate.test(
                 new GuestBuilder().withRoomNumber("201").build()));
 
-        // Keywords match passport number, email and other respective fields, but does not match room number 
+        // Keywords match passport number, email and other respective fields, but does not match room number
         predicate = new GuestPredicate(
                 Optional.of("12312D"), Optional.of("123"), Optional.of("Alice"),
                 Optional.of("alice@email.com"), Optional.of(Set.of(new Tag("VIP"))));
@@ -251,7 +252,7 @@ public class GuestPredicateTest {
                 new GuestBuilder().withEmail("alice@email.com").build()));
 
 
-        // Keywords match passport number, name and other respective fields, but does not match email 
+        // Keywords match passport number, name and other respective fields, but does not match email
         predicate = new GuestPredicate(
                 Optional.of("12312D"), Optional.of("123"), Optional.of("Alice"),
                 Optional.of("alice@email.com"), Optional.of(Set.of(new Tag("VIP"))));
@@ -308,7 +309,7 @@ public class GuestPredicateTest {
         assertFalse(predicate.test(
                 new GuestBuilder().withTags("Vip").build()));
 
-        // Keywords match passport number, name and other respective fields, but does not match tags 
+        // Keywords match passport number, name and other respective fields, but does not match tags
         predicate = new GuestPredicate(
                 Optional.of("12312D"), Optional.of("123"), Optional.of("Alice"),
                 Optional.of("alice@email.com"), Optional.of(Set.of(new Tag("Deluxe"))));

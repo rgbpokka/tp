@@ -1,24 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.guest.EditGuestCommand.EditGuestDescriptor;
-import seedu.address.logic.commands.vendor.EditVendorCommand.EditVendorDescriptor;
-import seedu.address.model.Model;
-import seedu.address.model.guest.Guest;
-import seedu.address.model.guest.GuestBook;
-import seedu.address.model.guest.PassportNumber;
-import seedu.address.model.guest.PassportNumberContainsKeywordsPredicate;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.VendorId;
-import seedu.address.model.vendor.VendorIdContainsKeywordsPredicate;
-import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
-import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
@@ -39,6 +20,25 @@ import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_FIRST_PER
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_FOURTH_PERSON;
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_SECOND_PERSON;
 import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_THIRD_PERSON;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.guest.EditGuestCommand.EditGuestDescriptor;
+import seedu.address.logic.commands.vendor.EditVendorCommand.EditVendorDescriptor;
+import seedu.address.model.Model;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.guest.GuestBook;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.PassportNumberContainsKeywordsPredicate;
+import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorId;
+import seedu.address.model.vendor.VendorIdContainsKeywordsPredicate;
+import seedu.address.testutil.guest.EditGuestDescriptorBuilder;
+import seedu.address.testutil.vendor.EditVendorDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -178,8 +178,10 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_VENDOR_ID_DESC = " " + PREFIX_VENDOR_ID + "1#2"; //'#' not allowed in staff id
-    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + "-1"; // room numbers must be a number greater than 0.
-    public static final String INVALID_PASSPORT_NUMBER_DESC = " " + PREFIX_PASSPORT_NUMBER + "@3333"; // passport numbers should be alphanumeric
+    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + "-1";
+    // room numbers must be a number greater than 0.
+    public static final String INVALID_PASSPORT_NUMBER_DESC = " " + PREFIX_PASSPORT_NUMBER + "@3333";
+    // passport numbers should be alphanumeric
     public static final String INVALID_COST_DESC_NOT_DOUBLE = " " + PREFIX_COST + "ab"; // 'ab' not allowed in cost
     public static final String INVALID_COST_DESC_NOT_POSITIVE = " " + PREFIX_COST + "0.0"; // 'ab' not allowed in cost
     // '8' not allowed in operating hours days
@@ -287,11 +289,11 @@ public class CommandTestUtil {
     public static void showGuestAtPassportNumber(Model model, PassportNumber targetPassportNumber) {
 
         Optional<Guest> guest = model.getGuest(targetPassportNumber);
-        
-        assert(guest.isPresent());
+
+        assert (guest.isPresent());
 
         String passportNumber = guest.get().getPassportNumber().value;
-        
+
         model.updateFilteredGuestList(new PassportNumberContainsKeywordsPredicate(Arrays.asList(passportNumber)));
 
         assertEquals(1, model.getFilteredGuestList().size());
@@ -305,14 +307,14 @@ public class CommandTestUtil {
 
         Optional<Vendor> vendor = model.getVendor(targetVendorId);
 
-        assert(vendor.isPresent());
+        assert (vendor.isPresent());
 
         String vendorId = vendor.get().getVendorId().value;
 
         model.updateFilteredVendorList(new VendorIdContainsKeywordsPredicate(Arrays.asList(vendorId)));
 
         assertEquals(1, model.getFilteredVendorList().size());
-    } 
-    
+    }
+
 
 }

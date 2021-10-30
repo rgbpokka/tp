@@ -12,15 +12,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_OPERATING_HOURS
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVICE_NAME_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVICE_NAME_FIONA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HIGH_RATINGS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_DANIEL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.vendor.TypicalVendors.DANIEL_VENDOR;
 import static seedu.address.testutil.vendor.TypicalVendors.FIONA_VENDOR;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.testutil.vendor.VendorBuilder;
 
+import seedu.address.testutil.vendor.VendorBuilder;
 
 public class VendorTest {
 
@@ -86,7 +86,7 @@ public class VendorTest {
 
         // different name -> returns false
         editedFiona = new VendorBuilder(FIONA_VENDOR).withName(VALID_NAME_DANIEL).build();
-        assertFalse(FIONA_VENDOR.equals(editedFiona)); 
+        assertFalse(FIONA_VENDOR.equals(editedFiona));
 
         // different phone -> returns false
         editedFiona = new VendorBuilder(FIONA_VENDOR).withPhone(VALID_PHONE_DANIEL).build();
@@ -115,6 +115,6 @@ public class VendorTest {
         // different operatingHours -> returns false
         editedFiona = new VendorBuilder(FIONA_VENDOR).withOperatingHours(VALID_OPERATING_HOURS_DANIEL).build();
         assertFalse(FIONA_VENDOR.equals(editedFiona));
-        
+
     }
 }

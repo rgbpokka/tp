@@ -15,7 +15,8 @@ import seedu.address.testutil.vendor.TypicalVendors;
 
 public class JsonSerializableVendorBookTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "Vendor", "JsonSerializableVendorBookTest");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "Vendor", "JsonSerializableVendorBookTest");
     private static final Path TYPICAL_VENDOR_FILE = TEST_DATA_FOLDER.resolve("typicalVendorBook.json");
     private static final Path INVALID_VENDOR_FILE = TEST_DATA_FOLDER.resolve("invalidVendorBook.json");
     private static final Path DUPLICATE_VENDOR_FILE = TEST_DATA_FOLDER.resolve("duplicateVendorBook.json");

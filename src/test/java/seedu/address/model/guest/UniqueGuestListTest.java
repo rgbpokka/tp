@@ -165,7 +165,7 @@ public class UniqueGuestListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueGuestList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, (
+        ) -> uniqueGuestList.asUnmodifiableObservableList().remove(0));
     }
 }

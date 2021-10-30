@@ -15,7 +15,8 @@ import seedu.address.testutil.guest.TypicalGuests;
 
 public class JsonSerializableGuestBookTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "Guest", "JsonSerializableGuestBookTest");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "Guest", "JsonSerializableGuestBookTest");
     private static final Path TYPICAL_GUESTS_FILE = TEST_DATA_FOLDER.resolve("typicalGuestBook.json");
     private static final Path INVALID_GUESTS_FILE = TEST_DATA_FOLDER.resolve("invalidGuestBook.json");
     private static final Path DUPLICATE_GUEST_FILE = TEST_DATA_FOLDER.resolve("duplicateGuestBook.json");

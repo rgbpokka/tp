@@ -1,6 +1,17 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
@@ -12,16 +23,6 @@ import seedu.address.model.vendor.Cost;
 import seedu.address.model.vendor.Phone;
 import seedu.address.model.vendor.ServiceName;
 import seedu.address.model.vendor.VendorId;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "   ";
@@ -58,8 +59,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, (
+        ) -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -264,7 +265,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseCost_validValueWithWhitespace_returnsTrimmedCost() throws Exception {
-        String costWithWhiteSpace = WHITESPACE + VALID_COST+ WHITESPACE;
+        String costWithWhiteSpace = WHITESPACE + VALID_COST + WHITESPACE;
         Cost expectedCost = new Cost(Double.parseDouble(VALID_COST));
         assertEquals(expectedCost, ParserUtil.parseCost(costWithWhiteSpace));
     }
@@ -314,5 +315,5 @@ public class ParserUtilTest {
         VendorId expectedVendorId = new VendorId(VALID_VENDOR_ID);
         assertEquals(expectedVendorId, ParserUtil.parseVendorId(vendorIdWithWhiteSpace));
     }
-    
+
 }

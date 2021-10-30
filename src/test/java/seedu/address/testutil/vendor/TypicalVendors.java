@@ -1,12 +1,5 @@
 package seedu.address.testutil.vendor;
 
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.VendorBook;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FIONA;
@@ -35,14 +28,21 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVICE_NAME_DA
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVICE_NAME_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVICE_NAME_FIONA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVICE_NAME_GEORGE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_DANIEL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_ELLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_FIONA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_GEORGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FIONA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GEORGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_GEORGE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorBook;
 
 /**
  * A utility class containing a list of {@code Vendor} objects to be used in tests.

@@ -11,8 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_OPERATING_HOURS_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVICE_NAME_DANIEL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DANIEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENDOR_ID_DANIEL;
 
 import org.junit.jupiter.api.Test;
 
@@ -66,7 +66,8 @@ public class EditVendorDescriptorTest {
         assertFalse(DESC_ELLE.equals(editedElle));
 
         // different operating hours -> returns false
-        editedElle = new EditVendorDescriptorBuilder(DESC_ELLE).withOperatingHours(VALID_OPERATING_HOURS_DANIEL).build();
+        editedElle =
+                new EditVendorDescriptorBuilder(DESC_ELLE).withOperatingHours(VALID_OPERATING_HOURS_DANIEL).build();
         assertFalse(DESC_ELLE.equals(editedElle));
 
         // different cost -> returns false

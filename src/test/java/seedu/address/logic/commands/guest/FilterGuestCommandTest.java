@@ -1,22 +1,23 @@
 package seedu.address.logic.commands.guest;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.guest.Archive;
-import seedu.address.model.guest.GuestPredicate;
-import seedu.address.model.vendor.VendorBook;
-
-import java.util.Collections;
-import java.util.Optional;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_GUESTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.guest.TypicalGuests.getTypicalGuestBook;
+
+import java.util.Collections;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.guest.Archive;
+import seedu.address.model.guest.GuestPredicate;
+import seedu.address.model.vendor.VendorBook;
 
 public class FilterGuestCommandTest {
 

@@ -43,7 +43,7 @@ public class VendorUtil {
         sb.append(PREFIX_SERVICE_NAME + vendor.getServiceName().serviceName + " ");
         sb.append(PREFIX_OPERATING_HOURS + vendor.getOperatingHours().operatingHoursStringRep + " ");
         vendor.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
@@ -59,10 +59,10 @@ public class VendorUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getVendorId().ifPresent(vendorId -> sb.append(PREFIX_VENDOR_ID).append(vendorId.value).append(" "));
         descriptor.getServiceName().ifPresent(
-                serviceName -> sb.append(PREFIX_SERVICE_NAME).append(serviceName.serviceName).append(" "));
+            serviceName -> sb.append(PREFIX_SERVICE_NAME).append(serviceName.serviceName).append(" "));
         descriptor.getCost().ifPresent(cost -> sb.append(PREFIX_COST).append(cost.value.toString()).append(" "));
         descriptor.getOperatingHours().ifPresent(operatingHours -> sb.append(PREFIX_OPERATING_HOURS).append(
-                operatingHours.operatingHoursStringRep).append(" "));
+            operatingHours.operatingHoursStringRep).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

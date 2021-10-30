@@ -1,21 +1,22 @@
 package seedu.address.storage.vendor;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.vendor.ReadOnlyVendorBook;
-import seedu.address.model.vendor.VendorBook;
-import seedu.address.testutil.vendor.VendorBuilder;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.vendor.TypicalVendors.DANIEL_VENDOR;
 import static seedu.address.testutil.vendor.TypicalVendors.getTypicalVendorBook;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
+import seedu.address.model.vendor.VendorBook;
+import seedu.address.testutil.vendor.VendorBuilder;
 
 public class JsonVendorBookStorageTest {
 
@@ -106,6 +107,6 @@ public class JsonVendorBookStorageTest {
     public void saveVendorBook_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveVendorBook(new VendorBook(), null));
     }
-    
-    
+
+
 }

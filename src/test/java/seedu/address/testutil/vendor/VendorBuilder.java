@@ -1,5 +1,14 @@
 package seedu.address.testutil.vendor;
 
+import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_DEFAULT;
+
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commonattributes.Email;
@@ -13,15 +22,6 @@ import seedu.address.model.vendor.Phone;
 import seedu.address.model.vendor.ServiceName;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
-
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
-import static seedu.address.testutil.vendor.TypicalVendorIds.VENDOR_ID_DEFAULT;
 
 public class VendorBuilder {
 

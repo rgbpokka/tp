@@ -20,7 +20,7 @@
 //import seedu.address.model.guest.ReadOnlyGuestBook;
 //
 //public class JsonArchiveStorageTest {
-//    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "Guest", "JsonGuestBookStorageTest");
+//   private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "Guest", "JsonGuestBookStorageTest");
 //
 //    @TempDir
 //    public Path testFolder;

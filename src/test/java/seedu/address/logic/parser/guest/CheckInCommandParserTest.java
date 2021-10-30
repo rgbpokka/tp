@@ -1,15 +1,5 @@
 package seedu.address.logic.parser.guest;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
-import seedu.address.model.guest.Guest;
-import seedu.address.model.guest.PassportNumber;
-import seedu.address.model.guest.RoomNumber;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.guest.GuestBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BENSON;
@@ -38,6 +28,17 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.guest.TypicalGuests.ALICE_GUEST;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.guest.CheckInNewGuestCommand;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.guest.PassportNumber;
+import seedu.address.model.guest.RoomNumber;
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.guest.GuestBuilder;
 
 public class CheckInCommandParserTest {
 
@@ -90,7 +91,7 @@ public class CheckInCommandParserTest {
 
         Guest expectedGuest = new GuestBuilder(ALICE_GUEST).withTags().build();
         assertParseSuccess(parser, NAME_DESC_ALICE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
-                        + PASSPORT_NUMBER_DESC_ALICE ,
+                        + PASSPORT_NUMBER_DESC_ALICE,
                 new CheckInNewGuestCommand(expectedGuest));
     }
 
@@ -126,7 +127,7 @@ public class CheckInCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                 + TAG_DESC_VIP + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_ALICE, Name.MESSAGE_CONSTRAINTS);
 
-        // invalid room number 
+        // invalid room number
         assertParseFailure(parser, NAME_DESC_ELLE + EMAIL_DESC_ALICE + INVALID_ROOM_NUMBER_DESC
                 + TAG_DESC_VIP + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_ALICE, RoomNumber.MESSAGE_CONSTRAINTS);
 
@@ -138,7 +139,7 @@ public class CheckInCommandParserTest {
         assertParseFailure(parser, NAME_DESC_ELLE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                 + INVALID_TAG_DESC + TAG_DESC_DELUXE_ROOM + PASSPORT_NUMBER_DESC_ALICE, Tag.MESSAGE_CONSTRAINTS);
 
-        // invalid passport number 
+        // invalid passport number
         assertParseFailure(parser, NAME_DESC_ELLE + EMAIL_DESC_ALICE + ROOM_NUMBER_DESC_ALICE
                         + TAG_DESC_VIP + TAG_DESC_DELUXE_ROOM + INVALID_PASSPORT_NUMBER_DESC,
                 PassportNumber.MESSAGE_CONSTRAINTS);

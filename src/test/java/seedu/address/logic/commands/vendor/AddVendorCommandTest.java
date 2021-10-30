@@ -26,7 +26,6 @@ public class AddVendorCommandTest {
         assertThrows(NullPointerException.class, () -> new AddVendorCommand(null));
     }
 
-
     @Test
     public void execute_vendorAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingVendorAdded modelStub = new ModelStubAcceptingVendorAdded();
@@ -44,8 +43,8 @@ public class AddVendorCommandTest {
         AddVendorCommand addVendorCommand = new AddVendorCommand(validVendor);
         ModelStub modelStub = new ModelStubWithVendor(validVendor);
 
-        assertThrows(CommandException.class, AddVendorCommand.MESSAGE_DUPLICATE_VENDOR,
-                () -> addVendorCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddVendorCommand.MESSAGE_DUPLICATE_VENDOR, (
+        ) -> addVendorCommand.execute(modelStub));
     }
 
     @Test

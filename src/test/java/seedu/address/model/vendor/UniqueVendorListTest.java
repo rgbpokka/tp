@@ -1,15 +1,5 @@
 package seedu.address.model.vendor;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.uniquelist.exceptions.DuplicateItemException;
-import seedu.address.model.uniquelist.exceptions.ItemNotFoundException;
-import seedu.address.testutil.vendor.VendorBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,6 +7,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HIGH_RATING
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.vendor.TypicalVendors.DANIEL_VENDOR;
 import static seedu.address.testutil.vendor.TypicalVendors.ELLE_VENDOR;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.uniquelist.exceptions.DuplicateItemException;
+import seedu.address.model.uniquelist.exceptions.ItemNotFoundException;
+import seedu.address.testutil.vendor.VendorBuilder;
 
 public class UniqueVendorListTest {
 
@@ -166,8 +166,8 @@ public class UniqueVendorListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueVendorList.asUnmodifiableObservableList().remove(0));
+            -> uniqueVendorList.asUnmodifiableObservableList().remove(0));
     }
-    
-    
+
+
 }

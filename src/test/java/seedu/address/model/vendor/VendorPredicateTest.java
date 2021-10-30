@@ -1,14 +1,15 @@
 package seedu.address.model.vendor;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.vendor.VendorBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.vendor.VendorBuilder;
 
 public class VendorPredicateTest {
 
@@ -83,7 +84,7 @@ public class VendorPredicateTest {
         assertFalse(predicate.test(
                 new VendorBuilder().withVendorId("123").build()));
 
-        // Keywords match name, email and other respective fields, but does not match vendor id 
+        // Keywords match name, email and other respective fields, but does not match vendor id
         predicate = new VendorPredicate(Optional.of("123"), Optional.of("80958483"), Optional.of("Bill's Delivery"),
                 Optional.of("bdelivery@email.com"), Optional.of(Set.of(new Tag("Halal"))),
                 Optional.of("123 Clementi Rd, 123456"), Optional.of("Food"),
@@ -153,7 +154,7 @@ public class VendorPredicateTest {
         assertFalse(predicate.test(
                 new VendorBuilder().withName("Bill's Delivery").build()));
 
-        // Keywords match passport number, email and other respective fields, but does not match name 
+        // Keywords match passport number, email and other respective fields, but does not match name
         predicate = new VendorPredicate(Optional.of("123"), Optional.of("80958483"), Optional.of("Bill's Delivery"),
                 Optional.of("bdelivery@email.com"), Optional.of(Set.of(new Tag("Halal"))),
                 Optional.of("123 Clementi Rd, 123456"), Optional.of("Food"),
@@ -216,11 +217,11 @@ public class VendorPredicateTest {
                         Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(),
                         Optional.empty(), Optional.empty());
 
-        // Contains the number, but does not start with it 
+        // Contains the number, but does not start with it
         assertFalse(predicate.test(
                 new VendorBuilder().withPhone("87878787").build()));
 
-        // Keywords match passport number, email and other respective fields, but does not match phone number 
+        // Keywords match passport number, email and other respective fields, but does not match phone number
         predicate = new VendorPredicate(Optional.of("123"), Optional.of("80958483"), Optional.of("Bill's Delivery"),
                 Optional.of("bdelivery@email.com"), Optional.of(Set.of(new Tag("Halal"))),
                 Optional.of("123 Clementi Rd, 123456"), Optional.of("Food"),
@@ -294,7 +295,7 @@ public class VendorPredicateTest {
                 new VendorBuilder().withEmail("alice@email.com").build()));
 
 
-        // Keywords match passport number, name and other respective fields, but does not match email 
+        // Keywords match passport number, name and other respective fields, but does not match email
         predicate = new VendorPredicate(Optional.of("123"), Optional.of("80958483"), Optional.of("Bill's Delivery"),
                 Optional.of("bdelivery@email.com"), Optional.of(Set.of(new Tag("Halal"))),
                 Optional.of("123 Clementi Rd, 123456"), Optional.of("Food"),
@@ -363,7 +364,7 @@ public class VendorPredicateTest {
         assertFalse(predicate.test(
                 new VendorBuilder().withTags("Vip").build()));
 
-        // Keywords match passport number, name and other respective fields, but does not match tags 
+        // Keywords match passport number, name and other respective fields, but does not match tags
         predicate = new VendorPredicate(Optional.of("123"), Optional.of("80958483"), Optional.of("Bill's Delivery"),
                 Optional.of("bdelivery@email.com"), Optional.of(Set.of(new Tag("Halal"))),
                 Optional.of("123 Clementi Rd, 123456"), Optional.of("Food"),
@@ -437,7 +438,7 @@ public class VendorPredicateTest {
         assertFalse(predicate.test(
                 new VendorBuilder().withAddress("123 Rd").build()));
 
-        // Keywords match passport number, name and other respective fields, but does not match email 
+        // Keywords match passport number, name and other respective fields, but does not match email
         predicate = new VendorPredicate(Optional.of("123"), Optional.of("80958483"), Optional.of("Bill's Delivery"),
                 Optional.of("bdelivery@email.com"), Optional.of(Set.of(new Tag("Halal"))),
                 Optional.of("123 Clementi Rd, 123456"), Optional.of("Food"),
@@ -489,7 +490,7 @@ public class VendorPredicateTest {
         assertFalse(predicate.test(
                 new VendorBuilder().withServiceName("Massage").build()));
 
-        // Keywords match name, email and other respective fields, but does not match service name 
+        // Keywords match name, email and other respective fields, but does not match service name
         predicate = new VendorPredicate(Optional.of("123"), Optional.of("80958483"), Optional.of("Bill's Delivery"),
                 Optional.of("bdelivery@email.com"), Optional.of(Set.of(new Tag("Halal"))),
                 Optional.of("123 Clementi Rd, 123456"), Optional.of("Food"),
@@ -569,7 +570,7 @@ public class VendorPredicateTest {
         assertFalse(predicate.test(
                 new VendorBuilder().withCost("10").build()));
 
-        // Keywords match name, email and other respective fields, but does not match cost 
+        // Keywords match name, email and other respective fields, but does not match cost
         predicate = new VendorPredicate(Optional.of("123"), Optional.of("80958483"), Optional.of("Bill's Delivery"),
                 Optional.of("bdelivery@email.com"), Optional.of(Set.of(new Tag("Halal"))),
                 Optional.of("123 Clementi Rd, 123456"), Optional.of("Food"),
@@ -698,7 +699,7 @@ public class VendorPredicateTest {
         assertFalse(predicate.test(
                 new VendorBuilder().withOperatingHours("234 0800-1600").build()));
 
-        // Keywords match name, email and other respective fields, but does not match operating hours 
+        // Keywords match name, email and other respective fields, but does not match operating hours
         predicate = new VendorPredicate(Optional.of("123"), Optional.of("80958483"), Optional.of("Bill's Delivery"),
                 Optional.of("bdelivery@email.com"), Optional.of(Set.of(new Tag("Halal"))),
                 Optional.of("123 Clementi Rd, 123456"), Optional.of("Food"),

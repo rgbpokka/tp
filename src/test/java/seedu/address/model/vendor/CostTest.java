@@ -1,16 +1,17 @@
 package seedu.address.model.vendor;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class CostTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Cost(null));
+        assertThrows(NullPointerException.class, (
+        ) -> new Cost(null));
     }
 
     @Test
@@ -21,15 +22,15 @@ public class CostTest {
 
     @Test
     public void isValidCost() {
-        // null cost 
+        // null cost
         assertThrows(NullPointerException.class, () -> Cost.isValidCost(null));
 
-        // invalid cost 
+        // invalid cost
         assertFalse(Cost.isValidCost(-10.00)); // less than 0
         assertFalse(Cost.isValidCost(0.00)); // 0
 
-        // valid cost 
-        assertTrue(Cost.isValidCost(10.00)); // greater than 0 
+        // valid cost
+        assertTrue(Cost.isValidCost(10.00)); // greater than 0
     }
-    
+
 }

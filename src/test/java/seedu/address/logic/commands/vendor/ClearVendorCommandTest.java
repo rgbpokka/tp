@@ -1,15 +1,16 @@
 package seedu.address.logic.commands.vendor;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.vendor.TypicalVendors.getTypicalVendorBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.vendor.VendorBook;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.vendor.TypicalVendors.getTypicalVendorBook;
 
 public class ClearVendorCommandTest {
 

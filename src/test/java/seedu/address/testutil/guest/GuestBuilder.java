@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.commonattributes.Email;
-import seedu.address.model.guest.Guest;
 import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.RoomNumber;
 import seedu.address.model.tag.Tag;
@@ -52,7 +52,7 @@ public class GuestBuilder {
      * Sets the {@code Name} of the {@code Guest} that we are building.
      */
     public GuestBuilder withName(String name) {
-//        this.name = new Name("name");
+        //        this.name = new Name("name");
         this.name = new Name(name);
         return this;
     }

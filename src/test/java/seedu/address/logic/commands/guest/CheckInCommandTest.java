@@ -1,19 +1,20 @@
 package seedu.address.logic.commands.guest;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.guest.GuestBuilder;
-
-import java.util.ArrayList;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class CheckInCommandTest {
 
@@ -22,16 +23,17 @@ public class CheckInCommandTest {
         assertThrows(NullPointerException.class, () -> new CheckInNewGuestCommand(null));
     }
 
-//    @Test
-//    public void execute_guestAcceptedByModel_addSuccessful() throws Exception {
-//        ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
-//        Guest validGuest = new GuestBuilder().build();
-//
-//        CommandResult commandResult = new CheckInNewGuestCommand(validGuest).execute(modelStub);
-//
-//        assertEquals(String.format(CheckInNewGuestCommand.MESSAGE_SUCCESS, validGuest), commandResult.getFeedbackToUser());
-//        assertEquals(Arrays.asList(validGuest), modelStub.guestsAdded);
-//    }
+    //    @Test
+    //    public void execute_guestAcceptedByModel_addSuccessful() throws Exception {
+    //        ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
+    //        Guest validGuest = new GuestBuilder().build();
+    //
+    //        CommandResult commandResult = new CheckInNewGuestCommand(validGuest).execute(modelStub);
+    //
+    //        assertEquals(String.format(CheckInNewGuestCommand.MESSAGE_SUCCESS, validGuest),
+    //        commandResult.getFeedbackToUser());
+    //        assertEquals(Arrays.asList(validGuest), modelStub.guestsAdded);
+    //    }
 
     @Test
     public void execute_duplicateGuest_throwsCommandException() {
@@ -39,7 +41,8 @@ public class CheckInCommandTest {
         CheckInNewGuestCommand checkInCommand = new CheckInNewGuestCommand(validGuest);
         ModelStub modelStub = new ModelStubWithGuest(validGuest);
 
-        assertThrows(CommandException.class, CheckInNewGuestCommand.MESSAGE_DUPLICATE_GUEST, () -> checkInCommand.execute(modelStub));
+        assertThrows(CommandException.class, CheckInNewGuestCommand.MESSAGE_DUPLICATE_GUEST, (
+        ) -> checkInCommand.execute(modelStub));
     }
 
     @Test

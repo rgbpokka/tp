@@ -1,13 +1,5 @@
 package seedu.address.logic.parser.guest;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.guest.FilterGuestCommand;
-import seedu.address.model.guest.GuestPredicate;
-import seedu.address.model.tag.Tag;
-
-import java.util.Optional;
-import java.util.Set;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.PASSPORT_NUMBER_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.PASSPORT_NUMBER_DESC_CARL;
@@ -18,6 +10,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VENDOR_ID_DESC_ELLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Optional;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.guest.FilterGuestCommand;
+import seedu.address.model.guest.GuestPredicate;
+import seedu.address.model.tag.Tag;
 
 public class FilterGuestCommandParserTest {
 
@@ -45,8 +46,8 @@ public class FilterGuestCommandParserTest {
 
     @Test
     public void parse_prefixButNoArg_throwsParseException() {
-        assertParseFailure(parser, FilterGuestCommand.COMMAND_WORD +
-                        " " + PREFIX_TAG,
+        assertParseFailure(parser, FilterGuestCommand.COMMAND_WORD
+                        + " " + PREFIX_TAG,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterGuestCommand.MESSAGE_USAGE));
     }
 
