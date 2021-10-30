@@ -3,7 +3,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-Pocket Hotel (PH) is a **desktop app for hotel managers that provides a centralized location to manage their staff and guests, improving workflow.** It is optimized for use via a Command Line Interface (CLI) whilst still witholding some of the benefits of a Graphical User Interface (GUI).
+Pocket Hotel (PH) is a **desktop app for hotel front-desk receptionists that provides a centralized location to manage their guests and vendors, and helps to automate front-desk operations.**  It is optimized for use via a Command Line Interface (CLI) whilst still witholding some of the benefits of a Graphical User Interface (GUI).
 
 For detailed **documentation**, please refer to the [PH Website](https://ay2122s1-cs2103t-w12-3.github.io/tp/)
 
