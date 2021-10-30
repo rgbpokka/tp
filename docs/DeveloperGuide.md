@@ -580,9 +580,10 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
+    Perform one of the steps (Option 2 recommended for mac)
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
-
+    2. Run `java -jar PH.jar` in the directory that you placed your jar
 1. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
@@ -592,25 +593,158 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Check in a guest
+1. Check in a new guest to PH
+   1. Test case: `checkin n/Bobby pn/S1234 e/bobby@email.com r/23 t/VIP t/Deluxe Room`<br>
+   Expected: A guest card will be created with the passport number S1234 with name "Bobby", email "bobby@gmail.com", room
+   number "23", and tags "VIP" and "Deluxe Room"
+   2. Test case: `checkin n/bobby`<br>
+   Expected: Invalid command format error
 
-### Deleting a person
+### Editing a guest
 
-1. Deleting a person while all persons are being shown
+1. Editing a guest while all guests are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all guests using the 'listguest' command. Alternatively, click on the "Guests" tab to view the list of guests.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+    1. Test case: `editguest pn/S1234 n/Alexander Poon`<br>
+       Expected:  The guest card of the guest identified by passport number S1234 should be updated to reflect the new name, "Alexander Poon".
+       The result display shows the details of the guest that has just been edited.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `editguest pn/`<br>
+       Expected:  No guest is edited. Error details shown in the result display.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect editguest commands to try: `editguest pn/S1234`, `editguest n/Bernice Yu`.<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Charging a guest for services
+1. Charges a guest a service
+   1. Test case: `chargeguest pn/S123 vid/001`<br>
+      Expected: Service from <VENDOR> has been billed to <GUEST>
 
+<div>
+**:information_source: Note**<br>
+* Please perform this test case twice, as it will be used in the invoice generation test case.
+</div>
+
+### Checking out a guest
+
+1. Checking out a guest while all guests are being shown
+
+    1. Prerequisites: List all guests using the 'listguest' command. Alternatively, click on the "Guests" tab to view the list of guests.
+
+    1. Test case: `checkout pn/S1234`<br>
+       Expected:  The guest card of the guest identified by passport number S1234 should no longer be visible in the guests list.
+       The result display shows the details of the guest that has just been checked out. An invoice is generated for the guest as well.
+
+    1. Test case: `checkout pn/`<br>
+       Expected:  No guest is checked out. Error details shown in the result display.
+
+    1. Other incorrect editguest commands to try: `checkout pn/A123`, `editguest pn/@@@@@`.
+       Expected: Similar to previous.
+
+### Viewing invoice generated
+1. Upon performing the `checkout` command in the previous section, a PDF invoice of all the guests expenses will be generated.
+   1. test case: From previous step<br>
+   Expected: Check directory which contains jar file for PDF named `S1234 <CURRENT_TIME>`, PDF should contain base price of hotel stay and the 2 charges by vendor 001
+   
+### Return check in
+1. Return check in for guests whose details have been previously entered into the hotel
+   1. test case: `returncheckin pn/S1234 r/411`<br>
+   Expected: Checked in guest.
+
+### Filter guest
+1. Filter guests with fields
+   1. test case: `filter guest n/Ale`, filters all guest that name starts with "Ale"
+   Expected: Message saying `X guest listed`
+
+<div>
+**:information_source: Note**<br>
+* Name field is case sensitive
+</div>
+
+### Show all guests
+1. Removes filters and switches to the guest list
+   1. test case: 
+      1. Perform filter guest example above
+      2. Click on vendor list
+      3. `listguest`<br>
+   Expected: List will switch to guest and remove filters
+
+### Delete guest
+1. Deletes guest based on its passport number.
+    1. test case: `deleteguest pn/S1234`<br>
+    Expected: Message notifying that guest is deleted
+    2. test case (Deleting an archived guest):
+       1. `checkin n/Bobby pn/S1234 e/bobby@email.com r/23 t/VIP t/Deluxe Room`
+       2. `checkout pn/1234`
+       3. `deleteguest pn/1234`<br>
+   Expected: Message notifying that guest is deleted
+
+    
+### Clear guest
+1. Deletes all guests from PH, even archived ones
+   1. test case:
+      1. `checkin n/Bobby pn/S1234 e/bobby@email.com r/23 t/VIP t/Deluxe Room`
+      2. `checkout pn/1234`
+      3. `clearguest`
+      4. `returncheckin pn/S1234 r/111`<br>
+   Expected: All guests from guest list will be cleared, `returncheckin` command will throw an error as guest cannot be found in archive
+
+### Adding a vendor
+
+1. Add vendor to list of vendors
+   1. test case:
+      1. `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/15 0800-2000`<br>
+      Expected: Adds vendor with vendor ID 123, called Wang's Satay with email address satayMan@email.com, phone number 84711231, address Geylang Street 31
+      , service name "Satay", and operating hours Monday and Friday 0800-2000.
+
+### Editing a vendor
+
+1. Editing a vendor while all vendors are being shown
+
+    1. Prerequisites: List all vendors using the 'listvendor' command. Alternatively, click on the "Vendors" tab to view the list of vendors.
+
+    1. Test case: `editvendor vid/001 n/Jeremy Western Delivery`<br>
+       Expected:  The vendor card of the vendor identified by vendor id 001 should be updated to reflect the new name, "Jeremy Western Delivery".
+       The result display shows the details of the vendor that has just been edited.
+
+    1. Test case: `editvendor vid/`<br>
+       Expected:  No vendor is edited. Error details shown in the result display.
+
+    1. Other incorrect editvendor commands to try: `editvendor vid/001`, `editvendor n/Bing Massage Parlour`.<br>
+       Expected: Similar to previous.
+
+### Filter vendor
+1. Filters vendors according to filter
+    1. Test case: `filtervendor oh/5 0800`<br>
+   Expected: Filters vendors that are open at 0800 and displays to the GUI
+    2. Test case: `filtervendor oh/5 0800-1300`<br>
+    Expected: Filters all vendors that operate anywhere between 0800 and 1300 on a Friday and displays them to the GUI
+    3. Test caseL `filtervendor sn/Food`<br>
+    Expected: Filters all vendors that have a service name field of food.
+    
+### Show all vendors
+1. Removes filters and switches to the vendor list
+    1. test case:
+        1. Perform filter vendor example above
+        2. Click on guest list
+        3. `listvendor`<br>
+           Expected: List will switch to vendor and removes filters
+
+### Deleting a vendor
+1. Deletes a vendor based on its vendor ID
+   1. test case: `deletevendor vid/123`<br>
+   Expected: Deletes vendor with vid 123 from PH
+
+### Clear vendor
+1. Deletes all vendors from PH.
+    1. test case: `clearvendor`<br>
+       Expected: Deletes all vendors from PH, vendor list will be empty.
+
+
+
+1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -619,7 +753,7 @@ testers are expected to do more *exploratory* testing.
    i. Test case: go to `data\addressbook.json` and corrupt the file. On bootup of the program, there should be a
    notification in the command box saying
    "File corrupted! Restored a new file." and the program will delete and load a fresh new file.
-    
-    ii. Rename `data\addressbook.json` to something else like `data\addressbook.json` would cause the addressbook
-    to be not found and load the sample contacts into the addressbook.
+
+   ii. Rename `data\addressbook.json` to something else like `data\addressbook.json` would cause the addressbook
+   to be not found and load the sample contacts into the addressbook.
 2. _{ more test cases …​ }_

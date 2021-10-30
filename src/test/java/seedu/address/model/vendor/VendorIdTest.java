@@ -36,6 +36,7 @@ public class VendorIdTest {
         assertTrue(VendorId.isValidVendorId("peter the 2nd")); // alphanumeric characters
         assertTrue(VendorId.isValidVendorId("Capital Tan")); // with capital letters
         assertTrue(VendorId.isValidVendorId("David Roger Jackson Ray Jr 2nd")); // long staff id
+        assertTrue(VendorId.isValidVendorId("g")); // single character
 
     }
 

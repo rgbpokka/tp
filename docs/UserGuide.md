@@ -11,7 +11,7 @@ frequently interact with guests.
 **PH** provides a centralized location to store, organize and manage information linked to your guests and vendors employed by the hotel. **PH**
 streamlines your workflow and is optimized for use via the _Command Line Interface_ (**CLI**), whilst still embodying
 the benefits of a _Graphical User Interface_ (**GUI**). This means that faster typists would have the benefit of carrying out actions faster using our
-_Command Line Interface_(CLI) than through the _Graphical User Interface_ (GUI) using actions such as mouse clicks.
+_Command Line Interface_(**CLI**) than through the _Graphical User Interface_ (**GUI**) using actions such as mouse clicks.
 This user guide serves as an entry point for users to get oriented with how **PH** operates and how you may utilize it
 fully to integrate it within your hotel management system.
 
@@ -54,7 +54,7 @@ you are able to use this guide as we intended and become a master in using our a
 
     * **`deleteguest`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
 
-    * **`addvendor`**`vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`** : Adds a vendor
+    * **`addvendor`**`vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000` : Adds a vendor
         named `Wang's Satay` to the address book.
         
     * **`exit`** : Exits the app.
@@ -155,10 +155,8 @@ Upon checking out a guest, a PDF invoice will be generated in the directory that
 `GUEST_NAME YYYY-MM-DD HH-MM-SS.pdf`, where the `YYYY-MM-DD HH-MM-SS` denotes the current year, month, data, hours, minutes and seconds, at the time the invoice was generated.
 
 The invoice contains information such as the cost of the hotel stay (This is a fixed price in the current version) and any services
-that has been used during the guests stay (See [chargeguest](#Charge-a-guest-for-a-service:-chargeguest))
+that has been used during the guests stay (See [chargeguest](#charge-a-guest-for-a-service-chargeguest))
                                                         
-                                                            Charge a guest for a service: `chargeguest`
-//TODO fix anchor
 ![](images/SampleInvoice.png)
 
 <div markdown="block" class="alert alert-info">
@@ -588,6 +586,7 @@ The Json files storing archive guest data are found at:
 # **Command Summary**
 
 ## Guest Command Summary
+
 Action | Format, Examples
 -------|------------------
 **checkin** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
@@ -601,8 +600,9 @@ Action | Format, Examples
 **chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
 
 ## Vendor Command Summary
+
 Action | Format, Examples
---------|------------------
+-------|------------------
 **addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
 **editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit vid/111 sn/Laundry`
 **deletevendor** | `deletevendor vid/<VENDOR_ID>`<br>Example: `deletevendor vid/112`
@@ -611,6 +611,7 @@ Action | Format, Examples
 **filtervendor** | `filtervendor vid/<VENDOR_ID> <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filtervendor sn/Food t/satay`
 
 ## Utility Command Summary
+
 Action | Format, Examples
 -------|------------------
 **help** | `help`
