@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class VendorId {
 
     public static final String MESSAGE_CONSTRAINTS = "VendorID must be alphanumeric and non-empty.";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_][a-zA-Z0-9_ ]+$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_]+[a-zA-Z0-9_ ]*$";
 
     public final String value;
 
@@ -44,5 +44,4 @@ public class VendorId {
     public int hashCode() {
         return value.hashCode();
     }
-    
 }
