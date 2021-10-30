@@ -44,5 +44,4 @@ public class VendorId {
     public int hashCode() {
         return value.hashCode();
     }
-    
 }
