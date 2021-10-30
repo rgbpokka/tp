@@ -22,7 +22,7 @@ import static seedu.address.logic.commands.CommandTestUtil.COST_DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_DANIEL;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_ELLE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_COST_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COST_DESC_NOT_DOUBLE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_OPERATING_HOURS_DESC;
@@ -231,7 +231,7 @@ public class AddVendorCommandParserTest {
 
         // invalid cost 
         assertParseFailure(parser, NAME_DESC_ELLE + PHONE_DESC_ELLE + EMAIL_DESC_ELLE + ADDRESS_DESC_ELLE
-                + TAG_DESC_CHEAP + TAG_DESC_HIGH_RATINGS + VENDOR_ID_DESC_ELLE + INVALID_COST_DESC +
+                + TAG_DESC_CHEAP + TAG_DESC_HIGH_RATINGS + VENDOR_ID_DESC_ELLE + INVALID_COST_DESC_NOT_DOUBLE +
                 OPERATING_HOURS_DESC_ELLE + SERVICE_NAME_DESC_ELLE, Cost.MESSAGE_CONSTRAINTS);
 
         // invalid service name 

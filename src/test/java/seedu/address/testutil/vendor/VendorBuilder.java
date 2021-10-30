@@ -80,7 +80,7 @@ public class VendorBuilder {
      * Sets the {@code Name} of the {@code Vendor} that we are building.
      */
     public VendorBuilder withName(String name) {
-        this.name = new Name("name");
+        this.name = new Name(name);
         return this;
     }
 

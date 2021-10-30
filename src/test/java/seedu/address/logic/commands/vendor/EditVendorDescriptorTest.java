@@ -76,8 +76,6 @@ public class EditVendorDescriptorTest {
         // different service name -> returns false
         editedElle = new EditVendorDescriptorBuilder(DESC_ELLE).withServiceName(VALID_SERVICE_NAME_DANIEL).build();
         assertFalse(DESC_ELLE.equals(editedElle));
-        
-        
     }
 }
 

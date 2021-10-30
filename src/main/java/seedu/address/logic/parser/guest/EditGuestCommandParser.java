@@ -42,12 +42,6 @@ public class EditGuestCommandParser implements Parser<EditGuestCommand> {
 
         PassportNumber passportNumber;
 
-        try {
-            passportNumber = ParserUtil.parsePassportNumber(argMultimap.getValue(PREFIX_PASSPORT_NUMBER).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditGuestCommand.MESSAGE_USAGE), pe);
-        }
-
         EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -61,9 +55,12 @@ public class EditGuestCommandParser implements Parser<EditGuestCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editGuestDescriptor::setTags);
 
         if (argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isPresent()) {
-            editGuestDescriptor.setPassportNumber(
-                    ParserUtil.parsePassportNumber(argMultimap.getValue(PREFIX_PASSPORT_NUMBER).get()));
+            passportNumber = ParserUtil.parsePassportNumber(argMultimap.getValue(PREFIX_PASSPORT_NUMBER).get());
+            editGuestDescriptor.setPassportNumber(passportNumber);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditGuestCommand.MESSAGE_USAGE));
         }
+
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
             editGuestDescriptor.setRoomNumber(
                     ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));

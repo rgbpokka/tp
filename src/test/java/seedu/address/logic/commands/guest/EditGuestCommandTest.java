@@ -9,7 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showGuestAtPassportNumber;
+import static seedu.address.testutil.guest.TypicalGuests.BOB_ARCHIVED_GUEST;
 import static seedu.address.testutil.guest.TypicalGuests.getTypicalGuestBook;
+import static seedu.address.testutil.guest.TypicalGuests.getTypicalArchive;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_FIRST_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
@@ -35,7 +37,7 @@ import seedu.address.testutil.guest.GuestBuilder;
  */
 public class EditGuestCommandTest {
 
-    private Model model = new ModelManager(getTypicalGuestBook(), new VendorBook(), new UserPrefs(), new Archive());
+    private Model model = new ModelManager(getTypicalGuestBook(), new VendorBook(), new UserPrefs(), getTypicalArchive());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -46,7 +48,7 @@ public class EditGuestCommandTest {
 
         String expectedMessage = String.format(EditGuestCommand.MESSAGE_EDIT_GUEST_SUCCESS, editedGuest);
 
-        Model expectedModel = new ModelManager(new GuestBook(model.getGuestBook()), new VendorBook(), new UserPrefs(), new Archive());
+        Model expectedModel = new ModelManager(new GuestBook(model.getGuestBook()), new VendorBook(), new UserPrefs(), getTypicalArchive());
         expectedModel.setGuest(guest, editedGuest);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -71,7 +73,7 @@ public class EditGuestCommandTest {
 
         String expectedMessage = String.format(EditGuestCommand.MESSAGE_EDIT_GUEST_SUCCESS, editedGuest);
 
-        Model expectedModel = new ModelManager(new GuestBook(model.getGuestBook()), new VendorBook(), new UserPrefs(), new Archive());
+        Model expectedModel = new ModelManager(new GuestBook(model.getGuestBook()), new VendorBook(), new UserPrefs(), getTypicalArchive());
         expectedModel.setGuest(guest, editedGuest);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -86,7 +88,7 @@ public class EditGuestCommandTest {
 
         String expectedMessage = String.format(EditGuestCommand.MESSAGE_EDIT_GUEST_SUCCESS, editedGuest);
 
-        Model expectedModel = new ModelManager(new GuestBook(model.getGuestBook()), new VendorBook(), new UserPrefs(), new Archive());
+        Model expectedModel = new ModelManager(new GuestBook(model.getGuestBook()), new VendorBook(), new UserPrefs(), getTypicalArchive());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -106,7 +108,7 @@ public class EditGuestCommandTest {
 
         String expectedMessage = String.format(EditGuestCommand.MESSAGE_EDIT_GUEST_SUCCESS, editedGuest);
 
-        Model expectedModel = new ModelManager(new GuestBook(model.getGuestBook()), new VendorBook(), new UserPrefs(), new Archive());
+        Model expectedModel = new ModelManager(new GuestBook(model.getGuestBook()), new VendorBook(), new UserPrefs(), getTypicalArchive());
         expectedModel.setGuest(model.getFilteredGuestList().get(0), editedGuest);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -133,10 +135,22 @@ public class EditGuestCommandTest {
     }
 
     @Test
+    public void execute_guestInArchive_failure() {
+        Guest archivedGuest = BOB_ARCHIVED_GUEST;
+        EditGuestCommand editCommand = new EditGuestCommand(BOB_ARCHIVED_GUEST.getPassportNumber(),
+                new EditGuestDescriptorBuilder()
+                .withName(VALID_NAME_BENSON)
+                .withEmail(VALID_EMAIL_BENSON)
+                .build());
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_GUEST_IS_IN_ARCHIVE);
+    }
+
+    @Test
     public void execute_invalidPassportNumberUnfilteredList_failure() {
         EditGuestCommand editCommand = new EditGuestCommand(PASSPORT_NUMBER_UNUSED, new EditGuestDescriptor());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_GUEST_DOES_NOT_EXIST);
     }
 
 //        @Test

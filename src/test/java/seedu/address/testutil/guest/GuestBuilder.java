@@ -52,7 +52,8 @@ public class GuestBuilder {
      * Sets the {@code Name} of the {@code Guest} that we are building.
      */
     public GuestBuilder withName(String name) {
-        this.name = new Name("name");
+//        this.name = new Name("name");
+        this.name = new Name(name);
         return this;
     }
 
