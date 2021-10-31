@@ -93,7 +93,7 @@ public class EditGuestCommand extends Command {
             if (guestToLocate.isPresent()) {
                 throw new CommandException(Messages.MESSAGE_GUEST_IS_IN_ARCHIVE);
             } else {
-                throw new CommandException(Messages.MESSAGE_GUEST_DOES_NOT_EXIST);
+                throw new CommandException(Messages.MESSAGE_GUEST_TO_EDIT_DOES_NOT_EXIST);
             }
         }
 

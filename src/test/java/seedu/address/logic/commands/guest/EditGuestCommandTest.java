@@ -25,7 +25,6 @@ import seedu.address.logic.commands.guest.EditGuestCommand.EditGuestDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.vendor.VendorBook;
@@ -150,7 +149,7 @@ public class EditGuestCommandTest {
     public void execute_invalidPassportNumberUnfilteredList_failure() {
         EditGuestCommand editCommand = new EditGuestCommand(PASSPORT_NUMBER_UNUSED, new EditGuestDescriptor());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_GUEST_DOES_NOT_EXIST);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_GUEST_TO_EDIT_DOES_NOT_EXIST);
     }
 
 //        @Test

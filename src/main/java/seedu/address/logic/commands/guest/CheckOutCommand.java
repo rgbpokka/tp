@@ -43,7 +43,7 @@ public class CheckOutCommand extends Command {
                 lastShownList.stream().filter(p -> p.getPassportNumber().equals(passportNumber)).findAny().orElse(null);
 
         if (guestToCheckOut == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER);
+            throw new CommandException(Messages.MESSAGE_GUEST_TO_CHECK_OUT_DOES_NOT_EXIST);
         }
 
         // generate invoice
