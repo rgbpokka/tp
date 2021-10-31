@@ -251,6 +251,8 @@ Example:
 * You need to specify at least one field to edit.
 
 * You can edit more than one field at a time (See example above).
+
+* You cannot edit a guest's passport number. 
 </div>
 
 [Back to Table of Contents](#table-of-contents)
