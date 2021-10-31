@@ -606,7 +606,7 @@ Action | Format, Examples
 Action | Format, Examples
 -------|------------------
 **addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
-**editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit vid/111 sn/Laundry`
+**editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `editvendor vid/111 sn/Laundry`
 **deletevendor** | `deletevendor vid/<VENDOR_ID>`<br>Example: `deletevendor vid/112`
 **clearvendor** | `clearvendor`
 **listvendor** | `listvendor`
