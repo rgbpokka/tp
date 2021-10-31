@@ -119,19 +119,20 @@ public class EditGuestCommand extends Command {
         Email updatedEmail = editGuestDescriptor.getEmail().orElse(guestToEdit.getEmail());
         Set<Tag> updatedTags = editGuestDescriptor.getTags().orElse(guestToEdit.getTags());
         RoomNumber updatedRoomNumber = editGuestDescriptor.getRoomNumber().orElse(guestToEdit.getRoomNumber());
+        PassportNumber passportNumber =
+                editGuestDescriptor.getPassportNumber().orElse(guestToEdit.getPassportNumber());
+        List<Chargeable> chargeablesUsed = guestToEdit.getChargeableUsed();
         // checks that newly provided room number is not already in use by another guest
         if (model.getFilteredGuestList()
                 .stream()
-                .filter(v -> v.getRoomNumber().equals(updatedRoomNumber))
+                .filter(v -> ! v.getPassportNumber().equals(passportNumber) && v.getRoomNumber().equals(updatedRoomNumber))
                 .findAny()
                 .orElse(null) != null) {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
-        PassportNumber updatedPassportNumber =
-                editGuestDescriptor.getPassportNumber().orElse(guestToEdit.getPassportNumber());
-        List<Chargeable> chargeablesUsed = guestToEdit.getChargeableUsed();
 
-        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber, chargeablesUsed);
+
+        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, passportNumber, chargeablesUsed);
     }
 
     @Override
