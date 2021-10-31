@@ -23,55 +23,7 @@ import seedu.address.model.guest.Guest;
 
 public class Invoice {
     public static final String BASE_PATH = "./";
-    private static final PdfFont FONT = Invoice.createStandardFont();
-    private static final PdfFont FONT_BOLD = Invoice.createStandardBoldFont();
     private static final int NUM_HEADERS = 6;
-
-    /**
-     * Returns font used in the invoice.
-     *
-     * Method that throws checked exceptions cannot be initalised as a constant therefore this method catches the
-     * error as it guarantees that the font exists in the itext7 library
-     * Solution adapted from
-     * https://stackoverflow.com/questions/1866770/
-     * how-to-handle-a-static-final-field-initializer-that-throws-checked-exception
-     *
-     *
-     * @return PdfFont Times Roman font
-     */
-    private static PdfFont createStandardFont() {
-        try {
-            return PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN);
-        } catch (IOException e) {
-            // If the font is not loaded properly the itext7 library may have changed the StandardFonts.TIMES_ROMAN
-            // Therefore this code should be fixed.
-            assert false;
-            throw new RuntimeException("Font for PDF generation cannot be found!");
-        }
-    }
-
-    /**
-     * Returns bold font used in the invoice.
-     *
-     * Method that throws checked exceptions cannot be initalised as a constant therefore this method catches the
-     * error as it guarantees that the font exists in the itext7 library
-     * Solution adapted from
-     * https://stackoverflow.com/questions/1866770/
-     * how-to-handle-a-static-final-field-initializer-that-throws-checked-exception
-     *
-     *
-     * @return PdfFont Times Roman Bold font
-     */
-    private static PdfFont createStandardBoldFont() {
-        try {
-            return PdfFontFactory.createFont(StandardFonts.TIMES_BOLD);
-        } catch (IOException e) {
-            // If the font is not loaded properly the itext7 library may have changed the StandardFonts.TIMES_BOLD
-            // Therefore this code should be fixed.
-            assert false;
-            throw new RuntimeException("Font for PDF generation cannot be found!");
-        }
-    }
 
     /**
      * Generates an invoice for the guests stay.
@@ -82,24 +34,28 @@ public class Invoice {
      */
     public static void generateInvoicePdf(Guest g) throws IOException {
         String dest = BASE_PATH + generateFileName(g);
+
         // Initialize document
         PdfWriter writer = new PdfWriter(dest);
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
+
+        PdfFont font = PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN);
+        PdfFont boldFont = PdfFontFactory.createFont(StandardFonts.TIMES_BOLD);
 
         // Add headers and page numbers
         pdf.addEventHandler(PdfDocumentEvent.END_PAGE, new InvoiceNewPageHandler());
 
         // Add guest details
         Paragraph guestDetails = new Paragraph("Bill to: " + g.getName() + "\nRoom Number: " + g.getRoomNumber());
-        guestDetails.setTextAlignment(TextAlignment.CENTER).setFont(FONT_BOLD);
+        guestDetails.setTextAlignment(TextAlignment.CENTER).setFont(boldFont);
         document.add(guestDetails);
 
         // Generate invoice table
-        document.add(createInvoiceTable(g));
+        document.add(createInvoiceTable(g, font, boldFont));
 
         Paragraph thankYouParagraph = new Paragraph("THANK YOU FOR YOUR VISIT!");
-        thankYouParagraph.setTextAlignment(TextAlignment.CENTER).setFont(FONT_BOLD);
+        thankYouParagraph.setTextAlignment(TextAlignment.CENTER).setFont(boldFont);
         document.add(thankYouParagraph);
 
         //Close document
@@ -114,47 +70,47 @@ public class Invoice {
         return g.getPassportNumber().toString() + " " + now.format(dtf) + ".pdf";
     }
 
-    private static Table createInvoiceTable(Guest g) {
+    private static Table createInvoiceTable(Guest g, PdfFont font, PdfFont boldFont) {
         Table table = new Table(new float[]{1, 4, 2, 1, 3, 3});
         table.setHorizontalAlignment(HorizontalAlignment.CENTER);
 
-        final String[] HEADER_TEXT = new String[]{"ITEM NUM", "VENDOR NAME",
+        final String[] headerText = new String[]{"ITEM NUM", "VENDOR NAME",
             "SERVICE", "COST", "QUANTITY", "LINE COST"};
 
         // Ensures that header tally up with fields required
-        assert HEADER_TEXT.length == 6;
+        assert headerText.length == 6;
 
         // Add header rows
-        for (String header : HEADER_TEXT) {
+        for (String header : headerText) {
             table.addHeaderCell(
                     new Cell().add(
-                            new Paragraph(header).setFont(FONT_BOLD)));
+                            new Paragraph(header).setFont(boldFont)));
         }
 
 
-        final int HOTEL_COST = 100;
+        final int hotelCost = 100;
 
         // Add base price row
-        addCellToTable("1", table);
-        addCellToTable("Hotel", table);
-        addCellToTable("Hotel Stay", table);
-        addCellToTable(String.valueOf(HOTEL_COST), table);
-        addCellToTable("1", table);
-        addCellToTable(String.valueOf(HOTEL_COST), table);
+        addCellToTable("1", table, font);
+        addCellToTable("Hotel", table, font);
+        addCellToTable("Hotel Stay", table, font);
+        addCellToTable(String.valueOf(hotelCost), table, font);
+        addCellToTable("1", table, font);
+        addCellToTable(String.valueOf(hotelCost), table, font);
 
         // Iterate through processed vendors and add to table
         int itemCount = 2;
-        double totalCost = HOTEL_COST;
+        double totalCost = hotelCost;
         for (Chargeable charge : g.getChargeableUsed()) {
-            addCellToTable(String.valueOf(itemCount), table);
-            addCellToTable(charge.getName().toString() + " [" + charge.getVendorId().toString() + "]", table);
-            addCellToTable(charge.getServiceName().toString(), table);
-            addCellToTable(charge.getCost().toString(), table);
-            addCellToTable(charge.getQuantity().toString(), table);
+            addCellToTable(String.valueOf(itemCount), table, font);
+            addCellToTable(charge.getName().toString() + " [" + charge.getVendorId().toString() + "]", table, font);
+            addCellToTable(charge.getServiceName().toString(), table, font);
+            addCellToTable(charge.getCost().toString(), table, font);
+            addCellToTable(charge.getQuantity().toString(), table, font);
 
             double lineCost = Double.parseDouble(charge.getCost().toString())
                     * Double.parseDouble(charge.getQuantity().toString());
-            addCellToTable(String.valueOf(lineCost), table);
+            addCellToTable(String.valueOf(lineCost), table, font);
 
             totalCost += lineCost;
             itemCount++;
@@ -164,13 +120,13 @@ public class Invoice {
         totalCost = (float) Math.round(totalCost * 100) / 100;
 
         // Add total cost row
-        addCostRowToTable(table, String.valueOf(totalCost));
+        addCostRowToTable(table, String.valueOf(totalCost), font);
 
         return table;
     }
 
-    private static void addCellToTable(String text, Table table) {
-        Paragraph paragraph = new Paragraph(text).setFont(FONT);
+    private static void addCellToTable(String text, Table table, PdfFont font) {
+        Paragraph paragraph = new Paragraph(text).setFont(font);
         Cell cell = new Cell();
         cell.add(paragraph);
         table.addCell(paragraph);
@@ -185,14 +141,14 @@ public class Invoice {
      * @param table     Table to add total cost row.
      * @param totalCost Total cost.
      */
-    private static void addCostRowToTable(Table table, String totalCost) {
+    private static void addCostRowToTable(Table table, String totalCost, PdfFont boldFont) {
         for (int i = 0; i < NUM_HEADERS; i++) {
             Cell cell = new Cell();
             if (i != NUM_HEADERS - 1) {
-                cell.add(new Paragraph("").setFont(FONT_BOLD));
+                cell.add(new Paragraph("").setFont(boldFont));
                 cell.setBorder(Border.NO_BORDER);
             } else {
-                cell.add(new Paragraph(totalCost).setFont(FONT_BOLD));
+                cell.add(new Paragraph(totalCost).setFont(boldFont));
             }
             table.addCell(cell);
         }
