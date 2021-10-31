@@ -577,7 +577,9 @@ The Json files storing archive guest data are found at:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
 * The archived guests would have the room number and services field emptied in the Json file.
-<br>Archived guest are also not shown in the UI.
+<br>Archived guest are also not shown in the UI. The rationale for this is that a returning guest would provide 
+his/her details to the receptionist upon checking in to the hotel, hence there is no need for the receptionist to 
+refer to details of the archived guests in the UI. 
 </div>
 
 
