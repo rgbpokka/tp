@@ -594,7 +594,7 @@ Action | Format, Examples
 **checkin** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
 **returncheckin** | `returncheckin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `returncheckin pn/T0134568D r/101`
 **checkout** | `checkout pn/<PASSPORT_NUMBER>`<br>Example: `checkout pn/T0134568D`
-**editguest** | `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit pn/X12345678A p/99999999`
+**editguest** | `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `editguest pn/X12345678A p/99999999`
 **deleteguest** | `deleteguest pn/<PASSPORT_NUMBER>`<br>Example: `deleteguest pn/T0134568D`
 **clearguest** | `clearguest`
 **listguest** | `listguest`
