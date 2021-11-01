@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Chargeable.Chargeable;
+import seedu.address.model.chargeable.Chargeable;
 import seedu.address.model.commonattributes.Email;
-import seedu.address.model.guest.Guest;
 import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.RoomNumber;
 import seedu.address.model.tag.Tag;
@@ -83,7 +83,7 @@ class JsonAdaptedGuest {
     public List<JsonAdaptedTag> getTags() {
         return tagged;
     }
-    
+
     public List<JsonAdaptedChargeable> getChargeablesUsed() {
         return chargeablesUsed;
     }
@@ -99,7 +99,7 @@ class JsonAdaptedGuest {
         for (JsonAdaptedTag tag : getTags()) {
             personTags.add(tag.toModelType());
         }
-        
+
         final List<Chargeable> modelChargeableUsed = new ArrayList<>();
         for (JsonAdaptedChargeable chargeable : getChargeablesUsed()) {
             modelChargeableUsed.add(chargeable.toModelType());
@@ -140,7 +140,7 @@ class JsonAdaptedGuest {
         final PassportNumber modelPassportNumber = new PassportNumber(passportNumber);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        
+
         return new Guest(modelName, modelEmail, modelTags, modelRoomNumber, modelPassportNumber, modelChargeableUsed);
     }
 

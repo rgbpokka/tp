@@ -1,11 +1,11 @@
 package seedu.address.storage.guest;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.guest.ReadOnlyGuestBook;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.guest.ReadOnlyGuestBook;
 
 public interface GuestBookStorage {
 
@@ -16,9 +16,10 @@ public interface GuestBookStorage {
 
     /**
      * Returns guest data as a {@link ReadOnlyGuestBook}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyGuestBook> readGuestBook() throws DataConversionException, IOException;
 
@@ -29,6 +30,7 @@ public interface GuestBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyGuestBook} to the storage.
+     *
      * @param guestBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

@@ -1,5 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -30,12 +36,6 @@ import seedu.address.logic.parser.vendor.AddVendorCommandParser;
 import seedu.address.logic.parser.vendor.DeleteVendorCommandParser;
 import seedu.address.logic.parser.vendor.EditVendorCommandParser;
 import seedu.address.logic.parser.vendor.FilterVendorCommandParser;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.
@@ -73,25 +73,25 @@ public class PocketHotelParser {
 
         case CheckOutCommand.COMMAND_WORD:
             return new CheckOutCommandParser().parse(arguments);
-        
+
         case ClearGuestCommand.COMMAND_WORD:
             return new ClearGuestCommand();
-        
+
         case EditGuestCommand.COMMAND_WORD:
             return new EditGuestCommandParser().parse(arguments);
-        
+
         case ListGuestCommand.COMMAND_WORD:
             return new ListGuestCommand();
-            
+
         case DeleteGuestCommand.COMMAND_WORD:
             return new DeleteGuestCommandParser().parse(arguments);
-        
+
         case FilterGuestCommand.COMMAND_WORD:
             return new FilterGuestCommandParser().parse(arguments);
-        
+
         case ChargeGuestCommand.COMMAND_WORD:
             return new ChargeGuestCommandParser().parse(arguments);
-            
+
         case AddVendorCommand.COMMAND_WORD:
             return new AddVendorCommandParser().parse(arguments);
 

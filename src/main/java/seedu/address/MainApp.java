@@ -3,7 +3,6 @@ package seedu.address;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
@@ -26,8 +25,8 @@ import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.VendorBook;
-import seedu.address.storage.Storage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.archive.ArchiveStorage;

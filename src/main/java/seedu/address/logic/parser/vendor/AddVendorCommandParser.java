@@ -1,5 +1,19 @@
 package seedu.address.logic.parser.vendor;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
+
+import java.util.Set;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.vendor.AddVendorCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -17,20 +31,6 @@ import seedu.address.model.vendor.Phone;
 import seedu.address.model.vendor.ServiceName;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
 
 public class AddVendorCommandParser implements Parser<AddVendorCommand> {
 
@@ -59,7 +59,8 @@ public class AddVendorCommandParser implements Parser<AddVendorCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         ServiceName serviceName = ParserUtil.parseServiceName(argMultimap.getValue(PREFIX_SERVICE_NAME).get());
         Cost cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
-        OperatingHours operatingHours = ParserUtil.parseOperatingHours(argMultimap.getValue(PREFIX_OPERATING_HOURS).get());
+        OperatingHours operatingHours =
+                ParserUtil.parseOperatingHours(argMultimap.getValue(PREFIX_OPERATING_HOURS).get());
 
         Vendor vendor = new Vendor(name, email, tagList, vendorId, phone, serviceName, address, cost, operatingHours);
         return new AddVendorCommand(vendor);

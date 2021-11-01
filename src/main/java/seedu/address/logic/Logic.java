@@ -35,7 +35,7 @@ public interface Logic {
     ReadOnlyGuestBook getGuestBook();
 
     /**
-     * Returns an unmodifiable view of the filtered list of guests 
+     * Returns an unmodifiable view of the filtered list of guests
      */
     ObservableList<Guest> getFilteredGuestList();
 
@@ -52,9 +52,9 @@ public interface Logic {
      * @see seedu.address.model.Model#getVendorBook()
      */
     ReadOnlyVendorBook getVendorBook();
-    
+
     /**
-     * Returns an unmodifiable view of the filtered list of vendors 
+     * Returns an unmodifiable view of the filtered list of vendors
      */
     ObservableList<Vendor> getFilteredVendorList();
 

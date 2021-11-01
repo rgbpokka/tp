@@ -1,9 +1,9 @@
-package seedu.address.model.Chargeable;
-
-import java.util.function.Predicate;
+package seedu.address.model.chargeable;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.function.Predicate;
 
 /**
  * Represents a quantity for the service
@@ -12,8 +12,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Quantity {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should be in whole number (e.g. 1, 2, 3...) and must be a positive number " +
-                    "greater than or equals to 0";
+            "Quantity should be in whole number (e.g. 1, 2, 3...) and must be a positive number "
+                    + "greater than or equals to 0";
 
     public static final String INVALID_INTEGER =
             "Quantity should be a valid integer.";

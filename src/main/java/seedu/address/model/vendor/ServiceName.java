@@ -33,7 +33,7 @@ public class ServiceName {
     public static boolean isValidServiceName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-    
+
     @Override
     public String toString() {
         return serviceName;

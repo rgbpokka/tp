@@ -13,12 +13,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.guest.Archive;
+import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.GuestBook;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.Vendor;
-import seedu.address.model.guest.Guest;
 import seedu.address.model.vendor.VendorBook;
 import seedu.address.model.vendor.VendorId;
 
@@ -38,7 +38,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given guestBook, vendorBook and userPrefs.
      */
-    public ModelManager(ReadOnlyGuestBook guestBook, ReadOnlyVendorBook vendorBook, ReadOnlyUserPrefs userPrefs, ReadOnlyGuestBook archive) {
+    public ModelManager(ReadOnlyGuestBook guestBook, ReadOnlyVendorBook vendorBook,
+                        ReadOnlyUserPrefs userPrefs, ReadOnlyGuestBook archive) {
         super();
         requireAllNonNull(guestBook, vendorBook, userPrefs);
 
@@ -119,7 +120,7 @@ public class ModelManager implements Model {
         guestBook.addGuest(guest);
         updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
     }
-    
+
     @Override
     public Optional<Guest> getGuest(PassportNumber passportNumber) {
         return guestBook.getGuest(passportNumber);
@@ -157,7 +158,7 @@ public class ModelManager implements Model {
     @Override
     public void addArchivedGuest(Guest guest) {
         archive.addGuest(guest);
-//        updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
+        //        updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
     }
 
     @Override

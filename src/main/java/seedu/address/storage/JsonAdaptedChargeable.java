@@ -2,9 +2,10 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Chargeable.Chargeable;
-import seedu.address.model.Chargeable.Quantity;
+import seedu.address.model.chargeable.Chargeable;
+import seedu.address.model.chargeable.Quantity;
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.vendor.Cost;
 import seedu.address.model.vendor.ServiceName;
@@ -104,7 +105,8 @@ public class JsonAdaptedChargeable {
         final Cost modelCost = new Cost(cost);
 
         if (getServiceName() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ServiceName.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, ServiceName.class.getSimpleName()));
         }
         if (!ServiceName.isValidServiceName(serviceName)) {
             throw new IllegalValueException(ServiceName.MESSAGE_CONSTRAINTS);
@@ -112,7 +114,8 @@ public class JsonAdaptedChargeable {
         final ServiceName modelServiceName = new ServiceName(serviceName);
 
         if (getQuantity() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
         }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);

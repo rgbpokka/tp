@@ -1,5 +1,12 @@
 package seedu.address.logic.commands.guest;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
+
+import java.util.Optional;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -8,13 +15,6 @@ import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
-
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
 
 public class ChargeGuestCommand extends Command {
 

@@ -1,11 +1,11 @@
 package seedu.address.model.guest;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
 
 public class Archive implements ReadOnlyGuestBook {
 
@@ -17,7 +17,8 @@ public class Archive implements ReadOnlyGuestBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         archivedGuests = new UniqueGuestList();
     }
 

@@ -1,11 +1,11 @@
 package seedu.address.model.vendor;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
 
 public class VendorBook implements ReadOnlyVendorBook {
 
@@ -17,7 +17,8 @@ public class VendorBook implements ReadOnlyVendorBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         vendors = new UniqueVendorList();
     }
 
@@ -77,7 +78,7 @@ public class VendorBook implements ReadOnlyVendorBook {
     }
 
     /**
-     * Gets the given vendor in the list with the given vendorId. 
+     * Gets the given vendor in the list with the given vendorId.
      * If Vendor does not exist in the vendor book, then Optional is empty.
      */
     public Optional<Vendor> getVendor(VendorId vendorId) {

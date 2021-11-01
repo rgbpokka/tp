@@ -11,16 +11,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.model.vendor.Address;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Cost;
 import seedu.address.model.vendor.OperatingHours;
 import seedu.address.model.vendor.Phone;
 import seedu.address.model.vendor.ServiceName;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
-import seedu.address.model.tag.Tag;
 import seedu.address.storage.JsonAdaptedTag;
 
 /**
@@ -172,7 +172,8 @@ public class JsonAdaptedVendor {
         final Cost modelCost = new Cost(cost);
 
         if (getServiceName() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ServiceName.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, ServiceName.class.getSimpleName()));
         }
         if (!ServiceName.isValidServiceName(serviceName)) {
             throw new IllegalValueException(ServiceName.MESSAGE_CONSTRAINTS);
@@ -181,7 +182,8 @@ public class JsonAdaptedVendor {
         final ServiceName modelServiceName = new ServiceName(serviceName);
 
         if (getOperatingHours() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, OperatingHours.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, OperatingHours.class.getSimpleName()));
         }
         if (!OperatingHours.isValidOperatingHours(operatingHours)) {
             throw new IllegalValueException(OperatingHours.MESSAGE_CONSTRAINTS);

@@ -12,13 +12,19 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
-    
-    /** Contains the tabName you wish to toggle to **/
+
+    /**
+     * Contains the tabName you wish to toggle to
+     **/
     private final Optional<String> tabName;
 
     /**
@@ -60,11 +66,11 @@ public class CommandResult {
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
-    
+
     public Optional<String> getTabNameToToggleTo() {
         return tabName;
     }
-    
+
 
     public boolean isShowHelp() {
         return showHelp;

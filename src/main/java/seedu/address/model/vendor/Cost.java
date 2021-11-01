@@ -1,9 +1,9 @@
 package seedu.address.model.vendor;
 
-import java.util.function.Predicate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.function.Predicate;
 
 /**
  * Represents a cost in the vendor book.
@@ -15,13 +15,13 @@ public class Cost {
             "Cost should be in dollars and cents (e.g. 25.30) and must be a positive cost greater than 0";
 
     public static final String MESSAGE_FILTER_CONSTRAINTS =
-            "Invalid syntax to filter cost. Examples of valid syntax: c/<20, c/>10, c/8"; 
-    
-    public static final String INVALID_DOUBLE = 
+            "Invalid syntax to filter cost. Examples of valid syntax: c/<20, c/>10, c/8";
+
+    public static final String INVALID_DOUBLE =
             "Cost should be a valid double.";
-    
+
     private static final double MIN_VALUE = 0.0;
-    
+
     public static final Predicate<Double> VALIDATION_PREDICATE = cost -> cost > MIN_VALUE;
 
     public final Double value;

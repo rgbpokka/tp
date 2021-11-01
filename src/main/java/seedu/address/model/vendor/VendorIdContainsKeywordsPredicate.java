@@ -1,9 +1,9 @@
 package seedu.address.model.vendor;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Vendor}'s {@code VendorId} matches any of the keywords given.
@@ -28,6 +28,6 @@ public class VendorIdContainsKeywordsPredicate implements Predicate<Vendor> {
                 || (other instanceof VendorIdContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((VendorIdContainsKeywordsPredicate) other).keywords)); // state check
     }
-    
-    
+
+
 }

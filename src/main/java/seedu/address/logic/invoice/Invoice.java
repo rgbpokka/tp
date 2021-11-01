@@ -18,7 +18,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 
-import seedu.address.model.Chargeable.Chargeable;
+import seedu.address.model.chargeable.Chargeable;
 import seedu.address.model.guest.Guest;
 
 public class Invoice {

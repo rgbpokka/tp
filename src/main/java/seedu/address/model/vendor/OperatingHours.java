@@ -1,17 +1,17 @@
 package seedu.address.model.vendor;
 
-import java.time.LocalTime;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
-
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class OperatingHours {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Operating Hours must only have valid days of the week (1 - 7), and the end time and " +
-                    "start must be between 0000 and 2359, and start time less than end time.";
+            "Operating Hours must only have valid days of the week (1 - 7), and the end time and "
+                    + "start must be between 0000 and 2359, and start time less than end time.";
 
     public static final String MESSAGE_FILTER_CONSTRAINTS =
             "Invalid syntax. Valid examples: oh/1234, oh/123 1000, oh/135 1000-1600, oh/now";

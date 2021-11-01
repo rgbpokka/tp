@@ -1,12 +1,5 @@
 package seedu.address.logic.commands.vendor;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.guest.Archive;
-import seedu.address.model.vendor.Vendor;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
@@ -17,6 +10,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
+
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.vendor.Vendor;
 
 public class AddVendorCommand extends Command {
 
@@ -75,5 +74,5 @@ public class AddVendorCommand extends Command {
                 || (other instanceof AddVendorCommand // instanceof handles nulls
                 && toAdd.equals(((AddVendorCommand) other).toAdd));
     }
-    
+
 }

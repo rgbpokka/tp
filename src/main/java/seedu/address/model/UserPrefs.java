@@ -14,14 +14,15 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path guestBookFilePath = Paths.get("data" , "guests.json");
+    private Path guestBookFilePath = Paths.get("data", "guests.json");
     private Path vendorBookFilePath = Paths.get("data", "vendors.json");
     private Path archiveFilePath = Paths.get("data", "archive.json");
-    
+
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {}
+    public UserPrefs() {
+    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -57,7 +58,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public void setGuestBookFilePath(Path guestBookFilePath) {
         requireNonNull(guestBookFilePath);
-        this.guestBookFilePath= guestBookFilePath;
+        this.guestBookFilePath = guestBookFilePath;
     }
 
     public Path getVendorBookFilePath() {
@@ -66,7 +67,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public void setVendorBookFilePath(Path vendorBookFilePath) {
         requireNonNull(vendorBookFilePath);
-        this.vendorBookFilePath= vendorBookFilePath;
+        this.vendorBookFilePath = vendorBookFilePath;
     }
 
     public Path getArchiveFilePath() {
@@ -75,7 +76,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public void setArchiveFilePath(Path archiveFilePath) {
         requireNonNull(archiveFilePath);
-        this.archiveFilePath= archiveFilePath;
+        this.archiveFilePath = archiveFilePath;
     }
 
     @Override

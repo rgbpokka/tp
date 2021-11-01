@@ -1,5 +1,9 @@
 package seedu.address.logic.parser.vendor;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
+
 import seedu.address.logic.commands.vendor.DeleteVendorCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -7,14 +11,10 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
-
 public class DeleteVendorCommandParser implements Parser<DeleteVendorCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteVendorCommand 
+     * Parses the given {@code String} of arguments in the context of the DeleteVendorCommand
      * and returns an DeleteVendorCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
@@ -30,6 +30,6 @@ public class DeleteVendorCommandParser implements Parser<DeleteVendorCommand> {
         }
 
         return new DeleteVendorCommand(ParserUtil.parseVendorId(argMultimap.getValue(PREFIX_VENDOR_ID).get()));
-    } 
-    
+    }
+
 }

@@ -1,5 +1,7 @@
 package seedu.address.logic.invoice;
 
+import java.io.IOException;
+
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.events.Event;
 import com.itextpdf.kernel.events.IEventHandler;
@@ -11,12 +13,10 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfPage;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 
-import java.io.IOException;
-
 public class InvoiceNewPageHandler implements IEventHandler {
     /**
      * Handles an event to add invoice header and page numbers
-     *
+     * <p>
      * Solution adapted from itext7 Knowledge base tutorial
      * https://kb.itextpdf.com/home/it7kb/ebooks/itext-7-jump-start-tutorial-for-java/
      * chapter-3-using-renderers-and-event-handlers.
