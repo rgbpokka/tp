@@ -21,18 +21,18 @@ public class FilterGuestCommand extends Command {
 
     public static final String COMMAND_WORD = "filterguest";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the guest list by any given fields: "
-            + "Requires at least one parameter\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the guest list by any given fields. "
+            + "Requires at least one parameter.\n"
             + "Parameters: "
-            + "[" + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER" + "]"
-            + "[" + PREFIX_NAME + "NAME" + "]"
-            + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER" + "]"
-            + "[" + PREFIX_EMAIL + "EMAIL" + "]"
+            + "[" + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER" + "] "
+            + "[" + PREFIX_NAME + "NAME" + "] "
+            + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER" + "] "
+            + "[" + PREFIX_EMAIL + "EMAIL" + "] "
             + "[" + PREFIX_TAG + "TAG" + "]" + "...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Bill "
             + PREFIX_TAG + "Vaccinated "
-            + "\n This filters the list by those named Bill that are vaccinated.\n";
+            + "\nThis filters the list by those named Bill and have the Vaccinated tag.";
 
     private final GuestPredicate predicate;
 

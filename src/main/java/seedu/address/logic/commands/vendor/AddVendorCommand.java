@@ -22,16 +22,16 @@ public class AddVendorCommand extends Command {
 
     public static final String COMMAND_WORD = "addvendor";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a vendor that operates with the hotel. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a vendor that operates with the hotel.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_VENDOR_ID + "VENDOR ID "
-            + PREFIX_COST + "COST"
-            + PREFIX_SERVICE_NAME + "SERVICE NAME"
-            + PREFIX_OPERATING_HOURS + "OPERATING HOURS"
+            + PREFIX_VENDOR_ID + "VENDOR_ID "
+            + PREFIX_COST + "COST "
+            + PREFIX_SERVICE_NAME + "SERVICE_NAME "
+            + PREFIX_OPERATING_HOURS + "OPERATING_HOURS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "

@@ -17,10 +17,10 @@ public class CheckInReturningGuestCommand extends Command {
 
     public static final String COMMAND_WORD = "returncheckin";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in a returning guest to the hotel. "
-            + "Guest Parameters: "
-            + PREFIX_PASSPORT_NUMBER + "PASSPORT NUMBER "
-            + PREFIX_ROOM_NUMBER + "ROOM NUMBER \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in a returning guest to the hotel.\n"
+            + "Parameters: "
+            + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER "
+            + PREFIX_ROOM_NUMBER + "ROOM_NUMBER \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PASSPORT_NUMBER + "T288230D "
             + PREFIX_ROOM_NUMBER + "123";
