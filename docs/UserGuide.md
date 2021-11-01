@@ -251,6 +251,8 @@ Example:
 * You need to specify at least one field to edit.
 
 * You can edit more than one field at a time (See example above).
+
+* You cannot edit a guest's passport number. 
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -577,7 +579,9 @@ The Json files storing archive guest data are found at:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
 * The archived guests would have the room number and services field emptied in the Json file.
-<br>Archived guest are also not shown in the UI.
+<br>Archived guest are also not shown in the UI. The rationale for this is that a returning guest would provide 
+his/her details to the receptionist upon checking in to the hotel, hence there is no need for the receptionist to 
+refer to details of the archived guests in the UI. 
 </div>
 
 
@@ -592,7 +596,7 @@ Action | Format, Examples
 **checkin** | `checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`<br>Example: `checkin pn/T0134568D n/Bing Cheng e/bingcheng@email.com r/101 t/VIP`
 **returncheckin** | `returncheckin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`<br>Example: `returncheckin pn/T0134568D r/101`
 **checkout** | `checkout pn/<PASSPORT_NUMBER>`<br>Example: `checkout pn/T0134568D`
-**editguest** | `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit pn/X12345678A p/99999999`
+**editguest** | `editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `editguest pn/X12345678A p/99999999`
 **deleteguest** | `deleteguest pn/<PASSPORT_NUMBER>`<br>Example: `deleteguest pn/T0134568D`
 **clearguest** | `clearguest`
 **listguest** | `listguest`
@@ -604,7 +608,7 @@ Action | Format, Examples
 Action | Format, Examples
 -------|------------------
 **addvendor** | `addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`<br>Example: `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
-**editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `edit vid/111 sn/Laundry`
+**editvendor** | `editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`<br>Example: `editvendor vid/111 sn/Laundry`
 **deletevendor** | `deletevendor vid/<VENDOR_ID>`<br>Example: `deletevendor vid/112`
 **clearvendor** | `clearvendor`
 **listvendor** | `listvendor`
