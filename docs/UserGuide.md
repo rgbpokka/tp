@@ -179,6 +179,7 @@ Format:
 <br>`checkin pn/<PASSPORT_NUMBER> n/<NAME> e/<EMAIL> r/<ROOM_NUMBER> [t/<TAG>]`
 
 Parameters:
+* `NAME`: No constraints on name used. Cannot be left blank.
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
 * `EMAIL`: A valid email address should be used.
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.
@@ -230,7 +231,7 @@ Format:
 Parameters:
 
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
-* `NAME`: No constraints on name used.
+* `NAME`: No constraints on name used. Cannot be left blank.
 * `EMAIL`: A valid email address should be used.
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid. 
 * `TAG`: An optional field, more than one can be included in each command.
@@ -331,9 +332,9 @@ Format:
 
 Parameters:
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
-  * The passport number specified by you must match the guest passport's number exactly to be filtered. Passport numbers are case-sensitive.
+  * The passport number specified by you must match the guest passport's number exactly to be filtered. Passport numbers are case-insensitive.
   * E.g. a guest with a `PASSPORT_NUMBER` of `SE1239182` will not be shown in your **GUI** if you run the command `filterguest pn/SE123`
-* `NAME`: Should only contain alphabetical characters
+* `NAME`: No constraints on name used.
   * The name specified by you simply needs to match the guest's name partially to be filtered. Names are case-insensitive.
   * E.g. a guest with a `NAME` of `Jeremy Tan` will be shown in the **GUI** if you run the command `filterguest n/jeremy` or `filterguest n/remy`
     * However, running the command `filterguest n/tan jeremy` will not filter the guest.
@@ -377,13 +378,13 @@ Format:
 <br>`addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`
 
 Parameters:
-* VENDOR_ID: Should only contain alphanumeric characters
-* NAME: Should only contain alphabetical characters
-* EMAIL: A valid email address should be used.
-* PHONE_NUMBER: At least 3 digits long, should only contain numbers.
-* SERVICE_NAME: Alphabetical characters and spaces are allowed.
-* SERVICE_COST: Number greater than 0, will be rounded to 2 decimal places.
-* TAG: An optional field, more than one can be included in each command.
+* `VENDOR_ID`: Should only contain alphanumeric characters
+* `NAME`: No constraints on name used. Cannot be left blank.
+* `EMAIL`: A valid email address should be used.
+* `PHONE_NUMBER`: At least 3 digits long, should only contain numbers.
+* `SERVICE_NAME`: Alphabetical characters and spaces are allowed.
+* `SERVICE_COST`: Number greater than 0, will be rounded to 2 decimal places.
+* `TAG`: An optional field, more than one can be included in each command.
 
 Example:
 <br>`addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
@@ -405,15 +406,15 @@ Format:
 <br>`editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
 
 Parameters:
-* VENDOR_ID: Should only contain alphanumeric characters.
-* NAME: Should only contain alphabetical characters.
-* EMAIL: Blanks inputs are not allowed. A valid email address should be used.
-* PHONE_NUMBER: At least 3 digits long, should only contain numbers.
-* ADDRESS: Blank inputs are not allowed.
-* SERVICE_NAME: Alphabetical characters and spaces are allowed.
-* SERVICE_COST: Number greater than 0, will be rounded to 2 decimal places.
-* OPERATING_HOURS: Duplicates are allowed. <br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
-* TAG: An optional field, more than one can be included in each command.
+* `VENDOR_ID`: Should only contain alphanumeric characters.
+* `NAME`: No constraints on name used. Cannot be left blank.
+* `EMAIL`: Blanks inputs are not allowed. A valid email address should be used.
+* `PHONE_NUMBER`: At least 3 digits long, should only contain numbers.
+* `ADDRESS`: Blank inputs are not allowed.
+* `SERVICE_NAME`: Alphabetical characters and spaces are allowed.
+* `SERVICE_COST`: Number greater than 0, will be rounded to 2 decimal places.
+* `OPERATING_HOURS`: Duplicates are allowed. <br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
+* `TAG`: An optional field, more than one can be included in each command.
 
 Example:
 <br>`editvendor vid/123 p/99999999 e/j@mailer.com` locates the vendor, Wang's Satay, with `VENDOR_ID` 123 and overwrites the phone number
@@ -484,9 +485,9 @@ Format: `filtervendor <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`
 
 Parameters:
 * `VENDOR_ID`: Should only contain alphanumeric characters
-  * The vendor id specified by you must match the vendor's vendor id exactly to be filtered. Vendor id's are case-sensitive.
+  * The vendor id specified by you must match the vendor's vendor id exactly to be filtered. Vendor id's are case-insensitive.
   * E.g. a vendor with a `VENDOR_ID` of `001` will not be shown in your **GUI** if you run the command `filtervendor vid/1`
-* `NAME`: Should only contain alphabetical characters
+* `NAME`: No constraints on name used. Cannot be left blank.
   * The name specified by you simply needs to match the vendor's name partially to be filtered. Names are case-insensitive.
   * E.g. a vendor with a `NAME` of `Jeremy's Massage Parlour` will be shown in the **GUI** if you run the command `filtervendor n/jeremy` or `filtervendor n/remy`
     * However, running the command `filtervendor n/parlour massage` will not filter the vendor.
@@ -641,7 +642,7 @@ Parameter | Prefix | Constraints, Examples
 Parameter | Prefix | Constraints, Examples
 ----------|--------|-----------------------
 **VENDOR_ID** | `vid/` |  Blank inputs are not allowed.<br>Should only contain alphanumeric characters.<br>Example: `vid/2131`
-**NAME** | `n/` | Blank inputs are not allowed.<br>Should only contain alphabetical characters.<br>Example: `n/Wang's Satay`
+**NAME** | `n/` | Blank inputs are not allowed.<br>No other constraints.<br>Example: `n/Wang's Satay`
 **EMAIL** | `e/` | Blanks inputs are not allowed.<br>A valid email address should be used.<br>Example: `e/satayMan@email.com`
 **PHONE_NUMBER** | `p/` | Blank inputs are not allowed.<br>At least 3 digits long, should only contain numbers<br>Example: `p/84711231`
 **ADDRESS** | `a/` | Blank inputs are not allowed.<br>Example: `a/Geylang Street 31`
