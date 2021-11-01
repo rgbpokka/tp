@@ -380,9 +380,11 @@ Parameters:
 * `VENDOR_ID`: Should only contain alphanumeric characters
 * `NAME`: No constraints on name used. Cannot be left blank.
 * `EMAIL`: A valid email address should be used.
+* `ADDRESS`: Blank inputs are not allowed.
 * `PHONE_NUMBER`: At least 3 digits long, should only contain numbers.
 * `SERVICE_NAME`: Alphabetical characters and spaces are allowed.
 * `SERVICE_COST`: Number greater than 0, will be rounded to 2 decimal places.
+* `OPERATING_HOURS`: Duplicates are allowed. <br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
 * `TAG`: An optional field, more than one can be included in each command.
 
 Example:
