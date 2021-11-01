@@ -22,25 +22,26 @@ public class AddVendorCommand extends Command {
 
     public static final String COMMAND_WORD = "addvendor";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a vendor that operates with the hotel. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a vendor that operates with the hotel.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_VENDOR_ID + "VENDOR ID "
-            + PREFIX_COST + "COST"
-            + PREFIX_SERVICE_NAME + "SERVICE NAME"
-            + PREFIX_OPERATING_HOURS + "OPERATING HOURS"
+            + PREFIX_VENDOR_ID + "VENDOR_ID "
+            + PREFIX_COST + "COST "
+            + PREFIX_SERVICE_NAME + "SERVICE_NAME "
+            + PREFIX_OPERATING_HOURS + "OPERATING_HOURS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "Clementi Road 123"
-            + PREFIX_VENDOR_ID + "123"
-            + PREFIX_COST + "50.00"
-            + PREFIX_SERVICE_NAME + "Massage"
-            + PREFIX_OPERATING_HOURS + "12345 0800-1700"
+            + PREFIX_PHONE + "85948321 "
+            + PREFIX_ADDRESS + "Clementi Road 123 "
+            + PREFIX_VENDOR_ID + "123 "
+            + PREFIX_COST + "50.00 "
+            + PREFIX_SERVICE_NAME + "Massage "
+            + PREFIX_OPERATING_HOURS + "12345 0800-1700 "
             + PREFIX_TAG + "Vaccinated ";
 
     public static final String MESSAGE_SUCCESS = "New vendor added: %1$s";

@@ -80,7 +80,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be entered by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `checkin n/NAME`, `NAME` is a parameter which can be used as `checkin n/John Doe`.
 
 * Parameter prefixes such as `n/` and `pn/` are special keywords that indicate a start of a parameter.
 
@@ -357,9 +357,8 @@ Parameters:
     * Note that guest with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
 
 Example:<br>
-![FilterAlexExample](images/FilterGuestAlex.png)
-`filterguest n/alex`, guests with a `NAME` that contains Alex, will be filtered from **PH**.
-`filterguest n/boon r/2`, guests with a `NAME` that contains boon and have a `ROOM_NUMBER` starting with 2, will be filtered from **PH**.
+![FilterAlexWithRoomNumber2Example](images/FilterGuestAlex.png)
+`filterguest n/alex r/2`, guests with a `NAME` that contains Alex and have a `ROOM_NUMBER` starting with 2, will be filtered from **PH**.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
@@ -381,9 +380,11 @@ Parameters:
 * `VENDOR_ID`: Should only contain alphanumeric characters
 * `NAME`: No constraints on name used. Cannot be left blank.
 * `EMAIL`: A valid email address should be used.
+* `ADDRESS`: Blank inputs are not allowed.
 * `PHONE_NUMBER`: At least 3 digits long, should only contain numbers.
 * `SERVICE_NAME`: Alphabetical characters and spaces are allowed.
 * `SERVICE_COST`: Number greater than 0, will be rounded to 2 decimal places.
+* `OPERATING_HOURS`: Duplicates are allowed. <br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
 * `TAG`: An optional field, more than one can be included in each command.
 
 Example:

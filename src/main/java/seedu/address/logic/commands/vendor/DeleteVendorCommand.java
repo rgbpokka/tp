@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.vendor;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
 
 import java.util.Optional;
 
@@ -17,8 +18,9 @@ public class DeleteVendorCommand extends Command {
     public static final String COMMAND_WORD = "deletevendor";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Delete the vendor by the vendor ID.\n"
-            + "Parameters: Vendor ID\n"
+            + ": Deletes the vendor by the vendor ID.\n"
+            + "Parameters: "
+            + PREFIX_VENDOR_ID + "VENDOR_ID\n"
             + "Example: " + COMMAND_WORD + " vid/123";
 
     public static final String MESSAGE_DELETE_SUCCESSFUL = "Deleted Vendor: %1$s";

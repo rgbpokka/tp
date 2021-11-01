@@ -28,19 +28,19 @@ public class FilterVendorCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the vendor list by any given fields: "
             + "Requires at least one parameter\n"
             + "Parameters: "
-            + "[" + PREFIX_VENDOR_ID + "VENDOR_ID" + "]"
-            + "[" + PREFIX_NAME + "NAME" + "]"
-            + "[" + PREFIX_ADDRESS + "ADDRESS" + "]"
-            + "[" + PREFIX_PHONE + "PHONE" + "]"
-            + "[" + PREFIX_EMAIL + "EMAIL" + "]"
-            + "[" + PREFIX_SERVICE_NAME + "SERVICE_NAME" + "]"
-            + "[" + PREFIX_COST + "COST" + "]"
-            + "[" + PREFIX_OPERATING_HOURS + "OPERATING_HOURS" + "]"
+            + "[" + PREFIX_VENDOR_ID + "VENDOR_ID" + "] "
+            + "[" + PREFIX_NAME + "NAME" + "] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS" + "] "
+            + "[" + PREFIX_PHONE + "PHONE" + "] "
+            + "[" + PREFIX_EMAIL + "EMAIL" + "] "
+            + "[" + PREFIX_SERVICE_NAME + "SERVICE_NAME" + "] "
+            + "[" + PREFIX_COST + "COST" + "] "
+            + "[" + PREFIX_OPERATING_HOURS + "OPERATING_HOURS" + "] "
             + "[" + PREFIX_TAG + "TAG" + "]" + "...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SERVICE_NAME + "Massage "
             + PREFIX_COST + "10 "
-            + "\n This filters the list by those vendors who offer Massage services at a cost of 10.\n";
+            + "\nThis filters the list by those vendors who offer Massage services at a cost of 10.\n";
 
     private final VendorPredicate predicate;
 

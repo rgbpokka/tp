@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -23,7 +24,8 @@ public class CheckOutCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Checks out the guest by the passport number in the displayed guest list.\n"
-            + "Parameters: Passport Number\n"
+            + "Parameters: "
+            + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER\n"
             + "Example: " + COMMAND_WORD + " pn/A021231B";
 
     public static final String MESSAGE_CHECKOUT_SUCCESSFUL = "Checked out Guest: %1$s\nInvoice has been generated!";

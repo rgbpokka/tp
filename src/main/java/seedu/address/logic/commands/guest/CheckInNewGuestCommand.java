@@ -20,20 +20,20 @@ public class CheckInNewGuestCommand extends Command {
 
     public static final String COMMAND_WORD = "checkin";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in a guest to the hotel. "
-            + "Guest Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Checks in a guest to the hotel.\n"
+            + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_PASSPORT_NUMBER + "PASSPORT NUMBER "
-            + PREFIX_ROOM_NUMBER + "ROOM NUMBER "
+            + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER "
+            + PREFIX_ROOM_NUMBER + "ROOM_NUMBER "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_PASSPORT_NUMBER + "T1234567D "
-            + PREFIX_ROOM_NUMBER + "123"
+            + PREFIX_ROOM_NUMBER + "123 "
             + PREFIX_TAG + "Vaccinated "
-            + PREFIX_TAG + "Applied Promocode \n";
+            + PREFIX_TAG + "Applied Promocode";
 
     public static final String MESSAGE_SUCCESS = "New guest checked in: %1$s";
     public static final String MESSAGE_DUPLICATE_GUEST = "This guest is already checked in.";

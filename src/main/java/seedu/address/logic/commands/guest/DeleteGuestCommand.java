@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.guest;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 
 import java.util.Optional;
 
@@ -18,7 +19,8 @@ public class DeleteGuestCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Delete the guest by the passport number from the list of checked in guests or the archive.\n"
-            + "Parameters: Passport Number\n"
+            + "Parameters: "
+            + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER\n"
             + "Example: " + COMMAND_WORD + " pn/A021231B";
 
     public static final String MESSAGE_DELETE_SUCCESSFUL = "Deleted Guest: %1$s";
@@ -48,7 +50,6 @@ public class DeleteGuestCommand extends Command {
 
         // Guest should not be found in both archive and checkin
         assert (guestToBeDeletedFromCheckInList.isPresent() && guestToBeDeletedFromArchive.isPresent()) == false;
-
 
 
         return deleteGuest(model, guestToBeDeletedFromArchive, guestToBeDeletedFromCheckInList);

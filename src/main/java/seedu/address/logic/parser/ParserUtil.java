@@ -131,6 +131,7 @@ public class ParserUtil {
     public static RoomNumber parseRoomNumber(String roomNumber) throws ParseException {
         requireNonNull(roomNumber);
         String trimmedRoomNumber = roomNumber.trim();
+        trimmedRoomNumber = trimmedRoomNumber.replaceAll("^0+(?!$)", "");
         if (!RoomNumber.isValidRoomNumber(trimmedRoomNumber)) {
             throw new ParseException(RoomNumber.MESSAGE_CONSTRAINTS);
         }

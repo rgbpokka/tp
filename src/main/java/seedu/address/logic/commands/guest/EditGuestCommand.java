@@ -39,17 +39,16 @@ public class EditGuestCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the guest identified "
             + "by the passport number of the guest. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Format: "
             + "Parameters:  "
-            + "[" + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER"
+            + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " pn/A12345678 "
-            + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_ROOM_NUMBER + "1233"
-            + PREFIX_TAG + "VIP";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_ROOM_NUMBER + "1233 "
+            + PREFIX_TAG + "VIP ";
 
     public static final String MESSAGE_EDIT_GUEST_SUCCESS = "Edited Guest: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

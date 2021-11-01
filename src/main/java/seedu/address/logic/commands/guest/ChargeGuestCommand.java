@@ -20,12 +20,12 @@ public class ChargeGuestCommand extends Command {
 
     public static final String COMMAND_WORD = "chargeguest";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Charges a guest that hired services from a vendor. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Charges a guest that hired services from a vendor.\n"
             + "Parameters: "
-            + PREFIX_PASSPORT_NUMBER + "PASSPORT NUMBER "
-            + PREFIX_VENDOR_ID + "VENDOR ID "
+            + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER "
+            + PREFIX_VENDOR_ID + "VENDOR_ID \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PASSPORT_NUMBER + "SD1208921"
+            + PREFIX_PASSPORT_NUMBER + "SD1208921 "
             + PREFIX_VENDOR_ID + "123";
 
     public static final String MESSAGE_SUCCESS = "Service from: %1$s \nhas been billed to Guest: %2$s";
