@@ -1,7 +1,7 @@
 package seedu.address.model.vendor;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -15,8 +15,8 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Vendor} matches the {@code VendorId}, {@code Phone}, {@code Name}, {@code Email},
@@ -34,6 +34,19 @@ public class VendorPredicate implements Predicate<Vendor> {
     private final Optional<String> costOptional;
     private final Optional<String> operatingHoursOptional;
 
+    /**
+     * Creates a vendor predicate.
+     *
+     * @param vendorIdOptional
+     * @param phoneOptional
+     * @param nameOptional
+     * @param emailOptional
+     * @param tagsOptional
+     * @param addressOptional
+     * @param serviceNameOptional
+     * @param costOptional
+     * @param operatingHoursOptional
+     */
     public VendorPredicate(Optional<String> vendorIdOptional,
                            Optional<String> phoneOptional,
                            Optional<String> nameOptional,
@@ -63,9 +76,9 @@ public class VendorPredicate implements Predicate<Vendor> {
     @Override
     public boolean test(Vendor vendor) {
         requireNonNull(vendor);
-        return testForEmail(vendor) && testForName(vendor) && testForTags(vendor) && testForPhone(vendor) &&
-                testForVendorId(vendor) && testForAddress(vendor) && testForCost(vendor) &&
-                testForServiceName(vendor) && testForOperatingHours(vendor);
+        return testForEmail(vendor) && testForName(vendor) && testForTags(vendor) && testForPhone(vendor)
+                && testForVendorId(vendor) && testForAddress(vendor) && testForCost(vendor)
+                && testForServiceName(vendor) && testForOperatingHours(vendor);
     }
 
     private boolean testForVendorId(Vendor vendor) {
@@ -142,12 +155,12 @@ public class VendorPredicate implements Predicate<Vendor> {
                 boolean dayTest = isSubset(testOperatingHours.recurringDays,
                         vendorDays);
                 boolean timeTest =
-                        isBeforeOrEquals(testOperatingHours.startTime, vendorStartTime) &&
-                                isAfterOrEquals(testOperatingHours.endTime, vendorStartTime);
+                        isBeforeOrEquals(testOperatingHours.startTime, vendorStartTime)
+                                && isAfterOrEquals(testOperatingHours.endTime, vendorStartTime);
                 boolean timeTest2 =
-                        isBeforeOrEquals(testOperatingHours.startTime, vendorEndTime) &&
-                                isAfterOrEquals(testOperatingHours.startTime,
-                                        vendorStartTime);
+                        isBeforeOrEquals(testOperatingHours.startTime, vendorEndTime)
+                                && isAfterOrEquals(testOperatingHours.startTime,
+                                vendorStartTime);
                 return dayTest && (timeTest || timeTest2);
             }
 
@@ -179,10 +192,10 @@ public class VendorPredicate implements Predicate<Vendor> {
         LocalTime vendorStartTime = vendor.getOperatingHours().startTime;
         LocalTime vendorEndTime = vendor.getOperatingHours().endTime;
 
-        boolean timeTest = time.isBefore(vendorEndTime) &&
-                time.isAfter(vendorStartTime);
-        boolean timeTest2 = time.equals(vendorStartTime) ||
-                time.equals(vendorEndTime);
+        boolean timeTest = time.isBefore(vendorEndTime)
+                && time.isAfter(vendorStartTime);
+        boolean timeTest2 = time.equals(vendorStartTime)
+                || time.equals(vendorEndTime);
 
         return timeTest || timeTest2;
     }
@@ -281,6 +294,5 @@ public class VendorPredicate implements Predicate<Vendor> {
                 && operatingHoursOptional.equals(((VendorPredicate) other).operatingHoursOptional)
                 && tagsOptional.equals(((VendorPredicate) other).tagsOptional)); // state check
     }
-
 
 }

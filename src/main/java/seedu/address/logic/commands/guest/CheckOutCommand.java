@@ -1,22 +1,22 @@
 package seedu.address.logic.commands.guest;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.invoice.Invoice;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.guest.Guest;
-import seedu.address.model.guest.PassportNumber;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
 
 import java.io.IOException;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.invoice.Invoice;
+import seedu.address.model.Model;
+import seedu.address.model.guest.Guest;
+import seedu.address.model.guest.PassportNumber;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Checks out a guest from the guest book.
  */
 public class CheckOutCommand extends Command {
 
@@ -52,6 +52,7 @@ public class CheckOutCommand extends Command {
         try {
             Invoice.generateInvoicePdf(guestToCheckOut);
         } catch (IOException e) {
+            e.printStackTrace();
         }
 
         guestToCheckOut.clearChargeables();

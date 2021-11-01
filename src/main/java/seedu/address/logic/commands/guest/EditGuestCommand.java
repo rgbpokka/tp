@@ -20,11 +20,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Chargeable.Chargeable;
 import seedu.address.model.Model;
+import seedu.address.model.chargeable.Chargeable;
 import seedu.address.model.commonattributes.Email;
-import seedu.address.model.guest.Guest;
 import seedu.address.model.commonattributes.Name;
+import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.RoomNumber;
 import seedu.address.model.tag.Tag;
@@ -121,7 +121,8 @@ public class EditGuestCommand extends Command {
                 editGuestDescriptor.getPassportNumber().orElse(guestToEdit.getPassportNumber());
         List<Chargeable> chargeablesUsed = guestToEdit.getChargeableUsed();
 
-        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber, chargeablesUsed);
+        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber,
+                chargeablesUsed);
     }
 
     @Override
@@ -172,7 +173,7 @@ public class EditGuestCommand extends Command {
         /**
          * Returns true if at least one field is edited. Passport number has been left out as its purpose is to
          * identify the guest. If included in the implementation, a command such as:
-         *
+         * <p>
          * editguest pn/A1234567 would edit the guest successfully, even though it should be throwing an exception
          * stating that at least one field should be specified for editing. See (@code EditGuestCommandParser::parse}
          * for more details.

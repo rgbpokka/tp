@@ -1,22 +1,5 @@
 package seedu.address.logic.parser.vendor;
 
-import seedu.address.logic.commands.vendor.FilterVendorCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.vendor.Cost;
-import seedu.address.model.vendor.OperatingHours;
-import seedu.address.model.vendor.VendorPredicate;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Stream;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -28,6 +11,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import seedu.address.logic.commands.vendor.FilterVendorCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.Cost;
+import seedu.address.model.vendor.OperatingHours;
+import seedu.address.model.vendor.VendorPredicate;
 
 /**
  * Parses input arguments and creates a new FilterVendorCommand object
@@ -79,9 +79,9 @@ public class FilterVendorCommandParser implements Parser<FilterVendorCommand> {
             }
 
             Optional<String> operatingHoursOptional = argMultimap.getValue(PREFIX_OPERATING_HOURS);
-            if (operatingHoursOptional.isPresent() &&
-                    (!operatingHoursOptional.get().matches(VALIDATION_OPERATING_HOURS_REGEX) &&
-                            !operatingHoursOptional.get().trim().equals("now"))) {
+            if (operatingHoursOptional.isPresent()
+                    && (!operatingHoursOptional.get().matches(VALIDATION_OPERATING_HOURS_REGEX)
+                    && !operatingHoursOptional.get().trim().equals("now"))) {
                 throw new ParseException(OperatingHours.MESSAGE_FILTER_CONSTRAINTS);
             }
 

@@ -36,6 +36,11 @@ public class FilterGuestCommand extends Command {
 
     private final GuestPredicate predicate;
 
+    /**
+     * Creates a filter guest command
+     *
+     * @param predicate Contains the filter for the guest command.
+     */
     public FilterGuestCommand(GuestPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;

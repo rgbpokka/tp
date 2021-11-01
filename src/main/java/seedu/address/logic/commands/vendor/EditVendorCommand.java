@@ -1,5 +1,24 @@
 package seedu.address.logic.commands.vendor;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VENDORS;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
@@ -8,7 +27,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commonattributes.Email;
 import seedu.address.model.commonattributes.Name;
-import seedu.address.model.guest.Archive;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Cost;
@@ -17,26 +35,6 @@ import seedu.address.model.vendor.Phone;
 import seedu.address.model.vendor.ServiceName;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VENDORS;
 
 public class EditVendorCommand extends Command {
 
@@ -115,7 +113,7 @@ public class EditVendorCommand extends Command {
      * Creates and returns a {@code Vendor} with the details of {@code vendorToEdit}
      * edited with {@code editVendorDescriptor}.
      */
-    private static Vendor createdEditedVendor(Vendor vendorToEdit, EditVendorCommand.EditVendorDescriptor editVendorDescriptor) {
+    private static Vendor createdEditedVendor(Vendor vendorToEdit, EditVendorDescriptor editVendorDescriptor) {
         assert vendorToEdit != null;
 
         Name updatedName = editVendorDescriptor.getName().orElse(vendorToEdit.getName());
@@ -189,7 +187,6 @@ public class EditVendorCommand extends Command {
         /**
          * Returns true if at least one field is edited. Vendor ID has been left out. The explanation is similar to that
          * in EditGuestCommand.
-         *
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, cost, serviceName,

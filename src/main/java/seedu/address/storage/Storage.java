@@ -7,7 +7,6 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.guest.Archive;
 import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.storage.archive.ArchiveStorage;
 import seedu.address.storage.guest.GuestBookStorage;

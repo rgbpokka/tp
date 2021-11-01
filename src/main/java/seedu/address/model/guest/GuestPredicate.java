@@ -1,7 +1,7 @@
 package seedu.address.model.guest;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,8 +10,8 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Guest} matches the {@code PassportNumber}, {@code RoomNumber}, {@code Name}, {@code Email},
@@ -25,6 +25,15 @@ public class GuestPredicate implements Predicate<Guest> {
     private final Optional<String> emailOptional;
     private final Optional<Set<Tag>> tagsOptional;
 
+    /**
+     * Creates a guest predicate.
+     *
+     * @param passportNumberOptional
+     * @param roomNumberOptional
+     * @param nameOptional
+     * @param emailOptional
+     * @param tagsOptional
+     */
     public GuestPredicate(Optional<String> passportNumberOptional,
                           Optional<String> roomNumberOptional,
                           Optional<String> nameOptional,
@@ -45,8 +54,8 @@ public class GuestPredicate implements Predicate<Guest> {
     @Override
     public boolean test(Guest guest) {
         requireNonNull(guest);
-        return testForEmail(guest) && testForName(guest) && testForTags(guest) && testForRoomNumber(guest) &&
-                testForPassportNumber(guest);
+        return testForEmail(guest) && testForName(guest) && testForTags(guest) && testForRoomNumber(guest)
+                && testForPassportNumber(guest);
     }
 
     private boolean testForPassportNumber(Guest guest) {

@@ -70,7 +70,7 @@ public class StringUtil {
 
     /**
      * Lowercases the string and capitalizes the first letter.
-     * 
+     *
      * @param s The input string
      * @return The string with its first character capitalized.
      */

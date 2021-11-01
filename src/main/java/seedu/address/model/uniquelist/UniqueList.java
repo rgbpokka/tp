@@ -1,16 +1,16 @@
 package seedu.address.model.uniquelist;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.uniquelist.exceptions.ItemNotFoundException;
-import seedu.address.model.uniquelist.exceptions.DuplicateItemException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.uniquelist.exceptions.DuplicateItemException;
+import seedu.address.model.uniquelist.exceptions.ItemNotFoundException;
 
 /**
  * A list of items that enforces uniqueness between them and does not allow nulls.
@@ -20,7 +20,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * as to ensure that the item with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
- *
  */
 public class UniqueList<T extends UniqueListItem> implements Iterable<T> {
 
@@ -132,7 +131,7 @@ public class UniqueList<T extends UniqueListItem> implements Iterable<T> {
      * Method for debugging
      */
     public void printItemsInList() {
-        for (T item: internalList) {
+        for (T item : internalList) {
             System.out.println(item.toString());
         }
     }

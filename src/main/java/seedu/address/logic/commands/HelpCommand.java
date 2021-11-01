@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
-import seedu.address.model.guest.Archive;
 
 /**
  * Format full help instructions for every command for display.

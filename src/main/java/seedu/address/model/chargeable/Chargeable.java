@@ -1,14 +1,13 @@
-package seedu.address.model.Chargeable;
+package seedu.address.model.chargeable;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 import seedu.address.model.commonattributes.Name;
 import seedu.address.model.vendor.Cost;
 import seedu.address.model.vendor.ServiceName;
 import seedu.address.model.vendor.VendorId;
-
-import java.util.Objects;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 
 public class Chargeable {
 
@@ -18,6 +17,15 @@ public class Chargeable {
     private final Cost cost;
     private Quantity quantity;
 
+    /**
+     * Creates a chargeable object used for the invoice form.
+     *
+     * @param vendorId
+     * @param name
+     * @param serviceName
+     * @param cost
+     * @param quantity
+     */
     public Chargeable(VendorId vendorId, Name name, ServiceName serviceName, Cost cost, Quantity quantity) {
         requireAllNonNull(name, serviceName, cost);
         this.vendorId = vendorId;

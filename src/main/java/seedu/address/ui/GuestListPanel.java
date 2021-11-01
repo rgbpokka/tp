@@ -14,11 +14,11 @@ import seedu.address.model.guest.Guest;
  * Panel containing the list of persons.
  */
 public class GuestListPanel extends UiPart<Region> {
-    private static final String FXML = "GuestListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(GuestListPanel.class);
-    
     public static final String TAB_NAME = "Guests";
-    
+    private static final String FXML = "GuestListPanel.fxml";
+
+    private final Logger logger = LogsCenter.getLogger(GuestListPanel.class);
+
     @FXML
     private ListView<Guest> guestListView;
 

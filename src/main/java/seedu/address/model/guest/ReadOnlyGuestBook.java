@@ -3,7 +3,7 @@ package seedu.address.model.guest;
 import javafx.collections.ObservableList;
 
 /**
- * Unmodifiable view of a guest manager 
+ * Unmodifiable view of a guest manager
  */
 public interface ReadOnlyGuestBook {
 

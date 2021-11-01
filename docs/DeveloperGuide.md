@@ -397,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a2. **PH** informs the user that saving the new contact list was unsuccessful.
 
       Use case ends.
-    
+
 
 #### UC3: Searching for a guest
 
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. **PH** shows message indicating no such guest exists in the list.
 
       Use case ends.
-    
+
 
 #### UC4: Searching for a staff
 
@@ -475,7 +475,7 @@ Same as UC3 except that guest is replaced with staff.
     * 1c1. **PH** shows message indicating no such field exists.
 
       Use case ends.
-    
+
 
 #### UC6: Editing fields of staff
 
@@ -511,7 +511,7 @@ Same as UC5 except that guest is replaced with staff.
     * 1c1. **PH** shows message indicating only alphanumeric characters are to be used for names.
 
       Use case ends.
-    
+
 
 #### UC8: Adding staff
 
@@ -552,7 +552,7 @@ Same as UC9 except that guest is replaced with staff.
 4. **PH** should retain all functionalities even without a connection to the internet.
 5. **PH** is meant to be used by single user at any given time.
    *{More to be added}*
-   
+
 
 ### Glossary
 
@@ -647,7 +647,7 @@ testers are expected to do more *exploratory* testing.
 1. Upon performing the `checkout` command in the previous section, a PDF invoice of all the guests expenses will be generated.
    1. test case: From previous step<br>
    Expected: Check directory which contains jar file for PDF named `S1234 <CURRENT_TIME>`, PDF should contain base price of hotel stay and the 2 charges by vendor 001
-   
+
 ### Return check in
 1. Return check in for guests whose details have been previously entered into the hotel
    1. test case: `returncheckin pn/S1234 r/411`<br>
@@ -665,7 +665,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Show all guests
 1. Removes filters and switches to the guest list
-   1. test case: 
+   1. test case:
       1. Perform filter guest example above
       2. Click on vendor list
       3. `listguest`<br>
@@ -681,7 +681,7 @@ testers are expected to do more *exploratory* testing.
        3. `deleteguest pn/1234`<br>
    Expected: Message notifying that guest is deleted
 
-    
+
 ### Clear guest
 1. Deletes all guests from PH, even archived ones
    1. test case:
@@ -723,7 +723,7 @@ testers are expected to do more *exploratory* testing.
     Expected: Filters all vendors that operate anywhere between 0800 and 1300 on a Friday and displays them to the GUI
     3. Test caseL `filtervendor sn/Food`<br>
     Expected: Filters all vendors that have a service name field of food.
-    
+
 ### Show all vendors
 1. Removes filters and switches to the vendor list
     1. test case:

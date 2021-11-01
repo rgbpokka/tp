@@ -1,11 +1,11 @@
 package seedu.address.model.guest;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
 
 public class GuestBook implements ReadOnlyGuestBook {
 
@@ -17,12 +17,13 @@ public class GuestBook implements ReadOnlyGuestBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         guests = new UniqueGuestList();
     }
-    
+
     public GuestBook() {
-         
+
     }
 
     /**
@@ -40,7 +41,7 @@ public class GuestBook implements ReadOnlyGuestBook {
     public void setGuests(List<Guest> guests) {
         this.guests.setItems(guests);
     }
-    
+
     /**
      * Resets the existing data of this {@code GuestBook} with {@code newData}.
      */
@@ -76,13 +77,13 @@ public class GuestBook implements ReadOnlyGuestBook {
     }
 
     /**
-     * Gets the given guest in the list with the given passportNumber. 
+     * Gets the given guest in the list with the given passportNumber.
      * If Guest does not exist in the guest book, then Optional is empty.
      */
     public Optional<Guest> getGuest(PassportNumber passportNumber) {
         requireNonNull(passportNumber);
         return guests.get(passportNumber);
-    } 
+    }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.

@@ -11,12 +11,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.vendor.Vendor;
 
 public class VendorListPanel extends UiPart<Region> {
-
+    public static final String TAB_NAME = "Vendors";
     private static final String FXML = "VendorListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(VendorListPanel.class);
-    
-    public static final String TAB_NAME = "Vendors";
-    
+
     @FXML
     private ListView<Vendor> vendorListView;
 
@@ -45,5 +43,5 @@ public class VendorListPanel extends UiPart<Region> {
             }
         }
     }
-    
+
 }

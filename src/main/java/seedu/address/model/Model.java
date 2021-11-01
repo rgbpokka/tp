@@ -1,8 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -10,11 +7,11 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.guest.Archive;
+import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.model.vendor.ReadOnlyVendorBook;
 import seedu.address.model.vendor.Vendor;
-import seedu.address.model.guest.Guest;
 import seedu.address.model.vendor.VendorId;
 
 /**
@@ -66,8 +63,9 @@ public interface Model {
      * Returns the GuestBook
      */
     ReadOnlyGuestBook getGuestBook();
-    
-    // ==================== Guest operations =====================    
+
+    // ==================== Guest operations =====================
+
     /**
      * Returns true if a guest with the same identity as {@code guest} exists in the address book.
      */
@@ -119,7 +117,7 @@ public interface Model {
 
     void deleteArchivedGuest(Guest target);
 
-    void addArchivedGuest(Guest guest) ;
+    void addArchivedGuest(Guest guest);
 
     Optional<Guest> getArchivedGuest(PassportNumber passportNumber);
 
@@ -128,6 +126,7 @@ public interface Model {
     Path getArchiveFilePath();
 
     // ==================== Vendor operations =====================
+
     /**
      * Returns true if a tag with the same identity as {@code vendor} exists in the address book.
      */
@@ -153,7 +152,7 @@ public interface Model {
     void setVendor(Vendor target, Vendor editedVendor);
 
     /**
-     * Gets vendor given the vendor id 
+     * Gets vendor given the vendor id
      */
     Optional<Vendor> getVendor(VendorId vendorId);
 

@@ -1,19 +1,19 @@
 package seedu.address.model.guest;
 
-import seedu.address.model.Chargeable.Chargeable;
-import seedu.address.model.Chargeable.Quantity;
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.uniquelist.UniqueListItem;
-import seedu.address.model.vendor.Vendor;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.chargeable.Chargeable;
+import seedu.address.model.chargeable.Quantity;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.uniquelist.UniqueListItem;
+import seedu.address.model.vendor.Vendor;
 
 public class Guest extends UniqueListItem {
 
@@ -42,7 +42,17 @@ public class Guest extends UniqueListItem {
         this.chargeablesUsed = new ArrayList<>();
     }
 
-    public Guest(Name name, Email email, Set<Tag> tags, RoomNumber roomNumber, PassportNumber passportNumber, 
+    /**
+     * Alternate constructor for guests.
+     *
+     * @param name
+     * @param email
+     * @param tags
+     * @param roomNumber
+     * @param passportNumber
+     * @param chargeablesUsed
+     */
+    public Guest(Name name, Email email, Set<Tag> tags, RoomNumber roomNumber, PassportNumber passportNumber,
                  List<Chargeable> chargeablesUsed) {
         this.name = name;
         this.email = email;
@@ -79,9 +89,16 @@ public class Guest extends UniqueListItem {
     public List<Chargeable> getChargeableUsed() {
         return chargeablesUsed;
     }
-    
+
+    /**
+     * Charges a guest to a vendor hired.
+     *
+     * @param vendor The vendor hired.
+     */
     public void charge(Vendor vendor) {
-        Chargeable newCharge = new Chargeable(vendor.getVendorId(), vendor.getName(), vendor.getServiceName(), vendor.getCost(), new Quantity(1));
+        Chargeable newCharge =
+                new Chargeable(vendor.getVendorId(), vendor.getName(), vendor.getServiceName(), vendor.getCost(),
+                        new Quantity(1));
         if (getChargeableUsed().contains(newCharge)) {
             for (Chargeable currCharge : getChargeableUsed()) {
                 if (currCharge.equals(newCharge)) {
@@ -94,7 +111,7 @@ public class Guest extends UniqueListItem {
     }
 
     /**
-     *  Is there a better way to implement this?
+     * Is there a better way to implement this?
      */
     public void clearChargeables() {
         this.chargeablesUsed = new ArrayList<>();

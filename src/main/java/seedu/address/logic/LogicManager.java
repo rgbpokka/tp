@@ -57,7 +57,7 @@ public class LogicManager implements Logic {
 
         return commandResult;
     }
-    
+
     @Override
     public ReadOnlyVendorBook getVendorBook() {
         return model.getVendorBook();
@@ -67,7 +67,7 @@ public class LogicManager implements Logic {
     public ObservableList<Vendor> getFilteredVendorList() {
         return model.getFilteredVendorList();
     }
-    
+
     @Override
     public Path getVendorBookFilePath() {
         return model.getVendorBookFilePath();
@@ -82,7 +82,7 @@ public class LogicManager implements Logic {
     public ObservableList<Guest> getFilteredGuestList() {
         return model.getFilteredGuestList();
     }
-    
+
     @Override
     public Path getGuestBookFilePath() {
         return model.getGuestBookFilePath();

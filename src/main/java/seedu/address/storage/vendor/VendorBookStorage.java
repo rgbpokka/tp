@@ -1,11 +1,11 @@
 package seedu.address.storage.vendor;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.vendor.ReadOnlyVendorBook;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
 
 public interface VendorBookStorage {
 
@@ -16,9 +16,10 @@ public interface VendorBookStorage {
 
     /**
      * Returns vendor data as a {@link ReadOnlyVendorBook}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyVendorBook> readVendorBook() throws DataConversionException, IOException;
 
@@ -29,6 +30,7 @@ public interface VendorBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyVendorBook} to the storage.
+     *
      * @param vendorBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

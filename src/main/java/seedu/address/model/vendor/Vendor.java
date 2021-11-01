@@ -1,16 +1,16 @@
 package seedu.address.model.vendor;
 
-import seedu.address.model.uniquelist.UniqueListItem;
-import seedu.address.model.commonattributes.Email;
-import seedu.address.model.commonattributes.Name;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.commonattributes.Email;
+import seedu.address.model.commonattributes.Name;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.uniquelist.UniqueListItem;
 
 public class Vendor extends UniqueListItem {
 
@@ -23,9 +23,22 @@ public class Vendor extends UniqueListItem {
     private final Cost cost;
     private final OperatingHours operatingHours;
     private Set<Tag> tags = new HashSet<>();
-    
-    public Vendor(Name name, Email email, Set<Tag> tags, VendorId vendorId, Phone phone, ServiceName serviceName, Address address,
-                  Cost cost, OperatingHours operatingHours) {
+
+    /**
+     * Creates a vendor.
+     *
+     * @param name
+     * @param email
+     * @param tags
+     * @param vendorId
+     * @param phone
+     * @param serviceName
+     * @param address
+     * @param cost
+     * @param operatingHours
+     */
+    public Vendor(Name name, Email email, Set<Tag> tags, VendorId vendorId, Phone phone,
+                  ServiceName serviceName, Address address, Cost cost, OperatingHours operatingHours) {
         requireAllNonNull(name, email, tags, vendorId, serviceName, address, cost, operatingHours);
         this.name = name;
         this.email = email;
@@ -91,12 +104,12 @@ public class Vendor extends UniqueListItem {
         if (otherItem == this) {
             return true;
         }
-        
+
         if (otherItem instanceof Vendor) {
             Vendor otherVendor = (Vendor) otherItem;
             return otherVendor.getVendorId().equals(getVendorId());
         }
-        
+
         return false;
     }
 
@@ -130,7 +143,7 @@ public class Vendor extends UniqueListItem {
     public int hashCode() {
         return Objects.hash(name, email, tags, address, serviceName, cost, operatingHours, vendorId, phone);
     }
-    
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

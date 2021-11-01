@@ -1,15 +1,15 @@
 package seedu.address.logic.commands.vendor;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -44,6 +44,11 @@ public class FilterVendorCommand extends Command {
 
     private final VendorPredicate predicate;
 
+    /**
+     * Creates a filter vendor command.
+     *
+     * @param predicate The predicates that filters the vendors.
+     */
     public FilterVendorCommand(VendorPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;

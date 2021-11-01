@@ -1,5 +1,12 @@
 package seedu.address.logic.parser.guest;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.guest.ChargeGuestCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -9,13 +16,6 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.guest.PassportNumber;
 import seedu.address.model.vendor.VendorId;
-
-import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSPORT_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENDOR_ID;
 
 /**
  * Parses inputs arguments and creates a new ChargeGuestCommand object
@@ -40,7 +40,7 @@ public class ChargeGuestCommandParser implements Parser<ChargeGuestCommand> {
 
         PassportNumber passportNumber =
                 ParserUtil.parsePassportNumber(argMultimap.getValue(PREFIX_PASSPORT_NUMBER).get());
-        VendorId vendorId = 
+        VendorId vendorId =
                 ParserUtil.parseVendorId(argMultimap.getValue(PREFIX_VENDOR_ID).get());
 
         return new ChargeGuestCommand(passportNumber, vendorId);

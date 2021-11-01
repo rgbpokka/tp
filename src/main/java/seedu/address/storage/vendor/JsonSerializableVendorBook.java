@@ -1,16 +1,17 @@
 package seedu.address.storage.vendor;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.VendorBook;
-import seedu.address.model.vendor.ReadOnlyVendorBook;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.vendor.ReadOnlyVendorBook;
+import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorBook;
 
 /**
  * An Immutable VendorBook() that is serializable to JSON format.

@@ -56,7 +56,7 @@ you are able to use this guide as we intended and become a master in using our a
 
     * **`addvendor`**`vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000` : Adds a vendor
         named `Wang's Satay` to the address book.
-        
+
     * **`exit`** : Exits the app.
 
 You may refer to the [features](#features) below for details of each command and to get familiarized with the syntax of
@@ -156,7 +156,7 @@ Upon checking out a guest, a PDF invoice will be generated in the directory that
 
 The invoice contains information such as the cost of the hotel stay (This is a fixed price in the current version) and any services
 that has been used during the guests stay (See [chargeguest](#charge-a-guest-for-a-service-chargeguest))
-                                                        
+
 ![](images/SampleInvoice.png)
 
 <div markdown="block" class="alert alert-info">
@@ -221,7 +221,7 @@ Example:
 
 #### Editing fields of a guest: `editguest`
 
-Edits a **guest**'s contact details. Only edits the fields that have been passed in as parameters (See example for further 
+Edits a **guest**'s contact details. Only edits the fields that have been passed in as parameters (See example for further
 elaboration).
 
 Format:
@@ -233,7 +233,7 @@ Parameters:
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
 * `NAME`: No constraints on name used. Cannot be left blank.
 * `EMAIL`: A valid email address should be used.
-* `ROOM_NUMBER`: Only numbers greater than 0 are valid. 
+* `ROOM_NUMBER`: Only numbers greater than 0 are valid.
 * `TAG`: An optional field, more than one can be included in each command.
 
 Example:
@@ -241,7 +241,7 @@ Example:
   room number field with the new room number provided. All his other fields (**NAME**, **EMAIL**, **PASSPORT_NUMBER**, **TAG**)
   will remain unchanged.
 
-* `editguest pn/X87654321A t/VIP t/LoyalGuest e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites his existing tags with the new tags provided, 
+* `editguest pn/X87654321A t/VIP t/LoyalGuest e/jj@mailer.com` locates the guest Jeremy, by his passport number X87654321A and overwrites his existing tags with the new tags provided,
   and overwrites the old email field with the new email provided. All his other fields (**NAME**, **PASSPORT_NUMBER**, **ROOM_NUMBER**) will remain unchanged.
 
 <div markdown="block" class="alert alert-info">
@@ -253,7 +253,7 @@ Example:
 
 * You can edit more than one field at a time (See example above).
 
-* You cannot edit a guest's passport number. 
+* You cannot edit a guest's passport number.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -280,9 +280,9 @@ Format:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
 * **Archived guests** are not deleted.
-</div>    
+</div>
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The `clearguest` command would remove all guest and this action is irreversible. 
+The `clearguest` command would remove all guest and this action is irreversible.
 Only use this command if you really need to wipe all guest data.
 </div>
 
@@ -290,8 +290,8 @@ Only use this command if you really need to wipe all guest data.
 
 #### Show all guests: `listguest`
 
-Shows all the guests checked into the hotel. Useful command to use after `filterguest`, 
-it essentially removes any filter that was previously applied to the guest list. 
+Shows all the guests checked into the hotel. Useful command to use after `filterguest`,
+it essentially removes any filter that was previously applied to the guest list.
 
 Format:
 <br>`listguest`
@@ -308,7 +308,7 @@ Format:
 
 Charges a guest for a service offered by a vendor, and adds it to the invoice that will be generated upon checkout.
 
-Format:    
+Format:
 <br>`chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`
 
 Parameters:
@@ -317,14 +317,14 @@ Parameters:
   * The `VENDOR_ID` must be from one of the existing vendors in the **PH**
 
 Example:
-* `chargeguest pn/T0134568D vid/001` , Charge the guest with passport number `T0134568D` with the service 
+* `chargeguest pn/T0134568D vid/001` , Charge the guest with passport number `T0134568D` with the service
 provided by the vendor with the vendor id of `001`.
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Filter guest list: `filterguest`
 
-Displays only the guests that meet your requirements, as specified by what you wrote in your filter. This helps you 
+Displays only the guests that meet your requirements, as specified by what you wrote in your filter. This helps you
 easily find and search through smaller and more manageable lists, instead of scrolling through the entire guest list.
 
 Format:
@@ -344,15 +344,15 @@ Parameters:
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.
   * The room number specified by you needs to match with the guest's room number partially to be filtered, however the order is important, unlike `EMAIL` and `NAME`.
   * E.g. a guest with a `ROOM_NUMBER` of `201` will be shown in the **GUI** if you run the command `filterguest r/2`
-    * However, the guest will not be filtered if you run the command `filterguest r/1`. The reason for this is that hotels 
-    generally have room numbers with its starting number as the floor level. Such as all hotel rooms on level 1, will 
-    have their room number starting with 1. 
-    * We felt that this would provide you a more useful filter, as running `filterguest r/2` would filter all the guest 
-    with their room number starting with a 2, and in essence you would be filtering all the guests that are residing in 
-    the second floor of your hotel. This would mean guests with `ROOM_NUMBER` that do not start with `2` but may have `2` 
+    * However, the guest will not be filtered if you run the command `filterguest r/1`. The reason for this is that hotels
+    generally have room numbers with its starting number as the floor level. Such as all hotel rooms on level 1, will
+    have their room number starting with 1.
+    * We felt that this would provide you a more useful filter, as running `filterguest r/2` would filter all the guest
+    with their room number starting with a 2, and in essence you would be filtering all the guests that are residing in
+    the second floor of your hotel. This would mean guests with `ROOM_NUMBER` that do not start with `2` but may have `2`
     in their `ROOM_NUMBER` are not filtered. An example being `102`.
 * `TAG`: An optional field, more than one can be included in the command. Tags are case-insensitive.
-  * The tags specified by you need to match the guest's tags exactly to be filtered. 
+  * The tags specified by you need to match the guest's tags exactly to be filtered.
   * E.g. guests with a `TAG` of `VIP` and guests with a `TAG` of `Deluxe` will be filtered if you run the command `filterguest t/vip t/deluxe`
     * Note that guest with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
 
@@ -362,7 +362,7 @@ Example:<br>
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
-* Running the `filterguest` command always applies the filter to all your guests in **PH** and not to an already filtered guest list. 
+* Running the `filterguest` command always applies the filter to all your guests in **PH** and not to an already filtered guest list.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -455,7 +455,7 @@ Format:
 <br>`clearvendor`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The `clearvendor` command would remove all vendors and this action is irreversible. 
+The `clearvendor` command would remove all vendors and this action is irreversible.
 Only use this command if you really need to wipe all vendor data.
 </div>
 
@@ -518,18 +518,18 @@ Parameters:
   * E.g. vendors with `OPERATING_HOURS` on Tuesday and operate **anywhere** between 0800 and 1300 will be shown in the **GUI** if you run the command `filtervendor oh/2 0800-1300`
   * E.g. vendors with `OPERATING_HOURS` that are currently operating will be shown in the **GUI** if you run the command `filtervendor oh/now`
 * `TAG`: An optional field, more than one can be included in the command. Tags are case-insensitive
-  * The tags specified by you need to match the vendor's tags exactly to be filtered. 
+  * The tags specified by you need to match the vendor's tags exactly to be filtered.
   * E.g. vendors with a `TAG` of `Cheap` and vendors with a `TAG` of `Good Rating` will be filtered if you run the command `filtervendor t/cheap t/good rating`
     * Note that vendors with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
-    
+
 Example:<br>
 ![FilterOperatingFoodExample](images/FilterOperatingFoodVendor.png)
-`filtervendor sn/Food c/>10 oh/now`, vendors with the `SERVICE_NAME` food and provide the service at a `COST` greater 
+`filtervendor sn/Food c/>10 oh/now`, vendors with the `SERVICE_NAME` food and provide the service at a `COST` greater
 than 10 and have `OPERATING_HOURS` where they are currently operating now will be filtered from **PH**
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
-* Running the `filtervendor` command always applies the filter to all your vendors in **PH** and not to an already filtered vendor list. 
+* Running the `filtervendor` command always applies the filter to all your vendors in **PH** and not to an already filtered vendor list.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -565,7 +565,7 @@ The Json files storing guest and vendor data are found at:
 `[JAR file location]/data/guest.json` & `[JAR file location]/data/vendor.json`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Editing the json file directly should only be done by a user experienced with .json format files. 
+Editing the json file directly should only be done by a user experienced with .json format files.
 As failure to follow the correct formatting would result in a corrupted file and would be replace with an empty file.
 </div>
 
@@ -581,9 +581,9 @@ The Json files storing archive guest data are found at:
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
 * The archived guests would have the room number and services field emptied in the Json file.
-<br>Archived guest are also not shown in the UI. The rationale for this is that a returning guest would provide 
-his/her details to the receptionist upon checking in to the hotel, hence there is no need for the receptionist to 
-refer to details of the archived guests in the UI. 
+<br>Archived guest are also not shown in the UI. The rationale for this is that a returning guest would provide
+his/her details to the receptionist upon checking in to the hotel, hence there is no need for the receptionist to
+refer to details of the archived guests in the UI.
 </div>
 
 
