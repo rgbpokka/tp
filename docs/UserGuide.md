@@ -357,9 +357,8 @@ Parameters:
     * Note that guest with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
 
 Example:<br>
-![FilterAlexExample](images/FilterGuestAlex.png)
-`filterguest n/alex`, guests with a `NAME` that contains Alex, will be filtered from **PH**.
-`filterguest n/boon r/2`, guests with a `NAME` that contains boon and have a `ROOM_NUMBER` starting with 2, will be filtered from **PH**.
+![FilterAlexWithRoomNumber2Example](images/FilterGuestAlex.png)
+`filterguest n/alex r/2`, guests with a `NAME` that contains Alex and have a `ROOM_NUMBER` starting with 2, will be filtered from **PH**.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
