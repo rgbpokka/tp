@@ -46,7 +46,7 @@ public class FilterGuestCommand extends Command {
         requireNonNull(model);
         model.updateFilteredGuestList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_GUESTS_LISTED_OVERVIEW, model.getFilteredGuestList().size()));
+                String.format(Messages.MESSAGE_GUESTS_LISTED_OVERVIEW, model.getFilteredGuestList().size()), "Guests");
     }
 
     @Override

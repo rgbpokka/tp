@@ -104,7 +104,7 @@ public class ParserUtil {
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Email(trimmedEmail.toLowerCase());
     }
 
     /**
@@ -205,7 +205,7 @@ public class ParserUtil {
         String trimmedCost = cost.trim();
         Double result;
         try {
-            result = Double.parseDouble(trimmedCost);
+            result = Math.round(Double.parseDouble(trimmedCost) * 100.0) / 100.0;
         } catch (Exception e) {
             throw new ParseException(Cost.INVALID_DOUBLE);
         }

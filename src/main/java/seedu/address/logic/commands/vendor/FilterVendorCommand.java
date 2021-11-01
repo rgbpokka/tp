@@ -54,7 +54,8 @@ public class FilterVendorCommand extends Command {
         requireNonNull(model);
         model.updateFilteredVendorList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_VENDORS_LISTED_OVERVIEW, model.getFilteredVendorList().size()));
+                String.format(Messages.MESSAGE_VENDORS_LISTED_OVERVIEW, model.getFilteredVendorList().size()),
+                "Vendors");
     }
 
     @Override
