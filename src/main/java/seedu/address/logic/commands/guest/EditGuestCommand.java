@@ -54,6 +54,7 @@ public class EditGuestCommand extends Command {
     public static final String MESSAGE_EDIT_GUEST_SUCCESS = "Edited Guest: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_GUEST = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ROOM = "This room number is already in use.";
 
     private final PassportNumber passportNumber;
     private final EditGuestDescriptor editGuestDescriptor;
@@ -92,11 +93,11 @@ public class EditGuestCommand extends Command {
             if (guestToLocate.isPresent()) {
                 throw new CommandException(Messages.MESSAGE_GUEST_IS_IN_ARCHIVE);
             } else {
-                throw new CommandException(Messages.MESSAGE_GUEST_DOES_NOT_EXIST);
+                throw new CommandException(Messages.MESSAGE_GUEST_TO_EDIT_DOES_NOT_EXIST);
             }
         }
 
-        Guest editedGuest = createEditedGuest(guestToEdit, editGuestDescriptor);
+        Guest editedGuest = createEditedGuest(guestToEdit, editGuestDescriptor, model);
 
         if (!guestToEdit.isSame(editedGuest) && model.hasGuest(editedGuest)) {
             throw new CommandException(MESSAGE_DUPLICATE_GUEST);
@@ -111,18 +112,27 @@ public class EditGuestCommand extends Command {
      * Creates and returns a {@code Guest} with the details of {@code guestToEdit}
      * edited with {@code editGuestDescriptor}.
      */
-    private static Guest createEditedGuest(Guest guestToEdit, EditGuestDescriptor editGuestDescriptor) {
+    private static Guest createEditedGuest(Guest guestToEdit, EditGuestDescriptor editGuestDescriptor, Model model) throws CommandException {
         assert guestToEdit != null;
 
         Name updatedName = editGuestDescriptor.getName().orElse(guestToEdit.getName());
         Email updatedEmail = editGuestDescriptor.getEmail().orElse(guestToEdit.getEmail());
         Set<Tag> updatedTags = editGuestDescriptor.getTags().orElse(guestToEdit.getTags());
         RoomNumber updatedRoomNumber = editGuestDescriptor.getRoomNumber().orElse(guestToEdit.getRoomNumber());
-        PassportNumber updatedPassportNumber =
+        PassportNumber passportNumber =
                 editGuestDescriptor.getPassportNumber().orElse(guestToEdit.getPassportNumber());
         List<Chargeable> chargeablesUsed = guestToEdit.getChargeableUsed();
+        // checks that newly provided room number is not already in use by another guest
+        if (model.getFilteredGuestList()
+                .stream()
+                .filter(v -> ! v.getPassportNumber().equals(passportNumber) && v.getRoomNumber().equals(updatedRoomNumber))
+                .findAny()
+                .orElse(null) != null) {
+            throw new CommandException(MESSAGE_DUPLICATE_ROOM);
+        }
 
-        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, updatedPassportNumber, chargeablesUsed);
+
+        return new Guest(updatedName, updatedEmail, updatedTags, updatedRoomNumber, passportNumber, chargeablesUsed);
     }
 
     @Override
