@@ -10,6 +10,10 @@
     -fx-opacity: 0.9;
 }
 
+.corner {
+    -fx-background-color: transparent;
+}
+
 .label-column-header {
     -fx-font-size: 12pt;
     -fx-text-fill: white;
