@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -55,6 +57,22 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane tabPanelPlaceholder;
+
+    @FXML
+    private ToggleButton guests;
+
+    @FXML
+    private ToggleButton vendors;
+
+    @FXML
+    private void handleClickVendorTab() {
+        toggleTab(VendorListPanel.TAB_NAME);
+    }
+
+    @FXML
+    private void handleClickGuestTab() {
+        toggleTab(GuestListPanel.TAB_NAME);
+    }
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -122,7 +140,6 @@ public class MainWindow extends UiPart<Stage> {
         vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
 
         toggleTab(GuestListPanel.TAB_NAME);
-        tabPanelPlaceholder.getChildren().add(new TabPanel(this::toggleTab).getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -142,15 +159,18 @@ public class MainWindow extends UiPart<Stage> {
         case GuestListPanel.TAB_NAME:
             listPanelPlaceholder.getChildren().add(guestListPanel.getRoot());
             statusbarPlaceholder.getChildren().add(new StatusBarFooter(logic.getGuestBookFilePath()).getRoot());
+            guests.setSelected(true);
+            vendors.setSelected(false);
             break;
         case VendorListPanel.TAB_NAME:
             listPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
             statusbarPlaceholder.getChildren().add(new StatusBarFooter(logic.getVendorBookFilePath()).getRoot());
+            guests.setSelected(false);
+            vendors.setSelected(true);
             break;
         default:
             throw new AssertionError("No such tab name " + tabName);
         }
-
     }
 
     /**
@@ -203,13 +223,13 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            
+
             Optional<String> tabNameToToggleTo = commandResult.getTabNameToToggleTo();
-            
+
             if (tabNameToToggleTo.isPresent()) {
                 toggleTab(tabNameToToggleTo.get());
             }
-            
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

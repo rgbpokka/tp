@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.text.Font?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
          title="Pocket Hotel" minWidth="450" minHeight="600" onCloseRequest="#handleExit" >
     <icons>
@@ -46,8 +48,36 @@
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
                 </StackPane>
-                
-                <StackPane fx:id="tabPanelPlaceholder" prefHeight="40.0" styleClass="pane-with-border"/>
+
+                <HBox fx:id="tabPanel" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="pane-with-border">
+                    <ToggleButton fx:id="guests" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClickGuestTab" text="Guests"
+                                  VBox.vgrow="NEVER">
+                        <padding>
+                            <Insets top="2.0"/>
+                        </padding>
+                        <opaqueInsets>
+                            <Insets left="10.0"/>
+                        </opaqueInsets>
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </ToggleButton>
+                    <ToggleButton fx:id="vendors" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClickVendorTab"
+                                  text="Vendors" VBox.vgrow="NEVER">
+                        <padding>
+                            <Insets top="2.0"/>
+                        </padding>
+                        <opaqueInsets>
+                            <Insets left="10.0"/>
+                        </opaqueInsets>
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </ToggleButton>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                </HBox>
                 
                 <HBox VBox.vgrow="ALWAYS">
                     <VBox fx:id="contactList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
