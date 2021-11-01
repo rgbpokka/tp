@@ -499,8 +499,8 @@ Parameters:
   * E.g. a vendor with a `ADDRESS` of `123 Clementi Rd` will be shown in the **GUI** if you run the command `filtervendor a/clementi`
 * `PHONE_NUMBER`: At least 3 digits long, should only contain numbers.
   * The phone number specified by you needs to match with the vendor's phone number partially to be filtered, however the order is important, unlike `EMAIL` and `NAME`.
-  * E.g. a vendor with a `PHONE_NUMBER` of `93810282` will be shown in the **GUI** if you run the command `filtervendor r/938`
-    * However, the vendor will not be filtered if you run the command `filtervendor r/8102`.
+  * E.g. a vendor with a `PHONE_NUMBER` of `93810282` will be shown in the **GUI** if you run the command `filtervendor p/938`
+    * However, the vendor will not be filtered if you run the command `filtervendor p/8102`.
     * The phone number that you enter into the command will only filter the vendors with phone numbers that start with what you specified in the filter.
 * `SERVICE_NAME`: Alphabetical characters and spaces are allowed.
   * The service name specified by you needs to match the vendor's service name exactly to be filtered. Service names are case-insensitive.
