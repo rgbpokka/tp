@@ -80,7 +80,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be entered by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `checkin n/NAME`, `NAME` is a parameter which can be used as `checkin n/John Doe`.
 
 * Parameter prefixes such as `n/` and `pn/` are special keywords that indicate a start of a parameter.
 
