@@ -31,7 +31,7 @@ public class CheckInNewGuestCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_PASSPORT_NUMBER + "T1234567D "
-            + PREFIX_ROOM_NUMBER + "123"
+            + PREFIX_ROOM_NUMBER + "123 "
             + PREFIX_TAG + "Vaccinated "
             + PREFIX_TAG + "Applied Promocode \n";
 
