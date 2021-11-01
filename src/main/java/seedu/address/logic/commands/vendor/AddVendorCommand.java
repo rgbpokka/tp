@@ -36,11 +36,12 @@ public class AddVendorCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "Clementi Road 123"
-            + PREFIX_VENDOR_ID + "123"
-            + PREFIX_COST + "50.00"
-            + PREFIX_SERVICE_NAME + "Massage"
-            + PREFIX_OPERATING_HOURS + "12345 0800-1700"
+            + PREFIX_PHONE + "85948321 "
+            + PREFIX_ADDRESS + "Clementi Road 123 "
+            + PREFIX_VENDOR_ID + "123 "
+            + PREFIX_COST + "50.00 "
+            + PREFIX_SERVICE_NAME + "Massage "
+            + PREFIX_OPERATING_HOURS + "12345 0800-1700 "
             + PREFIX_TAG + "Vaccinated ";
 
     public static final String MESSAGE_SUCCESS = "New vendor added: %1$s";
