@@ -17,7 +17,7 @@ end box
 activate LogicManager
 
 LogicManager ->  PocketHotelParser : parseCommand("deletevendor vid/123")
-activate PocketHotelParser 
+activate PocketHotelParser
 
 create DeleteVendorCommandParser
 PocketHotelParser -> DeleteVendorCommandParser

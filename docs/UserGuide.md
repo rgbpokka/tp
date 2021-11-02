@@ -375,10 +375,10 @@ Format:
 
 Parameters:
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
-  * The passport number specified by you must _match the guest passport's number exactly_ to be filtered. 
+  * The passport number specified by you must _match the guest passport's number exactly_ to be filtered.
   * E.g. a guest with a `PASSPORT_NUMBER` of `SE1239182` will not be shown in your **GUI** if you run the command `filterguest pn/SE123`
 * `NAME`: No constraints on name used.
-  * The name specified by you simply needs to _match the guest's name partially_ to be filtered. 
+  * The name specified by you simply needs to _match the guest's name partially_ to be filtered.
   * E.g. a guest with a `NAME` of `Jeremy Tan` will be shown in the **GUI** if you run the command `filterguest n/jeremy` or `filterguest n/remy`
     * However, running the command `filterguest n/tan jeremy` will not filter the guest.
 * `EMAIL`: A valid email address should be used.
@@ -711,7 +711,7 @@ Parameter | Prefix | Constraints, Examples
 * **GUI**: Graphical user interface
 * **Guest**: A guest at the hotel
 * **Vendor**: An external entity that a hotel uses for services
-* **PDF**: A file format for electronic document exchange. Short for Portable Document Format. 
+* **PDF**: A file format for electronic document exchange. Short for Portable Document Format.
 * **Unique Identifier**: An attribute that uniquely identifies a guest or vendor in the address book.
 * **Archived Guests**: Guests that are not checked into the hotel and are not displayed, but whose details are stored in **PH**.
 * **Unarchived guests**: Guests who are currently checked into **PH** and can be viewed in the list.
