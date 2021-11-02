@@ -25,27 +25,50 @@ you are able to use this guide as we intended and become a master in using our a
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+# **Using this Guide**
+
+Before you start, we would like to help orientate you to some symbols and text markups that you
+will frequently encounter throughout this guide. 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: This is a note:**<br>
+* Notes will be useful in providing additional information of a certain feature or section. 
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This is a caution.
+Do look out for these! They warn you about any possible risks or dangers of a given action.
+</div>
+
+Markup | Meaning 
+-------|------------------
+[Click me!](#) | These are hyperlinks, that are meant to provide you an easier time navigating this guide.
+**PH** | Denotes glossary terms. These are words that may be confusing or too technical to you. You may refer to the [glossary](#Glossary) if lost.
+`help` | Denotes the commands and parameters used in the application.
+
+[Back to Table of Contents](#table-of-contents)
 
 # **Quick start**
 1. Ensure you have Java `11` or above installed in your Computer ([Instructions on how to check Java version](#faq)).
-
+   1. If you do not have Java `11` installed on your computer. ([Instructions on how to install Java 11](#faq)).
 2. Download the latest `PH.jar` from [here](https://github.com/AY2122S1-CS2103T-W12-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for **PH**.
 
 4. To start the application, you may either:
    1. Double-click the `PH.jar` file to boot up the app.
-   2. Open up your shell terminal in the directory where **PH** resides, and run the command `java -jar PH.jar`.
+   2. Open up your _shell terminal_ in the directory where **PH** resides, and run the command `java -jar PH.jar`.
    (You may follow these guides for [Mac](https://www.macworld.com/article/221277/command-line-navigating-files-folders-mac-terminal.html) or [Windows](https://www.howtogeek.com/659411/how-to-change-directories-in-command-prompt-on-windows-10/))
       The **GUI** similar to the picture below, should appear in a few seconds. Note how the app contains some sample data.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-* For Mac users, method 2 is the recommended way to open your files to ensure that you are able to see the save data for _PH_
+For Mac users, method 2 is the recommended way to open your files to ensure that you are able to see the save data for **PH**
 </div>
 
 ![](images/UIHighlightingCommandBox.png)
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
-5. Type any command in the command box (Highlighted in red above) and press Enter to execute it. e.g. typing `help` and pressing Enter will
+5. Type any command in the command box _(Highlighted in red above)_ and press Enter to execute it. e.g. typing `help` and pressing Enter will
    open the help window. Click the tab for the list that you would like to view e.g click vendor to view vendors in stored in **PH**<br>
    Some example commands you can try:
 
@@ -57,16 +80,20 @@ you are able to use this guide as we intended and become a master in using our a
     * **`addvendor`**`vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000` : Adds a vendor
         named `Wang's Satay` to the address book.
 
+    * **`deletevendor`**`vid/123` : Deletes the vendor with vendor id 123.
+
     * **`exit`** : Exits the app.
 
 You may refer to the [features](#features) below for details of each command and to get familiarized with the syntax of
 the commands.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # **Features**
 
-**PH**’s features revolve around managing your guests and vendors. For each command, a short description of its use is
+**PH**’s features revolve around managing your **guests** and **vendors**. For each command, a short description of its use is
 given which is then followed by the format and a short example to help ensure that you have executed the command
 correctly.
 
@@ -106,15 +133,15 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Contacts in Pocket Hotel
-There are 2 types of contacts in **PH**, guests and vendors. Guests represent guests of the hotel, and vendors represent external companies employed by a hotel for services. Guest are identified by their `PASSPORT_NUMBER`
-and Vendors are identified by their `VENDOR_ID`. These fields are their unique identifier, and no two contacts can have the same unique identifier.
+There are 2 types of contacts in **PH**, **guests** and **vendors**. Guests represent guests of the hotel, and vendors represent external companies employed by a hotel for services. Guest are identified by their `PASSPORT_NUMBER`
+and Vendors are identified by their `VENDOR_ID`. These fields are their **unique identifier**, and no two contacts can have the same unique identifier.
 
-It is possible for guests and vendors to have the same unique identifier for example, `VENDOR_ID` of a vendor is 111 and `PASSPORT_NUMBER` for a guest is 111, as they represent 2 different entities.
+It is possible for **guests** and **vendors** to have the same **unique identifier** for example, `VENDOR_ID` of a vendor is 111 and `PASSPORT_NUMBER` for a guest is 111, as they represent 2 different entities.
 
 Guests and vendors have different parameters, which can be found in the [parameter constraints table](#parameter-constraints-section) or in the command instructions.
 
 ## Navigating between guest and vendor list
-You have 2 options to navigate between the guest and vendor list.
+You have 2 options to navigate between the **guest** and **vendor** list.
 
 Either
 1. Click the button on the **GUI** to view the different lists e.g To view the guest list click on the guest button.
@@ -129,18 +156,18 @@ Either
 </div>
 
 ## Tagging a guest or vendor
-We have implemented a tagging system that allows you to attach labels to guests or vendors. You are able to see the
+We have implemented a tagging system that allows you to attach labels to **guests** or **vendors**. You are able to see the
 tags attached to every guest or vendor, and the `filterguest` and `filtervendor` commands allows you to filter your lists
-by fields or even tags! These tags can be used in any way you like. One idea is to
+by fields or even tags! These tags can be used in _any way you like_. One idea is to
 note down important details about guest such as adding a "vegetarian" tag to guests who are vegetarian or have other dietary
 restrictions.
 
 Every vendor and guest can have more than one tag attached to them, so you are free to integrate your existing system of organising guests or vendors
-right into _PH_!
+right into **PH**!
 
 ## Archiving guest information
-Upon checking out a guest, their contact is removed from the list, BUT their information is not deleted. It is instead moved
-to an archive where the information is stored. This allows you to use the `returncheckin` command to check in the guest on their
+Upon checking out a **guest**, their contact is removed from the list, BUT their information is not deleted. It is instead moved
+to an archive where the information is stored. This allows you to use the `returncheckin` command to check in the **guest** on their
 subsequent visits and saves you the time of entering all their information again.
 
 <div markdown="block" class="alert alert-info">
@@ -151,7 +178,7 @@ subsequent visits and saves you the time of entering all their information again
 </div>
 
 ## Invoice Generation
-Upon checking out a guest, a PDF invoice will be generated in the directory that the `PH.jar` is found in. The invoice will be named in the format
+Upon checking out a **guest**, a **PDF** invoice will be generated in the directory that the `PH.jar` is found in. The invoice will be named in the format
 `GUEST_NAME YYYY-MM-DD HH-MM-SS.pdf`, where the `YYYY-MM-DD HH-MM-SS` denotes the current year, month, data, hours, minutes and seconds, at the time the invoice was generated.
 
 The invoice contains information such as the cost of the hotel stay (This is a fixed price in the current version) and any services
@@ -162,7 +189,7 @@ that has been used during the guests stay (See [chargeguest](#charge-a-guest-for
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes:**<br>
 
-* This time is based of the clock on your computer.
+* This time is based off the internal clock of your computer.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -187,13 +214,13 @@ Parameters:
 
 Example:
 ![addGuest.png](images/addGuest.png)
-* `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new guest, Bing Cheng to **PH** and shows the new contact
+* `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new **guest**, Bing Cheng to **PH** and shows the new contact
   list.
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Checking in a returning guest: `returncheckin`
-Checks in a returning **guest** into **PH**, by retrieving their details from the archive.
+Checks in a returning **guest** into **PH**, by retrieving their details from the archive and providing them a new room number to check into.
 
 Format:
 <br>`returncheckin pn/<PASSPORT_NUMBER> r/<ROOM_NUMBER>`
@@ -205,7 +232,7 @@ Parameters:
 [Back to Table of Contents](#table-of-contents)
 
 #### Checking out a guest: `checkout`
-Checks out a **guest** by archiving their details and generating an invoice of all the services used by the guest.
+Checks out a **guest** by archiving their details and generating an invoice for all the services hired by the **guest** during their stay.
 
 Format:
 <br>`checkout pn/<PASSPORT_NUMBER>`
@@ -226,7 +253,7 @@ elaboration).
 
 Format:
 
-`editguest pn/<PASSPORT_NUMBER> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
+`editguest pn/<PASSPORT_NUMBER> [<FIELD_NAME>/<NEW_FIELD_DETAILS>]`
 
 Parameters:
 
@@ -248,6 +275,8 @@ Example:
 **:information_source: Notes:**<br>
 
 * Existing field values will be overwritten by the newly provided field values.
+
+* The passport number must be provided, as it is used to identify which guest to be edited.
 
 * You need to specify at least one field to edit.
 
@@ -272,25 +301,25 @@ Example:
 
 #### Clear all checked in guests: `clearguest`
 
-Deletes all guests that are currently checked in.
+Deletes all **guests** that are currently checked in.
 
 Format:
 <br>`clearguest`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The `clearguest` command would remove all guests and is irreversible.
+Only use this command if you are absolutely you need to wipe all guest data.
+</div>
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
 * **Archived guests** are not deleted.
-</div>
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The `clearguest` command would remove all guest and this action is irreversible.
-Only use this command if you really need to wipe all guest data.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Show all guests: `listguest`
 
-Shows all the guests checked into the hotel. Useful command to use after `filterguest`,
+Shows all the **guests** checked into the hotel. Useful command to use after `filterguest`,
 it essentially removes any filter that was previously applied to the guest list.
 
 Format:
@@ -306,7 +335,7 @@ Format:
 
 #### Charge a guest for a service: `chargeguest`
 
-Charges a guest for a service offered by a vendor, and adds it to the invoice that will be generated upon checkout.
+Charges a **guest** for a service offered by a vendor, and adds it to the invoice that will be generated upon checkout.
 
 Format:
 <br>`chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`
@@ -324,35 +353,35 @@ provided by the vendor with the vendor id of `001`.
 
 #### Filter guest list: `filterguest`
 
-Displays only the guests that meet your requirements, as specified by what you wrote in your filter. This helps you
-easily find and search through smaller and more manageable lists, instead of scrolling through the entire guest list.
+Displays only the **guests** that meet your requirements, as specified by what you wrote in your filter. This helps you
+easily find and search through _smaller and more manageable lists_, instead of scrolling through the entire guest list.
 
 Format:
-`filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`
+`filterguest [<FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>]`
 
 Parameters:
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
-  * The passport number specified by you must match the guest passport's number exactly to be filtered. Passport numbers are case-insensitive.
+  * The passport number specified by you must _match the guest passport's number exactly_ to be filtered. 
   * E.g. a guest with a `PASSPORT_NUMBER` of `SE1239182` will not be shown in your **GUI** if you run the command `filterguest pn/SE123`
 * `NAME`: No constraints on name used.
-  * The name specified by you simply needs to match the guest's name partially to be filtered. Names are case-insensitive.
+  * The name specified by you simply needs to _match the guest's name partially_ to be filtered. 
   * E.g. a guest with a `NAME` of `Jeremy Tan` will be shown in the **GUI** if you run the command `filterguest n/jeremy` or `filterguest n/remy`
     * However, running the command `filterguest n/tan jeremy` will not filter the guest.
 * `EMAIL`: A valid email address should be used.
-  * The email specified by you simply needs to match the guest's email partially to be filtered. Emails are case-insensitive.
+  * The email specified by you simply needs to _match the guest's email partially_ to be filtered.
   * E.g. a guest with a `EMAIL` of `jeremytan@example.com` will be shown in the **GUI** if you run the command `filterguest e/tan`
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.
-  * The room number specified by you needs to match with the guest's room number partially to be filtered, however the order is important, unlike `EMAIL` and `NAME`.
+  * The room number specified by you needs to _match with the guest's room number partially_ to be filtered, however the _order is important_, unlike `EMAIL` and `NAME`.
   * E.g. a guest with a `ROOM_NUMBER` of `201` will be shown in the **GUI** if you run the command `filterguest r/2`
     * However, the guest will not be filtered if you run the command `filterguest r/1`. The reason for this is that hotels
     generally have room numbers with its starting number as the floor level. Such as all hotel rooms on level 1, will
     have their room number starting with 1.
-    * We felt that this would provide you a more useful filter, as running `filterguest r/2` would filter all the guest
+    * We felt that this would provide you a more _useful filter_, as running `filterguest r/2` would filter all the guest
     with their room number starting with a 2, and in essence you would be filtering all the guests that are residing in
     the second floor of your hotel. This would mean guests with `ROOM_NUMBER` that do not start with `2` but may have `2`
     in their `ROOM_NUMBER` are not filtered. An example being `102`.
-* `TAG`: An optional field, more than one can be included in the command. Tags are case-insensitive.
-  * The tags specified by you need to match the guest's tags exactly to be filtered.
+* `TAG`: An optional field, more than one can be included in the command.
+  * The tags specified by you need to _match the guest's tags exactly_ to be filtered.
   * E.g. guests with a `TAG` of `VIP` and guests with a `TAG` of `Deluxe` will be filtered if you run the command `filterguest t/vip t/deluxe`
     * Note that guest with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
 
@@ -363,6 +392,7 @@ Example:<br>
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
 * Running the `filterguest` command always applies the filter to all your guests in **PH** and not to an already filtered guest list.
+* All fields are case-insensitive.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -371,7 +401,7 @@ Example:<br>
 
 #### Adding a vendor: `addvendor`
 
-Adds a vendors details to **PH**
+Adds a **vendors** details to **PH**
 
 Format:
 <br>`addvendor vid/<VENDOR_ID> n/<NAME> e/<EMAIL> p/<PHONE_NUMBER> a/<ADDRESS> sn/<SERVICE_NAME> c/<SERVICE_COST> oh/<OPERATING HOURS> [t/TAG]`
@@ -384,7 +414,7 @@ Parameters:
 * `PHONE_NUMBER`: At least 3 digits long, should only contain numbers.
 * `SERVICE_NAME`: Alphabetical characters and spaces are allowed.
 * `SERVICE_COST`: Number greater than 0, will be rounded to 2 decimal places.
-* `OPERATING_HOURS`: Duplicates are allowed. <br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
+* `OPERATING_HOURS`: Duplicates are allowed. Please refer to the note below for more details.
 * `TAG`: An optional field, more than one can be included in each command.
 
 Example:
@@ -404,7 +434,7 @@ Format:
 Edit a **vendors**' contact details. Only edits the fields that have been passed in as parameters. (See example for further elaboration).
 
 Format:
-<br>`editvendor vid/<VENDOR_ID> <FIELD_NAME>/<NEW_FIELD_DETAILS>`
+<br>`editvendor vid/<VENDOR_ID> [<FIELD_NAME>/<NEW_FIELD_DETAILS>]`
 
 Parameters:
 * `VENDOR_ID`: Should only contain alphanumeric characters.
@@ -427,6 +457,8 @@ field with the new phone number provided, and the email field with the new email
 
 * Existing field values will be overwritten by the newly provided field values.
 
+* The vendor id must be provided, as it is used to identify which vendor to be edited.
+
 * You need to specify at least one field to edit.
 
 * You can edit more than one field at a time (See example above).
@@ -437,7 +469,7 @@ field with the new phone number provided, and the email field with the new email
 
 #### Deleting a vendor's details: `deletevendor`
 
-Deletes a vendors contact details from **PH**.
+Deletes a **vendors** contact details from **PH**.
 
 Format:
 <br>`deletevendor vid/<VENDOR_ID>`
@@ -449,21 +481,21 @@ Example:
 
 #### Clear vendor list : `clearvendor`
 
-Deletes all vendors that are currently in the system.
+Deletes all **vendors** that are currently in **PH**.
 
 Format:
 <br>`clearvendor`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The `clearvendor` command would remove all vendors and this action is irreversible.
-Only use this command if you really need to wipe all vendor data.
+The `clearvendor` command would remove all vendors and is irreversible.
+Only use this command if you absolutely sure you need to wipe all vendor data.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
 
 #### Show all vendors: `listvendor`
 
-Shows all the vendors added by you that offers services to your hotel. Useful command to use after `filtervendor`,
+Shows all the **vendors** added by you that offers services to your hotel. Useful command to use after `filtervendor`,
 it essentially removes any filter that was previously applied to the vendor list.
 
 Format:
@@ -479,46 +511,46 @@ Format:
 
 #### Filter vendor list: `filtervendor`
 
-Displays only the vendors that meet your requirements, as specified by what you wrote in your filter. This helps you
-easily find and search through smaller and more manageable lists, instead of scrolling through the entire vendor list.
+Displays only the **vendors** that meet your requirements, as specified by what you wrote in your filter. This helps you
+easily find and search through _smaller and more manageable lists_, instead of scrolling through the entire vendor list.
 
 Format: `filtervendor <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`
 
 Parameters:
 * `VENDOR_ID`: Should only contain alphanumeric characters
-  * The vendor id specified by you must match the vendor's vendor id exactly to be filtered. Vendor id's are case-insensitive.
+  * The vendor id specified by you must _match the vendor's vendor id exactly_ to be filtered.
   * E.g. a vendor with a `VENDOR_ID` of `001` will not be shown in your **GUI** if you run the command `filtervendor vid/1`
 * `NAME`: No constraints on name used. Cannot be left blank.
-  * The name specified by you simply needs to match the vendor's name partially to be filtered. Names are case-insensitive.
+  * The name specified by you simply needs to _match the vendor's name partially_ to be filtered.
   * E.g. a vendor with a `NAME` of `Jeremy's Massage Parlour` will be shown in the **GUI** if you run the command `filtervendor n/jeremy` or `filtervendor n/remy`
     * However, running the command `filtervendor n/parlour massage` will not filter the vendor.
 * `EMAIL`: A valid email address should be used.
-  * The email specified by you simply needs to match the vendor's email partially to be filtered. Emails are case-insensitive.
+  * The email specified by you simply needs to _match the vendor's email partially_ to be filtered.
   * E.g. a vendor with a `EMAIL` of `jmassage@example.com` will be shown in the **GUI** if you run the command `filtervendor e/massage`
 * `ADDRESS`: Blank inputs are not allowed.
-  * The address specified by you simply needs to match the vendor's address partially to be filtered. Addresses are case-insensitive.
+  * The address specified by you simply needs to _match the vendor's address partially_ to be filtered.
   * E.g. a vendor with a `ADDRESS` of `123 Clementi Rd` will be shown in the **GUI** if you run the command `filtervendor a/clementi`
 * `PHONE_NUMBER`: At least 3 digits long, should only contain numbers.
-  * The phone number specified by you needs to match with the vendor's phone number partially to be filtered, however the order is important, unlike `EMAIL` and `NAME`.
+  * The phone number specified by you needs to _match with the vendor's phone number partially_ to be filtered, however the _order is important_, unlike `EMAIL` and `NAME`.
   * E.g. a vendor with a `PHONE_NUMBER` of `93810282` will be shown in the **GUI** if you run the command `filtervendor p/938`
     * However, the vendor will not be filtered if you run the command `filtervendor p/8102`.
     * The phone number that you enter into the command will only filter the vendors with phone numbers that start with what you specified in the filter.
 * `SERVICE_NAME`: Alphabetical characters and spaces are allowed.
-  * The service name specified by you needs to match the vendor's service name exactly to be filtered. Service names are case-insensitive.
+  * The service name specified by you needs to _match the vendor's service name exactly_ to be filtered.
   * E.g. vendors with a `SERVICE_NAME` of `Massage` will be shown in the **GUI** if you run the command `filtervendor sn/massage`
     * However, the vendor will not be filtered if you run the command `filtervendor sn/mass`
 * `SERVICE_COST`: Number greater than 0.
-  * You may filter vendors by the exact cost or a range (using "<" or ">").
+  * You may filter vendors by the _exact cost or a range (using "<" or ">")_.
   * E.g. vendors with a `SERVICE_COST` greater than 10 will be shown in the **GUI** if you run the command `filtervendor c/>10`
   * E.g. vendors with a `SERVICE_COST` of exactly 10 will be shown in the **GUI** if you run the command `filtervendor c/10`
 * `OPERATING_HOURS`: Specified in this format `DAYS STARTTIME-ENDTIME`, Timings are in 24 hr format and days are represented using numbers, where 1 represents a Monday, and a 7 represents a Sunday.
-  * You may filter vendors that operate on certain days, certain days and a specified time, certain days and a specified time period, and those that are currently operating.
+  * You may filter vendors that operate _on certain days, certain days and a specified time, certain days and a specified time period, and those that are currently operating_.
   * E.g. vendors with `OPERATING_HOURS` on Monday and Wednesday will be shown in the **GUI** if you run the command `filtervendor oh/13`
   * E.g. vendors with `OPERATING_HOURS` on Monday and operate on 0800 will be shown in the **GUI** if you run the command `filtervendor oh/1 0800`
   * E.g. vendors with `OPERATING_HOURS` on Tuesday and operate **anywhere** between 0800 and 1300 will be shown in the **GUI** if you run the command `filtervendor oh/2 0800-1300`
   * E.g. vendors with `OPERATING_HOURS` that are currently operating will be shown in the **GUI** if you run the command `filtervendor oh/now`
-* `TAG`: An optional field, more than one can be included in the command. Tags are case-insensitive
-  * The tags specified by you need to match the vendor's tags exactly to be filtered.
+* `TAG`: An optional field, more than one can be included in the command.
+  * The tags specified by you need to _match the vendor's tags exactly_ to be filtered.
   * E.g. vendors with a `TAG` of `Cheap` and vendors with a `TAG` of `Good Rating` will be filtered if you run the command `filtervendor t/cheap t/good rating`
     * Note that vendors with either one of the tags gets filtered, they do not have to both tags to get filtered. The same logic applies when more than two tags are supplied by you.
 
@@ -529,7 +561,8 @@ than 10 and have `OPERATING_HOURS` where they are currently operating now will b
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
-* Running the `filtervendor` command always applies the filter to all your vendors in **PH** and not to an already filtered vendor list.
+* Running the `filtervendor` command always applies the filter to all your vendors in **PH** and not to an already filtered vendor list.<br>
+* All fields are case-insensitive.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -561,7 +594,7 @@ which allows you to edit the file manually without even booting up **PH**.
 
 #### Editing your data directly
 
-The Json files storing guest and vendor data are found at:
+The Json files storing **guest** and **vendor** data are found at:
 `[JAR file location]/data/guest.json` & `[JAR file location]/data/vendor.json`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -586,6 +619,7 @@ his/her details to the receptionist upon checking in to the hotel, hence there i
 refer to details of the archived guests in the UI.
 </div>
 
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -663,6 +697,7 @@ Parameter | Prefix | Constraints, Examples
 * **GUI**: Graphical user interface
 * **Guest**: A guest at the hotel
 * **Vendor**: An external entity that a hotel uses for services
+* **PDF**: A file format for electronic document exchange. Short for Portable Document Format. 
 * **Unique Identifier**: An attribute that uniquely identifies a contact in the address book.
 * **Archived Guests**: Guests that are not checked into the hotel and are not displayed, but whose details are stored in **PH**.
 * **Unarchived guests**: Guests who are currently checked into **PH** and can be viewed in the list.
@@ -678,10 +713,17 @@ Parameter | Prefix | Constraints, Examples
 **A**: Install the app on your other computer and run it. Overwrite the empty .json file that is created with your old
 .json file in your old computer.<br>
 
-
 **Q**: How do I know if Java 11 is installed correctly on my computer?<br>
 **A**: Open up your terminal and run `java --version`. The output should be java 11, if installed correctly.<br>
 
+**Q**: How do I install Java 11 on my computer?<br>
+**A**: Please proceed to the download page [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html), and download the latest version according to your system's specifications.<br>
+
+**Q**: Is an internet connection required to boot up **PH**?<br>
+**A**: No, all functionality of **PH** can be used without an internet connection.<br>
+
+**Q**: Can I contact my guests directly on **PH**?<br>
+**A**: Unfortunately, this is currently not possible. However, do look out for future updates.<br>
 
 [Back to Table of Contents](#table-of-contents)
 
