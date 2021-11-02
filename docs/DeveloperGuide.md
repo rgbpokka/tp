@@ -193,7 +193,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Vendor Book, Guest Book, Arhive Book
+### Vendor Book, Guest Book, Archive Book
 
 ### Filter feature
 
@@ -317,7 +317,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Front-desk receptionists at small-scale hotels 
+**Target user profile**: Front-desk receptionists at small-scale hotels
 
 * has a need to manage a significant number of contacts (both vendors and guests)
 * prefers to have everything centralized in one application
@@ -327,7 +327,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * tired of using pen and paper to keep track of contacts
 
-**Value proposition**: Automate front-desk operations, elevating guest experience and lightens the front desk's workload. 
+**Value proposition**: Automate front-desk operations, elevating guest experience and lightens the front desk's workload.
 
 ### User stories
 

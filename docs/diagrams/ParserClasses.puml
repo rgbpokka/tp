@@ -9,7 +9,7 @@ Class XYZCommand
 
 package "Parser classes"{
 Interface Parser <<Interface>>
-Class PocketHotelParser 
+Class PocketHotelParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -19,7 +19,7 @@ Class Prefix
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> PocketHotelParser 
+HiddenOutside ..> PocketHotelParser
 
 PocketHotelParser .down.> XYZCommandParser: creates >
 
