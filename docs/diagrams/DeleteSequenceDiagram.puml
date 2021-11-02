@@ -19,50 +19,50 @@ activate LogicManager
 LogicManager ->  PocketHotelParser : parseCommand("deletevendor vid/123")
 activate PocketHotelParser 
 
-create DeleteVendorCommandParser 
- PocketHotelParser -> DeleteVendorCommandParser 
-activate DeleteVendorCommandParser 
+create DeleteVendorCommandParser
+PocketHotelParser -> DeleteVendorCommandParser
+activate DeleteVendorCommandParser
 
- DeleteVendorCommandParser --> PocketHotelParser 
-deactivate DeleteVendorCommandParser 
+DeleteVendorCommandParser --> PocketHotelParser
+deactivate DeleteVendorCommandParser
 
- PocketHotelParser ->  DeleteVendorCommandParser : parse("vid/123")
-activate DeleteVendorCommandParser 
+PocketHotelParser ->  DeleteVendorCommandParser : parse("vid/123")
+activate DeleteVendorCommandParser
 
-create DeleteVendorCommand 
- DeleteVendorCommandParser -> DeleteVendorCommand 
-activate DeleteVendorCommand 
+create DeleteVendorCommand
+DeleteVendorCommandParser -> DeleteVendorCommand
+activate DeleteVendorCommand
 
- DeleteVendorCommand -->  DeleteVendorCommandParser : d
-deactivate DeleteVendorCommand 
+DeleteVendorCommand -->  DeleteVendorCommandParser : d
+deactivate DeleteVendorCommand
 
- DeleteVendorCommandParser -->  PocketHotelParser : d
-deactivate DeleteVendorCommandParser 
+DeleteVendorCommandParser -->  PocketHotelParser : d
+deactivate DeleteVendorCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
- DeleteVendorCommandParser -[hidden]-> PocketHotelParser 
-destroy DeleteVendorCommandParser 
+DeleteVendorCommandParser -[hidden]-> PocketHotelParser
+destroy DeleteVendorCommandParser
 
- PocketHotelParser --> LogicManager : d
-deactivate PocketHotelParser 
+PocketHotelParser --> LogicManager : d
+deactivate PocketHotelParser
 
 LogicManager ->  DeleteVendorCommand : execute()
-activate DeleteVendorCommand 
+activate DeleteVendorCommand
 
- DeleteVendorCommand -> Model : delete vendor with vid = 123
+DeleteVendorCommand -> Model : delete vendor with vid = 123
 activate Model
 
-Model --> DeleteVendorCommand 
+Model --> DeleteVendorCommand
 deactivate Model
 
 create CommandResult
- DeleteVendorCommand -> CommandResult
+DeleteVendorCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteVendorCommand 
+CommandResult --> DeleteVendorCommand
 deactivate CommandResult
 
- DeleteVendorCommand --> LogicManager : result
-deactivate DeleteVendorCommand 
+DeleteVendorCommand --> LogicManager : result
+deactivate DeleteVendorCommand
 
 [<--LogicManager
 deactivate LogicManager

@@ -6,11 +6,10 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
 
-Class PocketHotelParser 
+Class PocketHotelParser
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
-
 
 Interface Logic <<Interface>>
 Class LogicManager
@@ -27,7 +26,7 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
-LogicManager -right->"1" PocketHotelParser 
+LogicManager -right->"1" PocketHotelParser
 PocketHotelParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command

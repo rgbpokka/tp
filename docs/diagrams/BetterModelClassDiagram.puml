@@ -4,19 +4,19 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-GuestBook *-right-> "1" UniqueGuestList 
+GuestBook *-right-> "1" UniqueGuestList
 GuestBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueGuestList 
-UniqueTagList -[hidden]down- UniqueGuestList 
+UniqueTagList -[hidden]down- UniqueGuestLis
+UniqueTagList -[hidden]down- UniqueGuestList
 
 UniqueTagList *-right-> "*" Tag
-UniqueGuestList -right-> Guest 
+UniqueGuestList -right-> Guest
 
 Guest -up-> "*" Tag
 
 Guest *--> Name
-Guest *--> PassportNumber 
+Guest *--> PassportNumber
 Guest *--> Email
-Guest *--> RoomNumber 
-Guest *--> "*" ChargeablesUsed 
+Guest *--> RoomNumber
+Guest *--> "*" ChargeablesUsed
 @enduml

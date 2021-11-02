@@ -28,12 +28,12 @@ you are able to use this guide as we intended and become a master in using our a
 # **Using this Guide**
 
 Before you start, we would like to help orientate you to some symbols and text markups that you
-will frequently encounter throughout this guide. 
+will frequently encounter throughout this guide.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: This is a note:**<br>
-* Notes will be useful in providing additional information of a certain feature or section. 
+* Notes will be useful in providing additional information of a certain feature or section.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -41,7 +41,7 @@ This is a caution.
 Do look out for these! They warn you about any possible risks or dangers of a given action.
 </div>
 
-Markup | Meaning 
+Markup | Meaning
 -------|------------------
 [Click me!](#using-this-guide) | These are hyperlinks, that are meant to provide you an easier time navigating this guide.
 **PH** | Denotes glossary terms. These are words that may be confusing or too technical to you. You may refer to the [glossary](#glossary) if lost.

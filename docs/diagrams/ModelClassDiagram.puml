@@ -8,20 +8,19 @@ Package Model <<Rectangle>>{
 Interface ReadOnlyGuestBook <<Interface>>
 Interface ReadOnlyUserPrefs <<Interface>>
 Interface Model <<Interface>>
-Class GuestBook 
-Class ReadOnlyGuestBook 
+Class GuestBook
+Class ReadOnlyGuestBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-
-Class UniqueGuestList 
-Class Guest 
-Class RoomNumber 
+Class UniqueGuestList
+Class Guest
+Class RoomNumber
 Class Email
 Class Name
-Class PassportNumber 
+Class PassportNumber
 Class Tag
 Class ChargeablesUsed
 
@@ -30,28 +29,28 @@ Class ChargeablesUsed
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-GuestBook .up.|> ReadOnlyGuestBook 
+GuestBook .up.|> ReadOnlyGuestBook
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyGuestBook 
-ModelManager -left-> "1" GuestBook 
+Model .left.> ReadOnlyGuestBook
+ModelManager -left-> "1" GuestBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-GuestBook *--> "1" UniqueGuestList 
-UniqueGuestList --> "~* all" Guest 
+GuestBook *--> "1" UniqueGuestList
+UniqueGuestList --> "~* all" Guest
 Guest *--> Name
-Guest *--> PassportNumber 
+Guest *--> PassportNumber
 Guest *--> Email
-Guest *--> RoomNumber 
+Guest *--> RoomNumber
 Guest *--> "*" Tag
-Guest *--> "*" ChargeablesUsed 
+Guest *--> "*" ChargeablesUsed
 note right of GuestBook: There also exists VendorBook (Vendor) \n and ArchiveBook (Archived guests)
 
-Name -[hidden]right-> PassportNumber 
-PassportNumber -[hidden]right-> RoomNumber 
+Name -[hidden]right-> PassportNumber
+PassportNumber -[hidden]right-> RoomNumber
 RoomNumber -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Guest 
+ModelManager -->"~* filtered" Guest
 @enduml
