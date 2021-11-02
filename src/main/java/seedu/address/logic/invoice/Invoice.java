@@ -92,12 +92,9 @@ public class Invoice {
                             new Paragraph(header).setFont(boldFont)));
         }
 
-
-        final int hotelCost = 100;
-
         // Iterate through processed vendors and add to table
-        int itemCount = 2;
-        double totalCost = hotelCost;
+        int itemCount = 1;
+        double totalCost = 0;
         for (Chargeable charge : g.getChargeableUsed()) {
             addCellToTable(String.valueOf(itemCount), table, font);
             addCellToTable(charge.getName().toString() + " [" + charge.getVendorId().toString() + "]", table, font);
