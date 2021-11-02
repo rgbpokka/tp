@@ -1,5 +1,6 @@
 package seedu.address.logic.invoice;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +23,7 @@ import seedu.address.model.chargeable.Chargeable;
 import seedu.address.model.guest.Guest;
 
 public class Invoice {
-    public static final String BASE_PATH = "./";
+    public static final String BASE_PATH = "./Invoices/";
     private static final int NUM_HEADERS = 6;
 
     /**
@@ -33,6 +34,10 @@ public class Invoice {
      * @throws IOException If invalid file path or fail to add rows to table.
      */
     public static void generateInvoicePdf(Guest g) throws IOException {
+        // Create invoice folder
+        File invoiceFolder = new File(BASE_PATH);
+        invoiceFolder.mkdir();
+
         String dest = BASE_PATH + generateFileName(g);
 
         // Initialize document
@@ -87,20 +92,9 @@ public class Invoice {
                             new Paragraph(header).setFont(boldFont)));
         }
 
-
-        final int hotelCost = 100;
-
-        // Add base price row
-        addCellToTable("1", table, font);
-        addCellToTable("Hotel", table, font);
-        addCellToTable("Hotel Stay", table, font);
-        addCellToTable(String.valueOf(hotelCost), table, font);
-        addCellToTable("1", table, font);
-        addCellToTable(String.valueOf(hotelCost), table, font);
-
         // Iterate through processed vendors and add to table
-        int itemCount = 2;
-        double totalCost = hotelCost;
+        int itemCount = 1;
+        double totalCost = 0;
         for (Chargeable charge : g.getChargeableUsed()) {
             addCellToTable(String.valueOf(itemCount), table, font);
             addCellToTable(charge.getName().toString() + " [" + charge.getVendorId().toString() + "]", table, font);

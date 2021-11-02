@@ -125,7 +125,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 * All fields cannot be empty
-* The tag field is optional and can be omitted entirely (You can learn more about tags [here](#Tags).)
+* The tag field is optional and can be omitted entirely (You can learn more about tags [here](#Tagging-a-guest-or-vendor).)
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -166,7 +166,7 @@ Every vendor and guest can have more than one tag attached to them, so you are f
 right into **PH**!
 
 ## Archiving guest information
-Upon checking out a **guest**, their contact is removed from the list, BUT their information is not deleted. It is instead moved
+Upon [checking out](#checking-out-a-guest-checkout) a **guest**, their contact is removed from the list, BUT their information is not deleted. It is instead moved
 to an archive where the information is stored. This allows you to use the `returncheckin` command to check in the **guest** on their
 subsequent visits and saves you the time of entering all their information again.
 
@@ -229,6 +229,13 @@ Parameters:
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
 * `ROOM_NUMBER`: Only numbers greater than 0 are valid.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: What is the archive?**<br>
+
+* Contains past records of guests who have stayed at the hotel
+* Guest is added to the archive by performing the `checkout` command
+</div>
+
 [Back to Table of Contents](#table-of-contents)
 
 #### Checking out a guest: `checkout`
@@ -243,6 +250,13 @@ Parameters:
 Example:
 
 * `checkout pn/X12345678A` checks out the guest Bing Cheng, whose passport number is X12345678A.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: What is the archive?**<br>
+
+* Contains past records of guests who have stayed at the hotel
+* Guest is added to the archive by performing the `checkout` command
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -698,7 +712,7 @@ Parameter | Prefix | Constraints, Examples
 * **Guest**: A guest at the hotel
 * **Vendor**: An external entity that a hotel uses for services
 * **PDF**: A file format for electronic document exchange. Short for Portable Document Format. 
-* **Unique Identifier**: An attribute that uniquely identifies a contact in the address book.
+* **Unique Identifier**: An attribute that uniquely identifies a guest or vendor in the address book.
 * **Archived Guests**: Guests that are not checked into the hotel and are not displayed, but whose details are stored in **PH**.
 * **Unarchived guests**: Guests who are currently checked into **PH** and can be viewed in the list.
 
