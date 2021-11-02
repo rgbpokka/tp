@@ -3,9 +3,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ": PocketHotelParser" as  PocketHotelParser LOGIC_COLOR
+participant ": DeleteVendorCommandParser" as  DeleteVendorCommandParser LOGIC_COLOR
+participant "d: DeleteVendorCommand" as  DeleteVendorCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,56 +13,56 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete sid/123")
+[-> LogicManager : execute("deletevendor vid/123")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete sid/123")
-activate AddressBookParser
+LogicManager ->  PocketHotelParser : parseCommand("deletevendor vid/123")
+activate PocketHotelParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteVendorCommandParser
+PocketHotelParser -> DeleteVendorCommandParser
+activate DeleteVendorCommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+DeleteVendorCommandParser --> PocketHotelParser
+deactivate DeleteVendorCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("sid/123")
-activate DeleteCommandParser
+PocketHotelParser ->  DeleteVendorCommandParser : parse("vid/123")
+activate DeleteVendorCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteVendorCommand
+DeleteVendorCommandParser -> DeleteVendorCommand
+activate DeleteVendorCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeleteVendorCommand -->  DeleteVendorCommandParser : d
+deactivate DeleteVendorCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+DeleteVendorCommandParser -->  PocketHotelParser : d
+deactivate DeleteVendorCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+DeleteVendorCommandParser -[hidden]-> PocketHotelParser
+destroy DeleteVendorCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+PocketHotelParser --> LogicManager : d
+deactivate PocketHotelParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager ->  DeleteVendorCommand : execute()
+activate DeleteVendorCommand
 
-DeleteCommand -> Model : delete staff with sid = 123
+DeleteVendorCommand -> Model : delete vendor with vid = 123
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteVendorCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteVendorCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteVendorCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteVendorCommand --> LogicManager : result
+deactivate DeleteVendorCommand
 
 [<--LogicManager
 deactivate LogicManager
