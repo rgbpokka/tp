@@ -95,14 +95,6 @@ public class Invoice {
 
         final int hotelCost = 100;
 
-        // Add base price row
-        addCellToTable("1", table, font);
-        addCellToTable("Hotel", table, font);
-        addCellToTable("Hotel Stay", table, font);
-        addCellToTable(String.valueOf(hotelCost), table, font);
-        addCellToTable("1", table, font);
-        addCellToTable(String.valueOf(hotelCost), table, font);
-
         // Iterate through processed vendors and add to table
         int itemCount = 2;
         double totalCost = hotelCost;
