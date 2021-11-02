@@ -15,7 +15,7 @@ _Command Line Interface_(**CLI**) than through the _Graphical User Interface_ (*
 This user guide serves as an entry point for users to get oriented with how **PH** operates and how you may utilize it
 fully to integrate it within your hotel management system.
 
-Do not worry if this is your first time using a _CLI_ application, jump to our [Using this Guide](#Using-this-Guide) section to learn more about how
+Do not worry if this is your first time using a _CLI_ application, jump to our [Using this Guide](#using-this-guide) section to learn more about how
 you are able to use this guide as we intended and become a master in using our application!
 
 --------------------------------------------------------------------------------------------------------------------
@@ -43,8 +43,8 @@ Do look out for these! They warn you about any possible risks or dangers of a gi
 
 Markup | Meaning 
 -------|------------------
-[Click me!](#) | These are hyperlinks, that are meant to provide you an easier time navigating this guide.
-**PH** | Denotes glossary terms. These are words that may be confusing or too technical to you. You may refer to the [glossary](#Glossary) if lost.
+[Click me!](#using-this-guide) | These are hyperlinks, that are meant to provide you an easier time navigating this guide.
+**PH** | Denotes glossary terms. These are words that may be confusing or too technical to you. You may refer to the [glossary](#glossary) if lost.
 `help` | Denotes the commands and parameters used in the application.
 
 [Back to Table of Contents](#table-of-contents)
