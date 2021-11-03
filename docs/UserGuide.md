@@ -616,7 +616,6 @@ Editing the json file directly should only be done by a user experienced with .j
 As failure to follow the correct formatting would result in a corrupted file and would be replace with an empty file.
 </div>
 
-<img src="images/JsonSnippet.png" width="300">
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -651,7 +650,7 @@ Action | Format, Examples
 **clearguest** | `clearguest`
 **listguest** | `listguest`
 **filterguest** | `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filterguest n/Bing t/VIP`
-**chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
+**chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `chargeguest pn/T0134568D vid/3`
 
 ## Vendor Command Summary
 
