@@ -16,7 +16,7 @@ import seedu.address.model.guest.ReadOnlyGuestBook;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.guest.GuestBuilder;
 
-public class CheckInCommandTest {
+public class CheckInNewGuestCommandTest {
 
     @Test
     public void constructor_nullGuest_throwsNullPointerException() {
