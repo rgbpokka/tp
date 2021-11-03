@@ -15,32 +15,32 @@ import seedu.address.model.guest.Guest;
 import seedu.address.model.vendor.VendorBook;
 import seedu.address.testutil.guest.GuestBuilder;
 
-/**
- * Contains integration tests (interaction with the Model) for {@code CheckInCommand}.
- */
-public class CheckInCommandIntegrationTest {
+public class CheckInReturningGuestCommandIntegrationTest {
 
     private Model model;
+    private Guest validGuest = new GuestBuilder().build();
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalGuestBook(), new VendorBook(), new UserPrefs(), new Archive());
+        model.addArchivedGuest(validGuest);
     }
 
     @Test
-    public void execute_newGuest_success() {
-        Guest validGuest = new GuestBuilder().build();
-        Model expectedModel = new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs(), new Archive());
+    public void execute_returningGuest_success() {
+        Model expectedModel = new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs(),
+                model.getArchive());
+        expectedModel.deleteArchivedGuest(validGuest);
         expectedModel.addGuest(validGuest);
-        assertCommandSuccess(new CheckInNewGuestCommand(validGuest), model,
-                String.format(CheckInNewGuestCommand.MESSAGE_SUCCESS, validGuest), expectedModel);
+        assertCommandSuccess(new CheckInReturningGuestCommand(validGuest), model,
+                String.format(CheckInReturningGuestCommand.MESSAGE_SUCCESS_RETURNING_GUEST, validGuest), expectedModel);
     }
 
     @Test
     public void execute_duplicateGuest_throwsCommandException() {
         Guest personInList = model.getGuestBook().getGuestList().get(0);
-        assertCommandFailure(new CheckInNewGuestCommand(personInList), model,
-                CheckInNewGuestCommand.MESSAGE_DUPLICATE_GUEST);
+        assertCommandFailure(new CheckInReturningGuestCommand(personInList), model,
+                CheckInReturningGuestCommand.MESSAGE_NONEXISTENT_GUEST);
     }
 
 }
