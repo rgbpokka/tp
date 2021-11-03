@@ -616,7 +616,6 @@ Editing the json file directly should only be done by a user experienced with .j
 As failure to follow the correct formatting would result in a corrupted file and would be replace with an empty file.
 </div>
 
-<img src="images/JsonSnippet.png" width="300">
 
 [Back to Table of Contents](#table-of-contents)
 
