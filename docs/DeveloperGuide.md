@@ -194,7 +194,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Book Management
 
-**PH** allows the user to manage vendors and guests. 
+**PH** allows the user to manage vendors and guests.
 
 As mentioned in the `Model` section earlier, there are three different types of books:
 1. GuestBook (Management of guests)
@@ -202,7 +202,7 @@ As mentioned in the `Model` section earlier, there are three different types of 
 3. ArchiveBook (Management of archived guest; currently not exposed to the user)
 
 All the books are managed by the `ModelManager` which supports some common operations across the three books, with certain
-variations depending on which book we are currently executing the operation on. 
+variations depending on which book we are currently executing the operation on.
 
 Some common operations include:
 * `addvendor` for vendors and `checkin` for guests - creates the entity and adds to the respective books.
@@ -407,7 +407,7 @@ UC02 - Viewing the Guest List
 
 MSS:
     1. User requests to go the guest list.
-    2. Pocket Hotel switches to the guest list, where user can see all guests currently checked into the hotel. 
+    2. Pocket Hotel switches to the guest list, where user can see all guests currently checked into the hotel.
     Use case ends.
 ```
 
@@ -418,30 +418,30 @@ UC03 - Viewing the help tab
 
 MSS:
     1. User requests to go to the help tab.
-    2. Pocket Hotel opens the help window directing the user to a guide on how to use the application. 
+    2. Pocket Hotel opens the help window directing the user to a guide on how to use the application.
     Use case ends.
 ```
 
 ```
-UC04 - Exiting Pocket Hotel 
+UC04 - Exiting Pocket Hotel
 
 MSS:
     1. User requests to exit the app.
-    2. Pocket Hotel closes the application window. 
+    2. Pocket Hotel closes the application window.
     Use case ends.
 ```
 
 ```
-UC05 - Saving your data 
+UC05 - Saving your data
 
 MSS:
     1. User executes a valid action.
-    2. Pocket Hotel's data gets modified accordingly, and replaces the existing local save-file. 
-    3. Pocket Hotel shows a success message to user indicating action has been executed successfully. 
+    2. Pocket Hotel's data gets modified accordingly, and replaces the existing local save-file.
+    3. Pocket Hotel shows a success message to user indicating action has been executed successfully.
     Use case ends.
-    
+
 Extensions:
-    1a. Action carried out by user is invalid. 
+    1a. Action carried out by user is invalid.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
     2a. Unable to overwrite save file.
@@ -449,7 +449,7 @@ Extensions:
         Use case ends.
 ```
 
-#### Managing Guests 
+#### Managing Guests
 
 ```
 UC06 - Checking in new guests
@@ -462,12 +462,12 @@ MSS:
     2. Pocket Hotel adds the requested guest.
     3. Pocket Hotel shows a success message to user indicating guest has been successfully checked in.
     Use case ends.
-    
+
 Extensions:
-    1a. Guest is already checked in. 
+    1a. Guest is already checked in.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
-    1b. Guest is a returning guest. 
+    1b. Guest is a returning guest.
         1b1. Pocket Hotel shows an error message.
         Use case ends.
     1c. Given fields such as passport number, name, etc. is invalid.
@@ -486,9 +486,9 @@ MSS:
     2. Pocket Hotel adds the requested guest.
     3. Pocket Hotel shows a success message to user indicating guest has been successfully checked in.
     Use case ends.
-    
+
 Extensions:
-    1a. Guest is already checked in. 
+    1a. Guest is already checked in.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
     1b. Guest is not a returning guest.
@@ -500,19 +500,19 @@ Extensions:
 ```
 
 ```
-UC08 - Editing guests 
+UC08 - Editing guests
 
-Preconditions: Guest must exist and be currently checked into the hotel. 
-Guarantees: Guest list gets updated with the guest edited. 
+Preconditions: Guest must exist and be currently checked into the hotel.
+Guarantees: Guest list gets updated with the guest edited.
 
 MSS:
-    1. User requests to edit a guest. 
-    2. Pocket Hotel updates the guest with its new details. 
-    3. Pocket Hotel shows a success message to user indicating guest has been successfully edited. 
+    1. User requests to edit a guest.
+    2. Pocket Hotel updates the guest with its new details.
+    3. Pocket Hotel shows a success message to user indicating guest has been successfully edited.
     Use case ends.
-    
+
 Extensions:
-    1a. Guest with given passport number is not checked in. 
+    1a. Guest with given passport number is not checked in.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
     1b. Given fields such as room number, name, etc. is invalid.
@@ -524,19 +524,19 @@ Extensions:
 ```
 
 ```
-UC09 - Deleting guests 
+UC09 - Deleting guests
 
-Preconditions: Guest must exist and be currently checked into the hotel. 
-Guarantees: Guest list gets updated with the guest removed. 
+Preconditions: Guest must exist and be currently checked into the hotel.
+Guarantees: Guest list gets updated with the guest removed.
 
 MSS:
-    1. User requests to delete a guest. 
-    2. Pocket Hotel deletes the guest. 
-    3. Pocket Hotel shows a success message to user indicating guest has been successfully deleted. 
+    1. User requests to delete a guest.
+    2. Pocket Hotel deletes the guest.
+    3. Pocket Hotel shows a success message to user indicating guest has been successfully deleted.
     Use case ends.
-    
+
 Extensions:
-    1a. Guest is not checked in. 
+    1a. Guest is not checked in.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
     1b. Given identifier, passport number is invalid.
@@ -545,19 +545,19 @@ Extensions:
 ```
 
 ```
-UC10 - Checking out guests 
+UC10 - Checking out guests
 
-Preconditions: Guest must exist and be currently checked into the hotel. 
-Guarantees: Guest list gets updated with the guest archived and invoice form generated. 
+Preconditions: Guest must exist and be currently checked into the hotel.
+Guarantees: Guest list gets updated with the guest archived and invoice form generated.
 
 MSS:
-    1. User requests to check out a guest. 
-    2. Pocket Hotel archives the guest and generates the invoice form. 
-    3. Pocket Hotel shows a success message to user indicating guest has been successfully checked out. 
+    1. User requests to check out a guest.
+    2. Pocket Hotel archives the guest and generates the invoice form.
+    3. Pocket Hotel shows a success message to user indicating guest has been successfully checked out.
     Use case ends.
-    
+
 Extensions:
-    1a. Guest is not checked in. 
+    1a. Guest is not checked in.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
     1b. Given identifier, passport number is invalid.
@@ -566,35 +566,35 @@ Extensions:
 ```
 
 ```
-UC11 - Clearing guests 
+UC11 - Clearing guests
 
-Preconditions: None. 
-Guarantees: Guest list gets cleared. 
+Preconditions: None.
+Guarantees: Guest list gets cleared.
 
 MSS:
-    1. User requests to clear all guest data. 
-    2. Pocket Hotel clears all guest data. 
-    3. Pocket Hotel shows a success message to user indicating all guest data has been successfully cleared. 
+    1. User requests to clear all guest data.
+    2. Pocket Hotel clears all guest data.
+    3. Pocket Hotel shows a success message to user indicating all guest data has been successfully cleared.
     Use case ends.
 ```
 
 ```
-UC12 - Filtering guests 
+UC12 - Filtering guests
 
-Preconditions: Only guest fields are given for the filter. 
-Guarantees: Guest list gets filtered to user's specifications. 
+Preconditions: Only guest fields are given for the filter.
+Guarantees: Guest list gets filtered to user's specifications.
 
 MSS:
-    1. User requests to filter guests. 
+    1. User requests to filter guests.
     2. Pocket Hotel filters the guests, and only shows those that fit the user's specifications.
-    3. Pocket Hotel shows a success message to user with the number of guests that have been filtered. 
+    3. Pocket Hotel shows a success message to user with the number of guests that have been filtered.
     Use case ends.
-    
+
 Extensions:
-    1a. No fields are given to filter. 
+    1a. No fields are given to filter.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
-    1b. Fields given do not follow correct syntax. 
+    1b. Fields given do not follow correct syntax.
         1b1. Pocket Hotel shows an error message.
         Use case ends.
 ```
@@ -602,17 +602,17 @@ Extensions:
 ```
 UC13 - Charging guests
 
-Preconditions: Guest must exist and be currently checked into the hotel. 
-Guarantees: Pocket Hotel keeps track of the vendors hired by the guest. 
+Preconditions: Guest must exist and be currently checked into the hotel.
+Guarantees: Pocket Hotel keeps track of the vendors hired by the guest.
 
 MSS:
-    1. User requests to charge a guest. 
-    2. Pocket Hotel keeps track of the vendor hired by the guest. 
-    3. Pocket Hotel shows a success message to user indicating the guest has been successfully charged. 
+    1. User requests to charge a guest.
+    2. Pocket Hotel keeps track of the vendor hired by the guest.
+    3. Pocket Hotel shows a success message to user indicating the guest has been successfully charged.
     Use case ends.
-    
+
 Extensions:
-    1a. Guest is not checked in. 
+    1a. Guest is not checked in.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
     1b. Vendor hired does not exist.
@@ -623,22 +623,22 @@ Extensions:
 #### Managing Vendors
 
 ```
-UC14 - Adding vendors 
+UC14 - Adding vendors
 
-Preconditions: Vendors must not already exist in the app. 
+Preconditions: Vendors must not already exist in the app.
 Guarantees: Vendor list gets updated with the new vendor added.
 
 MSS:
-    1. User requests to add a new vendor. 
+    1. User requests to add a new vendor.
     2. Pocket Hotel adds the requested vendor.
     3. Pocket Hotel shows a success message to user indicating the vendor has been successfully added.
     Use case ends.
-    
+
 Extensions:
-    1a. Vendor already exists. 
+    1a. Vendor already exists.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
-    1b. Given operating hour start time is after the end time. 
+    1b. Given operating hour start time is after the end time.
         1b1. Pocket Hotel shows an error message.
         Use case ends.
     1c. Given fields such as vendor id, name, etc. is invalid.
@@ -647,19 +647,19 @@ Extensions:
 ```
 
 ```
-UC15 - Editing vendors 
+UC15 - Editing vendors
 
-Preconditions: Vendor must exist in the app. 
-Guarantees: Vendor list gets updated with the vendor edited. 
+Preconditions: Vendor must exist in the app.
+Guarantees: Vendor list gets updated with the vendor edited.
 
 MSS:
-    1. User requests to edit a vendor. 
-    2. Pocket Hotel updates the vendor with its new details. 
-    3. Pocket Hotel shows a success message to user indicating vendor has been successfully edited. 
+    1. User requests to edit a vendor.
+    2. Pocket Hotel updates the vendor with its new details.
+    3. Pocket Hotel shows a success message to user indicating vendor has been successfully edited.
     Use case ends.
-    
+
 Extensions:
-    1a. Vendor with given vendor id does not exist. 
+    1a. Vendor with given vendor id does not exist.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
     1b. Given fields such as email, name, etc. is invalid.
@@ -671,19 +671,19 @@ Extensions:
 ```
 
 ```
-UC16 - Deleting vendors 
+UC16 - Deleting vendors
 
-Preconditions: Vendor must exist in the app. 
-Guarantees: Vendor list gets updated with the vendor removed. 
+Preconditions: Vendor must exist in the app.
+Guarantees: Vendor list gets updated with the vendor removed.
 
 MSS:
-    1. User requests to delete a vendor. 
-    2. Pocket Hotel deletes the vendor. 
-    3. Pocket Hotel shows a success message to user indicating vendor has been successfully deleted. 
+    1. User requests to delete a vendor.
+    2. Pocket Hotel deletes the vendor.
+    3. Pocket Hotel shows a success message to user indicating vendor has been successfully deleted.
     Use case ends.
-    
+
 Extensions:
-    1a. Vendor with given vendor id does not exist. 
+    1a. Vendor with given vendor id does not exist.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
     1b. Given identifier, vendor id is invalid.
@@ -692,35 +692,35 @@ Extensions:
 ```
 
 ```
-UC17 - Clearing vendors 
+UC17 - Clearing vendors
 
-Preconditions: None. 
-Guarantees: Vendor list gets cleared. 
+Preconditions: None.
+Guarantees: Vendor list gets cleared.
 
 MSS:
-    1. User requests to clear all vendor data. 
-    2. Pocket Hotel clears all vendor data. 
-    3. Pocket Hotel shows a success message to user indicating all vendor data has been successfully cleared. 
+    1. User requests to clear all vendor data.
+    2. Pocket Hotel clears all vendor data.
+    3. Pocket Hotel shows a success message to user indicating all vendor data has been successfully cleared.
     Use case ends.
 ```
 
 ```
-UC18 - Filtering vendors 
+UC18 - Filtering vendors
 
-Preconditions: Only vendor fields are given for the filter. 
-Guarantees: Vendor list gets filtered to user's specifications. 
+Preconditions: Only vendor fields are given for the filter.
+Guarantees: Vendor list gets filtered to user's specifications.
 
 MSS:
-    1. User requests to filter vendors. 
+    1. User requests to filter vendors.
     2. Pocket Hotel filters the vendors, and only shows those that fit the user's specifications.
-    3. Pocket Hotel shows a success message to user with the number of vendors that have been filtered. 
+    3. Pocket Hotel shows a success message to user with the number of vendors that have been filtered.
     Use case ends.
-    
+
 Extensions:
-    1a. No fields are given to filter. 
+    1a. No fields are given to filter.
         1a1. Pocket Hotel shows an error message.
         Use case ends.
-    1b. Fields given do not follow correct syntax. 
+    1b. Fields given do not follow correct syntax.
         1b1. Pocket Hotel shows an error message.
         Use case ends.
 ```
@@ -929,7 +929,7 @@ testers are expected to do more *exploratory* testing.
 1. Deletes all vendors from PH.
     1. test case: `clearvendor`<br>
        Expected: Deletes all vendors from PH, vendor list will be empty.
-    
+ 
 
 1. _{ more test cases …​ }_
 

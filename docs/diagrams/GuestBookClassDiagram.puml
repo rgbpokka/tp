@@ -55,5 +55,4 @@ class Guest {
     + charge(vendor : Vendor)
     + isSame(otherGuest : Guest) : boolean
 }
-
 @enduml
