@@ -1,15 +1,20 @@
 package seedu.address.logic.commands.guest;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.GuestBook;
@@ -26,17 +31,17 @@ public class CheckInReturningGuestCommandTest {
         assertThrows(NullPointerException.class, () -> new CheckInReturningGuestCommand(null));
     }
 
-    //    @Test
-    //    public void execute_guestAcceptedByModel_addSuccessful() throws Exception {
-    //        ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
-    //        Guest validGuest = new GuestBuilder().build();
-    //
-    //        CommandResult commandResult = new CheckInNewGuestCommand(validGuest).execute(modelStub);
-    //
-    //        assertEquals(String.format(CheckInNewGuestCommand.MESSAGE_SUCCESS, validGuest),
-    //        commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validGuest), modelStub.guestsAdded);
-    //    }
+    @Test
+    public void execute_guestAcceptedByModel_addSuccessful() throws Exception {
+        Guest validGuest = new GuestBuilder().build();
+        ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded(validGuest);
+
+        CommandResult commandResult = new CheckInReturningGuestCommand(validGuest).execute(modelStub);
+
+        assertEquals(String.format(CheckInReturningGuestCommand.MESSAGE_SUCCESS_RETURNING_GUEST, validGuest),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validGuest), modelStub.guestsAdded);
+    }
 
     @Test
     public void execute_duplicateGuest_throwsCommandException() {
@@ -101,6 +106,16 @@ public class CheckInReturningGuestCommandTest {
      */
     private class ModelStubAcceptingGuestAdded extends ModelStub {
         final ArrayList<Guest> guestsAdded = new ArrayList<>();
+        private final UniqueGuestList uniqueGuestList = new UniqueGuestList();
+        private final GuestBook guestBook = new GuestBook();
+        private final FilteredList<Guest> filteredGuests = new FilteredList<Guest>(this.guestBook.getGuestList());
+        private final Guest archivedGuest;
+
+        ModelStubAcceptingGuestAdded(Guest archivedGuest) {
+            requireNonNull(archivedGuest);
+            this.archivedGuest = archivedGuest;
+            uniqueGuestList.add(archivedGuest);
+        }
 
         @Override
         public boolean hasGuest(Guest guest) {
@@ -115,8 +130,23 @@ public class CheckInReturningGuestCommandTest {
         }
 
         @Override
+        public Optional<Guest> getArchivedGuest(PassportNumber passportNumber) {
+            return uniqueGuestList.get(passportNumber);
+        }
+
+        @Override
+        public ObservableList<Guest> getFilteredGuestList() {
+            return filteredGuests;
+        }
+
+        @Override
         public ReadOnlyGuestBook getGuestBook() {
             return new GuestBook();
+        }
+
+        @Override
+        public void deleteArchivedGuest(Guest guest) {
+            uniqueGuestList.remove(guest);
         }
     }
 
