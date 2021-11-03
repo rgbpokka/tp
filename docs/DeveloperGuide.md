@@ -192,12 +192,47 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Vendor Book, Guest Book, Archive Book
+### Book Management
 
-### Filter feature
+**PH** allows the user to manage vendors and guests. 
+
+As mentioned in the `Model` section earlier, there are three different types of books:
+1. GuestBook (Management of guests)
+2. VendorBook (Management of vendors)
+3. ArchiveBook (Management of archived guest; currently not exposed to the user)
+
+All the books are managed by the `ModelManager` which supports some common operations across the three books, with certain
+variations depending on which book we are currently executing the operation on. 
+
+Some common operations include:
+* `addvendor` for vendors and `checkin` for guests - creates the entity and adds to the respective books.
+* `editvendor` for vendors and `editguest` for guests - edits the entity and updates the book accordingly.
+* `deletevendor` for vendors and `deleteguest` for guests - removes the existing entity from the respective book.
+* `listvendor` for vendors and `listguest` for guest - renders all the entities of the respective book.
+* `clearvendor` for vendors and `clearguest` for guest - removes all the entities from the respective book.
+
+By segregating the model into its respective books, we felt that this embraced **OOP** concepts, as it reduces coupling and increases cohesion.
+
+The following class diagram shows the general structure of a `GuestBook`. The same concepts were applied when building the `VendorBook` and `ArchiveBook`.
+
+<img src="images/GuestBookClassDiagram.png" width="600" />
+
+The `GuestBook` implements the `ReadOnlyGuestBook` interface. The `getGuestList()` method returns an `ObservableList` of guests. `ObservableList` makes use
+of the Observer pattern, as it notifies the `ModelManager` of any changes that occur in the guest list, and reflect those changes onto the **GUI**.
 
 ### Toggling between vendor and guest list
 
+Other than toggling between the two lists via the **GUI**. The user can make use of the commands `listguest` and `listvendor` to toggle between the two.
+After certain commands like `filterguest` and `filtervendor`, the list also gets toggled automatically for the user. The
+toggling is executed depending on the state of the `CommandResult`, after executing the user command.
+
+`MainWindow` has a function `toggleTab()` that reads in the state of the `CommandResult` and renders the correct list accordingly.
+
+The following activity diagram illustrates what happens to the `MainWindow` of the UI component when a user inputs a command.
+
+<img src="images/ToggleTabActivityDiagram.png" width="600" />
+
+### Filter feature
 
 
 ### \[Proposed\] Undo/redo feature
@@ -710,6 +745,8 @@ Extensions:
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Guest**: A person staying in Pocket Hotel
 * **Staff**: An employee of Pocket Hotel
+* **OOP**: Object-oriented programming. A programming paradigm that relies on the idea of designing data around objects and classes.
+* **GUI**: Graphical user interface
 
 --------------------------------------------------------------------------------------------------------------------
 
