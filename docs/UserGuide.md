@@ -28,12 +28,12 @@ you are able to use this guide as we intended and become a master in using our a
 # **Using this Guide**
 
 Before you start, we would like to help orientate you to some symbols and text markups that you
-will frequently encounter throughout this guide. 
+will frequently encounter throughout this guide.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: This is a note:**<br>
-* Notes will be useful in providing additional information of a certain feature or section. 
+* Notes will be useful in providing additional information of a certain feature or section.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -41,7 +41,7 @@ This is a caution.
 Do look out for these! They warn you about any possible risks or dangers of a given action.
 </div>
 
-Markup | Meaning 
+Markup | Meaning
 -------|------------------
 [Click me!](#using-this-guide) | These are hyperlinks, that are meant to provide you an easier time navigating this guide.
 **PH** | Denotes glossary terms. These are words that may be confusing or too technical to you. You may refer to the [glossary](#glossary) if lost.
@@ -178,11 +178,11 @@ subsequent visits and saves you the time of entering all their information again
 </div>
 
 ## Invoice Generation
-Upon checking out a **guest**, a **PDF** invoice will be generated in the directory that the `PH.jar` is found in. The invoice will be named in the format
+Upon checking out a **guest**, a **PDF** invoice will be generated in a folder called `Invoices` in the directory that the `PH.jar` is found in. The invoice will be named in the format
 `GUEST_NAME YYYY-MM-DD HH-MM-SS.pdf`, where the `YYYY-MM-DD HH-MM-SS` denotes the current year, month, data, hours, minutes and seconds, at the time the invoice was generated.
 
-The invoice contains information such as the cost of the hotel stay (This is a fixed price in the current version) and any services
-that has been used during the guests stay (See [chargeguest](#charge-a-guest-for-a-service-chargeguest))
+The invoice contains information such as the guest details and any services
+that have been used during the guests stay (See [chargeguest](#charge-a-guest-for-a-service-chargeguest))
 
 ![](images/SampleInvoice.png)
 
@@ -375,10 +375,10 @@ Format:
 
 Parameters:
 * `PASSPORT_NUMBER`: Should only contain alphanumeric characters.
-  * The passport number specified by you must _match the guest passport's number exactly_ to be filtered. 
+  * The passport number specified by you must _match the guest passport's number exactly_ to be filtered.
   * E.g. a guest with a `PASSPORT_NUMBER` of `SE1239182` will not be shown in your **GUI** if you run the command `filterguest pn/SE123`
 * `NAME`: No constraints on name used.
-  * The name specified by you simply needs to _match the guest's name partially_ to be filtered. 
+  * The name specified by you simply needs to _match the guest's name partially_ to be filtered.
   * E.g. a guest with a `NAME` of `Jeremy Tan` will be shown in the **GUI** if you run the command `filterguest n/jeremy` or `filterguest n/remy`
     * However, running the command `filterguest n/tan jeremy` will not filter the guest.
 * `EMAIL`: A valid email address should be used.
@@ -711,7 +711,7 @@ Parameter | Prefix | Constraints, Examples
 * **GUI**: Graphical user interface
 * **Guest**: A guest at the hotel
 * **Vendor**: An external entity that a hotel uses for services
-* **PDF**: A file format for electronic document exchange. Short for Portable Document Format. 
+* **PDF**: A file format for electronic document exchange. Short for Portable Document Format.
 * **Unique Identifier**: An attribute that uniquely identifies a guest or vendor in the address book.
 * **Archived Guests**: Guests that are not checked into the hotel and are not displayed, but whose details are stored in **PH**.
 * **Unarchived guests**: Guests who are currently checked into **PH** and can be viewed in the list.
