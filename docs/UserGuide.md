@@ -650,7 +650,7 @@ Action | Format, Examples
 **clearguest** | `clearguest`
 **listguest** | `listguest`
 **filterguest** | `filterguest <FILTER_FIELD_NAME>/<FILTER_FIELD_VALUE>`<br>Example: `filterguest n/Bing t/VIP`
-**chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `charge pn/T0134568D vid/3`
+**chargeguest** | `chargeguest pn/<PASSPORT_NUMBER> vid/<VENDOR_ID>`<br>Example: `chargeguest pn/T0134568D vid/3`
 
 ## Vendor Command Summary
 
