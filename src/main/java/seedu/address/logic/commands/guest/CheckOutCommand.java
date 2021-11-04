@@ -28,7 +28,8 @@ public class CheckOutCommand extends Command {
             + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER\n"
             + "Example: " + COMMAND_WORD + " pn/A021231B";
 
-    public static final String MESSAGE_CHECKOUT_SUCCESSFUL = "Checked out Guest: %1$s\nInvoice has been generated!";
+    public static final String MESSAGE_CHECKOUT_INVOICE_GENERATED_SUCCESSFUL = "Checked out Guest: %1$s\nInvoice has been generated!";
+    public static final String MESSAGE_CHECKOUT_NO_INVOICE_SUCCESSFUL = "Checked out Guest: %1$s\nNo invoice generated as guest did use any services";
 
     private final PassportNumber passportNumber;
 
@@ -38,6 +39,8 @@ public class CheckOutCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        String checkoutMessage = "";
+
         requireNonNull(model);
         List<Guest> lastShownList = model.getFilteredGuestList();
 
@@ -45,20 +48,26 @@ public class CheckOutCommand extends Command {
                 lastShownList.stream().filter(p -> p.getPassportNumber().equals(passportNumber)).findAny().orElse(null);
 
         if (guestToCheckOut == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_GUEST_PASSPORT_NUMBER);
+            throw new CommandException(Messages.MESSAGE_GUEST_TO_CHECK_OUT_DOES_NOT_EXIST);
         }
 
-        // generate invoice
-        try {
-            Invoice.generateInvoicePdf(guestToCheckOut);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (guestToCheckOut.hasChargeables()) {
+            // generate invoice
+            try {
+                Invoice.generateInvoicePdf(guestToCheckOut);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            guestToCheckOut.clearChargeables();
+            checkoutMessage = MESSAGE_CHECKOUT_INVOICE_GENERATED_SUCCESSFUL;
+        } else {
+            checkoutMessage = MESSAGE_CHECKOUT_NO_INVOICE_SUCCESSFUL;
         }
 
-        guestToCheckOut.clearChargeables();
         model.deleteGuest(guestToCheckOut); // removes the guest from the guest book
         model.addArchivedGuest(guestToCheckOut); // adds the guest to the archive
-        return new CommandResult(String.format(MESSAGE_CHECKOUT_SUCCESSFUL, guestToCheckOut));
+        return new CommandResult(String.format(checkoutMessage, guestToCheckOut));
     }
 
     @Override

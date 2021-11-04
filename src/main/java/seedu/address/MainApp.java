@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+import org.bouncycastle.util.io.Streams;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -83,9 +86,9 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        ReadOnlyGuestBook guestManager = initGuestBook(storage);
-        ReadOnlyVendorBook vendorManager = initVendorBook(storage);
         ReadOnlyGuestBook archive = initArchive(storage);
+        ReadOnlyGuestBook guestManager = initGuestBook(storage, archive);
+        ReadOnlyVendorBook vendorManager = initVendorBook(storage);
         return new ModelManager(guestManager, vendorManager, userPrefs, archive);
     }
 
@@ -94,14 +97,21 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private ReadOnlyGuestBook initGuestBook(Storage storage) {
+    private ReadOnlyGuestBook initGuestBook(Storage storage, ReadOnlyGuestBook archive) {
         ReadOnlyGuestBook initialData;
         try {
             Optional<ReadOnlyGuestBook> guestBookOptional = storage.readGuestBook();
+
             if (!guestBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample GuestBook");
             }
-            initialData = guestBookOptional.orElseGet(SampleDataUtil::getSampleGuestBook);
+
+            initialData = guestBookOptional.orElseGet(() -> SampleDataUtil.getSampleGuestBook(archive));
+
+            if (initialData.getGuestList().size() == 0) {
+                logger.info("Passport numbers of all sample guests are used in the archive. " +
+                        "Will be starting with an empty GuestBook");
+            }
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty GuestBook");
             initialData = new GuestBook();
@@ -113,7 +123,6 @@ public class MainApp extends Application {
         return initialData;
     }
 
-    // **** TO-DO ****
     private ReadOnlyGuestBook initArchive(Storage storage) {
         ReadOnlyGuestBook initialData = new Archive();
         try {
