@@ -38,7 +38,7 @@ public class CheckInNewGuestCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New guest checked in: %1$s";
     public static final String MESSAGE_DUPLICATE_GUEST = "This guest is already checked in.";
     public static final String MESSAGE_GUEST_IN_ARCHIVE = "This passport number belongs to a past guest in the archive!"
-            +  "\nUse the command 'returncheckin' instead if they are a returning guest!";
+            + "\nUse the command 'returncheckin' instead if they are a returning guest!";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room number is already in use.";
 
     private final Guest toCheckIn;
