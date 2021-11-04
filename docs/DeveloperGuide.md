@@ -147,8 +147,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="650" />
-
+![Model Class Diagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -196,13 +195,13 @@ This section describes some noteworthy details on how certain features are imple
 
 **PH** allows the user to manage vendors and guests.
 
-As mentioned in the `Model` section earlier, there are three different types of books:
+As mentioned in the `Model` section earlier, there are three different types of lists:
 1. GuestBook (Management of guests)
 2. VendorBook (Management of vendors)
-3. ArchiveBook (Management of archived guest; currently not exposed to the user)
+3. Archive (Management of archived guests; currently not exposed to the user)
 
-All the books are managed by the `ModelManager` which supports some common operations across the three books, with certain
-variations depending on which book we are currently executing the operation on.
+All the lists are managed by the `ModelManager` which supports some common operations across them, with certain
+variations depending on which list we are currently executing the operation on.
 
 Some common operations include:
 * `addvendor` for vendors and `checkin` for guests - creates the entity and adds to the respective books.
@@ -211,11 +210,11 @@ Some common operations include:
 * `listvendor` for vendors and `listguest` for guest - renders all the entities of the respective book.
 * `clearvendor` for vendors and `clearguest` for guest - removes all the entities from the respective book.
 
-By segregating the model into its respective books, we felt that this embraced **OOP** concepts, as it reduces coupling and increases cohesion.
+By segregating the model into its respective books/lists, we felt that this embraced **OOP** concepts, as it reduces coupling and increases cohesion.
 
-The following class diagram shows the general structure of a `GuestBook`. The same concepts were applied when building the `VendorBook` and `ArchiveBook`.
+The following class diagram shows the general structure of a `GuestBook`. The same concepts were applied when building the `VendorBook` and `Archive`.
 
-<img src="images/GuestBookClassDiagram.png" width="600" />
+<img src="images/GuestBookClassDiagram.png" width="500" />
 
 The `GuestBook` implements the `ReadOnlyGuestBook` interface. The `getGuestList()` method returns an `ObservableList` of guests. `ObservableList` makes use
 of the Observer pattern, as it notifies the `ModelManager` of any changes that occur in the guest list, and reflect those changes onto the **GUI**.
@@ -234,13 +233,33 @@ The following activity diagram illustrates what happens to the `MainWindow` of t
 
 ### Filter feature
 
+#### Implementation
+
+The filter feature makes use of the `Model#updateFilteredGuestList` and `Model#updateFilteredVendorList` operations,
+where each function takes in a `Predicate<Guest>` and `Predicate<Vendor>` respectively. To avoid repetition, we will cover how the
+`filterguest` command is implemented. The `filtervendor` command follows the exact same logic with its own unique fields.
+
+The `filterguest` command is facilitated by the `FilterGuestCommandParser` and `FilterGuestCommand` of **PH**. The following sequence diagram shows
+how the `filterguest` operation works:
+
+![FilterGuestSequenceDiagram](images/FilterGuestSequenceDiagram.png)
+
+Given above is an example of a user filtering guests by a tag, deluxe. The end result is a filtered list of guests with the tag, deluxe.
+The execution of the above example follows the same flow as all the other commands. One important to take note is that, the `FilterGuestCommandParser`
+returns a `GuestPredicate`. This `GuestPredicate` implements `Predicate<Guest>`, and the instance instantiated by the parser is what
+gets passed into `Model#updateFilteredGuestList` to achieve the end result. `filtervendor` makes use of a class `VendorPredicate` that follows the same idea.
+
+The following activity diagram shows what happens when a user executes a `filterguest` command, `filtervendor` follows the same flow.
+
+![FilterGuestActivityDiagram](images/FilterGuestActivityDiagram.png)
+
 ### Deleting a Guest
 
 #### Implementation
 
 The implementation of the `deleteguest` command was largely based off the original AB3 implementation, with changes made
 to support the `Archive` and delete by the guest details instead of index in list.
-The `deleteguest` makes use off the `GuestBook` and `ArchiveBook` class to search for the guest to be deleted.
+The `deleteguest` makes use off the `GuestBook` and `Archive` class to search for the guest to be deleted.
 
 This is done through the implementation of `Model` called `ModelManager`. The operations
 `ModelManager#getGuest(PassportNumber passportNumber)` and`ModelManager#getArchivedGuest(PassportNumber passportNumber)`
@@ -788,7 +807,6 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-
 ### Launch and shutdown
 
 1. Initial launch
@@ -837,10 +855,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `chargeguest pn/S123 vid/001`<br>
       Expected: Service from <VENDOR> has been billed to <GUEST>
 
-<div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Please perform this test case twice, as it will be used in the invoice generation test case.
 
-**:information_source: Note**<br>
-* Please perform this test case twice, as it will be used in the invoice generation test case.
 </div>
 
 ### Checking out a guest
@@ -879,6 +895,11 @@ testers are expected to do more *exploratory* testing.
 **:information_source: Note**<br>
 * Name field is case sensitive
 </div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br> * Name field is case sensitive
+
+</div>
+
 
 ### Show all guests
 1. Removes filters and switches to the guest list
