@@ -11,6 +11,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+// @@author NicolasCwy
 public class DeleteGuestCommandParser implements Parser<DeleteGuestCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteGuestCommand
