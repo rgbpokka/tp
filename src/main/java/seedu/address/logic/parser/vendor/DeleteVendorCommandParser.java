@@ -11,6 +11,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+// @author NicolasCwy
 public class DeleteVendorCommandParser implements Parser<DeleteVendorCommand> {
 
     /**
@@ -25,7 +26,7 @@ public class DeleteVendorCommandParser implements Parser<DeleteVendorCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_VENDOR_ID);
 
-        if (!argMultimap.getValue(PREFIX_VENDOR_ID).isPresent()) {
+        if (argMultimap.getValue(PREFIX_VENDOR_ID).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVendorCommand.MESSAGE_USAGE));
         }
 

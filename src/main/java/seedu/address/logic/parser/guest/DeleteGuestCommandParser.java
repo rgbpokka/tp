@@ -24,7 +24,7 @@ public class DeleteGuestCommandParser implements Parser<DeleteGuestCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PASSPORT_NUMBER);
 
-        if (!argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isPresent()) {
+        if (argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGuestCommand.MESSAGE_USAGE));
         }
 
