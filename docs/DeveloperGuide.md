@@ -240,7 +240,7 @@ The following activity diagram illustrates what happens to the `MainWindow` of t
 
 The implementation of the `deleteguest` command was largely based off the original AB3 implementation, with changes made
 to support the `Archive` and delete by the guest details instead of index in list.
-The `deleteguest` makes use off the `GuestBook` and `Archive` class to search for the guest to be deleted.
+The `deleteguest` makes use off the `GuestBook` and `ArchiveBook` class to search for the guest to be deleted.
 
 This is done through the implementation of `Model` called `ModelManager`. The operations
 `ModelManager#getGuest(PassportNumber passportNumber)` and`ModelManager#getArchivedGuest(PassportNumber passportNumber)`
@@ -257,10 +257,12 @@ The implementation of the `deletevendor` command was largely based off the origi
 made to delete another a different model, `Vendor` and delete by the vendor details instead of index in list.
 
 The difference between the Guest and Vendor model is that Vendors cannot be archived. Therefore, the
-implementation of the `deletevendor` command is the same as the `deleteguest` command, only the `VendorBook`
+implementation of the `deletevendor` command is the same as the `deleteguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched.
 
 <img src="images/DeleteSequenceDiagramVendor.png" width="450" />
+
+### Invoice Generation
 
 ### \[Proposed\] Undo/redo feature
 
