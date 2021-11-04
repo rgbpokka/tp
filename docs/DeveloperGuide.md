@@ -125,7 +125,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletevendor vid/123")` API
 call.
 
-![Interactions Inside the Logic Component for the `deletevendor vid/123` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletevendor vid/123` Command](images/DeleteSequenceDiagramVendor.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteVendorCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -234,6 +234,35 @@ The following activity diagram illustrates what happens to the `MainWindow` of t
 
 ### Filter feature
 
+### Deleting a Guest
+
+#### Implementation
+
+The implementation of the `deleteguest` command was largely based off the original AB3 implementation, with changes made
+to support the `Archive` and delete by the guest details instead of index in list.
+The `deleteguest` makes use off the `GuestBook` and `ArchiveBook` class to search for the guest to be deleted.
+
+This is done through the implementation of `Model` called `ModelManager`. The operations
+`ModelManager#getGuest(PassportNumber passportNumber)` and`ModelManager#getArchivedGuest(PassportNumber passportNumber)`
+are used to check if the guests details can be found in Pocket Hotel (Either in the archive or currently checked in).
+If the guest details is found in either locations, it would be deleted.
+
+<img src="images/DeleteSequenceDiagramGuest.pngDiagram.png" width="450" />
+
+### Deleting a Vendor
+
+#### Implementation
+
+The implementation of the `deletevendor` command was largely based off the original AB3 implementation, with changes to
+made to delete another a different model, `Vendor` and delete by the vendor details instead of index in list.
+
+The difference between the Guest and Vendor model is that Vendors cannot be archived. Therefore, the
+implementation of the `deletevendor` command is the same as the `deleteguest` command, but only the `VendorBook`
+(the `GuestBook` equivalent for vendors) has to be searched.
+
+<img src="images/DeleteSequenceDiagramVendor.png" width="450" />
+
+### Invoice Generation
 
 ### \[Proposed\] Undo/redo feature
 
