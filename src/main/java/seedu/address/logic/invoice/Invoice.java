@@ -34,6 +34,9 @@ public class Invoice {
      * @throws IOException If invalid file path or fail to add rows to table.
      */
     public static void generateInvoicePdf(Guest g) throws IOException {
+        // Invoice is only generated for guests who have charges
+        assert !g.getChargeableUsed().isEmpty();
+
         // Create invoice folder
         File invoiceFolder = new File(BASE_PATH);
         invoiceFolder.mkdir();
