@@ -632,6 +632,15 @@ his/her details to the receptionist upon checking in to the hotel, hence there i
 refer to details of the archived guests in the UI.
 </div>
 
+#### Additional Notes
+When booting up Pocket Hotel, you may notice that the guest list is empty. This could be due to several reasons:
+* You accidentally deleted your guests.json file but your archive.json file is still intact. In such an event, Pocket
+  Hotel will attempt to load sample guest data when the app boots up. However, it will only load sample guests whose 
+  passport numbers are not found in archive.json. If there is no sample guest whose passport number is not found in
+  archive.json, no sample guest data will be loaded and hence the guest list will be empty.
+* You have pre-existing guest data but the data file format is incorrect/ there was a problem reading from the data 
+  file.
+
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
