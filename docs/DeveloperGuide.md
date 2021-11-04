@@ -266,7 +266,7 @@ This is done through the implementation of `Model` called `ModelManager`. The op
 are used to check if the guests details can be found in Pocket Hotel (Either in the archive or currently checked in).
 If the guest details is found in either locations, it would be deleted.
 
-<img src="images/DeleteSequenceDiagramGuest.pngDiagram.png" width="450" />
+<img src="images/DeleteSequenceDiagramGuest.png" width="450" />
 
 ### Deleting a Vendor
 
