@@ -13,6 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.model.vendor.VendorId;
 
+/**
+ * Command used to delete a Vendor from the VendorBook if found.
+ */
 public class DeleteVendorCommand extends Command {
 
     public static final String COMMAND_WORD = "deletevendor";
@@ -36,6 +39,13 @@ public class DeleteVendorCommand extends Command {
         this.vendorId = vendorId;
     }
 
+    /**
+     * Deletes a vendor by their vendor ID, if found in the VendorBook.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return A CommandResult which states if command was successful or not.
+     * @throws CommandException if the Vendor was not able to be found.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

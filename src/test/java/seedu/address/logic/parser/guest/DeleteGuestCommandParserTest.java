@@ -18,7 +18,7 @@ import seedu.address.logic.commands.guest.DeleteGuestCommand;
  * therefore should be covered by the ParserUtilTest.
  */
 public class DeleteGuestCommandParserTest {
-
+    // @@author NicolasCwy
     private DeleteGuestCommandParser parser = new DeleteGuestCommandParser();
 
     @Test

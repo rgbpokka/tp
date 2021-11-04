@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.vendor.DeleteVendorCommand;
 
+// @@author NicolasCwy
 public class DeleteVendorCommandParserTest {
 
     private DeleteVendorCommandParser parser = new DeleteVendorCommandParser();
