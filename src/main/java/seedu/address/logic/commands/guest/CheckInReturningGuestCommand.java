@@ -26,6 +26,7 @@ public class CheckInReturningGuestCommand extends Command {
             + PREFIX_ROOM_NUMBER + "123";
 
     public static final String MESSAGE_SUCCESS_RETURNING_GUEST = "Returning guest checked in: %1$s";
+    public static final String MESSAGE_DUPLICATE_GUEST = "This guest is already checked in.";
     public static final String MESSAGE_NONEXISTENT_GUEST = "This guest does not belong in our archive.";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room number is already in use.";
 
@@ -42,6 +43,10 @@ public class CheckInReturningGuestCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasGuest(toCheckIn)) {
+            throw new CommandException(MESSAGE_DUPLICATE_GUEST);
+        }
 
         if (model.getArchivedGuest(toCheckIn.getPassportNumber()).isEmpty()) {
             throw new CommandException(MESSAGE_NONEXISTENT_GUEST);
