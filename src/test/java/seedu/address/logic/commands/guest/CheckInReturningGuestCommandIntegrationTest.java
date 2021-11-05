@@ -40,7 +40,7 @@ public class CheckInReturningGuestCommandIntegrationTest {
     public void execute_duplicateGuest_throwsCommandException() {
         Guest personInList = model.getGuestBook().getGuestList().get(0);
         assertCommandFailure(new CheckInReturningGuestCommand(personInList), model,
-                CheckInReturningGuestCommand.MESSAGE_NONEXISTENT_GUEST);
+                CheckInReturningGuestCommand.MESSAGE_DUPLICATE_GUEST);
     }
 
 }
