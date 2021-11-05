@@ -49,7 +49,7 @@ public class CheckInReturningGuestCommandTest {
         CheckInReturningGuestCommand checkInReturningGuestCommand = new CheckInReturningGuestCommand(validGuest);
         ModelStub modelStub = new ModelStubWithGuest(validGuest);
 
-        assertThrows(CommandException.class, CheckInReturningGuestCommand.MESSAGE_NONEXISTENT_GUEST, (
+        assertThrows(CommandException.class, CheckInReturningGuestCommand.MESSAGE_DUPLICATE_GUEST, (
         ) -> checkInReturningGuestCommand.execute(modelStub));
     }
 

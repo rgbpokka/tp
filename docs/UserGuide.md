@@ -217,6 +217,15 @@ Example:
 * `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new **guest**, Bing Cheng to **PH** and shows the new contact
   list.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes:**<br>
+
+* Guests with the same names and emails as other guests that are already checked in are allowed.
+
+* Guests with either the same passport numbers or same room numbers as guests that are already checked in are not allowed.
+
+* Guests with the same passport number as a past guest that is written in the archive are not allowed. If the guest is a returning guest, you should use returncheckin instead.
+</div>
 [Back to Table of Contents](#table-of-contents)
 
 #### Checking in a returning guest: `returncheckin`
@@ -435,10 +444,13 @@ Example:
 <br>`addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/1 0800-2000`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note on OPERATING_HOUR format:**<br>
-Format:
-<br>`DAYS STARTTIME-ENDTIME`
+**:information_source: Notes:**<br>
+
+* OPERATING_HOUR Format: `DAYS STARTTIME-ENDTIME`
 <br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
+
+* Duplicate vendors are allowed as long as vendor ID is different
+<br> E.g. Vendors with the same name, address, or service
 </div>
 
 [Back to Table of Contents](#table-of-contents)
