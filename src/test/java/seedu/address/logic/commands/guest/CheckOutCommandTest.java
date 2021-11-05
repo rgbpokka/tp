@@ -9,10 +9,6 @@ import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBE
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_SECOND_PERSON;
 import static seedu.address.testutil.guest.TypicalPassportNumbers.PASSPORT_NUMBER_UNUSED;
 
-import java.io.File;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -65,7 +61,8 @@ public class CheckOutCommandTest {
 
         CheckOutCommand checkOutCommand = new CheckOutCommand(PASSPORT_NUMBER_FIRST_PERSON);
 
-        String expectedMessage = String.format(CheckOutCommand.MESSAGE_CHECKOUT_INVOICE_GENERATED_SUCCESSFUL, guestToCheckout);
+        String expectedMessage =
+                String.format(CheckOutCommand.MESSAGE_CHECKOUT_INVOICE_GENERATED_SUCCESSFUL, guestToCheckout);
 
         ModelManager expectedModel =
                 new ModelManager(model.getGuestBook(), new VendorBook(), new UserPrefs(), new Archive());

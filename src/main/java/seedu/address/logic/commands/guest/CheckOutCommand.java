@@ -28,8 +28,10 @@ public class CheckOutCommand extends Command {
             + PREFIX_PASSPORT_NUMBER + "PASSPORT_NUMBER\n"
             + "Example: " + COMMAND_WORD + " pn/A021231B";
 
-    public static final String MESSAGE_CHECKOUT_INVOICE_GENERATED_SUCCESSFUL = "Checked out Guest: %1$s\nInvoice has been generated!";
-    public static final String MESSAGE_CHECKOUT_NO_INVOICE_SUCCESSFUL = "Checked out Guest: %1$s\nNo invoice generated as guest did use any services";
+    public static final String MESSAGE_CHECKOUT_INVOICE_GENERATED_SUCCESSFUL =
+            "Checked out Guest: %1$s\nInvoice has been generated!";
+    public static final String MESSAGE_CHECKOUT_NO_INVOICE_SUCCESSFUL =
+            "Checked out Guest: %1$s\nNo invoice generated as guest did use any services";
 
     private final PassportNumber passportNumber;
 
