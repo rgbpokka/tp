@@ -13,6 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.guest.Guest;
 import seedu.address.model.guest.PassportNumber;
 
+/**
+ * Command used to delete a Guest from the GuestBook or Archive if found.
+ */
 public class DeleteGuestCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteguest";
@@ -37,6 +40,13 @@ public class DeleteGuestCommand extends Command {
         this.passportNumber = passportNumber;
     }
 
+    /**
+     * Deletes a guest by their passport number, if found in the GuestBook or Archive.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return A CommandResult which states if command was successful or not.
+     * @throws CommandException if the Guest was not able to be found.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

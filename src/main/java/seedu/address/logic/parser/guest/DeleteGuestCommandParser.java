@@ -11,6 +11,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+// @@author NicolasCwy
 public class DeleteGuestCommandParser implements Parser<DeleteGuestCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteGuestCommand
@@ -24,7 +25,7 @@ public class DeleteGuestCommandParser implements Parser<DeleteGuestCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PASSPORT_NUMBER);
 
-        if (!argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isPresent()) {
+        if (argMultimap.getValue(PREFIX_PASSPORT_NUMBER).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGuestCommand.MESSAGE_USAGE));
         }
 

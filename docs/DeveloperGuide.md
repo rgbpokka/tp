@@ -125,7 +125,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletevendor vid/123")` API
 call.
 
-![Interactions Inside the Logic Component for the `deletevendor vid/123` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletevendor vid/123` Command](images/DeleteSequenceDiagramVendor.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteVendorCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -147,8 +147,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="650" />
-
+![Model Class Diagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -192,13 +191,97 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Vendor Book, Guest Book, Archive Book
+### Book Management
 
-### Filter feature
+**PH** allows the user to manage vendors and guests.
+
+As mentioned in the `Model` section earlier, there are three different types of lists:
+1. GuestBook (Management of guests)
+2. VendorBook (Management of vendors)
+3. Archive (Management of archived guests; currently not exposed to the user)
+
+All the lists are managed by the `ModelManager` which supports some common operations across them, with certain
+variations depending on which list we are currently executing the operation on.
+
+Some common operations include:
+* `addvendor` for vendors and `checkin` for guests - creates the entity and adds to the respective books.
+* `editvendor` for vendors and `editguest` for guests - edits the entity and updates the book accordingly.
+* `deletevendor` for vendors and `deleteguest` for guests - removes the existing entity from the respective book.
+* `listvendor` for vendors and `listguest` for guest - renders all the entities of the respective book.
+* `clearvendor` for vendors and `clearguest` for guest - removes all the entities from the respective book.
+
+By segregating the model into its respective books/lists, we felt that this embraced **OOP** concepts, as it reduces coupling and increases cohesion.
+
+The following class diagram shows the general structure of a `GuestBook`. The same concepts were applied when building the `VendorBook` and `Archive`.
+
+<img src="images/GuestBookClassDiagram.png" width="500" />
+
+The `GuestBook` implements the `ReadOnlyGuestBook` interface. The `getGuestList()` method returns an `ObservableList` of guests. `ObservableList` makes use
+of the Observer pattern, as it notifies the `ModelManager` of any changes that occur in the guest list, and reflect those changes onto the **GUI**.
 
 ### Toggling between vendor and guest list
 
+Other than toggling between the two lists via the **GUI**. The user can make use of the commands `listguest` and `listvendor` to toggle between the two.
+After certain commands like `filterguest` and `filtervendor`, the list also gets toggled automatically for the user. The
+toggling is executed depending on the state of the `CommandResult`, after executing the user command.
 
+`MainWindow` has a function `toggleTab()` that reads in the state of the `CommandResult` and renders the correct list accordingly.
+
+The following activity diagram illustrates what happens to the `MainWindow` of the UI component when a user inputs a command.
+
+<img src="images/ToggleTabActivityDiagram.png" width="600" />
+
+### Filter feature
+
+#### Implementation
+
+The filter feature makes use of the `Model#updateFilteredGuestList` and `Model#updateFilteredVendorList` operations,
+where each function takes in a `Predicate<Guest>` and `Predicate<Vendor>` respectively. To avoid repetition, we will cover how the
+`filterguest` command is implemented. The `filtervendor` command follows the exact same logic with its own unique fields.
+
+The `filterguest` command is facilitated by the `FilterGuestCommandParser` and `FilterGuestCommand` of **PH**. The following sequence diagram shows
+how the `filterguest` operation works:
+
+![FilterGuestSequenceDiagram](images/FilterGuestSequenceDiagram.png)
+
+Given above is an example of a user filtering guests by a tag, deluxe. The end result is a filtered list of guests with the tag, deluxe.
+The execution of the above example follows the same flow as all the other commands. One important to take note is that, the `FilterGuestCommandParser`
+returns a `GuestPredicate`. This `GuestPredicate` implements `Predicate<Guest>`, and the instance instantiated by the parser is what
+gets passed into `Model#updateFilteredGuestList` to achieve the end result. `filtervendor` makes use of a class `VendorPredicate` that follows the same idea.
+
+The following activity diagram shows what happens when a user executes a `filterguest` command, `filtervendor` follows the same flow.
+
+![FilterGuestActivityDiagram](images/FilterGuestActivityDiagram.png)
+
+### Deleting a Guest
+
+#### Implementation
+
+The implementation of the `deleteguest` command was largely based off the original AB3 implementation, with changes made
+to support the `Archive` and delete by the guest details instead of index in list.
+The `deleteguest` makes use off the `GuestBook` and `Archive` class to search for the guest to be deleted.
+
+This is done through the implementation of `Model` called `ModelManager`. The operations
+`ModelManager#getGuest(PassportNumber passportNumber)` and`ModelManager#getArchivedGuest(PassportNumber passportNumber)`
+are used to check if the guests details can be found in Pocket Hotel (Either in the archive or currently checked in).
+If the guest details is found in either locations, it would be deleted.
+
+<img src="images/DeleteSequenceDiagramGuest.png" width="450" />
+
+### Deleting a Vendor
+
+#### Implementation
+
+The implementation of the `deletevendor` command was largely based off the original AB3 implementation, with changes to
+made to delete another a different model, `Vendor` and delete by the vendor details instead of index in list.
+
+The difference between the Guest and Vendor model is that Vendors cannot be archived. Therefore, the
+implementation of the `deletevendor` command is the same as the `deleteguest` command, but only the `VendorBook`
+(the `GuestBook` equivalent for vendors) has to be searched.
+
+<img src="images/DeleteSequenceDiagramVendor.png" width="450" />
+
+### Invoice Generation
 
 ### \[Proposed\] Undo/redo feature
 
@@ -356,196 +439,339 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PH` and the **Actor** is the `user`, unless specified otherwise)
 
-
-#### UC1: Clearing all details from the app
-
-**MSS**
-
-1. User requests to clear all the data.
-
-2. **PH** prompts user with a confirmation message.
-
-3. User confirms to proceed with the clear.
-
-4. **PH** clears all the data.
-
-5. `data\addressbook.json` becomes empty
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. User does not confirm to clearing entries.
-
-  Use case ends.
-
-
-#### UC2: Saving data
-
-**MSS**
-
-1. User enters a valid command with valid arguments
-
-2. Contact list which is modified gets saved and replaces existing save file.
-
-3. **PH** shows a success message to user indicating command has been executed successfully.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. Error occurs when saving new contact list
-
-    * 2a1. **PH** reverts to old contact list before the execution of the command.
-
-    * 2a2. **PH** informs the user that saving the new contact list was unsuccessful.
-
-      Use case ends.
-
-
-#### UC3: Searching for a guest
-
-**MSS**
-
-1. User keys in command to search for a specified guest.
-
-2. **PH** shows the specified guest that matches the user's query.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. Contact list is empty.
-
-  Use case ends.
-
-* 1b. No guest found that matches user's query.
-
-    * 1b1. **PH** shows message indicating no such guest exists in the list.
-
-      Use case ends.
-
-
-#### UC4: Searching for a staff
-
-Same as UC3 except that guest is replaced with staff.
-
-#### UC4: Searching for a staff
-
-**MSS**
-
-1. User keys in command to search for a specified guest.
-
-2. **PH** shows the specified guest that matches the user's query.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. Contact list is empty.
-
-  Use case ends.
-
-* 1b. No guest found that matches user's query.
-
-    * 1b1. **PH** shows message indicating no such guest exists in the list.
-
-      Use case ends.
-
-#### UC5: Editing fields of guest
-
-**MSS**
-
-1. User keys in command to edit a particular field of a specified guest.
-
-2. **PH** shows a success message to user which displays the new details of the guest.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. Contact list is empty.
-
-  Use case ends.
-
-* 1b. No guest found that matches user's query.
-
-    * 1b1. **PH** shows message indicating no such guest exists in the list.
-
-      Use case ends.
-
-* 1c. The field that the user wishes to edit does not exist.
-
-    * 1c1. **PH** shows message indicating no such field exists.
-
-      Use case ends.
-
-
-#### UC6: Editing fields of staff
-
-Same as UC5 except that guest is replaced with staff.
-
-#### UC7: Adding guests
-
-**MSS**
-
-1. User keys in command to add a guest.
-
-2. **PH** shows a success message to user which displays the added guest in the list.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. Name, passport number or staff field is left blank.
-
-    * 1a1. **PH** shows message indicating a blank name, passport number or staff field is not allowed for both guests
-      and staff.
-
-      Use case ends.
-
-* 1b. Both passport number and staff ID fields are filled in.
-
-    * 1b1. **PH** shows message indicating an entry cannot contain both a passport number and staff ID.
-
-      Use case ends.
-
-* 1c. Non-alphanumeric characters are used in the name field.
-
-    * 1c1. **PH** shows message indicating only alphanumeric characters are to be used for names.
-
-      Use case ends.
-
-
-#### UC8: Adding staff
-
-Same as UC7 except that guest is replaced with staff.
-
-#### UC9: Deleting guest
-
-**MSS**
-
-1. User asks **PH** to delete a guest
-
-2. **PH** informs user that guest is deleted
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. No guest found that matches user's query
-
-    * 2a1. **PH** informs user that the guest does not exist
-
-      Use case ends.
-
-#### UC10: Deleting staff
-
-Same as UC9 except that guest is replaced with staff.
-
-
-*{More to be added}*
-
+#### Navigation
+
+```
+UC01 - Viewing the Vendor List
+
+MSS:
+    1. User requests to go the vendor list.
+    2. Pocket Hotel switches to the vendor list, where user can see all the vendors working with the hotel.
+    Use case ends.
+```
+
+```
+UC02 - Viewing the Guest List
+
+MSS:
+    1. User requests to go the guest list.
+    2. Pocket Hotel switches to the guest list, where user can see all guests currently checked into the hotel.
+    Use case ends.
+```
+
+#### Utility
+
+```
+UC03 - Viewing the help tab
+
+MSS:
+    1. User requests to go to the help tab.
+    2. Pocket Hotel opens the help window directing the user to a guide on how to use the application.
+    Use case ends.
+```
+
+```
+UC04 - Exiting Pocket Hotel
+
+MSS:
+    1. User requests to exit the app.
+    2. Pocket Hotel closes the application window.
+    Use case ends.
+```
+
+```
+UC05 - Saving your data
+
+MSS:
+    1. User executes a valid action.
+    2. Pocket Hotel's data gets modified accordingly, and replaces the existing local save-file.
+    3. Pocket Hotel shows a success message to user indicating action has been executed successfully.
+    Use case ends.
+
+Extensions:
+    1a. Action carried out by user is invalid.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    2a. Unable to overwrite save file.
+        2a1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+#### Managing Guests
+
+```
+UC06 - Checking in new guests
+
+Preconditions: Guest must not already be currently checked into the hotel.
+Guarantees: Guest list gets updated with the new guest checked in.
+
+MSS:
+    1. User requests to check in a new guest.
+    2. Pocket Hotel adds the requested guest.
+    3. Pocket Hotel shows a success message to user indicating guest has been successfully checked in.
+    Use case ends.
+
+Extensions:
+    1a. Guest is already checked in.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Guest is a returning guest.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+    1c. Given fields such as passport number, name, etc. is invalid.
+        1c1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+```
+UC07 - Checking in returning guests
+
+Preconditions: Guest must not already be currently checked into the hotel and must be a returning guest.
+Guarantees: Guest list gets updated with the returning guest checked in.
+
+MSS:
+    1. User requests to check in the returning guest.
+    2. Pocket Hotel adds the requested guest.
+    3. Pocket Hotel shows a success message to user indicating guest has been successfully checked in.
+    Use case ends.
+
+Extensions:
+    1a. Guest is already checked in.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Guest is not a returning guest.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+    1c. Given fields such as passport number or room number is invalid.
+        1c1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+```
+UC08 - Editing guests
+
+Preconditions: Guest must exist and be currently checked into the hotel.
+Guarantees: Guest list gets updated with the guest edited.
+
+MSS:
+    1. User requests to edit a guest.
+    2. Pocket Hotel updates the guest with its new details.
+    3. Pocket Hotel shows a success message to user indicating guest has been successfully edited.
+    Use case ends.
+
+Extensions:
+    1a. Guest with given passport number is not checked in.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Given fields such as room number, name, etc. is invalid.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+    1c. No field is given to edit.
+        1c1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+```
+UC09 - Deleting guests
+
+Preconditions: Guest must exist and be currently checked into the hotel.
+Guarantees: Guest list gets updated with the guest removed.
+
+MSS:
+    1. User requests to delete a guest.
+    2. Pocket Hotel deletes the guest.
+    3. Pocket Hotel shows a success message to user indicating guest has been successfully deleted.
+    Use case ends.
+
+Extensions:
+    1a. Guest is not checked in.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Given identifier, passport number is invalid.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+```
+UC10 - Checking out guests
+
+Preconditions: Guest must exist and be currently checked into the hotel.
+Guarantees: Guest list gets updated with the guest archived and invoice form generated.
+
+MSS:
+    1. User requests to check out a guest.
+    2. Pocket Hotel archives the guest and generates the invoice form.
+    3. Pocket Hotel shows a success message to user indicating guest has been successfully checked out.
+    Use case ends.
+
+Extensions:
+    1a. Guest is not checked in.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Given identifier, passport number is invalid.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+```
+UC11 - Clearing guests
+
+Preconditions: None.
+Guarantees: Guest list gets cleared.
+
+MSS:
+    1. User requests to clear all guest data.
+    2. Pocket Hotel clears all guest data.
+    3. Pocket Hotel shows a success message to user indicating all guest data has been successfully cleared.
+    Use case ends.
+```
+
+```
+UC12 - Filtering guests
+
+Preconditions: Only guest fields are given for the filter.
+Guarantees: Guest list gets filtered to user's specifications.
+
+MSS:
+    1. User requests to filter guests.
+    2. Pocket Hotel filters the guests, and only shows those that fit the user's specifications.
+    3. Pocket Hotel shows a success message to user with the number of guests that have been filtered.
+    Use case ends.
+
+Extensions:
+    1a. No fields are given to filter.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Fields given do not follow correct syntax.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+```
+UC13 - Charging guests
+
+Preconditions: Guest must exist and be currently checked into the hotel.
+Guarantees: Pocket Hotel keeps track of the vendors hired by the guest.
+
+MSS:
+    1. User requests to charge a guest.
+    2. Pocket Hotel keeps track of the vendor hired by the guest.
+    3. Pocket Hotel shows a success message to user indicating the guest has been successfully charged.
+    Use case ends.
+
+Extensions:
+    1a. Guest is not checked in.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Vendor hired does not exist.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+#### Managing Vendors
+
+```
+UC14 - Adding vendors
+
+Preconditions: Vendors must not already exist in the app.
+Guarantees: Vendor list gets updated with the new vendor added.
+
+MSS:
+    1. User requests to add a new vendor.
+    2. Pocket Hotel adds the requested vendor.
+    3. Pocket Hotel shows a success message to user indicating the vendor has been successfully added.
+    Use case ends.
+
+Extensions:
+    1a. Vendor already exists.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Given operating hour start time is after the end time.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+    1c. Given fields such as vendor id, name, etc. is invalid.
+        1c1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+```
+UC15 - Editing vendors
+
+Preconditions: Vendor must exist in the app.
+Guarantees: Vendor list gets updated with the vendor edited.
+
+MSS:
+    1. User requests to edit a vendor.
+    2. Pocket Hotel updates the vendor with its new details.
+    3. Pocket Hotel shows a success message to user indicating vendor has been successfully edited.
+    Use case ends.
+
+Extensions:
+    1a. Vendor with given vendor id does not exist.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Given fields such as email, name, etc. is invalid.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+    1c. No field is given to edit.
+        1c1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+```
+UC16 - Deleting vendors
+
+Preconditions: Vendor must exist in the app.
+Guarantees: Vendor list gets updated with the vendor removed.
+
+MSS:
+    1. User requests to delete a vendor.
+    2. Pocket Hotel deletes the vendor.
+    3. Pocket Hotel shows a success message to user indicating vendor has been successfully deleted.
+    Use case ends.
+
+Extensions:
+    1a. Vendor with given vendor id does not exist.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Given identifier, vendor id is invalid.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+```
+
+```
+UC17 - Clearing vendors
+
+Preconditions: None.
+Guarantees: Vendor list gets cleared.
+
+MSS:
+    1. User requests to clear all vendor data.
+    2. Pocket Hotel clears all vendor data.
+    3. Pocket Hotel shows a success message to user indicating all vendor data has been successfully cleared.
+    Use case ends.
+```
+
+```
+UC18 - Filtering vendors
+
+Preconditions: Only vendor fields are given for the filter.
+Guarantees: Vendor list gets filtered to user's specifications.
+
+MSS:
+    1. User requests to filter vendors.
+    2. Pocket Hotel filters the vendors, and only shows those that fit the user's specifications.
+    3. Pocket Hotel shows a success message to user with the number of vendors that have been filtered.
+    Use case ends.
+
+Extensions:
+    1a. No fields are given to filter.
+        1a1. Pocket Hotel shows an error message.
+        Use case ends.
+    1b. Fields given do not follow correct syntax.
+        1b1. Pocket Hotel shows an error message.
+        Use case ends.
+```
 
 ### Non-Functional Requirements
 
@@ -567,6 +793,8 @@ Same as UC9 except that guest is replaced with staff.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Guest**: A person staying in Pocket Hotel
 * **Staff**: An employee of Pocket Hotel
+* **OOP**: Object-oriented programming. A programming paradigm that relies on the idea of designing data around objects and classes.
+* **GUI**: Graphical user interface
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -578,7 +806,6 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </div>
-
 
 ### Launch and shutdown
 
@@ -628,9 +855,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `chargeguest pn/S123 vid/001`<br>
       Expected: Service from <VENDOR> has been billed to <GUEST>
 
-<div>
-**:information_source: Note**<br>
-* Please perform this test case twice, as it will be used in the invoice generation test case.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Please perform this test case twice, as it will be used in the invoice generation test case.
+
 </div>
 
 ### Checking out a guest
@@ -665,9 +891,15 @@ testers are expected to do more *exploratory* testing.
    Expected: Message saying `X guest listed`
 
 <div>
+
 **:information_source: Note**<br>
 * Name field is case sensitive
 </div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br> * Name field is case sensitive
+
+</div>
+
 
 ### Show all guests
 1. Removes filters and switches to the guest list
@@ -747,8 +979,7 @@ testers are expected to do more *exploratory* testing.
 1. Deletes all vendors from PH.
     1. test case: `clearvendor`<br>
        Expected: Deletes all vendors from PH, vendor list will be empty.
-
-
+ 
 
 1. _{ more test cases …​ }_
 
