@@ -224,7 +224,7 @@ Example:
 
 * Guests with either the same passport numbers or same room numbers as guests that are already checked in are not allowed.
 
-* Guests with the same passport number as a past guest that is written in the archived are not allowed. If the guest is a returning guest, you should use returncheckin instead.
+* Guests with the same passport number as a past guest that is written in the archive are not allowed. If the guest is a returning guest, you should use returncheckin instead.
 </div>
 [Back to Table of Contents](#table-of-contents)
 
