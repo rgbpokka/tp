@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.guest.TypicalGuests.JEONGYEON_GUEST;
 import static seedu.address.testutil.guest.TypicalGuests.getTypicalArchive;
-import static seedu.address.testutil.guest.TypicalGuests.getTypicalGuestBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,11 +15,10 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.guest.Archive;
-import seedu.address.model.guest.GuestBook;
 import seedu.address.model.guest.ReadOnlyGuestBook;
 
 public class JsonArchiveStorageTest {
-   private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "Archive", "JsonArchiveStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "Archive", "JsonArchiveStorageTest");
 
     @TempDir
     public Path testFolder;
