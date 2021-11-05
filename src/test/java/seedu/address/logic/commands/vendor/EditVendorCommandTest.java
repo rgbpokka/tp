@@ -145,7 +145,7 @@ public class EditVendorCommandTest {
     public void execute_invalidVendorIdUnfilteredList_failure() {
         EditVendorCommand editCommand = new EditVendorCommand(VENDOR_ID_UNUSED, new EditVendorDescriptor());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_VENDORID);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_VENDOR_TO_EDIT_DOES_NOT_EXIST);
     }
 
     //    @Test

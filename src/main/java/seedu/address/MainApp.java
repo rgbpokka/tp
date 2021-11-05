@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-
-import org.bouncycastle.util.io.Streams;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
