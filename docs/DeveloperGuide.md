@@ -264,6 +264,33 @@ implementation of the `deletevendor` command is the same as the `deleteguest` co
 
 ### Invoice Generation
 
+#### Implementation
+
+Invoices in Pocket Hotel was created using the [iText7 Core](https://itextpdf.com/en/products/itext-7/itext-7-core)
+library, which provides an API to create PDF documents in Java.
+
+The implementation of invoice generation can be found in the `Invoice` class which contains almost all the code
+for generating invoices. The `Invoice` class is meant to be used as a static method and should not be
+instantiated. It has only one method that has the public access modifier is the static method `Invoice#generatePdfInvoice`
+The other static methods are private helper functions to perform the generation of the PDF.
+
+<img src="images/InvoiceBreakdown.png" width="450" />
+// todo check that picture is not too small
+
+An invoice has 5 components:
+
+1. Invoice header
+2. Billing details: Includes the guest name and their allocated room number
+3. The invoice table: Contain services the guest used during their stay as well as the total cost. Each row contains,
+the item number (row number), the name of the vendor, their vendor ID, service type,
+quantity and cost per unit, as well as line cost (quantity multiplied by cost per unit) are included
+4. A short note of thanks
+5. Page number
+
+Given below is the sequence diagram of how the invoice is created by `Invoice#generatePdfInvoice`.
+
+<img src="images/GeneratePdfInvoiceSequenceDiagram.png" width="450" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
