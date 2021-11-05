@@ -95,7 +95,7 @@ public class EditVendorCommand extends Command {
                 .orElse(null);
 
         if (vendorToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_VENDORID);
+            throw new CommandException(Messages.MESSAGE_VENDOR_TO_EDIT_DOES_NOT_EXIST);
         }
 
         Vendor editedVendor = createdEditedVendor(vendorToEdit, editVendorDescriptor);

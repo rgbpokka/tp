@@ -154,7 +154,7 @@ public class EditGuestCommandTest {
     public void execute_invalidPassportNumberUnfilteredList_failure() {
         EditGuestCommand editCommand = new EditGuestCommand(PASSPORT_NUMBER_UNUSED, new EditGuestDescriptor());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_GUEST_DOES_NOT_EXIST);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_GUEST_TO_EDIT_DOES_NOT_EXIST);
     }
 
     //        @Test

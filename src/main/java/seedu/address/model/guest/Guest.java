@@ -90,6 +90,8 @@ public class Guest extends UniqueListItem {
         return chargeablesUsed;
     }
 
+    public boolean hasChargeables() { return chargeablesUsed.size() > 0; }
+
     /**
      * Charges a guest to a vendor hired.
      *

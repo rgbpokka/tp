@@ -626,11 +626,21 @@ The Json files storing archive guest data are found at:
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**<br>
-* The archived guests would have the room number and services field emptied in the Json file.
-<br>Archived guest are also not shown in the UI. The rationale for this is that a returning guest would provide
+
+* The archived guests would have the services field emptied in the Json file.
+* Archived guest are also not shown in the UI. The rationale for this is that a returning guest would provide
 his/her details to the receptionist upon checking in to the hotel, hence there is no need for the receptionist to
 refer to details of the archived guests in the UI.
+* When booting up Pocket Hotel, you may notice that the guest list is empty. This could be due to several reasons:
+  * You accidentally deleted your guests.json file but your archive.json file is still intact. In such an event, Pocket
+  Hotel will attempt to load sample guest data when the app boots up. However, it will only load sample guests whose
+  passport numbers are not found in archive.json. If there is no sample guest whose passport number is not found in
+  archive.json, no sample guest data will be loaded and hence the guest list will be empty.
+  * You have pre-existing guest data but the data file format is incorrect/ there was a problem reading from the data
+  file.
 </div>
+
+
 
 [Back to Table of Contents](#table-of-contents)
 
