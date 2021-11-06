@@ -111,7 +111,8 @@ public class EditGuestCommand extends Command {
      * Creates and returns a {@code Guest} with the details of {@code guestToEdit}
      * edited with {@code editGuestDescriptor}.
      */
-    private static Guest createEditedGuest(Guest guestToEdit, EditGuestDescriptor editGuestDescriptor, Model model) throws CommandException {
+    private static Guest createEditedGuest(Guest guestToEdit, EditGuestDescriptor editGuestDescriptor,
+                                           Model model) throws CommandException {
         assert guestToEdit != null;
 
         Name updatedName = editGuestDescriptor.getName().orElse(guestToEdit.getName());
@@ -124,7 +125,8 @@ public class EditGuestCommand extends Command {
         // checks that newly provided room number is not already in use by another guest
         if (model.getFilteredGuestList()
                 .stream()
-                .filter(v -> ! v.getPassportNumber().equals(passportNumber) && v.getRoomNumber().equals(updatedRoomNumber))
+                .filter(v -> !v.getPassportNumber().equals(passportNumber) && v.getRoomNumber().equals(
+                        updatedRoomNumber))
                 .findAny()
                 .orElse(null) != null) {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);

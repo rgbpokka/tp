@@ -33,6 +33,7 @@ Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.h
 diagrams.
 </div>
 
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="300" />
@@ -306,6 +307,10 @@ The `filterguest` command is facilitated by the `FilterGuestCommandParser` and `
 how the `filterguest` operation works:
 
 ![FilterGuestSequenceDiagram](images/FilterGuestSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterGuestCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 Given above is an example of a user filtering guests by a tag, deluxe. The end result is a filtered list of guests with the tag, deluxe.
 The execution of the above example follows the same flow as all the other commands. One important to take note is that, the `FilterGuestCommandParser`
@@ -980,16 +985,9 @@ testers are expected to do more *exploratory* testing.
    1. test case: `filter guest n/Ale`, filters all guest that name starts with "Ale"
    Expected: Message saying `X guest listed`
 
-<div>
-
-**:information_source: Note**<br>
-* Name field is case sensitive
-</div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br> * Name field is case sensitive
 
 </div>
-
 
 ### Show all guests
 1. Removes filters and switches to the guest list

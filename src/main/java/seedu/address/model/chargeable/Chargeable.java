@@ -27,7 +27,7 @@ public class Chargeable {
      * @param quantity
      */
     public Chargeable(VendorId vendorId, Name name, ServiceName serviceName, Cost cost, Quantity quantity) {
-        requireAllNonNull(name, serviceName, cost);
+        requireAllNonNull(name, serviceName, cost, vendorId, quantity);
         this.vendorId = vendorId;
         this.name = name;
         this.serviceName = serviceName;
