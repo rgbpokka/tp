@@ -61,6 +61,7 @@ public class CheckOutCommandTest {
 
         CheckOutCommand checkOutCommand = new CheckOutCommand(PASSPORT_NUMBER_FIRST_PERSON);
 
+
         String expectedMessage = String.format(CheckOutCommand.MESSAGE_CHECKOUT_INVOICE_GENERATED_SUCCESSFUL,
                 guestToCheckout);
 

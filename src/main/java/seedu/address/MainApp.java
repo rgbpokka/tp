@@ -106,8 +106,8 @@ public class MainApp extends Application {
             initialData = guestBookOptional.orElseGet(() -> SampleDataUtil.getSampleGuestBook(archive));
 
             if (initialData.getGuestList().size() == 0) {
-                logger.info("Passport numbers of all sample guests are used in the archive. " +
-                        "Will be starting with an empty GuestBook");
+                logger.info("Passport numbers of all sample guests are used in the archive. "
+                        + "Will be starting with an empty GuestBook");
             }
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty GuestBook");
