@@ -252,7 +252,7 @@ has been archived, which is not allowed.
 
 It is worth noting that the passport number of a guest cannot be edited.
 
-----------------TO-DO SEQ DIAGRAM------------------------
+<img src="images/EditSequenceDiagramGuest.png" width="450" />
 
 ### Editing a Vendor
 
@@ -265,7 +265,7 @@ The difference between the Guest and Vendor model is that Vendors cannot be arch
 implementation of the `editvendor` command is the same as the `editguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched. 
 
----------------To-DO seq daigram---------------
+<img src="images/EditSequenceDiagramVendor.png" width="450" />
 
 ### Checking out a Guest
 
@@ -292,8 +292,7 @@ Once the invoice (if any) is generated, the chargeables (if any) of the guest wi
 The guest is then deleted from the model using `ModelManager#deleteGuest(Guest guest)` and added to the archive using
 `ModelManager#addArchivedGuest(Guest guest)`.
 
-
----------------To-DO seq daigram---------------
+<img src="images/CheckoutSequenceDiagram.png" width="450" />
 
 ### Filter feature
 
