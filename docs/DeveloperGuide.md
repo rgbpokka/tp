@@ -33,6 +33,7 @@ Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.h
 diagrams.
 </div>
 
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="300" />
