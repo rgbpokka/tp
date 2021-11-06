@@ -214,7 +214,7 @@ Parameters:
 
 Example:
 ![addGuest.png](images/addGuest.png)
-* `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new **guest**, Bing Cheng to **PH** and shows the new guest 
+* `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new **guest**, Bing Cheng to **PH** and shows the new guest
   list.
 
 <div markdown="block" class="alert alert-info">
