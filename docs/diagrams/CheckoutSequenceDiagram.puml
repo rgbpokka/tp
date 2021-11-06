@@ -77,9 +77,6 @@ activate CommandResult
 CommandResult --> CheckOutCommand
 deactivate CommandResult
 
-EditGuestCommand --> LogicManager : result
-deactivate EditGuestCommand
-
 [<--LogicManager
 deactivate LogicManager
 @enduml
