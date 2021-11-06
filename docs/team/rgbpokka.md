@@ -15,5 +15,3 @@ Given below are my contributions to the project.
         * Add documentation for the feature `editguest`, `editvendor`, `checkout`
     * Developer Guide:
         * Add documentation for the feature `editguest`, `editvendor`, `checkout`
-    
-    
