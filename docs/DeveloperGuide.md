@@ -1125,6 +1125,8 @@ We managed to revamp our existing v1.3 iteration to a whole new Pocket Hotel in 
 the new features added such as filter, archive, invoice, chargeable, and returning guest check in.
 
 Our team managed to deliver a convincing pitch and demo of our product and both our CS2101 lecturer and CS2103T tutor 
-were impressed with our work. 
+were impressed with our work.
+
+
 
 
