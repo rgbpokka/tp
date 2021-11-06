@@ -66,14 +66,14 @@ Markup | Meaning
 For Mac users, method 2 is the recommended way to open your files to ensure that you are able to see the save data for **PH**
 </div>
 
-![](images/UIHighlightingCommandBox.png)
+![UI Image](images/UIHighlightingCommandBox.png)
 <p align="center"><i>Figure 1. Pocket Hotel GUI</i></p>
 5. Type any command in the command box _(Highlighted in red above)_ and press Enter to execute it. e.g. typing `help` and pressing Enter will
    open the help window. Click the tab for the list that you would like to view e.g click vendor to view vendors in stored in **PH**<br>
    Some example commands you can try:
 
-    * **`checkin`**`n/John Doe pn/X12345678F r/123 e/johnd@example.com t/Senior Citizen` : Adds a guest
-      named `John Doe` to the address book.
+    * **`checkin`**`n/John Doe pn/X12345678F r/123 e/johnd@example.com t/Senior Citizen` : Checks in a guest
+      named `John Doe` and adds him to PH.
 
     * **`deleteguest`**`pn/X12345678F` : Deletes the guest with passport number X12345678F.
 
@@ -125,7 +125,7 @@ constraints can be found in the [parameter constraints.](#parameter-constraints-
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 * All fields cannot be empty
-* The tag field is optional and can be omitted entirely (You can learn more about tags [here](#Tagging-a-guest-or-vendor).)
+* The tag field is optional and can be omitted entirely (You can learn more about tags [here](#tagging-a-guest-or-vendor).)
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -184,7 +184,7 @@ Upon checking out a **guest**, a **PDF** invoice will be generated in a folder c
 The invoice contains information such as the guest details and any services
 that have been used during the guests stay (See [chargeguest](#charge-a-guest-for-a-service-chargeguest))
 
-![](images/SampleInvoice.png)
+![Sample Invoice](images/SampleInvoice.png)
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes:**<br>
@@ -214,7 +214,7 @@ Parameters:
 
 Example:
 ![addGuest.png](images/addGuest.png)
-* `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new **guest**, Bing Cheng to **PH** and shows the new contact
+* `checkin n/Bing Cheng pn/T0134568D e/bc@gmail.com r/69` , adds a new **guest**, Bing Cheng to **PH** and shows the new guest 
   list.
 
 <div markdown="block" class="alert alert-info">
@@ -437,7 +437,7 @@ Parameters:
 * `PHONE_NUMBER`: At least 3 digits long, should only contain numbers.
 * `SERVICE_NAME`: Alphabetical characters and spaces are allowed.
 * `SERVICE_COST`: Number greater than 0, will be rounded to 2 decimal places.
-* `OPERATING_HOURS`: Duplicates are allowed. Please refer to the note below for more details.
+* `OPERATING_HOURS`: Duplicates are allowed. <br>Format: `DAYS STARTTIME-ENDTIME`<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
 * `TAG`: An optional field, more than one can be included in each command.
 
 Example:
@@ -445,9 +445,6 @@ Example:
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes:**<br>
-
-* OPERATING_HOUR Format: `DAYS STARTTIME-ENDTIME`
-<br>Monday is represented using a 1 and Sunday is represented by 7.<br>Example:<br>`1234567 0800-2359`: Monday to Sunday 8am to 11:59pm<br>`1321 0800-0900`: Monday to Wednesday 7am to 9am
 
 * Duplicate vendors are allowed as long as vendor ID is different
 <br> E.g. Vendors with the same name, address, or service
