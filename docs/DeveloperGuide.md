@@ -953,23 +953,26 @@ testers are expected to do more *exploratory* testing.
     1. Download the jar file and copy into an empty folder
 
     Perform one of the steps (Option 2 recommended for mac)
+
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
+
     2. Run `java -jar PH.jar` in the directory that you placed your jar
-1. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+4. Saving window preferences
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    3. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    4. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Check in a guest
 1. Check in a new guest to PH
+
    1. Test case: `checkin n/Bobby pn/S1234 e/bobby@email.com r/23 t/VIP t/Deluxe Room`<br>
    Expected: A guest card will be created with the passport number S1234 with name "Bobby", email "bobby@gmail.com", room
    number "23", and tags "VIP" and "Deluxe Room"
+
    2. Test case: `checkin n/bobby`<br>
    Expected: Invalid command format error
 
@@ -991,6 +994,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Charging a guest for services
 1. Charges a guest a service
+
    1. Test case: `chargeguest pn/S123 vid/001`<br>
       Expected: Service from <VENDOR> has been billed to <GUEST>
 
@@ -1016,55 +1020,74 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing invoice generated
 1. Upon performing the `checkout` command in the previous section, a PDF invoice of all the guests expenses will be generated.
-   1. test case: From previous step<br>
+
+   1. Test case: From previous step<br>
    Expected: Check directory which contains jar file for PDF named `S1234 <CURRENT_TIME>`, PDF should contain base price of hotel stay and the 2 charges by vendor 001
 
 ### Return check in
 1. Return check in for guests whose details have been previously entered into the hotel
-   1. test case: `returncheckin pn/S1234 r/411`<br>
+
+   1. Test case: `returncheckin pn/S1234 r/411`<br>
    Expected: Checked in guest.
 
 ### Filter guest
 1. Filter guests with fields
-   1. test case: `filter guest n/Ale`, filters all guest that name starts with "Ale"
+
+   1. Test case: `filter guest n/Ale`, filters all guest that name starts with "Ale"
    Expected: Message saying `X guest listed`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br> * Name field is case sensitive
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br> Name field is case sensitive
 
 </div>
 
 ### Show all guests
 1. Removes filters and switches to the guest list
-   1. test case:
+
+   1. Test case:
+
       1. Perform filter guest example above
+
       2. Click on vendor list
+
       3. `listguest`<br>
    Expected: List will switch to guest and remove filters
 
 ### Delete guest
 1. Deletes guest based on its passport number.
-    1. test case: `deleteguest pn/S1234`<br>
+
+    1. Test case: `deleteguest pn/S1234`<br>
     Expected: Message notifying that guest is deleted
-    2. test case (Deleting an archived guest):
+
+    2. Test case (Deleting an archived guest):
+
        1. `checkin n/Bobby pn/S1234 e/bobby@email.com r/23 t/VIP t/Deluxe Room`
+
        2. `checkout pn/1234`
+
        3. `deleteguest pn/1234`<br>
    Expected: Message notifying that guest is deleted
 
 
 ### Clear guest
 1. Deletes all guests from PH, even archived ones
-   1. test case:
+
+   1. Test case:
+
       1. `checkin n/Bobby pn/S1234 e/bobby@email.com r/23 t/VIP t/Deluxe Room`
+
       2. `checkout pn/1234`
+
       3. `clearguest`
+
       4. `returncheckin pn/S1234 r/111`<br>
    Expected: All guests from guest list will be cleared, `returncheckin` command will throw an error as guest cannot be found in archive
 
 ### Adding a vendor
 
 1. Add vendor to list of vendors
-   1. test case:
+
+   1. Test case:
+
       1. `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/15 0800-2000`<br>
       Expected: Adds vendor with vendor ID 123, called Wang's Satay with email address satayMan@email.com, phone number 84711231, address Geylang Street 31
       , service name "Satay", and operating hours Monday and Friday 0800-2000.
@@ -1087,33 +1110,40 @@ testers are expected to do more *exploratory* testing.
 
 ### Filter vendor
 1. Filters vendors according to filter
+
     1. Test case: `filtervendor oh/5 0800`<br>
    Expected: Filters vendors that are open at 0800 and displays to the GUI
+
     2. Test case: `filtervendor oh/5 0800-1300`<br>
     Expected: Filters all vendors that operate anywhere between 0800 and 1300 on a Friday and displays them to the GUI
-    3. Test caseL `filtervendor sn/Food`<br>
+
+    3. Test case: `filtervendor sn/Food`<br>
     Expected: Filters all vendors that have a service name field of food.
 
 ### Show all vendors
 1. Removes filters and switches to the vendor list
-    1. test case:
+
+    1. Test case:
+
         1. Perform filter vendor example above
+
         2. Click on guest list
+
         3. `listvendor`<br>
            Expected: List will switch to vendor and removes filters
 
 ### Deleting a vendor
 1. Deletes a vendor based on its vendor ID
-   1. test case: `deletevendor vid/123`<br>
+
+   1. Test case: `deletevendor vid/123`<br>
    Expected: Deletes vendor with vid 123 from PH
 
 ### Clear vendor
 1. Deletes all vendors from PH.
-    1. test case: `clearvendor`<br>
+
+    1. Test case: `clearvendor`<br>
        Expected: Deletes all vendors from PH, vendor list will be empty.
 
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
