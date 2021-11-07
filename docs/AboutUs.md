@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/alyssa-savier.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: Testing and Code Quality
 
 ### Jeremy Yeo Zhi Chen
 
