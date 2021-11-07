@@ -28,7 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2122S1-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
@@ -45,8 +45,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -86,19 +86,19 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestListPanel`, `VendorListPanel`,
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestListPanel`, `VendorListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -109,7 +109,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -146,9 +146,9 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-![Model Class Diagram](images/ModelClassDiagram.png)
+![ModelClassDiagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -169,7 +169,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="600" />
 
@@ -230,7 +230,7 @@ toggling is executed depending on the state of the `CommandResult`, after execut
 
 The following activity diagram illustrates what happens to the `MainWindow` of the UI component when a user inputs a command.
 
-<img src="images/ToggleTabActivityDiagram.png" width="600" />
+![ToggleTabActivityDiagram](images/ToggleTabActivityDiagram.png)
 
 ### Editing a Guest
 
@@ -252,7 +252,7 @@ has been archived, which is not allowed.
 
 It is worth noting that the passport number of a guest cannot be edited.
 
-<img src="images/EditSequenceDiagramGuest.png" width="450" />
+![EditSequenceDiagramGuest](images/EditSequenceDiagramGuest.png)
 
 ### Editing a Vendor
 
@@ -265,7 +265,7 @@ The difference between the Guest and Vendor model is that Vendors cannot be arch
 implementation of the `editvendor` command is the same as the `editguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched.
 
-<img src="images/EditSequenceDiagramVendor.png" width="450" />
+![EditSequenceDiagramVendor](images/EditSequenceDiagramVendor.png)
 
 ### Checking out a Guest
 
@@ -292,7 +292,7 @@ Once the invoice (if any) is generated, the chargeables (if any) of the guest wi
 The guest is then deleted from the model using `ModelManager#deleteGuest(Guest guest)` and added to the archive using
 `ModelManager#addArchivedGuest(Guest guest)`.
 
-<img src="images/CheckoutSequenceDiagram.png" width="450" />
+![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
 ### Filter feature
 
@@ -333,7 +333,7 @@ This is done through the implementation of `Model` called `ModelManager`. The op
 are used to check if the guests details can be found in Pocket Hotel (Either in the archive or currently checked in).
 If the guest details is found in either locations, it would be deleted.
 
-<img src="images/DeleteSequenceDiagramGuest.png" width="450" />
+![DeleteSequenceDiagramGuest](images/DeleteSequenceDiagramGuest.png)
 
 ### Deleting a Vendor
 
@@ -346,7 +346,7 @@ The difference between the Guest and Vendor model is that Vendors cannot be arch
 implementation of the `deletevendor` command is the same as the `deleteguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched.
 
-<img src="images/DeleteSequenceDiagramVendor.png" width="450" />
+![DeleteSequenceDiagramVendor](images/DeleteSequenceDiagramVendor.png)
 
 ### Invoice Generation
 
@@ -361,7 +361,6 @@ instantiated. It has only one method that has the public access modifier is the 
 The other static methods are private helper functions to perform the generation of the PDF.
 
 <img src="images/InvoiceBreakdown.png" width="450" />
-// todo check that picture is not too small
 
 An invoice has 5 components:
 
@@ -375,7 +374,7 @@ quantity and cost per unit, as well as line cost (quantity multiplied by cost pe
 
 Given below is the sequence diagram of how the invoice is created by `Invoice#generatePdfInvoice`.
 
-<img src="images/GeneratePdfInvoiceSequenceDiagram.png" width="450" />
+![GeneratePdfInvoiceSequenceDiagram](images/GeneratePdfInvoiceSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -469,13 +468,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
