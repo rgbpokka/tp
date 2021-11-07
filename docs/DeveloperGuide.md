@@ -335,7 +335,7 @@ This is done through the implementation of `Model` called `ModelManager`. The op
 are used to check if the guests details can be found in Pocket Hotel (Either in the archive or currently checked in).
 If the guest details is found in either locations, it would be deleted.
 
-![DeleteSequenceDiagramGuest](images/DeleteSequenceDiagramGuest.png)
+<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
 
 ### Deleting a Vendor
 
@@ -348,7 +348,7 @@ The difference between the Guest and Vendor model is that Vendors cannot be arch
 implementation of the `deletevendor` command is the same as the `deleteguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched.
 
-![DeleteSequenceDiagramVendor](images/DeleteSequenceDiagramVendor.png)
+<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
 
 ### Invoice Generation
 
@@ -376,7 +376,7 @@ quantity and cost per unit, as well as line cost (quantity multiplied by cost pe
 
 Given below is the sequence diagram of how the invoice is created by `Invoice#generatePdfInvoice`.
 
-![GeneratePdfInvoiceSequenceDiagram](images/GeneratePdfInvoiceSequenceDiagram.png)
+<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
 
 ### \[Proposed\] Undo/redo feature
 
