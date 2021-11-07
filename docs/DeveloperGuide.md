@@ -12,8 +12,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+* [iText7 Event Handlers](https://kb.itextpdf.com/home/it7kb/ebooks/itext-7-jump-start-tutorial-for-java/chapter-3-using-renderers-and-event-handlers)
+* [Java DateTime Format](https://www.javatpoint.com/java-get-current-date)
+* [Rounding to 2 decimal places by Bharat Sinha](https://stackoverflow.com/questions/11701399/round-up-to-2-decimal-places-in-java)
+* [Create borderless cells in iText7 by Samuel HuylebroeckAdd ](https://stackoverflow.com/questions/41607891/itext-7-borderless-table-no-border)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -333,7 +335,7 @@ This is done through the implementation of `Model` called `ModelManager`. The op
 are used to check if the guests details can be found in Pocket Hotel (Either in the archive or currently checked in).
 If the guest details is found in either locations, it would be deleted.
 
-![DeleteSequenceDiagramGuest](images/DeleteSequenceDiagramGuest.png)
+<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
 
 ### Deleting a Vendor
 
@@ -346,7 +348,7 @@ The difference between the Guest and Vendor model is that Vendors cannot be arch
 implementation of the `deletevendor` command is the same as the `deleteguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched.
 
-![DeleteSequenceDiagramVendor](images/DeleteSequenceDiagramVendor.png)
+<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
 
 ### Invoice Generation
 
@@ -374,7 +376,7 @@ quantity and cost per unit, as well as line cost (quantity multiplied by cost pe
 
 Given below is the sequence diagram of how the invoice is created by `Invoice#generatePdfInvoice`.
 
-![GeneratePdfInvoiceSequenceDiagram](images/GeneratePdfInvoiceSequenceDiagram.png)
+<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
 
 ### \[Proposed\] Undo/redo feature
 
