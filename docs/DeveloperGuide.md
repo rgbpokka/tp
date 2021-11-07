@@ -28,7 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2122S1-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
@@ -45,8 +45,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -86,19 +86,19 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestListPanel`, `VendorListPanel`,
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestListPanel`, `VendorListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -109,7 +109,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -146,9 +146,9 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-![Model Class Diagram](images/ModelClassDiagram.png)
+![ModelClassDiagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -169,7 +169,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="600" />
 
@@ -230,7 +230,7 @@ toggling is executed depending on the state of the `CommandResult`, after execut
 
 The following activity diagram illustrates what happens to the `MainWindow` of the UI component when a user inputs a command.
 
-<img src="images/ToggleTabActivityDiagram.png" width="600" />
+![ToggleTabActivityDiagram](images/ToggleTabActivityDiagram.png)
 
 ### Checking in a Guest
 
@@ -289,21 +289,21 @@ The following activity diagram shows what happens when a user executes a checkin
 
 The implementation of the `editguest` command was largely based off the original AB3 implementation, with changes made
 to support the `Archive` and edit by the guest details instead of index in list.
-The `editguest` command makes use of the filtered guest list to search for the guest to be edited and `Archive` class to 
+The `editguest` command makes use of the filtered guest list to search for the guest to be edited and `Archive` class to
 determine if the user is trying to edit a guest that has been archived, which is not allowed.
 
 This is done through the implementation of `Model` called `ModelManager`. The operation
-`ModelManager#getFilteredGuestList()` gets the last shown list of guests in the UI, 
-after which a search is done to see if the list contains the guest to edit. If the guest is found, the details of 
+`ModelManager#getFilteredGuestList()` gets the last shown list of guests in the UI,
+after which a search is done to see if the list contains the guest to edit. If the guest is found, the details of
 the guest will be edited.
 
-In the event that the guest cannot found in the last shown list, the operation 
+In the event that the guest cannot found in the last shown list, the operation
 `ModelManager#getArchivedGuest(PassportNumber passportNumber)` checks if the user is trying to edit a guest that
-has been archived, which is not allowed. 
+has been archived, which is not allowed.
 
 It is worth noting that the passport number of a guest cannot be edited.
 
-----------------TO-DO SEQ DIAGRAM------------------------
+![EditSequenceDiagramGuest](images/EditSequenceDiagramGuest.png)
 
 ### Editing a Vendor
 
@@ -314,20 +314,20 @@ made to edit a different model, `Vendor` and edit by the vendor details instead 
 
 The difference between the Guest and Vendor model is that Vendors cannot be archived. Therefore, the
 implementation of the `editvendor` command is the same as the `editguest` command, but only the `VendorBook`
-(the `GuestBook` equivalent for vendors) has to be searched. 
+(the `GuestBook` equivalent for vendors) has to be searched.
 
----------------To-DO seq daigram---------------
+![EditSequenceDiagramVendor](images/EditSequenceDiagramVendor.png)
 
 ### Checking out a Guest
 
 #### Implementation
 
-The implementation of the `checkout` command builds upon the original AB3 implementation of 'delete', with changes 
-made to delete the guest from the model by the guest details instead of index in list. The 'checkout' command first 
+The implementation of the `checkout` command builds upon the original AB3 implementation of 'delete', with changes
+made to delete the guest from the model by the guest details instead of index in list. The 'checkout' command first
 generate an invoice for the guest if vendor services were engaged during his/her stay. After which, the guest is deleted
 from the model, and then archived.
 
-The `checkout` command makes use of the filtered guest list to search for the guest to be checked out and `Archive` class 
+The `checkout` command makes use of the filtered guest list to search for the guest to be checked out and `Archive` class
 to archive the guest.
 
 This is done through the implementation of `Model` called `ModelManager`. The operation
@@ -335,16 +335,15 @@ This is done through the implementation of `Model` called `ModelManager`. The op
 after which a search is done to see if the list contains the guest to check out.
 
 If the guest is found, a check is done to see if the guest engaged any vendor services (by seeing if he/she has any
-chargeables). As mentioned earlier, the invoice is generated only if the guest has chargeables. 
+chargeables). As mentioned earlier, the invoice is generated only if the guest has chargeables.
 
 Once the invoice (if any) is generated, the chargeables (if any) of the guest will be cleared using the operation
-`Guest#clearChargeables()`. 
+`Guest#clearChargeables()`.
 
 The guest is then deleted from the model using `ModelManager#deleteGuest(Guest guest)` and added to the archive using
 `ModelManager#addArchivedGuest(Guest guest)`.
 
-
----------------To-DO seq daigram---------------
+![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
 ### Filter feature
 
@@ -385,7 +384,7 @@ This is done through the implementation of `Model` called `ModelManager`. The op
 are used to check if the guests details can be found in Pocket Hotel (Either in the archive or currently checked in).
 If the guest details is found in either locations, it would be deleted.
 
-<img src="images/DeleteSequenceDiagramGuest.png" width="450" />
+![DeleteSequenceDiagramGuest](images/DeleteSequenceDiagramGuest.png)
 
 ### Deleting a Vendor
 
@@ -398,7 +397,7 @@ The difference between the Guest and Vendor model is that Vendors cannot be arch
 implementation of the `deletevendor` command is the same as the `deleteguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched.
 
-<img src="images/DeleteSequenceDiagramVendor.png" width="450" />
+![DeleteSequenceDiagramVendor](images/DeleteSequenceDiagramVendor.png)
 
 ### Invoice Generation
 
@@ -413,7 +412,6 @@ instantiated. It has only one method that has the public access modifier is the 
 The other static methods are private helper functions to perform the generation of the PDF.
 
 <img src="images/InvoiceBreakdown.png" width="450" />
-// todo check that picture is not too small
 
 An invoice has 5 components:
 
@@ -427,7 +425,7 @@ quantity and cost per unit, as well as line cost (quantity multiplied by cost pe
 
 Given below is the sequence diagram of how the invoice is created by `Invoice#generatePdfInvoice`.
 
-<img src="images/GeneratePdfInvoiceSequenceDiagram.png" width="450" />
+![GeneratePdfInvoiceSequenceDiagram](images/GeneratePdfInvoiceSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -521,13 +519,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1118,7 +1109,7 @@ testers are expected to do more *exploratory* testing.
 1. Deletes all vendors from PH.
     1. test case: `clearvendor`<br>
        Expected: Deletes all vendors from PH, vendor list will be empty.
- 
+
 
 1. _{ more test cases …​ }_
 
@@ -1140,42 +1131,42 @@ testers are expected to do more *exploratory* testing.
 
 ### Challenges faced
 
-Prior to the 1.3b iteration, Pocket Hotel was aimed at managing Guests and Staff. However, upon meeting with our CS2101 
-lecturer, we realised that our use cases were ill defined and we had failed to adequately address the needs of our 
-target audience. Coming up with meaningful use cases for that iteration was difficult and our team gathered to 
-brainstorm ideas on what core features we should include and who our target audience should really be. We eventually 
-came to a consensus that our application would be front desk oriented and ended up redesigning the entire workflow of 
-the application. Instead of managing Guests and Staff, our app would now manage guests and external vendors, with a 
-focus on streamlining all guest-related processes such as check in, checkout, charging guests etc. That was one of the 
-longest meetings spanning over 5 hours as we cleared out most of the edge case scenarios and came up with features that 
+Prior to the 1.3b iteration, Pocket Hotel was aimed at managing Guests and Staff. However, upon meeting with our CS2101
+lecturer, we realised that our use cases were ill defined and we had failed to adequately address the needs of our
+target audience. Coming up with meaningful use cases for that iteration was difficult and our team gathered to
+brainstorm ideas on what core features we should include and who our target audience should really be. We eventually
+came to a consensus that our application would be front desk oriented and ended up redesigning the entire workflow of
+the application. Instead of managing Guests and Staff, our app would now manage guests and external vendors, with a
+focus on streamlining all guest-related processes such as check in, checkout, charging guests etc. That was one of the
+longest meetings spanning over 5 hours as we cleared out most of the edge case scenarios and came up with features that
 would be useful to the application.
 
-With 5 days left to the submission deadline, we set out to achieve what most groups would take 4 weeks to do. We had 
-to make significant changes to refactor the original codebase. Our original commands such as Edit, Add (which was 
-converted to checkin and returncheckin) and Delete had to be duplicated for both guests and vendors, which greatly 
-increased the workload for implementation and testing. Additionally, we made changes to the original Model by 
-introducing an Archive, which would be used to store checked out guests and implemented several new features that 
-were dissimilar to any of those in AB3, such as invoice generation for guests who engaged vendor services during 
-their stay. We also have more json files to manage such as Guest, Vendors and Archive, which increased the amount 
+With 5 days left to the submission deadline, we set out to achieve what most groups would take 4 weeks to do. We had
+to make significant changes to refactor the original codebase. Our original commands such as Edit, Add (which was
+converted to checkin and returncheckin) and Delete had to be duplicated for both guests and vendors, which greatly
+increased the workload for implementation and testing. Additionally, we made changes to the original Model by
+introducing an Archive, which would be used to store checked out guests and implemented several new features that
+were dissimilar to any of those in AB3, such as invoice generation for guests who engaged vendor services during
+their stay. We also have more json files to manage such as Guest, Vendors and Archive, which increased the amount
 of testing and implementation required.
 
-In particular, with the additional feature of generating invoices, we have a new workflow to allow this functionality 
-with the added logic for charging guests and checking out a guest for a smoother process. The parsing of the information 
+In particular, with the additional feature of generating invoices, we have a new workflow to allow this functionality
+with the added logic for charging guests and checking out a guest for a smoother process. The parsing of the information
 and generation of the layout was also tricky.
 
 Two major entities are involved: Guest and Vendor:
-The two classes have some fields in common but are different from one another. For example, Vendors have operating hours 
+The two classes have some fields in common but are different from one another. For example, Vendors have operating hours
 while Guests have a list of things that they are charged for.
 
-The difference in workflow also greatly increases the workload of implementation and testing for both the Guest and 
+The difference in workflow also greatly increases the workload of implementation and testing for both the Guest and
 Vendors due to the separate command logic and storage required to handle them.
 
 ### Achievements
 
-We managed to revamp our existing v1.3 iteration to a whole new Pocket Hotel in v1.3b iteration within a week with all 
+We managed to revamp our existing v1.3 iteration to a whole new Pocket Hotel in v1.3b iteration within a week with all
 the new features added such as filter, archive, invoice, chargeable, and returning guest check in.
 
-Our team managed to deliver a convincing pitch and demo of our product and both our CS2101 lecturer and CS2103T tutor 
+Our team managed to deliver a convincing pitch and demo of our product and both our CS2101 lecturer and CS2103T tutor
 were impressed with our work.
 
 
