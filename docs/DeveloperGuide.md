@@ -232,6 +232,57 @@ The following activity diagram illustrates what happens to the `MainWindow` of t
 
 <img src="images/ToggleTabActivityDiagram.png" width="600" />
 
+### Checking in a Guest
+
+#### Implementation
+
+The implementation of the `checkin` command was mostly based off the original AB3 implementation, with changes made
+to support the `Archive` and with curated fields tied to a guest.
+The `checkin` command makes use of the filtered guest list to search for the guest to be checked in to see whether
+they are a duplicate guess and `Archive` class to determine if the user is trying to check in a guest that has been
+archived, which are both not allowed.
+This is done through the implementation of `Model` called `ModelManager`. The operation
+`ModelManager#getFilteredGuestList()` gets the last shown list of guests in the UI, after which a search is done to see
+if the list contains the guest to check in. If the guest is not found, the details of the guest will be added.
+If the guest is found, which means that there is a duplicate guest, the operation will not be allowed.
+In the event that the guest cannot be found in the last shown list, the operation
+`ModelManager#getArchivedGuest(PassportNumber passportNumber)` checks if the user is trying to check in a guest that
+has been archived, which is not allowed.
+
+The `checkin` command is facilitated by the `CheckInNewGuestCommandParser` and `CheckInNewGuestCommand` of PH. 
+The following sequence diagram shows how the `checkin` operation works:
+
+![CheckInNewGuestSequenceDiagram](images/tracing/CheckInNewGuestSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a checkin command.
+
+![CheckInNewGuestActivityDiagram](images/tracing/CheckInNewGuestActivityDiagram.png)
+
+### Checking in a returning Guest
+
+#### Implementation
+
+The implementation of the `returncheckin` command was mostly based off the original AB3 implementation, with changes
+made to support the `Archive` and with curated fields tied to a guest. The `returncheckin` command makes use of the
+filtered guest list to search for the guest to be checked in to see whether they are a duplicate guess, which is not
+allowed, and `Archive` class to determine if the user is trying to check in a guest that has been archived.
+This is done through the implementation of `Model` called `ModelManager`. The operation
+`ModelManager#getFilteredGuestList()` gets the last shown list of guests in the UI, after which a search is done to see
+if the list contains the guest to edit. If the guest is not found, the details of the guest will be added. If the guest
+is found, which means that there is a duplicate guest, the operation will not be allowed.
+In the event that the guest canno bet found in the last shown list, the operation
+`ModelManager#getArchivedGuest(PassportNumber passportNumber)` checks if the user is trying to check in a guest that has
+been archived, which is the purpose of this command.
+
+The `returncheckin` command is facilitated by the `CheckInReturningGuestCommandParser` and
+`CheckInReturningGuestCommand` of PH. The following sequence diagram shows how the `checkin` operation works:
+
+![CheckInReturningGuestSequenceDiagram](images/tracing/CheckInReturningGuestSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a checkin command.
+
+![CheckInReturningGuestActivityDiagram](images/tracing/CheckInReturningGuestActivityDiagram.png)
+
 ### Editing a Guest
 
 #### Implementation
