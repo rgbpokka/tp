@@ -36,8 +36,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/calvintanwj)]
 [[portfolio](team/calvintanwj.md)]
 
-* Role:
-* Responsibilities:
+* Role: Team lead
+* Responsibilities: Integration, Model 
 
 ### Nicolas Chang
 
@@ -46,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/NicolasCwy)]
 [[portfolio](team/nicolascwy.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: User Guide Documentation & Scheduling and tracking
 
 ### Toh Bing Cheng
 

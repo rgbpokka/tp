@@ -12,8 +12,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+* [iText7 Event Handlers](https://kb.itextpdf.com/home/it7kb/ebooks/itext-7-jump-start-tutorial-for-java/chapter-3-using-renderers-and-event-handlers)
+* [Java DateTime Format](https://www.javatpoint.com/java-get-current-date)
+* [Rounding to 2 decimal places by Bharat Sinha](https://stackoverflow.com/questions/11701399/round-up-to-2-decimal-places-in-java)
+* [Create borderless cells in iText7 by Samuel HuylebroeckAdd ](https://stackoverflow.com/questions/41607891/itext-7-borderless-table-no-border)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -28,7 +30,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2122S1-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
@@ -45,8 +47,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -86,19 +88,19 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestListPanel`, `VendorListPanel`,
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestListPanel`, `VendorListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -109,7 +111,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -146,9 +148,9 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-![Model Class Diagram](images/ModelClassDiagram.png)
+![ModelClassDiagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -169,7 +171,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="600" />
 
@@ -230,7 +232,58 @@ toggling is executed depending on the state of the `CommandResult`, after execut
 
 The following activity diagram illustrates what happens to the `MainWindow` of the UI component when a user inputs a command.
 
-<img src="images/ToggleTabActivityDiagram.png" width="600" />
+![ToggleTabActivityDiagram](images/ToggleTabActivityDiagram.png)
+
+### Checking in a Guest
+
+#### Implementation
+
+The implementation of the `checkin` command was mostly based off the original AB3 implementation, with changes made
+to support the `Archive` and with curated fields tied to a guest.
+The `checkin` command makes use of the filtered guest list to search for the guest to be checked in to see whether
+they are a duplicate guess and `Archive` class to determine if the user is trying to check in a guest that has been
+archived, which are both not allowed.
+This is done through the implementation of `Model` called `ModelManager`. The operation
+`ModelManager#getFilteredGuestList()` gets the last shown list of guests in the UI, after which a search is done to see
+if the list contains the guest to check in. If the guest is not found, the details of the guest will be added.
+If the guest is found, which means that there is a duplicate guest, the operation will not be allowed.
+In the event that the guest cannot be found in the last shown list, the operation
+`ModelManager#getArchivedGuest(PassportNumber passportNumber)` checks if the user is trying to check in a guest that
+has been archived, which is not allowed.
+
+The `checkin` command is facilitated by the `CheckInNewGuestCommandParser` and `CheckInNewGuestCommand` of PH. 
+The following sequence diagram shows how the `checkin` operation works:
+
+![CheckInNewGuestSequenceDiagram](images/tracing/CheckInNewGuestSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a checkin command.
+
+![CheckInNewGuestActivityDiagram](images/tracing/CheckInNewGuestActivityDiagram.png)
+
+### Checking in a returning Guest
+
+#### Implementation
+
+The implementation of the `returncheckin` command was mostly based off the original AB3 implementation, with changes
+made to support the `Archive` and with curated fields tied to a guest. The `returncheckin` command makes use of the
+filtered guest list to search for the guest to be checked in to see whether they are a duplicate guess, which is not
+allowed, and `Archive` class to determine if the user is trying to check in a guest that has been archived.
+This is done through the implementation of `Model` called `ModelManager`. The operation
+`ModelManager#getFilteredGuestList()` gets the last shown list of guests in the UI, after which a search is done to see
+if the list contains the guest to edit. If the guest is not found, the details of the guest will be added. If the guest
+is found, which means that there is a duplicate guest, the operation will not be allowed.
+In the event that the guest canno bet found in the last shown list, the operation
+`ModelManager#getArchivedGuest(PassportNumber passportNumber)` checks if the user is trying to check in a guest that has
+been archived, which is the purpose of this command.
+
+The `returncheckin` command is facilitated by the `CheckInReturningGuestCommandParser` and
+`CheckInReturningGuestCommand` of PH. The following sequence diagram shows how the `checkin` operation works:
+
+![CheckInReturningGuestSequenceDiagram](images/tracing/CheckInReturningGuestSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a checkin command.
+
+![CheckInReturningGuestActivityDiagram](images/tracing/CheckInReturningGuestActivityDiagram.png)
 
 ### Editing a Guest
 
@@ -252,7 +305,7 @@ has been archived, which is not allowed.
 
 It is worth noting that the passport number of a guest cannot be edited.
 
-<img src="images/EditSequenceDiagramGuest.png" width="450" />
+![EditSequenceDiagramGuest](images/EditSequenceDiagramGuest.png)
 
 ### Editing a Vendor
 
@@ -265,7 +318,7 @@ The difference between the Guest and Vendor model is that Vendors cannot be arch
 implementation of the `editvendor` command is the same as the `editguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched.
 
-<img src="images/EditSequenceDiagramVendor.png" width="450" />
+![EditSequenceDiagramVendor](images/EditSequenceDiagramVendor.png)
 
 ### Checking out a Guest
 
@@ -292,7 +345,7 @@ Once the invoice (if any) is generated, the chargeables (if any) of the guest wi
 The guest is then deleted from the model using `ModelManager#deleteGuest(Guest guest)` and added to the archive using
 `ModelManager#addArchivedGuest(Guest guest)`.
 
-<img src="images/CheckoutSequenceDiagram.png" width="450" />
+![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
 ### Filter feature
 
@@ -333,7 +386,7 @@ This is done through the implementation of `Model` called `ModelManager`. The op
 are used to check if the guests details can be found in Pocket Hotel (Either in the archive or currently checked in).
 If the guest details is found in either locations, it would be deleted.
 
-<img src="images/DeleteSequenceDiagramGuest.png" width="450" />
+<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
 
 ### Deleting a Vendor
 
@@ -346,7 +399,7 @@ The difference between the Guest and Vendor model is that Vendors cannot be arch
 implementation of the `deletevendor` command is the same as the `deleteguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched.
 
-<img src="images/DeleteSequenceDiagramVendor.png" width="450" />
+<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
 
 ### Invoice Generation
 
@@ -361,7 +414,6 @@ instantiated. It has only one method that has the public access modifier is the 
 The other static methods are private helper functions to perform the generation of the PDF.
 
 <img src="images/InvoiceBreakdown.png" width="450" />
-// todo check that picture is not too small
 
 An invoice has 5 components:
 
@@ -375,7 +427,7 @@ quantity and cost per unit, as well as line cost (quantity multiplied by cost pe
 
 Given below is the sequence diagram of how the invoice is created by `Invoice#generatePdfInvoice`.
 
-<img src="images/GeneratePdfInvoiceSequenceDiagram.png" width="450" />
+<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
 
 ### \[Proposed\] Undo/redo feature
 
@@ -469,13 +521,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -908,23 +953,26 @@ testers are expected to do more *exploratory* testing.
     1. Download the jar file and copy into an empty folder
 
     Perform one of the steps (Option 2 recommended for mac)
+
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
+
     2. Run `java -jar PH.jar` in the directory that you placed your jar
-1. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+4. Saving window preferences
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    3. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    4. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Check in a guest
 1. Check in a new guest to PH
+
    1. Test case: `checkin n/Bobby pn/S1234 e/bobby@email.com r/23 t/VIP t/Deluxe Room`<br>
    Expected: A guest card will be created with the passport number S1234 with name "Bobby", email "bobby@gmail.com", room
    number "23", and tags "VIP" and "Deluxe Room"
+
    2. Test case: `checkin n/bobby`<br>
    Expected: Invalid command format error
 
@@ -946,6 +994,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Charging a guest for services
 1. Charges a guest a service
+
    1. Test case: `chargeguest pn/S123 vid/001`<br>
       Expected: Service from <VENDOR> has been billed to <GUEST>
 
@@ -971,55 +1020,74 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing invoice generated
 1. Upon performing the `checkout` command in the previous section, a PDF invoice of all the guests expenses will be generated.
-   1. test case: From previous step<br>
+
+   1. Test case: From previous step<br>
    Expected: Check directory which contains jar file for PDF named `S1234 <CURRENT_TIME>`, PDF should contain base price of hotel stay and the 2 charges by vendor 001
 
 ### Return check in
 1. Return check in for guests whose details have been previously entered into the hotel
-   1. test case: `returncheckin pn/S1234 r/411`<br>
+
+   1. Test case: `returncheckin pn/S1234 r/411`<br>
    Expected: Checked in guest.
 
 ### Filter guest
 1. Filter guests with fields
-   1. test case: `filter guest n/Ale`, filters all guest that name starts with "Ale"
+
+   1. Test case: `filter guest n/Ale`, filters all guest that name starts with "Ale"
    Expected: Message saying `X guest listed`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**<br> * Name field is case sensitive
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br> Name field is case sensitive
 
 </div>
 
 ### Show all guests
 1. Removes filters and switches to the guest list
-   1. test case:
+
+   1. Test case:
+
       1. Perform filter guest example above
+
       2. Click on vendor list
+
       3. `listguest`<br>
    Expected: List will switch to guest and remove filters
 
 ### Delete guest
 1. Deletes guest based on its passport number.
-    1. test case: `deleteguest pn/S1234`<br>
+
+    1. Test case: `deleteguest pn/S1234`<br>
     Expected: Message notifying that guest is deleted
-    2. test case (Deleting an archived guest):
+
+    2. Test case (Deleting an archived guest):
+
        1. `checkin n/Bobby pn/S1234 e/bobby@email.com r/23 t/VIP t/Deluxe Room`
+
        2. `checkout pn/1234`
+
        3. `deleteguest pn/1234`<br>
    Expected: Message notifying that guest is deleted
 
 
 ### Clear guest
 1. Deletes all guests from PH, even archived ones
-   1. test case:
+
+   1. Test case:
+
       1. `checkin n/Bobby pn/S1234 e/bobby@email.com r/23 t/VIP t/Deluxe Room`
+
       2. `checkout pn/1234`
+
       3. `clearguest`
+
       4. `returncheckin pn/S1234 r/111`<br>
    Expected: All guests from guest list will be cleared, `returncheckin` command will throw an error as guest cannot be found in archive
 
 ### Adding a vendor
 
 1. Add vendor to list of vendors
-   1. test case:
+
+   1. Test case:
+
       1. `addvendor vid/123 n/Wang's Satay e/satayMan@email.com p/84711231 a/Geylang Street 31 sn/Satay c/5 oh/15 0800-2000`<br>
       Expected: Adds vendor with vendor ID 123, called Wang's Satay with email address satayMan@email.com, phone number 84711231, address Geylang Street 31
       , service name "Satay", and operating hours Monday and Friday 0800-2000.
@@ -1042,33 +1110,40 @@ testers are expected to do more *exploratory* testing.
 
 ### Filter vendor
 1. Filters vendors according to filter
+
     1. Test case: `filtervendor oh/5 0800`<br>
    Expected: Filters vendors that are open at 0800 and displays to the GUI
+
     2. Test case: `filtervendor oh/5 0800-1300`<br>
     Expected: Filters all vendors that operate anywhere between 0800 and 1300 on a Friday and displays them to the GUI
-    3. Test caseL `filtervendor sn/Food`<br>
+
+    3. Test case: `filtervendor sn/Food`<br>
     Expected: Filters all vendors that have a service name field of food.
 
 ### Show all vendors
 1. Removes filters and switches to the vendor list
-    1. test case:
+
+    1. Test case:
+
         1. Perform filter vendor example above
+
         2. Click on guest list
+
         3. `listvendor`<br>
            Expected: List will switch to vendor and removes filters
 
 ### Deleting a vendor
 1. Deletes a vendor based on its vendor ID
-   1. test case: `deletevendor vid/123`<br>
+
+   1. Test case: `deletevendor vid/123`<br>
    Expected: Deletes vendor with vid 123 from PH
 
 ### Clear vendor
 1. Deletes all vendors from PH.
-    1. test case: `clearvendor`<br>
+
+    1. Test case: `clearvendor`<br>
        Expected: Deletes all vendors from PH, vendor list will be empty.
 
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 

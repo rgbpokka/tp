@@ -179,7 +179,7 @@ subsequent visits and saves you the time of entering all their information again
 
 ## Invoice Generation
 Upon checking out a **guest**, a **PDF** invoice will be generated in a folder called `Invoices` in the directory that the `PH.jar` is found in. The invoice will be named in the format
-`GUEST_NAME YYYY-MM-DD HH-MM-SS.pdf`, where the `YYYY-MM-DD HH-MM-SS` denotes the current year, month, data, hours, minutes and seconds, at the time the invoice was generated.
+`GUEST_PASSPORT_NUMBER YYYY-MM-DD HH-MM-SS.pdf`, where the `YYYY-MM-DD HH-MM-SS` denotes the current year, month, data, hours, minutes and seconds, at the time the invoice was generated.
 
 The invoice contains information such as the guest details and any services
 that have been used during the guests stay (See [chargeguest](#charge-a-guest-for-a-service-chargeguest))
