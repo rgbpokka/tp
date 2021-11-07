@@ -12,8 +12,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+* [iText7 Event Handlers](https://kb.itextpdf.com/home/it7kb/ebooks/itext-7-jump-start-tutorial-for-java/chapter-3-using-renderers-and-event-handlers)
+* [Java DateTime Format](https://www.javatpoint.com/java-get-current-date)
+* [Rounding to 2 decimal places by Bharat Sinha](https://stackoverflow.com/questions/11701399/round-up-to-2-decimal-places-in-java)
+* [Create borderless cells in iText7 by Samuel HuylebroeckAdd ](https://stackoverflow.com/questions/41607891/itext-7-borderless-table-no-border)
 
 --------------------------------------------------------------------------------------------------------------------
 
