@@ -115,7 +115,7 @@ public class MainApp extends Application {
                         containPassportNumber = true;
                     }
                 }
-                if (! containPassportNumber) {
+                if (!containPassportNumber) {
                     verifiedGuestBook.getGuestList().add(guest);
                 }
             }
