@@ -417,7 +417,7 @@ The difference between the Guest and Vendor model is that Vendors cannot be arch
 the `deletevendor` command is the same as the `deleteguest` command, but only the `VendorBook`
 (the `GuestBook` equivalent for vendors) has to be searched.
 
-<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
+<img src="images/DeleteSequenceDiagramVendor.png" width="800" />
 
 ### Invoice Generation
 
@@ -445,7 +445,12 @@ An invoice has 5 components:
 
 Given below is the sequence diagram of how the invoice is created by `Invoice#generatePdfInvoice`.
 
-<img src="images/DeleteSequenceDiagramGuest.png" width="800" />
+<img src="images/GeneratePdfInvoiceSequenceDiagram.png.png" width="800" />
+
+Referring back to the components that we have to include in the invoice. The `InvoiceNewPageHandler` would add
+the invoice header and the page number. The `addGuestBillingDetailsToPdf` adds the billing details, `addInvoiceTableToPdf`
+adds the invoice table and `addThankYouParagraphToPdf` adds a short note of thanks.
+
 
 ### \[Proposed\] Undo/redo feature
 
