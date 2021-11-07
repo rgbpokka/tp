@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/rgbpokka)]
 [[portfolio](team/rgbpokka.md)]
 
-* Role:
+* Role: 
 * Responsibilities:
 
 ### Calvin Tan
@@ -46,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/NicolasCwy)]
 [[portfolio](team/nicolascwy.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: User Guide Documentation & Scheduling and tracking
 
 ### Toh Bing Cheng
 
