@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     * was non trivial as it involved changing many related classes like Archive.
     * Credits: Adapted the existing Add Command in AB3.
 
-* Code contributed: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=rgbpokka)
+* Code contributed: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=alyssa-savier)
 
 * Enhancements to existing features:
 
