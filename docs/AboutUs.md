@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/rgbpokka)]
 [[portfolio](team/rgbpokka.md)]
 
-* Role: 
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Deliverables and Deadlines, Documentation
 
 ### Calvin Tan
 

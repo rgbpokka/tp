@@ -60,20 +60,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyGuestBook getSampleGuestBook(ReadOnlyGuestBook archive) {
-        List<Guest> archivedGuests = archive.getGuestList();
+    public static ReadOnlyGuestBook getSampleGuestBook() {
         GuestBook sampleGuestBook = new GuestBook();
 
         for (Guest sampleGuest : getSampleGuests()) {
-            boolean containPassportNumber = false;
-            for (Guest archivedGuest : archivedGuests) {
-                if (archivedGuest.getPassportNumber().equals(sampleGuest.getPassportNumber())) {
-                    containPassportNumber = true;
-                }
-            }
-            if (!containPassportNumber) {
-                sampleGuestBook.addGuest(sampleGuest);
-            }
+            sampleGuestBook.addGuest(sampleGuest);
+
         }
 
         return sampleGuestBook;
